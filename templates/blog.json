@@ -1,19 +1,43 @@
 {
   "sections": {
-    "main": {
-      "type": "main-blog",
+    "blog-listing": {
+      "type": "sophior-blog-listing",
+      "blocks": {
+        "tab-snijplanken": {
+          "type": "tab",
+          "settings": { "blog_handle": "snijplanken", "label": "Snijplanken" }
+        },
+        "tab-pannen": {
+          "type": "tab",
+          "settings": { "blog_handle": "pannen", "label": "Pannen" }
+        },
+        "tab-messen": {
+          "type": "tab",
+          "settings": { "blog_handle": "messen", "label": "Messen" }
+        },
+        "tab-accessoires": {
+          "type": "tab",
+          "settings": { "blog_handle": "accessoires", "label": "Accessoires" }
+        },
+        "tab-inspiratie": {
+          "type": "tab",
+          "settings": { "blog_handle": "inspiratie-recepten", "label": "Inspiratie" }
+        }
+      },
+      "block_order": [
+        "tab-snijplanken",
+        "tab-pannen",
+        "tab-messen",
+        "tab-accessoires",
+        "tab-inspiratie"
+      ],
       "settings": {
-        "layout": "collage",
-        "show_image": true,
-        "image_height": "medium",
-        "show_date": true,
-        "show_author": false,
-        "padding_top": 36,
-        "padding_bottom": 36
+        "articles_per_page": 9,
+        "show_excerpt": true
       }
     }
   },
   "order": [
-    "main"
+    "blog-listing"
   ]
 }

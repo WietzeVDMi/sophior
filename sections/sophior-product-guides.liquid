@@ -1,0 +1,117 @@
+{{ 'sophior-product-guides.css' | asset_url | stylesheet_tag }}
+
+{%- comment -%}
+  sophior-product-guides — Gidsen sectie op de PDP.
+  Toont max 3 artikelen gefilterd op blog.handle == product.type.
+  Sectie is onzichtbaar als er geen artikelen beschikbaar zijn.
+  Toevoegen aan templates/product.json na de reviews sectie.
+{%- endcomment -%}
+
+{%- assign product_blog = blogs[product.type] -%}
+{%- assign guide_count = 0 -%}
+{%- if product_blog != blank -%}
+  {%- for art in product_blog.articles limit: 1 -%}
+    {%- assign guide_count = product_blog.articles_count -%}
+  {%- endfor -%}
+{%- endif -%}
+
+{%- if guide_count > 0 -%}
+  <section
+    class="sophior-product-guides section-{{ section.id }}-padding"
+    id="sophior-product-guides-{{ section.id }}"
+  >
+    <div class="page-width">
+      <div class="sophior-product-guides__header">
+        <h2 class="sophior-product-guides__heading">
+          {{- section.settings.heading | default: 'sections.sophior-product-guides.default_heading' | t -}}
+        </h2>
+        <a href="{{ product_blog.url }}" class="sophior-product-guides__all-link">
+          {{ 'sections.sophior-product-guides.view_all' | t }}
+        </a>
+      </div>
+
+      <ul class="sophior-product-guides__grid" role="list">
+        {%- for article in product_blog.articles limit: 3 -%}
+          <li>
+            <article class="sophior-product-guides__card">
+              {%- comment -%} Afbeelding {%- endcomment -%}
+              <a href="{{ article.url }}" class="sophior-product-guides__card-media" tabindex="-1" aria-hidden="true">
+                {%- if article.image != blank -%}
+                  {{
+                    article.image
+                    | image_url: width: 500
+                    | image_tag:
+                      class: 'sophior-product-guides__card-img',
+                      loading: 'lazy',
+                      alt: article.image.alt | default: article.title | escape,
+                      widths: '250, 400, 500',
+                      sizes: '(max-width: 749px) 100vw, 33vw'
+                  }}
+                {%- else -%}
+                  <div class="sophior-product-guides__card-img sophior-product-guides__card-img--placeholder"></div>
+                {%- endif -%}
+              </a>
+
+              {%- comment -%} Inhoud {%- endcomment -%}
+              <div class="sophior-product-guides__card-body">
+                <span class="sophior-product-guides__card-category">{{ product_blog.title | escape }}</span>
+                <h3 class="sophior-product-guides__card-title">
+                  <a href="{{ article.url }}" class="sophior-product-guides__card-title-link">{{ article.title | escape }}</a>
+                </h3>
+                {%- if article.excerpt != blank -%}
+                  <p class="sophior-product-guides__card-excerpt">{{ article.excerpt | strip_html | truncate: 100 }}</p>
+                {%- else -%}
+                  <p class="sophior-product-guides__card-excerpt">{{ article.content | strip_html | truncate: 100 }}</p>
+                {%- endif -%}
+                <a href="{{ article.url }}" class="sophior-product-guides__card-link">
+                  {{ 'sections.sophior-product-guides.read_more' | t }}
+                </a>
+              </div>
+            </article>
+          </li>
+        {%- endfor -%}
+      </ul>
+    </div>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "t:sections.sophior-product-guides.name",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:sections.sophior-product-guides.settings.heading.label",
+      "info": "t:sections.sophior-product-guides.settings.heading.info"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "t:sections.all.padding.padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "t:sections.all.padding.padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.sophior-product-guides.presets.default.name"
+    }
+  ]
+}
+{% endschema %}

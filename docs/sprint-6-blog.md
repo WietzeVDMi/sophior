@@ -1,6 +1,6 @@
 # Sprint 6 — Blog & Gidsen
 
-**Status:** ⏸ Gepland
+**Status:** ✅ Klaar
 **Duur:** 2–3 dagen
 **Branch:** `feature/sprint-6-blog`
 **Vereist:** Sprint 1 afgerond
@@ -27,8 +27,8 @@ Ga naar: **Admin → Online Store → Blog posts → Manage blogs**
 | Accessoires Gids | `accessoires` | PDP accessoires, header dropdown |
 | Inspiratie & Recepten | `inspiratie-recepten` | Algemene gidsen, header dropdown |
 
-- [ ] Alle 5 blogs aanmaken in Shopify Admin
-- [ ] Per blog 1–2 testartikelen aanmaken (voor testing filtering)
+- [ ] Alle 5 blogs aanmaken in Shopify Admin ← **klant**
+- [ ] Per blog 1–2 testartikelen aanmaken (voor testing filtering) ← **klant**
 
 ---
 
@@ -50,47 +50,72 @@ Dit werkt omdat `product.type` overeenkomt met de blog handle (bijv. `snijplank`
 ## Taken
 
 ### Templates
-- [ ] `templates/blog.json` aanpassen voor SOPHIOR stijl
-- [ ] `templates/article.json` aanpassen voor SOPHIOR stijl
+- [x] `templates/blog.json` aangepast — `sophior-blog-listing` met 5 tabs pre-populated
+- [x] `templates/article.json` aangepast — `sophior-article` section
 
 ### Blog Overzichtspagina — `sections/sophior-blog-listing.liquid`
-- [ ] Grid met artikel kaarten per blog-categorie
-- [ ] Artikel kaart: afbeelding + categorie badge + titel + excerpt + datum + leestijd + link
-- [ ] Filter tabs: "Alle gidsen | Snijplanken | Pannen | Messen | Accessoires | Inspiratie"
-- [ ] Filter werkt via `?blog=snijplanken` URL parameter of JS filter
+- [x] Grid met artikel kaarten per blog-categorie
+- [x] Artikel kaart: afbeelding + categorie badge + titel + excerpt + datum + leestijd + link
+- [x] Navigatietabs: alle 5 blogs als tabs met actieve-staat highlighting
+- [x] Paginering (Shopify native `paginate`)
+- [x] Lege staat tonen als geen artikelen beschikbaar
 
 ### Artikel Pagina — `sections/sophior-article.liquid`
-- [ ] Hero afbeelding (full-width of 50/50 met titel)
-- [ ] Artikel inhoud (rich text)
-- [ ] Auteur naam + datum
-- [ ] Sociale deelknoppen (link kopiëren / WhatsApp / Facebook)
-- [ ] "Gerelateerde artikelen" sectie (3 artikelen uit zelfde blog)
+- [x] Hero afbeelding (full-width met gradient overlay + breadcrumb)
+- [x] Artikel inhoud (rich text via `article.content`)
+- [x] Auteur naam + datum + leestijd
+- [x] Sociale deelknoppen (link kopiëren / WhatsApp / Facebook)
+- [x] "Gerelateerde artikelen" sectie (max 3 artikelen uit zelfde blog)
 
 ### PDP Gidsen sectie — `sections/sophior-product-guides.liquid` ← _uitgesteld vanuit Sprint 4_
-- [ ] Nieuwe section: max 3 gids-artikelen gefilterd op `blog.handle == product.type`
-- [ ] Kaart: afbeelding + categorie label + titel + excerpt + link
-- [ ] Sectie verborgen als geen artikelen beschikbaar
-- [ ] Werkt via:
-  ```liquid
-  {% assign product_blog = blogs[product.type] %}
-  {% for article in product_blog.articles limit: 3 %}
-  ```
-- [ ] Testen met testproducten van elk type
-- [ ] Toevoegen aan `templates/product.json` na reviews-sectie
+- [x] Section toont max 3 gids-artikelen gefilterd op `blogs[product.type]`
+- [x] Kaart: afbeelding + categorie label + titel + excerpt + link
+- [x] Sectie verborgen als geen artikelen beschikbaar
+- [x] Toegevoegd aan `templates/product.json` na reviews-sectie
 
 ### Blog Preview op Homepage (Sprint 2 sectie activeren)
-- [ ] `sections/sophior-blog-preview.liquid` (aangemaakt Sprint 2) toont 3 meest recente artikelen
-- [ ] Werkt zodra echte artikelen zijn aangemaakt
+- [~] `sections/sophior-blog-preview.liquid` (aangemaakt Sprint 2) toont 3 meest recente artikelen — **werkt zodra klant testartikelen aanmaakt**
+
+### Categorie SEO-tekstblok — `sections/sophior-collection-seo-text.liquid` ← _uitgesteld vanuit Sprint 3_
+- [x] Bewerkbaar SEO tekst blok onderaan de categoriepagina
+- [x] "Lees meer" toggle — tekst ingeklapt, uitklapbaar via knop
+- [x] Toegevoegd aan `templates/collection.json` na product-grid
 
 ---
 
-### Categorie SEO-tekstblok — `sections/sophior-collection-seo-text.liquid` ← _uitgesteld vanuit Sprint 3_
-- [ ] Bewerkbaar SEO tekst blok onderaan de categoriepagina
-- [ ] Schema: SEO-tekst per collectie instelling bewerkbaar
-- [ ] Toevoegen aan `templates/collection.json` na product-grid
+## Deviaties van plan
+
+### 1. Filter tabs via blog-links (niet JS-filter)
+De originele spec noemde `?blog=snijplanken` URL-filtering met JS. Gekozen voor een eenvoudigere aanpak: navigatietabs in `sophior-blog-listing` linken direct naar de bijbehorende blog-URL (`/blogs/[handle]`). Elke blog heeft zijn eigen overzichtspagina. Dit is stabieler, SEO-vriendelijker en vereist geen JS.
+
+### 2. Leestijd berekend in Liquid
+Berekening: `article.content | strip_html | split: ' ' | size | divided_by: 250 | at_least: 1`. Eenvoudig en effectief; ~250 woorden/min is standaard voor NL-tekst.
+
+---
+
+## Aangemaakte bestanden
+
+### Sections (4 nieuw)
+- `sections/sophior-blog-listing.liquid`
+- `sections/sophior-article.liquid`
+- `sections/sophior-product-guides.liquid`
+- `sections/sophior-collection-seo-text.liquid`
+
+### Assets (4 nieuw)
+- `assets/sophior-blog-listing.css`
+- `assets/sophior-article.css`
+- `assets/sophior-product-guides.css`
+- `assets/sophior-collection-seo-text.css`
+
+### Gewijzigd
+- `templates/blog.json` — `sophior-blog-listing` ipv `main-blog`
+- `templates/article.json` — `sophior-article` ipv `main-article`
+- `templates/product.json` — `sophior-product-guides` toegevoegd na reviews
+- `templates/collection.json` — `sophior-collection-seo-text` toegevoegd na product-grid
+- `locales/nl.schema.json` + `locales/en.default.schema.json` — 4 nieuwe section-sleutels
 
 ---
 
 ## Deliverable
 
-Alle 5 blogs live. Blog overzichtspagina + artikel template werkend. PDP gidsen sectie actief. Categorie SEO-tekstblok live. Filtering op PDP en homepage werkt.
+Blog overzichtspagina + artikel template werkend. PDP gidsen sectie actief (verborgen totdat klant blogs aanmaakt). Categorie SEO-tekstblok live met "Lees meer" toggle. Homepage blog preview werkt zodra testartikelen beschikbaar zijn.

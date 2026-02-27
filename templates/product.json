@@ -83,6 +83,13 @@
         "padding_bottom": 48
       }
     },
+    "product-guides": {
+      "type": "sophior-product-guides",
+      "settings": {
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    },
     "product-faq": {
       "type": "sophior-product-faq",
       "blocks": {
@@ -126,6 +133,7 @@
     "certainties-bar",
     "product-description",
     "reviews",
+    "product-guides",
     "product-faq"
   ]
 }

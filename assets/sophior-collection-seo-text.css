@@ -1,0 +1,96 @@
+/* ============================================================
+   SOPHIOR — Collection SEO Text
+   Gebruikt door sections/sophior-collection-seo-text.liquid
+   ============================================================ */
+
+.sophior-collection-seo-text {
+  background-color: var(--sophior-cream);
+  border-top: 1px solid var(--sophior-light-tan);
+}
+
+.sophior-collection-seo-text__inner {
+  max-width: 840px;
+}
+
+/* ---- Heading ---- */
+.sophior-collection-seo-text__heading {
+  font-family: var(--sophior-font-heading);
+  font-size: clamp(1.2rem, 2vw, 1.6rem);
+  font-weight: 300;
+  color: var(--sophior-dark-green);
+  margin: 0 0 1rem;
+}
+
+/* ---- Content ---- */
+.sophior-collection-seo-text__content {
+  font-family: var(--sophior-font-body);
+  font-size: var(--sophior-text-sm);
+  color: var(--sophior-dark-green);
+  line-height: 1.7;
+}
+
+.sophior-collection-seo-text__content p {
+  margin: 0 0 1em;
+}
+
+.sophior-collection-seo-text__content p:last-child {
+  margin-bottom: 0;
+}
+
+/* Ingeklapt: toon alleen eerste alinea */
+.sophior-collection-seo-text__content--collapsed {
+  max-height: 5.5em; /* ~3 regels */
+  overflow: hidden;
+  position: relative;
+}
+
+.sophior-collection-seo-text__content--collapsed::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2em;
+  background: linear-gradient(to bottom, transparent, var(--sophior-cream));
+}
+
+/* ---- Toggle knop ---- */
+.sophior-collection-seo-text__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-top: 0.8rem;
+  background: none;
+  border: none;
+  font-family: var(--sophior-font-body);
+  font-size: var(--sophior-text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--sophior-gold);
+  cursor: pointer;
+  padding: 0;
+  transition: color var(--sophior-transition);
+}
+
+.sophior-collection-seo-text__toggle:hover {
+  color: var(--sophior-dark-green);
+}
+
+.sophior-collection-seo-text__toggle:focus-visible {
+  outline: 2px solid var(--sophior-gold);
+  outline-offset: 4px;
+}
+
+/* Toon/verberg labels via aria-expanded */
+.sophior-collection-seo-text__toggle-label--hide {
+  display: none;
+}
+
+.sophior-collection-seo-text__toggle[aria-expanded="true"] .sophior-collection-seo-text__toggle-label--show {
+  display: none;
+}
+
+.sophior-collection-seo-text__toggle[aria-expanded="true"] .sophior-collection-seo-text__toggle-label--hide {
+  display: inline;
+}

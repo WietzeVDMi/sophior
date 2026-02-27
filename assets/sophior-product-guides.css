@@ -1,0 +1,164 @@
+/* ============================================================
+   SOPHIOR — Product Guides (PDP gidsen sectie)
+   Gebruikt door sections/sophior-product-guides.liquid
+   ============================================================ */
+
+.sophior-product-guides {
+  background-color: var(--sophior-cream);
+}
+
+/* ---- Header ---- */
+.sophior-product-guides__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.sophior-product-guides__heading {
+  font-family: var(--sophior-font-heading);
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
+  font-weight: 300;
+  color: var(--sophior-dark-green);
+  margin: 0;
+}
+
+.sophior-product-guides__all-link {
+  font-family: var(--sophior-font-body);
+  font-size: var(--sophior-text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--sophior-gold);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color var(--sophior-transition);
+}
+
+.sophior-product-guides__all-link:hover {
+  color: var(--sophior-dark-green);
+}
+
+.sophior-product-guides__all-link:focus-visible {
+  outline: 2px solid var(--sophior-gold);
+  outline-offset: 2px;
+}
+
+/* ---- Grid ---- */
+.sophior-product-guides__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.6rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+@media screen and (min-width: 750px) {
+  .sophior-product-guides__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ---- Card ---- */
+.sophior-product-guides__card {
+  background-color: var(--sophior-white);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.sophior-product-guides__card-media {
+  display: block;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background-color: var(--sophior-light-tan);
+  flex-shrink: 0;
+}
+
+.sophior-product-guides__card-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.sophior-product-guides__card:hover .sophior-product-guides__card-img,
+.sophior-product-guides__card:focus-within .sophior-product-guides__card-img {
+  transform: scale(1.04);
+}
+
+.sophior-product-guides__card-img--placeholder {
+  background: linear-gradient(135deg, var(--sophior-dark-green) 0%, var(--sophior-mid-green) 100%);
+}
+
+.sophior-product-guides__card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.2rem;
+  flex: 1;
+}
+
+.sophior-product-guides__card-category {
+  font-family: var(--sophior-font-body);
+  font-size: var(--sophior-text-xs);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--sophior-gold);
+}
+
+.sophior-product-guides__card-title {
+  font-family: var(--sophior-font-body);
+  font-size: var(--sophior-text-sm);
+  font-weight: 600;
+  color: var(--sophior-dark-green);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.sophior-product-guides__card-title-link {
+  text-decoration: none;
+  color: inherit;
+  transition: color var(--sophior-transition);
+}
+
+.sophior-product-guides__card-title-link:hover {
+  color: var(--sophior-gold);
+}
+
+.sophior-product-guides__card-title-link:focus-visible {
+  outline: 2px solid var(--sophior-gold);
+  outline-offset: 2px;
+}
+
+.sophior-product-guides__card-excerpt {
+  font-family: var(--sophior-font-body);
+  font-size: var(--sophior-text-xs);
+  color: var(--sophior-muted-green);
+  line-height: 1.6;
+  margin: 0;
+  flex: 1;
+}
+
+.sophior-product-guides__card-link {
+  font-family: var(--sophior-font-body);
+  font-size: var(--sophior-text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--sophior-dark-green);
+  text-decoration: none;
+  border-bottom: 1px solid var(--sophior-gold);
+  padding-bottom: 1px;
+  width: fit-content;
+  margin-top: auto;
+  transition: color var(--sophior-transition);
+}
+
+.sophior-product-guides__card-link:hover {
+  color: var(--sophior-gold);
+}

@@ -1,0 +1,198 @@
+{{ 'sophior-blog-listing.css' | asset_url | stylesheet_tag }}
+
+{%- comment -%}
+  sophior-blog-listing — Blog overzichtspagina voor alle SOPHIOR gidsen.
+  Gerenderd op /blogs/[handle] via templates/blog.json.
+  Toont navigatietabs naar alle 5 blogs + artikel kaarten van de huidige blog.
+{%- endcomment -%}
+
+<section
+  class="sophior-blog-listing"
+  id="sophior-blog-listing-{{ section.id }}"
+>
+  {%- comment -%} Section heading {%- endcomment -%}
+  <div class="sophior-blog-listing__intro page-width">
+    {%- if section.settings.heading != blank -%}
+      <h1 class="sophior-blog-listing__heading">{{ section.settings.heading | escape }}</h1>
+    {%- else -%}
+      <h1 class="sophior-blog-listing__heading">{{ blog.title | escape }}</h1>
+    {%- endif -%}
+    {%- if section.settings.subheading != blank -%}
+      <p class="sophior-blog-listing__subheading">{{ section.settings.subheading | escape }}</p>
+    {%- endif -%}
+  </div>
+
+  {%- comment -%} Blog navigatietabs {%- endcomment -%}
+  <div class="sophior-blog-listing__tabs-wrap" role="navigation" aria-label="{{ 'sections.sophior-blog-listing.nav_label' | t }}">
+    <div class="sophior-blog-listing__tabs page-width">
+      {%- for block in section.blocks -%}
+        {%- assign is_active = false -%}
+        {%- if blogs[block.settings.blog_handle].handle == blog.handle -%}
+          {%- assign is_active = true -%}
+        {%- endif -%}
+        <a
+          href="{{ blogs[block.settings.blog_handle].url }}"
+          class="sophior-blog-listing__tab{% if is_active %} sophior-blog-listing__tab--active{% endif %}"
+          {% if is_active %}aria-current="page"{% endif %}
+          {{ block.shopify_attributes }}
+        >
+          {{ block.settings.label | default: blogs[block.settings.blog_handle].title | escape }}
+        </a>
+      {%- endfor -%}
+    </div>
+  </div>
+
+  {%- comment -%} Artikel grid {%- endcomment -%}
+  <div class="sophior-blog-listing__grid-wrap page-width">
+    {%- paginate blog.articles by section.settings.articles_per_page -%}
+      {%- if blog.articles_count > 0 -%}
+        <ul class="sophior-blog-listing__grid" role="list">
+          {%- for article in blog.articles -%}
+            {%- comment -%} Leestijd berekening (250 woorden/min, stripped content) {%- endcomment -%}
+            {%- assign word_count = article.content | strip_html | split: ' ' | size -%}
+            {%- assign read_time = word_count | divided_by: 250 | at_least: 1 -%}
+
+            <li class="sophior-blog-listing__card-wrap">
+              <article class="sophior-blog-listing__card">
+                {%- comment -%} Afbeelding {%- endcomment -%}
+                <a href="{{ article.url }}" class="sophior-blog-listing__card-media" tabindex="-1" aria-hidden="true">
+                  {%- if article.image != blank -%}
+                    {{
+                      article.image
+                      | image_url: width: 600
+                      | image_tag:
+                        class: 'sophior-blog-listing__card-img',
+                        loading: forloop.index <= 4 | default: 'lazy',
+                        alt: article.image.alt | default: article.title | escape,
+                        widths: '300, 450, 600',
+                        sizes: '(max-width: 749px) 100vw, (max-width: 989px) 50vw, 33vw'
+                    }}
+                  {%- else -%}
+                    <div class="sophior-blog-listing__card-img sophior-blog-listing__card-img--placeholder"></div>
+                  {%- endif -%}
+                </a>
+
+                {%- comment -%} Categorie badge {%- endcomment -%}
+                <div class="sophior-blog-listing__card-body">
+                  <span class="sophior-blog-listing__card-category">{{ blog.title | escape }}</span>
+
+                  {%- comment -%} Titel {%- endcomment -%}
+                  <h2 class="sophior-blog-listing__card-title">
+                    <a href="{{ article.url }}" class="sophior-blog-listing__card-title-link">{{ article.title | escape }}</a>
+                  </h2>
+
+                  {%- comment -%} Excerpt {%- endcomment -%}
+                  {%- if article.excerpt != blank -%}
+                    <p class="sophior-blog-listing__card-excerpt">{{ article.excerpt | strip_html | truncate: 120 }}</p>
+                  {%- elsif section.settings.show_excerpt -%}
+                    <p class="sophior-blog-listing__card-excerpt">{{ article.content | strip_html | truncate: 120 }}</p>
+                  {%- endif -%}
+
+                  {%- comment -%} Meta: datum + leestijd {%- endcomment -%}
+                  <div class="sophior-blog-listing__card-meta">
+                    <time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">
+                      {{ article.published_at | date: '%d %B %Y' }}
+                    </time>
+                    <span class="sophior-blog-listing__card-meta-sep" aria-hidden="true">·</span>
+                    <span>{{ 'sections.sophior-blog-listing.read_time' | t: minutes: read_time }}</span>
+                  </div>
+
+                  <a href="{{ article.url }}" class="sophior-blog-listing__card-link">
+                    {{ 'sections.sophior-blog-listing.read_more' | t }}
+                  </a>
+                </div>
+              </article>
+            </li>
+          {%- endfor -%}
+        </ul>
+
+        {%- comment -%} Paginering {%- endcomment -%}
+        {%- if paginate.pages > 1 -%}
+          <div class="sophior-blog-listing__pagination" role="navigation" aria-label="{{ 'general.pagination.label' | t }}">
+            {%- if paginate.previous -%}
+              <a href="{{ paginate.previous.url }}" class="sophior-blog-listing__page-btn" aria-label="{{ 'general.pagination.previous' | t }}">
+                ← {{ 'general.pagination.previous' | t }}
+              </a>
+            {%- endif -%}
+            <span class="sophior-blog-listing__page-info">{{ paginate.current_page }} / {{ paginate.pages }}</span>
+            {%- if paginate.next -%}
+              <a href="{{ paginate.next.url }}" class="sophior-blog-listing__page-btn" aria-label="{{ 'general.pagination.next' | t }}">
+                {{ 'general.pagination.next' | t }} →
+              </a>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      {%- else -%}
+        <p class="sophior-blog-listing__empty">{{ 'sections.sophior-blog-listing.empty' | t }}</p>
+      {%- endif -%}
+    {%- endpaginate -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.sophior-blog-listing.name",
+  "tag": "section",
+  "class": "section",
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:sections.sophior-blog-listing.settings.heading.label",
+      "info": "t:sections.sophior-blog-listing.settings.heading.info"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "t:sections.sophior-blog-listing.settings.subheading.label"
+    },
+    {
+      "type": "range",
+      "id": "articles_per_page",
+      "label": "t:sections.sophior-blog-listing.settings.articles_per_page.label",
+      "min": 6,
+      "max": 24,
+      "step": 3,
+      "default": 9
+    },
+    {
+      "type": "checkbox",
+      "id": "show_excerpt",
+      "label": "t:sections.sophior-blog-listing.settings.show_excerpt.label",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tab",
+      "name": "t:sections.sophior-blog-listing.blocks.tab.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "blog_handle",
+          "label": "t:sections.sophior-blog-listing.blocks.tab.settings.blog_handle.label",
+          "info": "t:sections.sophior-blog-listing.blocks.tab.settings.blog_handle.info"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "t:sections.sophior-blog-listing.blocks.tab.settings.label.label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.sophior-blog-listing.presets.default.name",
+      "blocks": [
+        { "type": "tab", "settings": { "blog_handle": "snijplanken", "label": "Snijplanken" } },
+        { "type": "tab", "settings": { "blog_handle": "pannen", "label": "Pannen" } },
+        { "type": "tab", "settings": { "blog_handle": "messen", "label": "Messen" } },
+        { "type": "tab", "settings": { "blog_handle": "accessoires", "label": "Accessoires" } },
+        { "type": "tab", "settings": { "blog_handle": "inspiratie-recepten", "label": "Inspiratie" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -3851,6 +3851,97 @@
       "presets": {
         "default": { "name": "SOPHIOR Sustainability" }
       }
+    },
+    "sophior-blog-listing": {
+      "name": "SOPHIOR Blog Listing",
+      "nav_label": "Blog categories",
+      "read_time": "%{minutes} min read",
+      "read_more": "Read more",
+      "empty": "No articles available yet.",
+      "settings": {
+        "heading": {
+          "label": "Page title",
+          "info": "Leave empty to use the blog title"
+        },
+        "subheading": { "label": "Subheading" },
+        "articles_per_page": { "label": "Articles per page" },
+        "show_excerpt": { "label": "Show excerpt" }
+      },
+      "blocks": {
+        "tab": {
+          "name": "Tab",
+          "settings": {
+            "blog_handle": {
+              "label": "Blog handle",
+              "info": "E.g. snijplanken, pannen, messen"
+            },
+            "label": { "label": "Tab label" }
+          }
+        }
+      },
+      "presets": {
+        "default": { "name": "SOPHIOR Blog Listing" }
+      }
+    },
+    "sophior-article": {
+      "name": "SOPHIOR Article",
+      "breadcrumb_label": "Breadcrumb",
+      "read_time": "%{minutes} min read",
+      "share_label": "Share this article",
+      "share_copy": "Copy link",
+      "share_whatsapp": "Share on WhatsApp",
+      "share_facebook": "Share on Facebook",
+      "back_to_blog": "Back to %{blog}",
+      "related_heading": "More guides",
+      "settings": {
+        "show_author": { "label": "Show author" },
+        "show_share": { "label": "Show share buttons" },
+        "show_related": { "label": "Show related articles" }
+      },
+      "presets": {
+        "default": { "name": "SOPHIOR Article" }
+      }
+    },
+    "sophior-product-guides": {
+      "name": "SOPHIOR Product Guides",
+      "default_heading": "Helpful guides",
+      "view_all": "View all guides",
+      "read_more": "Read more",
+      "settings": {
+        "heading": {
+          "label": "Section title",
+          "info": "Leave empty for default text"
+        },
+        "padding_top": { "label": "Top padding" },
+        "padding_bottom": { "label": "Bottom padding" }
+      },
+      "presets": {
+        "default": { "name": "SOPHIOR Product Guides" }
+      }
+    },
+    "sophior-collection-seo-text": {
+      "name": "SOPHIOR Category SEO Text",
+      "show_more": "Read more",
+      "show_less": "Show less",
+      "settings": {
+        "heading": {
+          "label": "Subheading",
+          "info": "Optional — leave empty for no heading"
+        },
+        "content": {
+          "label": "SEO text",
+          "info": "Add SEO text for this category. Will be collapsed if 'Read more' button is enabled."
+        },
+        "show_toggle": {
+          "label": "Show 'Read more' button",
+          "info": "Collapse text with an expand button for better UX"
+        },
+        "padding_top": { "label": "Top padding" },
+        "padding_bottom": { "label": "Bottom padding" }
+      },
+      "presets": {
+        "default": { "name": "SOPHIOR Category SEO Text" }
+      }
     }
   }
 }

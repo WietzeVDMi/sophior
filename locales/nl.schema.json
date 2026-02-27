@@ -3851,6 +3851,97 @@
       "presets": {
         "default": { "name": "SOPHIOR Duurzaamheid" }
       }
+    },
+    "sophior-blog-listing": {
+      "name": "SOPHIOR Blog Overzicht",
+      "nav_label": "Blog categorieën",
+      "read_time": "%{minutes} min lezen",
+      "read_more": "Lees verder",
+      "empty": "Nog geen artikelen beschikbaar.",
+      "settings": {
+        "heading": {
+          "label": "Paginatitel",
+          "info": "Leeg laten om de blogtitel te gebruiken"
+        },
+        "subheading": { "label": "Ondertitel" },
+        "articles_per_page": { "label": "Artikelen per pagina" },
+        "show_excerpt": { "label": "Samenvatting tonen" }
+      },
+      "blocks": {
+        "tab": {
+          "name": "Tab",
+          "settings": {
+            "blog_handle": {
+              "label": "Blog handle",
+              "info": "Bijv. snijplanken, pannen, messen"
+            },
+            "label": { "label": "Tab label" }
+          }
+        }
+      },
+      "presets": {
+        "default": { "name": "SOPHIOR Blog Overzicht" }
+      }
+    },
+    "sophior-article": {
+      "name": "SOPHIOR Artikel",
+      "breadcrumb_label": "Broodkruimelpad",
+      "read_time": "%{minutes} min lezen",
+      "share_label": "Deel dit artikel",
+      "share_copy": "Link kopiëren",
+      "share_whatsapp": "Delen via WhatsApp",
+      "share_facebook": "Delen via Facebook",
+      "back_to_blog": "Terug naar %{blog}",
+      "related_heading": "Meer gidsen",
+      "settings": {
+        "show_author": { "label": "Auteur tonen" },
+        "show_share": { "label": "Deelknoppen tonen" },
+        "show_related": { "label": "Gerelateerde artikelen tonen" }
+      },
+      "presets": {
+        "default": { "name": "SOPHIOR Artikel" }
+      }
+    },
+    "sophior-product-guides": {
+      "name": "SOPHIOR Product Gidsen",
+      "default_heading": "Handige gidsen",
+      "view_all": "Alle gidsen",
+      "read_more": "Lees verder",
+      "settings": {
+        "heading": {
+          "label": "Sectietitel",
+          "info": "Leeg laten voor standaardtekst"
+        },
+        "padding_top": { "label": "Opvulling boven" },
+        "padding_bottom": { "label": "Opvulling onder" }
+      },
+      "presets": {
+        "default": { "name": "SOPHIOR Product Gidsen" }
+      }
+    },
+    "sophior-collection-seo-text": {
+      "name": "SOPHIOR Categorie SEO Tekst",
+      "show_more": "Lees meer",
+      "show_less": "Minder tonen",
+      "settings": {
+        "heading": {
+          "label": "Tussenkopje",
+          "info": "Optioneel — leeg laten als je geen kopje wilt"
+        },
+        "content": {
+          "label": "SEO tekst",
+          "info": "Voeg hier de SEO-tekst toe voor deze categorie. Wordt samengevouwen als \"Toon meer\" is ingeschakeld."
+        },
+        "show_toggle": {
+          "label": "\"Lees meer\" knop tonen",
+          "info": "Tekst inkorten met een uitklapknop voor betere UX"
+        },
+        "padding_top": { "label": "Opvulling boven" },
+        "padding_bottom": { "label": "Opvulling onder" }
+      },
+      "presets": {
+        "default": { "name": "SOPHIOR Categorie SEO Tekst" }
+      }
     }
   }
 }

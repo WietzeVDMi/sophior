@@ -1,0 +1,105 @@
+{{ 'sophior-collection-seo-text.css' | asset_url | stylesheet_tag }}
+
+{%- comment -%}
+  sophior-collection-seo-text — Bewerkbaar SEO tekstblok onderaan de categoriepagina.
+  Toevoegen aan templates/collection.json na het product-grid.
+  Schema: SEO tekst per collectie instelbaar via de theme editor.
+{%- endcomment -%}
+
+{%- if section.settings.content != blank -%}
+  <section
+    class="sophior-collection-seo-text section-{{ section.id }}-padding"
+    id="sophior-collection-seo-text-{{ section.id }}"
+  >
+    <div class="page-width">
+      <div class="sophior-collection-seo-text__inner">
+        {%- if section.settings.heading != blank -%}
+          <h2 class="sophior-collection-seo-text__heading">{{ section.settings.heading | escape }}</h2>
+        {%- endif -%}
+        <div class="sophior-collection-seo-text__content rte">
+          {{ section.settings.content }}
+        </div>
+
+        {%- if section.settings.show_toggle and section.settings.content contains '<p>' -%}
+          <button
+            class="sophior-collection-seo-text__toggle"
+            type="button"
+            aria-expanded="false"
+            data-seo-toggle
+          >
+            <span class="sophior-collection-seo-text__toggle-label--show">{{ 'sections.sophior-collection-seo-text.show_more' | t }}</span>
+            <span class="sophior-collection-seo-text__toggle-label--hide">{{ 'sections.sophior-collection-seo-text.show_less' | t }}</span>
+          </button>
+          <script>
+            (function() {
+              var btn = document.querySelector('[data-seo-toggle]');
+              var content = btn && btn.closest('.sophior-collection-seo-text__inner').querySelector('.sophior-collection-seo-text__content');
+              if (!btn || !content) return;
+              content.classList.add('sophior-collection-seo-text__content--collapsed');
+              btn.setAttribute('aria-expanded', 'false');
+              btn.addEventListener('click', function() {
+                var expanded = btn.getAttribute('aria-expanded') === 'true';
+                btn.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+                content.classList.toggle('sophior-collection-seo-text__content--collapsed', expanded);
+              });
+            })();
+          </script>
+        {%- endif -%}
+      </div>
+    </div>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "t:sections.sophior-collection-seo-text.name",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:sections.sophior-collection-seo-text.settings.heading.label",
+      "info": "t:sections.sophior-collection-seo-text.settings.heading.info"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "t:sections.sophior-collection-seo-text.settings.content.label",
+      "info": "t:sections.sophior-collection-seo-text.settings.content.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_toggle",
+      "label": "t:sections.sophior-collection-seo-text.settings.show_toggle.label",
+      "info": "t:sections.sophior-collection-seo-text.settings.show_toggle.info",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "t:sections.all.padding.padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "t:sections.all.padding.padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.sophior-collection-seo-text.presets.default.name"
+    }
+  ]
+}
+{% endschema %}
