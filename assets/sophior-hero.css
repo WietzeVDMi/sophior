@@ -82,7 +82,7 @@
   background: linear-gradient(
     135deg,
     var(--sophior-dark-green) 0%,
-    #1a4a3c 100%
+    var(--sophior-mid-green) 100%
   );
   display: flex;
   align-items: center;

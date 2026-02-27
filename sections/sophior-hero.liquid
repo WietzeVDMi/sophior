@@ -20,6 +20,7 @@
   {%- comment -%} Afbeelding kant (rechts) {%- endcomment -%}
   <div class="sophior-hero__media">
     {%- if section.settings.image != blank -%}
+      {%- assign hero_alt = section.settings.heading | escape -%}
       {{
         section.settings.image
         | image_url: width: 1200
@@ -27,7 +28,7 @@
           class: 'sophior-hero__image',
           loading: 'eager',
           fetchpriority: 'high',
-          alt: section.settings.heading | escape,
+          alt: hero_alt,
           widths: '600, 900, 1200',
           sizes: '(max-width: 749px) 100vw, 50vw'
       }}

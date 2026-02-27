@@ -13,7 +13,7 @@
     <div class="sophior-review-slider__header">
       <h2 class="sophior-review-slider__title">{{ section.settings.title }}</h2>
       <div class="sophior-review-slider__aggregate">
-        <span class="sophior-review-slider__aggregate-stars" aria-label="4.9 sterren">★★★★★</span>
+        <span class="sophior-review-slider__aggregate-stars" aria-label="{{ 'sections.sophior-review-slider.aggregate_label' | t: rating: section.settings.rating_aggregate }}">★★★★★</span>
         <span class="sophior-review-slider__aggregate-text">{{ section.settings.aggregate_text }}</span>
       </div>
     </div>
@@ -31,9 +31,9 @@
       <div class="sophior-review-slider__track" role="list" aria-label="{{ section.settings.title }}">
         {%- for block in section.blocks -%}
           <article class="sophior-review-slider__card" role="listitem" {{ block.shopify_attributes }}>
-            <div class="sophior-review-slider__card-stars" aria-label="{{ block.settings.rating }} sterren">
-              {%- assign rating = block.settings.rating | default: 5 -%}
-              {%- for i in (1..rating) -%}★{%- endfor -%}
+            {%- assign card_rating = block.settings.rating | default: 5 -%}
+            <div class="sophior-review-slider__card-stars" aria-label="{{ 'sections.sophior-review-slider.rating_label' | t: rating: card_rating }}">
+              {%- for i in (1..card_rating) -%}★{%- endfor -%}
             </div>
             <p class="sophior-review-slider__card-text">{{ block.settings.review_text }}</p>
             <div class="sophior-review-slider__card-author">
@@ -51,23 +51,23 @@
       >
         <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
       </button>
-    </div>
 
-    {%- if section.blocks.size > 3 -%}
-      <ul class="sophior-review-slider__dots" aria-label="{{ 'sections.sophior-review-slider.navigation' | t }}">
-        {%- assign dot_count = section.blocks.size | minus: 2 -%}
-        {%- for i in (1..dot_count) -%}
-          <li>
-            <button
-              class="sophior-review-slider__dot{% if forloop.first %} sophior-review-slider__dot--active{% endif %}"
-              aria-label="{{ 'sections.sophior-review-slider.dot' | t: index: forloop.index }}"
-              type="button"
-              data-index="{{ forloop.index0 }}"
-            ></button>
-          </li>
-        {%- endfor -%}
-      </ul>
-    {%- endif -%}
+      {%- if section.blocks.size > 3 -%}
+        <ul class="sophior-review-slider__dots" aria-label="{{ 'sections.sophior-review-slider.navigation' | t }}">
+          {%- assign dot_count = section.blocks.size | minus: 2 -%}
+          {%- for i in (1..dot_count) -%}
+            <li>
+              <button
+                class="sophior-review-slider__dot{% if forloop.first %} sophior-review-slider__dot--active{% endif %}"
+                aria-label="{{ 'sections.sophior-review-slider.dot' | t: index: forloop.index }}"
+                type="button"
+                data-index="{{ forloop.index0 }}"
+              ></button>
+            </li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+    </div>
 
   </div>
 </div>
@@ -80,7 +80,7 @@
   var track = wrapper.querySelector('.sophior-review-slider__track');
   var prevBtn = wrapper.querySelector('.sophior-review-slider__arrow--prev');
   var nextBtn = wrapper.querySelector('.sophior-review-slider__arrow--next');
-  var dots = document.querySelectorAll('#sophior-reviews-{{ section.id }} ~ .sophior-review-slider__dots .sophior-review-slider__dot');
+  var dots = wrapper.querySelectorAll('.sophior-review-slider__dots .sophior-review-slider__dot');
   var autoTimer = null;
   var AUTO_INTERVAL = {{ section.settings.autoplay_interval | default: 5000 }};
 
@@ -157,7 +157,7 @@
 
 {% schema %}
 {
-  "name": "Review Slider",
+  "name": "t:sections.sophior-review-slider.name",
   "tag": "div",
   "class": "sophior-section",
   "settings": [
@@ -166,6 +166,12 @@
       "id": "title",
       "label": "t:sections.sophior-review-slider.settings.title.label",
       "default": "Wat onze klanten zeggen"
+    },
+    {
+      "type": "text",
+      "id": "rating_aggregate",
+      "label": "t:sections.sophior-review-slider.settings.rating_aggregate.label",
+      "default": "4.9"
     },
     {
       "type": "text",
@@ -178,7 +184,7 @@
       "id": "autoplay_interval",
       "label": "t:sections.sophior-review-slider.settings.autoplay_interval.label",
       "min": 3000,
-      "max": 10000,
+      "max": 9000,
       "step": 1000,
       "default": 5000,
       "unit": "ms"

@@ -1,8 +1,7 @@
 {{ 'sophior-collections-grid.css' | asset_url | stylesheet_tag }}
 
-{%- assign default_labels = 'Snijplanken,Pannen,Messen,Accessoires' | split: ',' -%}
 {%- assign default_handles = 'snijplanken,pannen,messen,accessoires' | split: ',' -%}
-{%- assign default_cta = section.settings.cta_label | default: 'Bekijk collectie' -%}
+{%- assign default_cta = section.settings.cta_label -%}
 
 <div class="sophior-collections-grid">
 
@@ -15,17 +14,16 @@
   <div class="sophior-collections-grid__grid">
     {%- for block in section.blocks -%}
       {%- assign col_index = forloop.index0 -%}
-      {%- assign fallback_label = default_labels[col_index] -%}
       {%- assign fallback_handle = default_handles[col_index] -%}
 
       {%- if block.settings.collection != blank -%}
         {%- assign col = collections[block.settings.collection] -%}
         {%- assign col_url = col.url -%}
-        {%- assign col_label = block.settings.label | default: col.title | default: fallback_label -%}
+        {%- assign col_label = block.settings.label | default: col.title -%}
         {%- assign col_image = block.settings.image | default: col.image -%}
       {%- else -%}
         {%- assign col_url = '/collections/' | append: fallback_handle -%}
-        {%- assign col_label = block.settings.label | default: fallback_label -%}
+        {%- assign col_label = block.settings.label -%}
         {%- assign col_image = block.settings.image -%}
       {%- endif -%}
 
@@ -36,13 +34,14 @@
         {{ block.shopify_attributes }}
       >
         {%- if col_image != blank -%}
+          {%- assign grid_alt = col_label | escape -%}
           {{
             col_image
             | image_url: width: 600
             | image_tag:
               class: 'sophior-collections-grid__card-image',
               loading: 'lazy',
-              alt: col_label | escape,
+              alt: grid_alt,
               widths: '300, 400, 600',
               sizes: '(max-width: 749px) 50vw, 25vw'
           }}
@@ -62,7 +61,7 @@
 
 {% schema %}
 {
-  "name": "Collecties Grid",
+  "name": "t:sections.sophior-collections-grid.name",
   "tag": "div",
   "class": "sophior-section",
   "max_blocks": 4,

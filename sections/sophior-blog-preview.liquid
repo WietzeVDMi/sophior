@@ -18,7 +18,7 @@
       <h2 class="sophior-blog-preview__title">{{ section.settings.title }}</h2>
       {%- if section.settings.cta_link != blank -%}
         <a href="{{ section.settings.cta_link }}" class="sophior-blog-preview__view-all">
-          {{ section.settings.cta_label | default: 'Alle gidsen' }}
+          {{ section.settings.cta_label }}
         </a>
       {%- endif -%}
     </div>
@@ -33,13 +33,14 @@
           >
             <div class="sophior-blog-preview__card-media">
               {%- if article.image != blank -%}
+                {%- assign blog_alt = article.image.alt | default: article.title | escape -%}
                 {{
                   article.image
                   | image_url: width: 800
                   | image_tag:
                     class: 'sophior-blog-preview__card-image',
                     loading: 'lazy',
-                    alt: article.image.alt | default: article.title | escape,
+                    alt: blog_alt,
                     widths: '400, 600, 800',
                     sizes: '(max-width: 749px) 100vw, (max-width: 989px) 50vw, 33vw'
                 }}
@@ -59,7 +60,7 @@
                 {{ article.excerpt_or_content | strip_html | truncate: 120 }}
               </p>
               <span class="sophior-blog-preview__card-link" aria-hidden="true">
-                {{ section.settings.read_more_label | default: 'Lees meer' }} →
+                {{ section.settings.read_more_label }} →
               </span>
             </div>
           </a>
@@ -72,12 +73,12 @@
               <div class="sophior-blog-preview__card-placeholder">
                 <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
               </div>
-              <span class="sophior-blog-preview__card-category">Gidsen</span>
+              <span class="sophior-blog-preview__card-category">{{ section.settings.placeholder_category }}</span>
             </div>
             <div class="sophior-blog-preview__card-body">
-              <h3 class="sophior-blog-preview__card-title">Artikeltitel volgt binnenkort</h3>
-              <p class="sophior-blog-preview__card-excerpt">Hier komt binnenkort een gids over SOPHIOR producten.</p>
-              <span class="sophior-blog-preview__card-link">Lees meer →</span>
+              <h3 class="sophior-blog-preview__card-title">{{ section.settings.placeholder_title }}</h3>
+              <p class="sophior-blog-preview__card-excerpt">{{ section.settings.placeholder_excerpt }}</p>
+              <span class="sophior-blog-preview__card-link">{{ section.settings.placeholder_cta }} →</span>
             </div>
           </div>
         {%- endfor -%}
@@ -89,7 +90,7 @@
 
 {% schema %}
 {
-  "name": "Blog Preview",
+  "name": "t:sections.sophior-blog-preview.name",
   "tag": "div",
   "class": "sophior-section",
   "settings": [
@@ -119,6 +120,34 @@
       "type": "text",
       "id": "read_more_label",
       "label": "t:sections.sophior-blog-preview.settings.read_more_label.label",
+      "default": "Lees meer"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.sophior-blog-preview.settings.header_placeholder.content"
+    },
+    {
+      "type": "text",
+      "id": "placeholder_category",
+      "label": "t:sections.sophior-blog-preview.settings.placeholder_category.label",
+      "default": "Gidsen"
+    },
+    {
+      "type": "text",
+      "id": "placeholder_title",
+      "label": "t:sections.sophior-blog-preview.settings.placeholder_title.label",
+      "default": "Artikeltitel volgt binnenkort"
+    },
+    {
+      "type": "textarea",
+      "id": "placeholder_excerpt",
+      "label": "t:sections.sophior-blog-preview.settings.placeholder_excerpt.label",
+      "default": "Hier komt binnenkort een gids over SOPHIOR producten."
+    },
+    {
+      "type": "text",
+      "id": "placeholder_cta",
+      "label": "t:sections.sophior-blog-preview.settings.placeholder_cta.label",
       "default": "Lees meer"
     }
   ],

@@ -3430,10 +3430,182 @@
       "settings": {
         "logo": { "label": "Logo afbeelding" },
         "tagline": { "label": "Tagline" },
-        "social_header": { "content": "Social media" }
+        "newsletter_placeholder": { "label": "Input placeholder" },
+        "newsletter_btn": { "label": "Button tekst" },
+        "header_newsletter": { "content": "Nieuwsbrief" },
+        "header_social": { "content": "Sociale media" },
+        "social_header": { "content": "Social media" },
+        "social_instagram": { "label": "Instagram URL" },
+        "social_facebook": { "label": "Facebook URL" },
+        "social_pinterest": { "label": "Pinterest URL" },
+        "header_col2": { "content": "Kolom 2" },
+        "col2_title": { "label": "Kolomtitel" },
+        "col2_menu": { "label": "Menu" },
+        "header_col3": { "content": "Kolom 3" },
+        "col3_title": { "label": "Kolomtitel" },
+        "col3_menu": { "label": "Menu" },
+        "header_col4": { "content": "Kolom 4" },
+        "col4_title": { "label": "Kolomtitel" },
+        "col4_menu": { "label": "Menu" }
       },
       "presets": {
         "name": "SOPHIOR Footer"
+      }
+    },
+    "sophior-hero": {
+      "name": "SOPHIOR Hero",
+      "settings": {
+        "heading": { "label": "Hoofdtitel (H1)" },
+        "subheading": { "label": "Ondertitel" },
+        "cta_label": { "label": "Button tekst" },
+        "cta_link": { "label": "Button link" },
+        "image": { "label": "Afbeelding (rechterkolom)" }
+      },
+      "presets": {
+        "name": "SOPHIOR Hero"
+      }
+    },
+    "sophior-trustbadge-bar": {
+      "name": "SOPHIOR Trustbadge balk",
+      "settings": {
+        "header_item1": { "content": "Badge 1" },
+        "icon_1": { "label": "Icoon 1" },
+        "text_1": { "label": "Tekst 1" },
+        "header_item2": { "content": "Badge 2" },
+        "icon_2": { "label": "Icoon 2" },
+        "text_2": { "label": "Tekst 2" },
+        "header_item3": { "content": "Badge 3" },
+        "icon_3": { "label": "Icoon 3" },
+        "text_3": { "label": "Tekst 3" },
+        "header_item4": { "content": "Badge 4" },
+        "icon_4": { "label": "Icoon 4" },
+        "text_4": { "label": "Tekst 4" },
+        "icon": { "label": "Icoon" }
+      },
+      "presets": {
+        "name": "SOPHIOR Trustbadge balk"
+      }
+    },
+    "sophior-collections-grid": {
+      "name": "SOPHIOR Collecties raster",
+      "settings": {
+        "title": { "label": "Sectietitel" },
+        "cta_label": { "label": "CTA-tekst (alle kaarten)" }
+      },
+      "blocks": {
+        "collection_card": {
+          "name": "Collectiekaart",
+          "settings": {
+            "collection": { "label": "Collectie" },
+            "label": { "label": "Label (overschrijft collectienaam)" },
+            "image": { "label": "Afbeelding (overschrijft collectie-afbeelding)" }
+          }
+        }
+      },
+      "presets": {
+        "name": "SOPHIOR Collecties raster"
+      }
+    },
+    "sophior-bestsellers": {
+      "name": "SOPHIOR Bestseller slider",
+      "settings": {
+        "title": { "label": "Sectietitel" },
+        "collection": { "label": "Collectie" },
+        "products_to_show": { "label": "Aantal producten" },
+        "show_rating": { "label": "Beoordeling tonen" },
+        "show_price": { "label": "Prijs tonen" },
+        "show_quick_add": { "label": "Snel toevoegen knop" }
+      },
+      "add_to_cart": "Toevoegen",
+      "adding": "Bezig...",
+      "added": "Toegevoegd",
+      "rating_label": "{{ rating }} van 5 sterren",
+      "prev_button": "Vorige",
+      "next_button": "Volgende",
+      "view_all": "Bekijk alles",
+      "presets": {
+        "name": "SOPHIOR Bestseller slider"
+      }
+    },
+    "sophior-usp-accordion": {
+      "name": "SOPHIOR USP Accordeon",
+      "settings": {
+        "title": { "label": "Sectietitel" },
+        "image": { "label": "Afbeelding (rechterkolom)" }
+      },
+      "blocks": {
+        "item": {
+          "name": "Accordeon item",
+          "settings": {
+            "question": { "label": "Vraag" },
+            "answer": { "label": "Antwoord" }
+          }
+        }
+      },
+      "presets": {
+        "name": "SOPHIOR USP Accordeon"
+      }
+    },
+    "sophior-review-slider": {
+      "name": "SOPHIOR Review slider",
+      "settings": {
+        "title": { "label": "Sectietitel" },
+        "rating_aggregate": { "label": "Gemiddelde score" },
+        "review_count": { "label": "Aantal reviews" },
+        "autoplay_interval": { "label": "Autoplay interval (ms)" }
+      },
+      "blocks": {
+        "review": {
+          "name": "Review",
+          "settings": {
+            "author": { "label": "Naam" },
+            "location": { "label": "Locatie" },
+            "rating": { "label": "Beoordeling (1-5)" },
+            "text": { "label": "Review tekst" },
+            "date": { "label": "Datum" }
+          }
+        }
+      },
+      "prev_button": "Vorige review",
+      "next_button": "Volgende review",
+      "rating_label": "{{ rating }} van 5 sterren",
+      "aggregate_label": "Gemiddeld {{ rating }} sterren",
+      "presets": {
+        "name": "SOPHIOR Review slider"
+      }
+    },
+    "sophior-blog-preview": {
+      "name": "SOPHIOR Blog preview",
+      "settings": {
+        "title": { "label": "Sectietitel" },
+        "blog": { "label": "Blog" },
+        "cta_label": { "label": "CTA-tekst" },
+        "cta_url": { "label": "CTA-link" },
+        "header_placeholder": { "content": "Placeholder (als blog leeg is)" },
+        "placeholder_category": { "label": "Categorie-label" },
+        "placeholder_title": { "label": "Artikeltitel" },
+        "placeholder_excerpt": { "label": "Excerpt" },
+        "placeholder_cta": { "label": "Lees meer tekst" }
+      },
+      "read_more": "Lees meer →",
+      "presets": {
+        "name": "SOPHIOR Blog preview"
+      }
+    },
+    "sophior-trustbar-footer": {
+      "name": "SOPHIOR Pre-footer trustbalk",
+      "blocks": {
+        "item": {
+          "name": "Trustitem",
+          "settings": {
+            "icon": { "label": "Icoon" },
+            "title": { "label": "Titel" },
+            "text": { "label": "Beschrijving" }
+          }
+        }
+      },
+      "presets": {
+        "name": "SOPHIOR Pre-footer trustbalk"
       }
     }
   }

@@ -178,14 +178,14 @@
       hamburger.setAttribute('aria-expanded', 'true');
       mobileNav.classList.add('sophior-mobile-nav--open');
       mobileNav.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
+      document.body.classList.add('sophior-nav-open');
     }
 
     function closeNav() {
       hamburger.setAttribute('aria-expanded', 'false');
       mobileNav.classList.remove('sophior-mobile-nav--open');
       mobileNav.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
+      document.body.classList.remove('sophior-nav-open');
     }
 
     if (hamburger) {
@@ -229,7 +229,7 @@
       "step": 10,
       "unit": "px",
       "label": "t:sections.sophior-header.settings.logo_width.label",
-      "default": 165
+      "default": 160
     },
     {
       "type": "link_list",

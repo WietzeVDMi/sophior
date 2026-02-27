@@ -31,7 +31,7 @@
 .sophior-review-slider__subtitle {
   font-family: var(--sophior-font-body);
   font-size: var(--sophior-text-sm);
-  color: #4a6b60;
+  color: var(--sophior-muted-green);
 }
 
 .sophior-review-slider__aggregate {
@@ -125,7 +125,7 @@
 .sophior-review-slider__card-meta {
   font-family: var(--sophior-font-body);
   font-size: var(--sophior-text-xs);
-  color: #4a6b60;
+  color: var(--sophior-muted-green);
 }
 
 /* ---- Pijlen ---- */

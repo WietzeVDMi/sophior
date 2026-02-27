@@ -71,7 +71,7 @@
   font-family: var(--sophior-font-body);
   font-size: var(--sophior-text-sm);
   font-weight: 300;
-  color: #4a6b60;
+  color: var(--sophior-muted-green);
   line-height: 1.4;
   margin: 0;
 }

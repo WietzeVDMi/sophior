@@ -14,13 +14,32 @@
 }
 
 :root {
-  /* Kleuren */
+  /* Kleuren — basiswaarden */
   --sophior-dark-green:  #0D2B23;
   --sophior-gold:        #CEA15D;
   --sophior-cream:       #F1EFEA;
   --sophior-light-tan:   #E3D7C1;
   --sophior-light-gold:  #EFCF96;
   --sophior-white:       #FFFFFF;
+
+  /* Tussengroenen — voor gradients en secundaire tekst */
+  --sophior-mid-green:   #1a4a3c;
+  --sophior-muted-green: #4a6b60;
+
+  /* Opacity-varianten — dark-green */
+  --sophior-dark-green-10: rgba(13, 43, 35, 0.1);
+  --sophior-dark-green-15: rgba(13, 43, 35, 0.15);
+  --sophior-dark-green-50: rgba(13, 43, 35, 0.5);
+  --sophior-dark-green-75: rgba(13, 43, 35, 0.75);
+
+  /* Opacity-varianten — cream */
+  --sophior-cream-10:  rgba(241, 239, 234, 0.1);
+  --sophior-cream-15:  rgba(241, 239, 234, 0.15);
+  --sophior-cream-20:  rgba(241, 239, 234, 0.2);
+  --sophior-cream-40:  rgba(241, 239, 234, 0.4);
+  --sophior-cream-50:  rgba(241, 239, 234, 0.5);
+  --sophior-cream-70:  rgba(241, 239, 234, 0.7);
+  --sophior-cream-75:  rgba(241, 239, 234, 0.75);
 
   /* Fonts */
   --sophior-font-heading: 'Nevolasty', 'Playfair Display', serif;

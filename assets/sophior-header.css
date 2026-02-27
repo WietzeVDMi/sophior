@@ -131,7 +131,7 @@
   background: var(--sophior-white);
   border: 1px solid var(--sophior-light-tan);
   border-top: 2px solid var(--sophior-gold);
-  box-shadow: 0 8px 32px rgba(13, 43, 35, 0.12);
+  box-shadow: 0 8px 32px var(--sophior-dark-green-10);
   min-width: 640px;
   padding: var(--sophior-space-xl);
   z-index: 50;
@@ -226,7 +226,7 @@
 .sophior-mobile-nav__overlay {
   position: absolute;
   inset: 0;
-  background: rgba(13, 43, 35, 0.5);
+  background: var(--sophior-dark-green-50);
   opacity: 0;
   transition: opacity var(--sophior-transition);
 }
@@ -291,6 +291,11 @@
 
 .sophior-mobile-nav__link:hover {
   background-color: var(--sophior-light-tan);
+}
+
+/* ---- Scroll-lock (mobile nav open) ---- */
+body.sophior-nav-open {
+  overflow: hidden;
 }
 
 /* ---- Responsive ---- */

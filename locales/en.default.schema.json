@@ -3430,10 +3430,182 @@
       "settings": {
         "logo": { "label": "Logo image" },
         "tagline": { "label": "Tagline" },
-        "social_header": { "content": "Social media" }
+        "newsletter_placeholder": { "label": "Input placeholder" },
+        "newsletter_btn": { "label": "Button text" },
+        "header_newsletter": { "content": "Newsletter" },
+        "header_social": { "content": "Social media" },
+        "social_header": { "content": "Social media" },
+        "social_instagram": { "label": "Instagram URL" },
+        "social_facebook": { "label": "Facebook URL" },
+        "social_pinterest": { "label": "Pinterest URL" },
+        "header_col2": { "content": "Column 2" },
+        "col2_title": { "label": "Column title" },
+        "col2_menu": { "label": "Menu" },
+        "header_col3": { "content": "Column 3" },
+        "col3_title": { "label": "Column title" },
+        "col3_menu": { "label": "Menu" },
+        "header_col4": { "content": "Column 4" },
+        "col4_title": { "label": "Column title" },
+        "col4_menu": { "label": "Menu" }
       },
       "presets": {
         "name": "SOPHIOR Footer"
+      }
+    },
+    "sophior-hero": {
+      "name": "SOPHIOR Hero",
+      "settings": {
+        "heading": { "label": "Heading (H1)" },
+        "subheading": { "label": "Subheading" },
+        "cta_label": { "label": "Button text" },
+        "cta_link": { "label": "Button link" },
+        "image": { "label": "Image (right column)" }
+      },
+      "presets": {
+        "name": "SOPHIOR Hero"
+      }
+    },
+    "sophior-trustbadge-bar": {
+      "name": "SOPHIOR Trust badge bar",
+      "settings": {
+        "header_item1": { "content": "Badge 1" },
+        "icon_1": { "label": "Icon 1" },
+        "text_1": { "label": "Text 1" },
+        "header_item2": { "content": "Badge 2" },
+        "icon_2": { "label": "Icon 2" },
+        "text_2": { "label": "Text 2" },
+        "header_item3": { "content": "Badge 3" },
+        "icon_3": { "label": "Icon 3" },
+        "text_3": { "label": "Text 3" },
+        "header_item4": { "content": "Badge 4" },
+        "icon_4": { "label": "Icon 4" },
+        "text_4": { "label": "Text 4" },
+        "icon": { "label": "Icon" }
+      },
+      "presets": {
+        "name": "SOPHIOR Trust badge bar"
+      }
+    },
+    "sophior-collections-grid": {
+      "name": "SOPHIOR Collections grid",
+      "settings": {
+        "title": { "label": "Section title" },
+        "cta_label": { "label": "CTA text (all cards)" }
+      },
+      "blocks": {
+        "collection_card": {
+          "name": "Collection card",
+          "settings": {
+            "collection": { "label": "Collection" },
+            "label": { "label": "Label (overrides collection name)" },
+            "image": { "label": "Image (overrides collection image)" }
+          }
+        }
+      },
+      "presets": {
+        "name": "SOPHIOR Collections grid"
+      }
+    },
+    "sophior-bestsellers": {
+      "name": "SOPHIOR Bestsellers slider",
+      "settings": {
+        "title": { "label": "Section title" },
+        "collection": { "label": "Collection" },
+        "products_to_show": { "label": "Number of products" },
+        "show_rating": { "label": "Show rating" },
+        "show_price": { "label": "Show price" },
+        "show_quick_add": { "label": "Show quick add button" }
+      },
+      "add_to_cart": "Add",
+      "adding": "Adding...",
+      "added": "Added",
+      "rating_label": "{{ rating }} out of 5 stars",
+      "prev_button": "Previous",
+      "next_button": "Next",
+      "view_all": "View all",
+      "presets": {
+        "name": "SOPHIOR Bestsellers slider"
+      }
+    },
+    "sophior-usp-accordion": {
+      "name": "SOPHIOR USP Accordion",
+      "settings": {
+        "title": { "label": "Section title" },
+        "image": { "label": "Image (right column)" }
+      },
+      "blocks": {
+        "item": {
+          "name": "Accordion item",
+          "settings": {
+            "question": { "label": "Question" },
+            "answer": { "label": "Answer" }
+          }
+        }
+      },
+      "presets": {
+        "name": "SOPHIOR USP Accordion"
+      }
+    },
+    "sophior-review-slider": {
+      "name": "SOPHIOR Review slider",
+      "settings": {
+        "title": { "label": "Section title" },
+        "rating_aggregate": { "label": "Average rating" },
+        "review_count": { "label": "Review count" },
+        "autoplay_interval": { "label": "Autoplay interval (ms)" }
+      },
+      "blocks": {
+        "review": {
+          "name": "Review",
+          "settings": {
+            "author": { "label": "Name" },
+            "location": { "label": "Location" },
+            "rating": { "label": "Rating (1-5)" },
+            "text": { "label": "Review text" },
+            "date": { "label": "Date" }
+          }
+        }
+      },
+      "prev_button": "Previous review",
+      "next_button": "Next review",
+      "rating_label": "{{ rating }} out of 5 stars",
+      "aggregate_label": "Average {{ rating }} stars",
+      "presets": {
+        "name": "SOPHIOR Review slider"
+      }
+    },
+    "sophior-blog-preview": {
+      "name": "SOPHIOR Blog preview",
+      "settings": {
+        "title": { "label": "Section title" },
+        "blog": { "label": "Blog" },
+        "cta_label": { "label": "CTA text" },
+        "cta_url": { "label": "CTA link" },
+        "header_placeholder": { "content": "Placeholder (when blog is empty)" },
+        "placeholder_category": { "label": "Category label" },
+        "placeholder_title": { "label": "Article title" },
+        "placeholder_excerpt": { "label": "Excerpt" },
+        "placeholder_cta": { "label": "Read more text" }
+      },
+      "read_more": "Read more →",
+      "presets": {
+        "name": "SOPHIOR Blog preview"
+      }
+    },
+    "sophior-trustbar-footer": {
+      "name": "SOPHIOR Pre-footer trust bar",
+      "blocks": {
+        "item": {
+          "name": "Trust item",
+          "settings": {
+            "icon": { "label": "Icon" },
+            "title": { "label": "Title" },
+            "text": { "label": "Description" }
+          }
+        }
+      },
+      "presets": {
+        "name": "SOPHIOR Pre-footer trust bar"
       }
     }
   }

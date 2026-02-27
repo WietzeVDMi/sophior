@@ -20,8 +20,6 @@
 }
 
 /* ---- Tekst kant (links) ---- */
-.sophior-usp-accordion__content {}
-
 .sophior-usp-accordion__title {
   font-family: var(--sophior-font-heading);
   font-size: var(--sophior-text-2xl);
@@ -69,8 +67,11 @@
   display: none;
 }
 
-.sophior-usp-accordion__summary:hover {
+.sophior-usp-accordion__summary:hover,
+.sophior-usp-accordion__summary:focus-visible {
   color: var(--sophior-gold);
+  outline: 2px solid var(--sophior-gold);
+  outline-offset: 2px;
 }
 
 .sophior-usp-accordion__chevron {
@@ -96,7 +97,7 @@
   font-family: var(--sophior-font-body);
   font-size: var(--sophior-text-base);
   font-weight: 300;
-  color: #4a6b60;
+  color: var(--sophior-muted-green);
   line-height: 1.65;
   padding: 0 0 var(--sophior-space-lg);
   max-width: 52ch;
@@ -119,7 +120,7 @@
 .sophior-usp-accordion__placeholder {
   width: 100%;
   aspect-ratio: 4 / 5;
-  background: linear-gradient(135deg, var(--sophior-dark-green) 0%, #1a4a3c 100%);
+  background: linear-gradient(135deg, var(--sophior-dark-green) 0%, var(--sophior-mid-green) 100%);
 }
 
 /* Goud accent blokje in hoek */

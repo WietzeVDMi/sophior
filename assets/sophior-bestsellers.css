@@ -173,7 +173,7 @@
 .sophior-bestsellers__card-price--compare {
   font-weight: 400;
   text-decoration: line-through;
-  color: #888;
+  color: var(--sophior-muted-green);
   margin-left: var(--sophior-space-sm);
   font-size: var(--sophior-text-sm);
 }

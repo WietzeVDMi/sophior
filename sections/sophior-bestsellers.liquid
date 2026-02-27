@@ -41,13 +41,14 @@
             >
               <div class="sophior-bestsellers__card-media">
                 {%- if product.featured_image != blank -%}
+                  {%- assign bestseller_alt = product.featured_image.alt | default: product.title | escape -%}
                   {{
                     product.featured_image
                     | image_url: width: 600
                     | image_tag:
                       class: 'sophior-bestsellers__card-image',
                       loading: 'lazy',
-                      alt: product.featured_image.alt | default: product.title | escape,
+                      alt: bestseller_alt,
                       widths: '300, 400, 600',
                       sizes: '(max-width: 749px) 50vw, 25vw'
                   }}
@@ -62,13 +63,15 @@
                   type="button"
                   aria-label="{{ 'sections.sophior-bestsellers.quick_add' | t: title: product.title | escape }}"
                   data-product-id="{{ product.variants.first.id }}"
+                  data-adding="{{ 'sections.sophior-bestsellers.adding' | t | escape }}"
+                  data-added="{{ 'sections.sophior-bestsellers.added' | t | escape }}"
                 >
                   {{ 'sections.sophior-bestsellers.add_to_cart' | t }}
                 </button>
               </div>
 
               <div class="sophior-bestsellers__card-info">
-                <div class="sophior-bestsellers__card-stars" aria-label="5 sterren">★★★★★</div>
+                <div class="sophior-bestsellers__card-stars" aria-label="{{ 'sections.sophior-bestsellers.rating_label' | t: rating: 5 }}">★★★★★</div>
                 <h3 class="sophior-bestsellers__card-title">{{ product.title }}</h3>
                 <div class="sophior-bestsellers__card-price">
                   {{ product.price | money }}
@@ -157,7 +160,7 @@
     var variantId = btn.dataset.productId;
     if (!variantId) return;
 
-    btn.textContent = '...';
+    btn.textContent = btn.dataset.adding || '...';
     btn.disabled = true;
 
     fetch('/cart/add.js', {
@@ -167,7 +170,7 @@
     })
     .then(function (r) { return r.json(); })
     .then(function () {
-      btn.textContent = '✓';
+      btn.textContent = btn.dataset.added || '✓';
       document.dispatchEvent(new CustomEvent('cart:refresh'));
       setTimeout(function () {
         btn.textContent = '{{ 'sections.sophior-bestsellers.add_to_cart' | t | escape }}';
@@ -184,7 +187,7 @@
 
 {% schema %}
 {
-  "name": "Bestseller Slider",
+  "name": "t:sections.sophior-bestsellers.name",
   "tag": "div",
   "class": "sophior-section",
   "settings": [
