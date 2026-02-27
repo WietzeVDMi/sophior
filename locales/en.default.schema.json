@@ -3607,6 +3607,19 @@
       "presets": {
         "name": "SOPHIOR Pre-footer trust bar"
       }
+    },
+    "sophior-category-header": {
+      "name": "SOPHIOR Category header",
+      "settings": {
+        "show_description": { "label": "Show collection description" },
+        "show_image": { "label": "Show collection image as background" },
+        "overlay_opacity": { "label": "Image overlay opacity (%)" }
+      },
+      "breadcrumb_home": "Home",
+      "breadcrumb_label": "Breadcrumb",
+      "presets": {
+        "name": "SOPHIOR Category header"
+      }
     }
   }
 }

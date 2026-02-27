@@ -1,0 +1,24 @@
+name: Shopify Theme Check
+
+on:
+  pull_request:
+    branches:
+      - develop
+      - main
+  push:
+    branches:
+      - develop
+
+jobs:
+  theme-check:
+    name: Liquid syntax validatie
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Shopify Theme Check
+        uses: Shopify/theme-check-action@v2
+        with:
+          flags: '--fail-level error'

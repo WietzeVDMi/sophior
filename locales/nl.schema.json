@@ -3607,6 +3607,19 @@
       "presets": {
         "name": "SOPHIOR Pre-footer trustbalk"
       }
+    },
+    "sophior-category-header": {
+      "name": "SOPHIOR Categorie header",
+      "settings": {
+        "show_description": { "label": "Collectiebeschrijving tonen" },
+        "show_image": { "label": "Collectieafbeelding als achtergrond tonen" },
+        "overlay_opacity": { "label": "Afbeelding overlay-dekking (%)" }
+      },
+      "breadcrumb_home": "Home",
+      "breadcrumb_label": "Navigatiepad",
+      "presets": {
+        "name": "SOPHIOR Categorie header"
+      }
     }
   }
 }

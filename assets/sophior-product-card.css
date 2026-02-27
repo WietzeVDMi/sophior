@@ -1,0 +1,133 @@
+/* ============================================================
+   SOPHIOR — Product Card
+   Gebruikt door snippets/sophior-product-card.liquid
+   op de collection-pagina (main-collection-product-grid).
+   ============================================================ */
+
+.sophior-product-card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--sophior-white);
+  position: relative;
+  height: 100%;
+}
+
+/* ---- Media ---- */
+.sophior-product-card__media {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  background-color: var(--sophior-cream);
+}
+
+.sophior-product-card__image-link {
+  display: block;
+  height: 100%;
+}
+
+.sophior-product-card__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.4s ease;
+}
+
+.sophior-product-card:hover .sophior-product-card__image,
+.sophior-product-card:focus-within .sophior-product-card__image {
+  transform: scale(1.04);
+}
+
+/* Placeholder als geen afbeelding */
+.sophior-product-card__placeholder-img {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--sophior-dark-green) 0%, var(--sophior-mid-green) 100%);
+}
+
+/* ---- Quick-add knop ---- */
+.sophior-product-card__quick-add {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--sophior-gold);
+  color: var(--sophior-dark-green);
+  border: none;
+  font-family: var(--sophior-font-body);
+  font-size: var(--sophior-text-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: var(--sophior-space-sm) var(--sophior-space-md);
+  cursor: pointer;
+  transform: translateY(100%);
+  transition: transform 0.25s ease, background-color var(--sophior-transition);
+}
+
+.sophior-product-card:hover .sophior-product-card__quick-add,
+.sophior-product-card:focus-within .sophior-product-card__quick-add {
+  transform: translateY(0);
+}
+
+.sophior-product-card__quick-add:hover {
+  background-color: var(--sophior-light-gold);
+}
+
+.sophior-product-card__quick-add:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* ---- Info ---- */
+.sophior-product-card__info {
+  display: block;
+  padding: var(--sophior-space-md);
+  text-decoration: none;
+  flex: 1;
+}
+
+.sophior-product-card__stars {
+  color: var(--sophior-gold);
+  font-size: 1.2rem;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--sophior-space-xs);
+}
+
+.sophior-product-card__title {
+  font-family: var(--sophior-font-body);
+  font-size: var(--sophior-text-sm);
+  font-weight: 500;
+  color: var(--sophior-dark-green);
+  margin: 0 0 var(--sophior-space-xs);
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ---- Prijs ---- */
+.sophior-product-card__price {
+  font-family: var(--sophior-font-body);
+  font-size: var(--sophior-text-sm);
+  font-weight: 500;
+  color: var(--sophior-dark-green);
+  display: flex;
+  align-items: center;
+  gap: var(--sophior-space-xs);
+  flex-wrap: wrap;
+}
+
+.sophior-product-card__price--compare {
+  font-size: var(--sophior-text-xs);
+  font-weight: 400;
+  color: var(--sophior-muted-green);
+  text-decoration: line-through;
+}
+
+/* ---- Placeholder kaart ---- */
+.sophior-product-card--placeholder {
+  pointer-events: none;
+}

@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(unzip -p \"Nieuwe website SOPHIOR 2026 - V4 - Claude.docx\" word/document.xml)",
+      "Bash(du -sh /home/vdmi/projecten/JP*)"
+    ]
+  }
+}

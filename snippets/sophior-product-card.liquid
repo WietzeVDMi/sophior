@@ -1,0 +1,88 @@
+{%- comment -%}
+  sophior-product-card — SOPHIOR-stijl productkaart voor collection-pagina.
+
+  Parameters:
+    card_product {Product}  — het product-object
+    lazy_load    {Boolean}  — true voor lazy loading (false voor eerste 2)
+    section_id   {String}   — section-ID voor unieke element-IDs
+
+  Gebruikt locale-keys van sections.sophior-bestsellers.*
+  (add_to_cart, adding, added, rating_label, quick_add)
+{%- endcomment -%}
+
+{%- if card_product == nil -%}
+  {%- comment -%} Placeholder kaart — Admin preview zonder producten {%- endcomment -%}
+  <article class="sophior-product-card sophior-product-card--placeholder" aria-hidden="true">
+    <div class="sophior-product-card__media">
+      <div class="sophior-product-card__placeholder-img"></div>
+    </div>
+    <div class="sophior-product-card__info">
+      <div class="sophior-product-card__stars" aria-hidden="true">★★★★★</div>
+      <p class="sophior-product-card__title">Product naam</p>
+      <div class="sophior-product-card__price">€ —</div>
+    </div>
+  </article>
+{%- else -%}
+  {%- assign card_loading = 'lazy' -%}
+  {%- if lazy_load == false -%}{%- assign card_loading = 'eager' -%}{%- endif -%}
+  {%- assign card_rating = 5 -%}
+  {%- assign card_alt = card_product.featured_image.alt | default: card_product.title | escape -%}
+
+  <article
+    class="sophior-product-card"
+    data-product-handle="{{ card_product.handle }}"
+  >
+    <div class="sophior-product-card__media">
+      <a
+        href="{{ card_product.url }}"
+        class="sophior-product-card__image-link"
+        aria-label="{{ card_product.title | escape }}"
+        tabindex="0"
+      >
+        {%- if card_product.featured_image != blank -%}
+          {{
+            card_product.featured_image
+            | image_url: width: 600
+            | image_tag:
+              class: 'sophior-product-card__image',
+              loading: card_loading,
+              alt: card_alt,
+              widths: '300, 400, 600',
+              sizes: '(max-width: 749px) 50vw, (max-width: 989px) 33vw, 25vw'
+          }}
+        {%- else -%}
+          <div class="sophior-product-card__placeholder-img" aria-hidden="true"></div>
+        {%- endif -%}
+      </a>
+
+      <button
+        class="sophior-product-card__quick-add"
+        type="button"
+        aria-label="{{ 'sections.sophior-bestsellers.quick_add' | t: title: card_product.title | escape }}"
+        data-product-id="{{ card_product.variants.first.id }}"
+        data-adding="{{ 'sections.sophior-bestsellers.adding' | t | escape }}"
+        data-added="{{ 'sections.sophior-bestsellers.added' | t | escape }}"
+      >
+        {{- 'sections.sophior-bestsellers.add_to_cart' | t -}}
+      </button>
+    </div>
+
+    <a href="{{ card_product.url }}" class="sophior-product-card__info" tabindex="-1" aria-hidden="true">
+      <div
+        class="sophior-product-card__stars"
+        aria-label="{{ 'sections.sophior-bestsellers.rating_label' | t: rating: card_rating }}"
+      >
+        ★★★★★
+      </div>
+      <h3 class="sophior-product-card__title">{{ card_product.title | escape }}</h3>
+      <div class="sophior-product-card__price">
+        {{ card_product.price | money }}
+        {%- if card_product.compare_at_price > card_product.price -%}
+          <span class="sophior-product-card__price--compare">
+            {{ card_product.compare_at_price | money }}
+          </span>
+        {%- endif -%}
+      </div>
+    </a>
+  </article>
+{%- endif -%}

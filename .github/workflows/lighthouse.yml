@@ -1,0 +1,36 @@
+name: Lighthouse CI
+
+on:
+  # Draait handmatig of na deployment naar staging
+  workflow_dispatch:
+    inputs:
+      url:
+        description: 'Store preview URL (bijv. https://sophior-keuken.myshopify.com)'
+        required: true
+        default: 'https://sophior-keuken.myshopify.com'
+
+jobs:
+  lighthouse:
+    name: Lighthouse audit
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Lighthouse CI
+        run: npm install -g @lhci/cli
+
+      - name: Run Lighthouse CI
+        run: |
+          lhci autorun \
+            --collect.url="${{ github.event.inputs.url }}" \
+            --collect.url="${{ github.event.inputs.url }}/pages/playground" \
+            --config=.lighthouserc.json
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}

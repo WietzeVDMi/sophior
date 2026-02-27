@@ -1,0 +1,17 @@
+{
+  "name": "sophior-theme",
+  "version": "1.0.0",
+  "description": "SOPHIOR Shopify thema — Dawn-based",
+  "private": true,
+  "scripts": {
+    "check": "shopify theme check",
+    "check:ci": "shopify theme check --fail-level error",
+    "lighthouse": "lhci autorun",
+    "qa": "npm run check && echo 'Theme check geslaagd. Start Lighthouse handmatig: npm run lighthouse'",
+    "dev": "docker compose up",
+    "push": "docker compose run --rm shopify shopify theme push --store sophior-keuken.myshopify.com"
+  },
+  "devDependencies": {
+    "@lhci/cli": "^0.14.0"
+  }
+}

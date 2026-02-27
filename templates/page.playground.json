@@ -263,6 +263,46 @@
       },
       "block_order": ["t1", "t2", "t3", "t4"],
       "settings": {}
+    },
+    "pg-cat-header-1": {
+      "type": "sophior-category-header",
+      "settings": {
+        "show_description": true,
+        "show_image": true,
+        "overlay_opacity": 50
+      }
+    },
+    "pg-cat-header-2": {
+      "type": "sophior-category-header",
+      "settings": {
+        "show_description": true,
+        "show_image": false,
+        "overlay_opacity": 50
+      }
+    },
+    "pg-cat-header-3": {
+      "type": "sophior-category-header",
+      "settings": {
+        "show_description": false,
+        "show_image": true,
+        "overlay_opacity": 50
+      }
+    },
+    "pg-cat-header-4": {
+      "type": "sophior-category-header",
+      "settings": {
+        "show_description": true,
+        "show_image": true,
+        "overlay_opacity": 20
+      }
+    },
+    "pg-cat-header-5": {
+      "type": "sophior-category-header",
+      "settings": {
+        "show_description": true,
+        "show_image": true,
+        "overlay_opacity": 80
+      }
     }
   },
   "order": [
@@ -288,6 +328,11 @@
     "pg-blog-2",
     "pg-trustbar-1",
     "pg-trustbar-2",
-    "pg-trustbar-3"
+    "pg-trustbar-3",
+    "pg-cat-header-1",
+    "pg-cat-header-2",
+    "pg-cat-header-3",
+    "pg-cat-header-4",
+    "pg-cat-header-5"
   ]
 }
