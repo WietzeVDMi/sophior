@@ -2,7 +2,7 @@ services:
   shopify:
     build: .
     volumes:
-      - ./theme:/app
+      - .:/app
       - shopify_auth:/root/.local/share/shopify
     ports:
       - "9292:9292"
