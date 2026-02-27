@@ -51,17 +51,18 @@
 }
 
 /* ---- Gradient overlay: links donker → rechts transparant ---- */
-.sophior-hero__overlay {
+.sophior-hero::before {
+  content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to right,
-    rgba(13, 43, 35, 0.88) 0%,
-    rgba(13, 43, 35, 0.65) 40%,
-    rgba(13, 43, 35, 0.18) 70%,
-    rgba(13, 43, 35, 0) 100%
-  );
+  z-index: 1;
   pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.75) 0%,
+    rgba(0, 0, 0, 0.35) 35%,
+    rgba(0, 0, 0, 0) 70%
+  );
 }
 
 /* ---- Decoratieve achtergrond-ring ---- */
@@ -190,7 +191,7 @@
     flex-shrink: 0;
   }
 
-  .sophior-hero__overlay {
+  .sophior-hero::before {
     display: none;
   }
 
