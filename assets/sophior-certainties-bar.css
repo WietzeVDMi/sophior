@@ -1,0 +1,49 @@
+/* ============================================================
+   SOPHIOR — Certainties Bar (PDP zekerhedenbar)
+   Gebruikt door sections/sophior-certainties-bar.liquid
+   ============================================================ */
+
+.sophior-certainties-bar__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sophior-space-md, 1rem) var(--sophior-space-lg, 1.5rem);
+}
+
+@media screen and (min-width: 750px) {
+  .sophior-certainties-bar__list {
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--sophior-space-md, 1rem);
+  }
+}
+
+/* ---- Item ---- */
+.sophior-certainties-bar__item {
+  display: flex;
+  align-items: center;
+  gap: var(--sophior-space-sm, 0.6rem);
+}
+
+/* ---- Icoon ---- */
+.sophior-certainties-bar__icon {
+  flex-shrink: 0;
+  color: var(--sophior-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}
+
+/* ---- Tekst ---- */
+.sophior-certainties-bar__text {
+  font-family: var(--sophior-font-body);
+  font-size: var(--sophior-text-xs, 0.75rem);
+  font-weight: 500;
+  color: var(--sophior-dark-green);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 1.3;
+}

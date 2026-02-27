@@ -1,0 +1,144 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="sophior-judge color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
+  <div class="sophior-judge__inner page-width">
+
+    {%- if section.settings.heading != blank -%}
+      <h2 class="sophior-judge__heading">{{ section.settings.heading | escape }}</h2>
+    {%- endif -%}
+
+    {%- if section.settings.judgeme_public_key != blank -%}
+      {%- comment -%}
+        Judge.me reviews widget.
+        Vervang [SHOP_DOMAIN] met je Shopify winkel domein.
+        De widget laadt async — layout verschuift niet door min-height.
+      {%- endcomment -%}
+      <div
+        class="jdgm-widget jdgm-review-widget sophior-judge__widget"
+        data-id="{{ product.id }}"
+        data-product-title="{{ product.title | escape }}"
+        data-public-key="{{ section.settings.judgeme_public_key | escape }}"
+      ></div>
+      <script
+        src="https://cdn.judge.me/assets/all_widgets.js"
+        data-public-key="{{ section.settings.judgeme_public_key | escape }}"
+        defer="defer"
+      ></script>
+    {%- else -%}
+      {%- comment -%} Placeholder zolang Judge.me key nog niet ingevuld {%- endcomment -%}
+      <div class="sophior-judge__placeholder">
+        <div class="sophior-judge__placeholder-stars" aria-hidden="true">★★★★★</div>
+        <p class="sophior-judge__placeholder-text">
+          {{ 'sections.sophior-judge-placeholder.placeholder_text' | t }}
+        </p>
+      </div>
+    {%- endif -%}
+
+  </div>
+</div>
+
+<style>
+  .sophior-judge__heading {
+    font-family: var(--sophior-font-heading);
+    font-size: clamp(1.6rem, 2.5vw, var(--sophior-text-3xl, 2rem));
+    font-weight: 300;
+    color: var(--sophior-dark-green);
+    margin: 0 0 var(--sophior-space-lg, 1.5rem);
+    text-align: center;
+  }
+
+  .sophior-judge__widget {
+    min-height: 200px;
+  }
+
+  .sophior-judge__placeholder {
+    text-align: center;
+    padding: var(--sophior-space-xl, 2rem);
+    background-color: var(--sophior-cream);
+    border: 1px solid var(--sophior-light-tan);
+  }
+
+  .sophior-judge__placeholder-stars {
+    font-size: 2rem;
+    color: var(--sophior-gold);
+    letter-spacing: 0.1em;
+    margin-bottom: var(--sophior-space-sm, 0.6rem);
+  }
+
+  .sophior-judge__placeholder-text {
+    font-family: var(--sophior-font-body);
+    font-size: var(--sophior-text-sm, 0.9rem);
+    color: var(--sophior-muted-green);
+    margin: 0;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "t:sections.sophior-judge-placeholder.name",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "Klantbeoordelingen",
+      "label": "t:sections.sophior-judge-placeholder.settings.heading.label"
+    },
+    {
+      "type": "text",
+      "id": "judgeme_public_key",
+      "label": "t:sections.sophior-judge-placeholder.settings.judgeme_public_key.label",
+      "info": "t:sections.sophior-judge-placeholder.settings.judgeme_public_key.info"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.sophior-judge-placeholder.settings.color_scheme.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 48
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.sophior-judge-placeholder.presets.name"
+    }
+  ],
+  "templates": ["product"]
+}
+{% endschema %}

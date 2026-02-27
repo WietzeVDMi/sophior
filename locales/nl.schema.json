@@ -3620,6 +3620,100 @@
       "presets": {
         "name": "SOPHIOR Categorie header"
       }
+    },
+    "sophior-product-info": {
+      "name": "SOPHIOR Product info",
+      "settings": {
+        "enable_sticky_info": { "label": "Sticky info panel" },
+        "picker_type": {
+          "label": "Variant kiezer stijl",
+          "options__1": { "label": "Knoppen" },
+          "options__2": { "label": "Dropdown" }
+        },
+        "show_dynamic_checkout": { "label": "Dynamische checkout tonen" },
+        "show_gift_card_recipient": { "label": "Cadeaukaart ontvanger formulier" },
+        "padding_top": { "label": "Opvulling boven" },
+        "padding_bottom": { "label": "Opvulling onder" }
+      },
+      "presets": {
+        "name": "SOPHIOR Product info"
+      }
+    },
+    "sophior-certainties-bar": {
+      "name": "SOPHIOR Zekerhedenbar",
+      "settings": {
+        "color_scheme": { "label": "Kleurschema" },
+        "padding_top": { "label": "Opvulling boven" },
+        "padding_bottom": { "label": "Opvulling onder" }
+      },
+      "blocks": {
+        "item": {
+          "name": "Zekerheid",
+          "settings": {
+            "icon_type": {
+              "label": "Icoon",
+              "options__1": { "label": "Slot" },
+              "options__2": { "label": "Vrachtwagen" },
+              "options__3": { "label": "Retour" },
+              "options__4": { "label": "Ster" },
+              "options__5": { "label": "Blad" },
+              "options__6": { "label": "Schild" }
+            },
+            "text": { "label": "Tekst" }
+          }
+        }
+      },
+      "presets": {
+        "name": "SOPHIOR Zekerhedenbar"
+      }
+    },
+    "sophior-product-description": {
+      "name": "SOPHIOR Product beschrijving",
+      "settings": {
+        "heading": { "label": "Sectietitel" },
+        "show_heading": { "label": "Titel tonen" },
+        "color_scheme": { "label": "Kleurschema" },
+        "padding_top": { "label": "Opvulling boven" },
+        "padding_bottom": { "label": "Opvulling onder" }
+      },
+      "presets": {
+        "name": "SOPHIOR Product beschrijving"
+      }
+    },
+    "sophior-judge-placeholder": {
+      "name": "SOPHIOR Reviews",
+      "settings": {
+        "heading": { "label": "Sectietitel" },
+        "judgeme_public_key": { "label": "Judge.me public key", "info": "Opvragen bij Judge.me na installatie van de app" },
+        "color_scheme": { "label": "Kleurschema" },
+        "padding_top": { "label": "Opvulling boven" },
+        "padding_bottom": { "label": "Opvulling onder" }
+      },
+      "placeholder_text": "Reviews komen binnenkort beschikbaar",
+      "presets": {
+        "name": "SOPHIOR Reviews"
+      }
+    },
+    "sophior-product-faq": {
+      "name": "SOPHIOR Product FAQ",
+      "settings": {
+        "heading": { "label": "FAQ titel" },
+        "color_scheme": { "label": "Kleurschema" },
+        "padding_top": { "label": "Opvulling boven" },
+        "padding_bottom": { "label": "Opvulling onder" }
+      },
+      "blocks": {
+        "question": {
+          "name": "Vraag",
+          "settings": {
+            "question": { "label": "Vraag" },
+            "answer": { "label": "Antwoord" }
+          }
+        }
+      },
+      "presets": {
+        "name": "SOPHIOR Product FAQ"
+      }
     }
   }
 }

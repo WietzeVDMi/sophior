@@ -1,0 +1,167 @@
+{{ 'sophior-product-faq.css' | asset_url | stylesheet_tag }}
+
+{%- if section.blocks.size > 0 -%}
+
+  {%- style -%}
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    }
+
+    @media screen and (min-width: 750px) {
+      .section-{{ section.id }}-padding {
+        padding-top: {{ section.settings.padding_top }}px;
+        padding-bottom: {{ section.settings.padding_bottom }}px;
+      }
+    }
+  {%- endstyle -%}
+
+  <div class="sophior-product-faq color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
+    <div class="sophior-product-faq__inner page-width">
+
+      {%- if section.settings.heading != blank -%}
+        <h2 class="sophior-product-faq__heading">{{ section.settings.heading | escape }}</h2>
+      {%- endif -%}
+
+      <div class="sophior-product-faq__list">
+        {%- for block in section.blocks -%}
+          {%- if block.settings.question != blank -%}
+            <details
+              class="sophior-product-faq__item"
+              id="FAQ-{{ block.id }}"
+              {{ block.shopify_attributes }}
+            >
+              <summary class="sophior-product-faq__summary">
+                <h3 class="sophior-product-faq__question">{{ block.settings.question | escape }}</h3>
+                <span class="sophior-product-faq__icon" aria-hidden="true">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </span>
+              </summary>
+              <div class="sophior-product-faq__answer rte">
+                {{ block.settings.answer }}
+              </div>
+            </details>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+
+    </div>
+  </div>
+
+  {%- comment -%} FAQPage JSON-LD structured data {%- endcomment -%}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {%- for block in section.blocks -%}
+          {%- if block.settings.question != blank and block.settings.answer != blank -%}
+            {
+              "@type": "Question",
+              "name": {{ block.settings.question | escape | json }},
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": {{ block.settings.answer | strip_html | escape | json }}
+              }
+            }{%- unless forloop.last -%},{%- endunless -%}
+          {%- endif -%}
+        {%- endfor -%}
+      ]
+    }
+  </script>
+
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "t:sections.sophior-product-faq.name",
+  "tag": "section",
+  "class": "section",
+  "max_blocks": 10,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "Veelgestelde vragen",
+      "label": "t:sections.sophior-product-faq.settings.heading.label"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.sophior-product-faq.settings.color_scheme.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 48
+    }
+  ],
+  "blocks": [
+    {
+      "type": "question",
+      "name": "t:sections.sophior-product-faq.blocks.question.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "t:sections.sophior-product-faq.blocks.question.settings.question.label"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "t:sections.sophior-product-faq.blocks.question.settings.answer.label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.sophior-product-faq.presets.name",
+      "blocks": [
+        {
+          "type": "question",
+          "settings": {
+            "question": "Wat is het materiaal van dit product?",
+            "answer": "<p>Vul hier het antwoord in over het gebruikte materiaal.</p>"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "question": "Hoe onderhoud ik dit product?",
+            "answer": "<p>Vul hier de onderhoudsrichtlijnen in.</p>"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "question": "Wat zijn de verzendkosten?",
+            "answer": "<p>Gratis verzending bij bestellingen vanaf €59. Standaard levering in 1–3 werkdagen.</p>"
+          }
+        }
+      ]
+    }
+  ],
+  "templates": ["product"]
+}
+{% endschema %}

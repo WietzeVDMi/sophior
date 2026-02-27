@@ -1,0 +1,93 @@
+{{ 'sophior-product-description.css' | asset_url | stylesheet_tag }}
+
+{%- assign long_description = product.metafields.custom.long_description -%}
+
+{%- if long_description != blank -%}
+  <div class="sophior-product-description color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
+    <div class="sophior-product-description__inner page-width">
+
+      {%- if section.settings.show_heading and section.settings.heading != blank -%}
+        <h2 class="sophior-product-description__heading">
+          {{ section.settings.heading | escape }}
+        </h2>
+      {%- endif -%}
+
+      <div class="sophior-product-description__content rte">
+        {{ long_description | metafield_tag }}
+      </div>
+
+    </div>
+  </div>
+{%- endif -%}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+{% schema %}
+{
+  "name": "t:sections.sophior-product-description.name",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "Uitgebreide beschrijving",
+      "label": "t:sections.sophior-product-description.settings.heading.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_heading",
+      "default": true,
+      "label": "t:sections.sophior-product-description.settings.show_heading.label"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.sophior-product-description.settings.color_scheme.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 48
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.sophior-product-description.presets.name"
+    }
+  ],
+  "templates": ["product"]
+}
+{% endschema %}

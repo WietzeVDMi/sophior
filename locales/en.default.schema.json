@@ -3620,6 +3620,100 @@
       "presets": {
         "name": "SOPHIOR Category header"
       }
+    },
+    "sophior-product-info": {
+      "name": "SOPHIOR Product info",
+      "settings": {
+        "enable_sticky_info": { "label": "Sticky info panel" },
+        "picker_type": {
+          "label": "Variant picker style",
+          "options__1": { "label": "Buttons" },
+          "options__2": { "label": "Dropdown" }
+        },
+        "show_dynamic_checkout": { "label": "Show dynamic checkout" },
+        "show_gift_card_recipient": { "label": "Gift card recipient form" },
+        "padding_top": { "label": "Top padding" },
+        "padding_bottom": { "label": "Bottom padding" }
+      },
+      "presets": {
+        "name": "SOPHIOR Product info"
+      }
+    },
+    "sophior-certainties-bar": {
+      "name": "SOPHIOR Certainties bar",
+      "settings": {
+        "color_scheme": { "label": "Color scheme" },
+        "padding_top": { "label": "Top padding" },
+        "padding_bottom": { "label": "Bottom padding" }
+      },
+      "blocks": {
+        "item": {
+          "name": "Certainty",
+          "settings": {
+            "icon_type": {
+              "label": "Icon",
+              "options__1": { "label": "Lock" },
+              "options__2": { "label": "Truck" },
+              "options__3": { "label": "Return" },
+              "options__4": { "label": "Star" },
+              "options__5": { "label": "Leaf" },
+              "options__6": { "label": "Shield" }
+            },
+            "text": { "label": "Text" }
+          }
+        }
+      },
+      "presets": {
+        "name": "SOPHIOR Certainties bar"
+      }
+    },
+    "sophior-product-description": {
+      "name": "SOPHIOR Product description",
+      "settings": {
+        "heading": { "label": "Section title" },
+        "show_heading": { "label": "Show title" },
+        "color_scheme": { "label": "Color scheme" },
+        "padding_top": { "label": "Top padding" },
+        "padding_bottom": { "label": "Bottom padding" }
+      },
+      "presets": {
+        "name": "SOPHIOR Product description"
+      }
+    },
+    "sophior-judge-placeholder": {
+      "name": "SOPHIOR Reviews",
+      "settings": {
+        "heading": { "label": "Section title" },
+        "judgeme_public_key": { "label": "Judge.me public key", "info": "Request from Judge.me after installing the app" },
+        "color_scheme": { "label": "Color scheme" },
+        "padding_top": { "label": "Top padding" },
+        "padding_bottom": { "label": "Bottom padding" }
+      },
+      "placeholder_text": "Reviews coming soon",
+      "presets": {
+        "name": "SOPHIOR Reviews"
+      }
+    },
+    "sophior-product-faq": {
+      "name": "SOPHIOR Product FAQ",
+      "settings": {
+        "heading": { "label": "FAQ title" },
+        "color_scheme": { "label": "Color scheme" },
+        "padding_top": { "label": "Top padding" },
+        "padding_bottom": { "label": "Bottom padding" }
+      },
+      "blocks": {
+        "question": {
+          "name": "Question",
+          "settings": {
+            "question": { "label": "Question" },
+            "answer": { "label": "Answer" }
+          }
+        }
+      },
+      "presets": {
+        "name": "SOPHIOR Product FAQ"
+      }
     }
   }
 }

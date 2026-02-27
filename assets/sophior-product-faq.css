@@ -1,0 +1,89 @@
+/* ============================================================
+   SOPHIOR — Product FAQ
+   Gebruikt door sections/sophior-product-faq.liquid
+   ============================================================ */
+
+.sophior-product-faq__inner {
+  max-width: 840px;
+  margin-inline: auto;
+}
+
+/* ---- Heading ---- */
+.sophior-product-faq__heading {
+  font-family: var(--sophior-font-heading);
+  font-size: clamp(1.6rem, 2.5vw, var(--sophior-text-3xl, 2rem));
+  font-weight: 300;
+  color: var(--sophior-dark-green);
+  margin: 0 0 var(--sophior-space-lg, 1.5rem);
+  text-align: center;
+}
+
+/* ---- FAQ lijst ---- */
+.sophior-product-faq__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-top: 1px solid var(--sophior-light-tan);
+}
+
+/* ---- FAQ item (details) ---- */
+.sophior-product-faq__item {
+  border-bottom: 1px solid var(--sophior-light-tan);
+}
+
+/* ---- Summary ---- */
+.sophior-product-faq__summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sophior-space-md, 1rem);
+  padding: var(--sophior-space-md, 1rem) 0;
+  cursor: pointer;
+  list-style: none;
+}
+
+.sophior-product-faq__summary::-webkit-details-marker {
+  display: none;
+}
+
+.sophior-product-faq__summary:focus-visible {
+  outline: 2px solid var(--sophior-gold);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ---- Vraag ---- */
+.sophior-product-faq__question {
+  font-family: var(--sophior-font-body);
+  font-size: var(--sophior-text-base, 1rem);
+  font-weight: 600;
+  color: var(--sophior-dark-green);
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* ---- Icoon (chevron) ---- */
+.sophior-product-faq__icon {
+  flex-shrink: 0;
+  color: var(--sophior-gold);
+  transition: transform 0.2s ease;
+}
+
+.sophior-product-faq__item[open] .sophior-product-faq__icon {
+  transform: rotate(180deg);
+}
+
+/* ---- Antwoord ---- */
+.sophior-product-faq__answer {
+  font-family: var(--sophior-font-body);
+  font-size: var(--sophior-text-sm, 0.9rem);
+  font-weight: 400;
+  color: var(--sophior-dark-green);
+  line-height: 1.65;
+  padding: 0 0 var(--sophior-space-md, 1rem);
+}
+
+.sophior-product-faq__answer a {
+  color: var(--sophior-gold);
+  text-decoration: underline;
+}

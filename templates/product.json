@@ -1,216 +1,122 @@
 {
   "sections": {
-    "main": {
-      "type": "main-product",
-      "blocks": {
-        "vendor": {
-          "type": "text",
-          "settings": {
-            "text": "{{ product.vendor }}",
-            "text_style": "uppercase"
-          }
-        },
-        "title": {
-          "type": "title"
-        },
-        "caption": {
-          "type": "text",
-          "settings": {
-            "text": "{{ product.metafields.descriptors.subtitle.value }}",
-            "text_style": "subtitle"
-          }
-        },
-        "price": {
-          "type": "price"
-        },
-        "variant_picker": {
-          "type": "variant_picker",
-          "settings": {
-            "picker_type": "button"
-          }
-        },
-        "quantity_selector": {
-          "type": "quantity_selector"
-        },
-        "buy_buttons": {
-          "type": "buy_buttons",
-          "settings": {
-            "show_dynamic_checkout": true,
-            "show_gift_card_recipient": true
-          }
-        },
-        "description": {
-          "type": "description"
-        },
-        "collapsible-row-0": {
-          "type": "collapsible_tab",
-          "settings": {
-            "heading": "Materials",
-            "icon": "leather",
-            "content": "",
-            "page": ""
-          }
-        },
-        "collapsible-row-1": {
-          "type": "collapsible_tab",
-          "settings": {
-            "heading": "Shipping & Returns",
-            "icon": "truck",
-            "content": "",
-            "page": ""
-          }
-        },
-        "collapsible-row-2": {
-          "type": "collapsible_tab",
-          "settings": {
-            "heading": "Dimensions",
-            "icon": "ruler",
-            "content": "",
-            "page": ""
-          }
-        },
-        "collapsible-row-3": {
-          "type": "collapsible_tab",
-          "settings": {
-            "heading": "Care Instructions",
-            "icon": "heart",
-            "content": "",
-            "page": ""
-          }
-        },
-        "share": {
-          "type": "share",
-          "settings": {
-            "share_label": "Share"
-          }
-        }
-      },
-      "block_order": [
-        "vendor",
-        "title",
-        "caption",
-        "price",
-        "variant_picker",
-        "quantity_selector",
-        "buy_buttons",
-        "description",
-        "collapsible-row-0",
-        "collapsible-row-1",
-        "collapsible-row-2",
-        "collapsible-row-3",
-        "share"
-      ],
+    "product-info": {
+      "type": "sophior-product-info",
       "settings": {
         "enable_sticky_info": true,
-        "gallery_layout": "stacked",
-        "media_size": "large",
-        "constrain_to_viewport": true,
-        "mobile_thumbnails": "hide",
-        "hide_variants": true,
-        "enable_video_looping": false,
+        "picker_type": "button",
+        "show_dynamic_checkout": true,
+        "show_gift_card_recipient": false,
         "padding_top": 36,
         "padding_bottom": 12
       }
     },
-    "image-with-text": {
-      "type": "image-with-text",
+    "certainties-bar": {
+      "type": "sophior-certainties-bar",
       "blocks": {
-        "image-with-text-0": {
-          "type": "heading",
+        "certainty-1": {
+          "type": "item",
           "settings": {
-            "heading": "Image with text",
-            "heading_size": "h1"
+            "icon_type": "lock",
+            "text": "Veilig betalen"
           }
         },
-        "image-with-text-1": {
-          "type": "text",
+        "certainty-2": {
+          "type": "item",
           "settings": {
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
-            "text_style": "body"
+            "icon_type": "truck",
+            "text": "Gratis verzending v.a. €59"
+          }
+        },
+        "certainty-3": {
+          "type": "item",
+          "settings": {
+            "icon_type": "return",
+            "text": "30 dagen retour"
+          }
+        },
+        "certainty-4": {
+          "type": "item",
+          "settings": {
+            "icon_type": "star",
+            "text": "Premium kwaliteit"
           }
         }
       },
       "block_order": [
-        "image-with-text-0",
-        "image-with-text-1"
+        "certainty-1",
+        "certainty-2",
+        "certainty-3",
+        "certainty-4"
       ],
       "settings": {
-        "height": "small",
-        "desktop_image_width": "medium",
-        "layout": "text_first",
-        "desktop_content_position": "top",
-        "desktop_content_alignment": "left",
-        "content_layout": "no-overlap",
-        "color_scheme": "scheme-2",
-        "mobile_content_alignment": "left",
-        "padding_top": 36,
-        "padding_bottom": 36
+        "color_scheme": "scheme-1",
+        "padding_top": 24,
+        "padding_bottom": 24
       }
     },
-    "multicolumn": {
-      "type": "multicolumn",
+    "product-description": {
+      "type": "sophior-product-description",
+      "settings": {
+        "heading": "Over dit product",
+        "show_heading": true,
+        "color_scheme": "scheme-1",
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    },
+    "reviews": {
+      "type": "sophior-judge-placeholder",
+      "settings": {
+        "heading": "Klantbeoordelingen",
+        "color_scheme": "scheme-1",
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    },
+    "product-faq": {
+      "type": "sophior-product-faq",
       "blocks": {
-        "column-0": {
-          "type": "column",
+        "faq-1": {
+          "type": "question",
           "settings": {
-            "title": "Free Shipping",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
-            "link_label": "",
-            "link": ""
+            "question": "Wat is het materiaal van dit product?",
+            "answer": "<p>Vul hier het antwoord in over het gebruikte materiaal.</p>"
           }
         },
-        "column-1": {
-          "type": "column",
+        "faq-2": {
+          "type": "question",
           "settings": {
-            "title": "Hassle-Free Exchanges",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
-            "link_label": "",
-            "link": ""
+            "question": "Hoe onderhoud ik dit product?",
+            "answer": "<p>Vul hier de onderhoudsrichtlijnen in voor een lang productleven.</p>"
+          }
+        },
+        "faq-3": {
+          "type": "question",
+          "settings": {
+            "question": "Wat zijn de verzendkosten?",
+            "answer": "<p>Gratis verzending bij bestellingen vanaf €59. Standaard levering in 1–3 werkdagen.</p>"
           }
         }
       },
       "block_order": [
-        "column-0",
-        "column-1"
+        "faq-1",
+        "faq-2",
+        "faq-3"
       ],
       "settings": {
-        "title": "",
-        "heading_size": "h1",
-        "image_width": "full",
-        "image_ratio": "adapt",
-        "columns_desktop": 2,
-        "column_alignment": "left",
-        "background_style": "none",
-        "button_label": "",
-        "button_link": "",
-        "swipe_on_mobile": false,
+        "heading": "Veelgestelde vragen",
         "color_scheme": "scheme-1",
-        "columns_mobile": "1",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
-    "related-products": {
-      "type": "related-products",
-      "settings": {
-        "heading": "You may also like",
-        "heading_size": "h2",
-        "columns_desktop": 4,
-        "color_scheme": "scheme-1",
-        "image_ratio": "square",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "columns_mobile": "2",
-        "padding_top": 36,
-        "padding_bottom": 28
+        "padding_top": 48,
+        "padding_bottom": 48
       }
     }
   },
   "order": [
-    "main",
-    "image-with-text",
-    "multicolumn",
-    "related-products"
+    "product-info",
+    "certainties-bar",
+    "product-description",
+    "reviews",
+    "product-faq"
   ]
 }

@@ -1,0 +1,205 @@
+{{ 'section-main-product.css' | asset_url | stylesheet_tag }}
+{{ 'component-accordion.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'component-slider.css' | asset_url | stylesheet_tag }}
+{{ 'component-rating.css' | asset_url | stylesheet_tag }}
+{{ 'component-deferred-media.css' | asset_url | stylesheet_tag }}
+{{ 'sophior-product-info.css' | asset_url | stylesheet_tag }}
+
+{% unless product.has_only_default_variant %}
+  {{ 'component-product-variant-picker.css' | asset_url | stylesheet_tag }}
+  {{ 'component-swatch-input.css' | asset_url | stylesheet_tag }}
+  {{ 'component-swatch.css' | asset_url | stylesheet_tag }}
+{% endunless %}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<script src="{{ 'product-info.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+{%- if request.design_mode -%}
+  <script src="{{ 'theme-editor.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+
+{%- assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' -%}
+
+<product-info
+  id="MainProduct-{{ section.id }}"
+  class="sophior-product-info section-{{ section.id }}-padding"
+  data-section="{{ section.id }}"
+  data-product-id="{{ product.id }}"
+  data-update-url="true"
+  data-url="{{ product.url }}"
+>
+  <div class="sophior-product-info__layout page-width">
+
+    {%- comment -%} ---- Galerij kolom ---- {%- endcomment -%}
+    <div class="sophior-product-info__gallery">
+      {% render 'product-media-gallery', variant_images: variant_images %}
+    </div>
+
+    {%- comment -%} ---- Info kolom ---- {%- endcomment -%}
+    <section
+      class="sophior-product-info__details{% if section.settings.enable_sticky_info %} product__column-sticky{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+      id="ProductInfo-{{ section.id }}"
+    >
+      {%- assign product_form_id = 'product-form-' | append: section.id -%}
+
+      {%- comment -%} Producttitel {%- endcomment -%}
+      <h1 class="sophior-product-info__title">{{ product.title | escape }}</h1>
+
+      {%- comment -%} Kernbelofte (metafield) {%- endcomment -%}
+      {%- if product.metafields.custom.core_promise != blank -%}
+        <p class="sophior-product-info__core-promise">
+          {{ product.metafields.custom.core_promise | escape }}
+        </p>
+      {%- endif -%}
+
+      {%- comment -%} Prijs {%- endcomment -%}
+      <div id="price-{{ section.id }}" role="status">
+        {%- render 'price',
+          product: product,
+          use_variant: true,
+          show_badges: true,
+          price_class: 'price--large'
+        -%}
+      </div>
+
+      {%- comment -%} Belasting / verzendbeleid {%- endcomment -%}
+      {%- if cart.taxes_included or shop.shipping_policy.body != blank -%}
+        <div class="sophior-product-info__tax caption rte">
+          {%- if cart.taxes_included -%}
+            {{ 'products.product.taxes_included' | t }}
+          {%- endif -%}
+          {%- if shop.shipping_policy.body != blank -%}
+            {{ 'products.product.shipping_policy_html' | t: link: shop.shipping_policy.url }}
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      {%- comment -%} Variant kiezer {%- endcomment -%}
+      {%- unless product.has_only_default_variant -%}
+        {% render 'product-variant-picker',
+          product: product,
+          block: section,
+          product_form_id: product_form_id
+        %}
+      {%- endunless -%}
+
+      {%- comment -%} USP-lijst (metafields) {%- endcomment -%}
+      {%- assign usp_1 = product.metafields.custom.usp_1 -%}
+      {%- assign usp_2 = product.metafields.custom.usp_2 -%}
+      {%- assign usp_3 = product.metafields.custom.usp_3 -%}
+      {%- if usp_1 != blank or usp_2 != blank or usp_3 != blank -%}
+        <ul class="sophior-product-info__usps">
+          {%- if usp_1 != blank -%}
+            <li>{{ usp_1 | escape }}</li>
+          {%- endif -%}
+          {%- if usp_2 != blank -%}
+            <li>{{ usp_2 | escape }}</li>
+          {%- endif -%}
+          {%- if usp_3 != blank -%}
+            <li>{{ usp_3 | escape }}</li>
+          {%- endif -%}
+        </ul>
+      {%- endif -%}
+
+      {%- comment -%} Koop knoppen {%- endcomment -%}
+      {%- render 'buy-buttons',
+        block: section,
+        product: product,
+        product_form_id: product_form_id,
+        section_id: section.id,
+        show_pickup_availability: false
+      -%}
+
+      {%- comment -%} Productbeschrijving (kort) {%- endcomment -%}
+      {%- if product.description != blank -%}
+        <div class="sophior-product-info__description rte">
+          {{ product.description }}
+        </div>
+      {%- endif -%}
+
+    </section>
+  </div>
+</product-info>
+
+{% schema %}
+{
+  "name": "t:sections.sophior-product-info.name",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_sticky_info",
+      "default": true,
+      "label": "t:sections.sophior-product-info.settings.enable_sticky_info.label"
+    },
+    {
+      "type": "select",
+      "id": "picker_type",
+      "default": "button",
+      "label": "t:sections.sophior-product-info.settings.picker_type.label",
+      "options": [
+        {
+          "value": "button",
+          "label": "t:sections.sophior-product-info.settings.picker_type.options__1.label"
+        },
+        {
+          "value": "dropdown",
+          "label": "t:sections.sophior-product-info.settings.picker_type.options__2.label"
+        }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "show_dynamic_checkout",
+      "default": true,
+      "label": "t:sections.sophior-product-info.settings.show_dynamic_checkout.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_gift_card_recipient",
+      "default": false,
+      "label": "t:sections.sophior-product-info.settings.show_gift_card_recipient.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 12
+    }
+  ],
+  "templates": ["product"]
+}
+{% endschema %}

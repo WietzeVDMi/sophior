@@ -1,0 +1,150 @@
+/* ============================================================
+   SOPHIOR — Product Info (PDP hoofdsectie)
+   Gebruikt door sections/sophior-product-info.liquid
+   ============================================================ */
+
+/* ---- Layout ---- */
+.sophior-product-info__layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sophior-space-xl, 2rem);
+}
+
+@media screen and (min-width: 750px) {
+  .sophior-product-info__layout {
+    grid-template-columns: 55fr 45fr;
+    gap: 4rem;
+    align-items: start;
+  }
+}
+
+/* ---- Galerij ---- */
+.sophior-product-info__gallery {
+  position: relative;
+}
+
+/* ---- Details kolom ---- */
+.sophior-product-info__details {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sophior-space-md, 1rem);
+}
+
+/* ---- Titel ---- */
+.sophior-product-info__title {
+  font-family: var(--sophior-font-heading);
+  font-size: clamp(2rem, 3.5vw, var(--sophior-text-4xl, 2.8rem));
+  font-weight: 300;
+  color: var(--sophior-dark-green);
+  margin: 0;
+  line-height: 1.2;
+}
+
+/* ---- Kernbelofte ---- */
+.sophior-product-info__core-promise {
+  font-family: var(--sophior-font-body);
+  font-size: var(--sophior-text-sm, 0.9rem);
+  font-weight: 500;
+  color: var(--sophior-muted-green);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0;
+}
+
+/* ---- Belasting / verzendbeleid ---- */
+.sophior-product-info__tax {
+  font-size: var(--sophior-text-xs, 0.75rem);
+  color: var(--sophior-muted-green);
+}
+
+.sophior-product-info__tax a {
+  color: var(--sophior-muted-green);
+  text-decoration: underline;
+}
+
+/* ---- USP-lijst ---- */
+.sophior-product-info__usps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sophior-space-xs, 0.4rem);
+}
+
+.sophior-product-info__usps li {
+  font-family: var(--sophior-font-body);
+  font-size: var(--sophior-text-sm, 0.9rem);
+  font-weight: 400;
+  color: var(--sophior-dark-green);
+  padding-left: 1.4em;
+  position: relative;
+}
+
+.sophior-product-info__usps li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--sophior-gold);
+  font-weight: 700;
+}
+
+/* ---- Productbeschrijving (kort) ---- */
+.sophior-product-info__description {
+  font-family: var(--sophior-font-body);
+  font-size: var(--sophior-text-sm, 0.9rem);
+  color: var(--sophior-dark-green);
+  line-height: 1.65;
+  border-top: 1px solid var(--sophior-light-tan);
+  padding-top: var(--sophior-space-md, 1rem);
+  margin-top: var(--sophior-space-xs, 0.4rem);
+}
+
+/* ---- Dawn ATC button override ---- */
+.sophior-product-info .product-form__submit {
+  background-color: var(--sophior-dark-green);
+  color: var(--sophior-cream);
+  border-color: var(--sophior-dark-green);
+  font-family: var(--sophior-font-body);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-radius: 0;
+  min-height: 52px;
+  transition: background-color var(--sophior-transition, 0.2s ease),
+              border-color var(--sophior-transition, 0.2s ease);
+}
+
+.sophior-product-info .product-form__submit:hover:not(:disabled) {
+  background-color: var(--sophior-gold);
+  border-color: var(--sophior-gold);
+  color: var(--sophior-dark-green);
+}
+
+/* ---- Dawn prijs override ---- */
+.sophior-product-info .price--large .price-item--regular,
+.sophior-product-info .price--large .price-item--sale {
+  font-family: var(--sophior-font-body);
+  font-size: var(--sophior-text-2xl, 1.6rem);
+  font-weight: 700;
+  color: var(--sophior-dark-green);
+}
+
+.sophior-product-info .price--large .price-item--regular:only-child {
+  color: var(--sophior-dark-green);
+}
+
+/* ---- Dawn variant picker override ---- */
+.sophior-product-info .product-form__input--pill .swatch-input__input + .swatch-input__label,
+.sophior-product-info .product-form__input--pill input[type="radio"] + label {
+  border-color: var(--sophior-light-tan);
+  color: var(--sophior-dark-green);
+  font-family: var(--sophior-font-body);
+  border-radius: 0;
+}
+
+.sophior-product-info .product-form__input--pill input[type="radio"]:checked + label {
+  border-color: var(--sophior-dark-green);
+  background-color: var(--sophior-dark-green);
+  color: var(--sophior-cream);
+}
