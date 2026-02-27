@@ -230,8 +230,12 @@
       "type": "sophior-hero",
       "name": "SOPHIOR Hero",
       "settings": {
+        "social_proof": "★★★★★ 4,8/5 uit 500+ reviews",
         "heading": "Koken begint bij het juiste materiaal",
         "subheading": "Houten snijplanken, PFAS-vrije pannen en premium messen voor dagelijks gebruik.",
+        "usp_1": "Massief houten snijplanken",
+        "usp_2": "PFAS-vrije RVS pannen",
+        "usp_3": "Perfect gebalanceerde messen",
         "cta_label": "Shop nu",
         "cta_link": "",
         "image": "shopify://shop_images/SOPHIOR_Header.png"
@@ -257,7 +261,7 @@
         "collection_card_xV8ypw": {
           "type": "collection_card",
           "settings": {
-            "collection": "",
+            "collection": "snijplanken",
             "label": "Snijplanken",
             "badge_label": "Best seller"
           }
@@ -265,7 +269,7 @@
         "collection_card_PnaMTK": {
           "type": "collection_card",
           "settings": {
-            "collection": "",
+            "collection": "pannen",
             "label": "Pannen",
             "badge_label": "Nieuw 2026"
           }
@@ -273,7 +277,7 @@
         "collection_card_YDqzJX": {
           "type": "collection_card",
           "settings": {
-            "collection": "",
+            "collection": "messen",
             "label": "Messen",
             "badge_label": "Chef's keuze"
           }
@@ -281,7 +285,7 @@
         "collection_card_DiCd8K": {
           "type": "collection_card",
           "settings": {
-            "collection": "",
+            "collection": "accessoires",
             "label": "Accessoires",
             "badge_label": "Must have"
           }
