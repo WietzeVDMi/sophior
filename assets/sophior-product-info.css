@@ -148,3 +148,223 @@
   background-color: var(--sophior-dark-green);
   color: var(--sophior-cream);
 }
+
+/* ---- Reviewscore anchor link ---- */
+.sophior-product-info__rating-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: var(--sophior-dark-green);
+}
+
+.sophior-product-info__rating-link:hover .sophior-product-info__rating-count {
+  text-decoration: underline;
+}
+
+.sophior-product-info__stars {
+  color: var(--sophior-gold);
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+}
+
+.sophior-product-info__rating-count {
+  font-family: var(--sophior-font-body);
+  font-size: var(--sophior-text-xs, 0.75rem);
+  color: var(--sophior-muted-green);
+}
+
+/* ---- Add-on cross-sell ---- */
+.sophior-product-info__addon {
+  border: 1px solid var(--sophior-light-tan);
+  background-color: var(--sophior-cream);
+  padding: var(--sophior-space-md, 1rem);
+}
+
+.sophior-product-info__addon-inner {
+  display: flex;
+  align-items: center;
+  gap: var(--sophior-space-md, 1rem);
+}
+
+.sophior-product-info__addon-img img {
+  display: block;
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+}
+
+.sophior-product-info__addon-details {
+  flex: 1;
+}
+
+.sophior-product-info__addon-label {
+  font-family: var(--sophior-font-body);
+  font-size: var(--sophior-text-xs, 0.75rem);
+  font-weight: 500;
+  color: var(--sophior-muted-green);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0 0 0.2rem;
+}
+
+.sophior-product-info__addon-name {
+  font-family: var(--sophior-font-body);
+  font-size: var(--sophior-text-sm, 0.9rem);
+  font-weight: 500;
+  color: var(--sophior-dark-green);
+  margin: 0 0 0.25rem;
+}
+
+.sophior-product-info__addon-price {
+  font-family: var(--sophior-font-body);
+  font-size: var(--sophior-text-sm, 0.9rem);
+  font-weight: 700;
+  color: var(--sophior-gold);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sophior-product-info__addon-price--compare {
+  font-size: var(--sophior-text-xs, 0.75rem);
+  font-weight: 400;
+  color: var(--sophior-muted-green);
+  text-decoration: line-through;
+}
+
+.sophior-product-info__addon-btn {
+  flex-shrink: 0;
+  background: none;
+  border: 1.5px solid var(--sophior-dark-green);
+  color: var(--sophior-dark-green);
+  font-family: var(--sophior-font-body);
+  font-size: var(--sophior-text-xs, 0.75rem);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background-color var(--sophior-transition), color var(--sophior-transition);
+  white-space: nowrap;
+}
+
+.sophior-product-info__addon-btn:hover {
+  background-color: var(--sophior-dark-green);
+  color: var(--sophior-cream);
+}
+
+/* ---- Levertijd ---- */
+.sophior-product-info__delivery {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--sophior-font-body);
+  font-size: var(--sophior-text-sm, 0.9rem);
+  font-weight: 500;
+  color: var(--sophior-dark-green);
+  margin: 0;
+}
+
+.sophior-product-info__delivery-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  color: var(--sophior-gold);
+}
+
+/* ---- Betaalmethoden ---- */
+.sophior-product-info__payments {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.sophior-product-info__payment-icon {
+  height: 22px;
+  width: auto;
+  opacity: 0.8;
+}
+
+/* ---- Trust-USPs (3 inline) ---- */
+.sophior-product-info__trust-usps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--sophior-space-md, 1rem);
+  flex-wrap: wrap;
+  padding-top: var(--sophior-space-sm, 0.6rem);
+  border-top: 1px solid var(--sophior-light-tan);
+}
+
+.sophior-product-info__trust-usps li {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--sophior-font-body);
+  font-size: var(--sophior-text-xs, 0.75rem);
+  font-weight: 500;
+  color: var(--sophior-dark-green);
+}
+
+.sophior-product-info__trust-usps li svg {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  color: var(--sophior-gold);
+}
+
+/* ---- Accordeons ---- */
+.sophior-product-info__accordions {
+  border-top: 1px solid var(--sophior-light-tan);
+  margin-top: var(--sophior-space-xs, 0.4rem);
+}
+
+.sophior-product-info__accordion {
+  border-bottom: 1px solid var(--sophior-light-tan);
+}
+
+.sophior-product-info__accordion-trigger {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--sophior-space-md, 1rem) 0;
+  cursor: pointer;
+  font-family: var(--sophior-font-body);
+  font-size: var(--sophior-text-sm, 0.9rem);
+  font-weight: 500;
+  color: var(--sophior-dark-green);
+  list-style: none;
+  user-select: none;
+}
+
+.sophior-product-info__accordion-trigger::-webkit-details-marker {
+  display: none;
+}
+
+.sophior-product-info__accordion-trigger:hover {
+  color: var(--sophior-gold);
+}
+
+.sophior-product-info__accordion-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  transition: transform var(--sophior-transition, 0.2s ease);
+}
+
+.sophior-product-info__accordion[open] .sophior-product-info__accordion-icon {
+  transform: rotate(180deg);
+}
+
+.sophior-product-info__accordion-body {
+  padding: 0 0 var(--sophior-space-md, 1rem);
+  font-family: var(--sophior-font-body);
+  font-size: var(--sophior-text-sm, 0.9rem);
+  line-height: 1.65;
+  color: var(--sophior-dark-green);
+}

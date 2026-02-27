@@ -82,6 +82,20 @@
       {%- comment -%} Producttitel {%- endcomment -%}
       <h1 class="sophior-product-info__title">{{ product.title | escape }}</h1>
 
+      {%- comment -%} Reviewscore — anchor-link naar #reviews {%- endcomment -%}
+      <a href="#reviews" class="sophior-product-info__rating-link" aria-label="Ga naar klantbeoordelingen">
+        {%- assign avg_rating = product.metafields.judgeme.avg_rating | default: 5.0 -%}
+        {%- assign review_count = product.metafields.judgeme.reviews_count | default: 0 -%}
+        <span class="sophior-product-info__stars" aria-hidden="true">★★★★★</span>
+        <span class="sophior-product-info__rating-count">
+          {%- if review_count > 0 -%}
+            {{ avg_rating | round: 1 }}/5 uit {{ review_count }} beoordelingen
+          {%- else -%}
+            Bekijk beoordelingen
+          {%- endif -%}
+        </span>
+      </a>
+
       {%- comment -%} Kernbelofte (metafield) {%- endcomment -%}
       {%- if product.metafields.custom.core_promise != blank -%}
         <p class="sophior-product-info__core-promise">
@@ -120,7 +134,7 @@
         %}
       {%- endunless -%}
 
-      {%- comment -%} USP-lijst (metafields) {%- endcomment -%}
+      {%- comment -%} USP-lijst (metafields) met gold vinkje {%- endcomment -%}
       {%- assign usp_1 = product.metafields.custom.usp_1 -%}
       {%- assign usp_2 = product.metafields.custom.usp_2 -%}
       {%- assign usp_3 = product.metafields.custom.usp_3 -%}
@@ -138,6 +152,60 @@
         </ul>
       {%- endif -%}
 
+      {%- comment -%} Add-on cross-sell (metafield addon_product) {%- endcomment -%}
+      {%- assign addon = product.metafields.custom.addon_product.value -%}
+      {%- if addon != blank -%}
+        <div class="sophior-product-info__addon">
+          <div class="sophior-product-info__addon-inner">
+            {%- if addon.featured_image != blank -%}
+              <div class="sophior-product-info__addon-img">
+                {{
+                  addon.featured_image
+                  | image_url: width: 120
+                  | image_tag:
+                    loading: 'lazy',
+                    alt: addon.title | escape,
+                    width: 60,
+                    height: 60
+                }}
+              </div>
+            {%- endif -%}
+            <div class="sophior-product-info__addon-details">
+              <p class="sophior-product-info__addon-label">
+                {%- if product.type == 'snijplank' -%}Onderhoudsolie erbij?
+                {%- elsif product.type == 'pan' -%}Panbeschermers erbij?
+                {%- elsif product.type == 'mes' -%}Mesbeschermer erbij?
+                {%- else -%}Accessoire erbij?
+                {%- endif -%}
+              </p>
+              <p class="sophior-product-info__addon-name">{{ addon.title | escape }}</p>
+              <p class="sophior-product-info__addon-price">
+                {%- if addon.compare_at_price > addon.price -%}
+                  <span class="sophior-product-info__addon-price--compare">{{ addon.compare_at_price | money }}</span>
+                {%- endif -%}
+                {{ addon.price | money }}
+              </p>
+            </div>
+            <button
+              type="button"
+              class="sophior-product-info__addon-btn"
+              data-product-id="{{ addon.variants.first.id }}"
+              aria-label="{{ addon.title | escape }} toevoegen aan winkelwagen"
+            >
+              + Toevoegen
+            </button>
+          </div>
+        </div>
+      {%- endif -%}
+
+      {%- comment -%} Levertijd {%- endcomment -%}
+      <p class="sophior-product-info__delivery">
+        <svg class="sophior-product-info__delivery-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
+        </svg>
+        <span>Voor 23:59 besteld, morgen in huis</span>
+      </p>
+
       {%- comment -%} Koop knoppen {%- endcomment -%}
       {%- render 'buy-buttons',
         block: section,
@@ -147,16 +215,112 @@
         show_pickup_availability: false
       -%}
 
-      {%- comment -%} Productbeschrijving (kort) {%- endcomment -%}
-      {%- if product.description != blank -%}
-        <div class="sophior-product-info__description rte">
-          {{ product.description }}
+      {%- comment -%} Betaalmethoden iconen {%- endcomment -%}
+      {%- unless shop.enabled_payment_types == empty -%}
+        <div class="sophior-product-info__payments" aria-label="Beschikbare betaalmethoden">
+          {%- for type in shop.enabled_payment_types -%}
+            {{ type | payment_type_svg_tag: class: 'sophior-product-info__payment-icon' }}
+          {%- endfor -%}
         </div>
-      {%- endif -%}
+      {%- endunless -%}
+
+      {%- comment -%} 3 inline Trust-USPs {%- endcomment -%}
+      <ul class="sophior-product-info__trust-usps">
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.5"/></svg>
+          30 dagen retour
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          2 jaar garantie
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          4,8/5 uit 500+ reviews
+        </li>
+      </ul>
+
+      {%- comment -%} Accordeons: Productomschrijving / Specificaties / Uitleg & Onderhoud {%- endcomment -%}
+      <div class="sophior-product-info__accordions">
+
+        {%- if product.description != blank -%}
+          <details class="sophior-product-info__accordion">
+            <summary class="sophior-product-info__accordion-trigger">
+              Productomschrijving
+              <svg class="sophior-product-info__accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <path d="M6 9l6 6 6-6"/>
+              </svg>
+            </summary>
+            <div class="sophior-product-info__accordion-body rte">
+              {{ product.description }}
+            </div>
+          </details>
+        {%- endif -%}
+
+        {%- if product.metafields.custom.specifications != blank -%}
+          <details class="sophior-product-info__accordion">
+            <summary class="sophior-product-info__accordion-trigger">
+              Productspecificaties
+              <svg class="sophior-product-info__accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <path d="M6 9l6 6 6-6"/>
+              </svg>
+            </summary>
+            <div class="sophior-product-info__accordion-body rte">
+              {{ product.metafields.custom.specifications.value }}
+            </div>
+          </details>
+        {%- endif -%}
+
+        {%- if section.settings.care_instructions != blank -%}
+          <details class="sophior-product-info__accordion">
+            <summary class="sophior-product-info__accordion-trigger">
+              Uitleg &amp; Onderhoud
+              <svg class="sophior-product-info__accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <path d="M6 9l6 6 6-6"/>
+              </svg>
+            </summary>
+            <div class="sophior-product-info__accordion-body rte">
+              {{ section.settings.care_instructions }}
+            </div>
+          </details>
+        {%- endif -%}
+
+      </div>
 
     </section>
   </div>
 </product-info>
+
+<script>
+(function () {
+  var addonBtn = document.querySelector('.sophior-product-info__addon-btn');
+  if (!addonBtn) return;
+
+  addonBtn.addEventListener('click', function () {
+    var variantId = addonBtn.dataset.productId;
+    if (!variantId) return;
+
+    addonBtn.textContent = '...';
+    addonBtn.disabled = true;
+
+    fetch('/cart/add.js', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-Requested-With': 'XMLHttpRequest' },
+      body: JSON.stringify({ id: variantId, quantity: 1 })
+    })
+    .then(function (r) { return r.json(); })
+    .then(function () {
+      addonBtn.textContent = '✓ Toegevoegd';
+      document.dispatchEvent(new CustomEvent('sophior:cart-updated'));
+      document.dispatchEvent(new CustomEvent('sophior:open-cart'));
+    })
+    .catch(function () {
+      addonBtn.textContent = '+ Toevoegen';
+      addonBtn.disabled = false;
+    });
+  });
+})();
+</script>
 
 {% schema %}
 {
@@ -197,6 +361,12 @@
       "id": "show_gift_card_recipient",
       "default": false,
       "label": "t:sections.sophior-product-info.settings.show_gift_card_recipient.label"
+    },
+    {
+      "type": "richtext",
+      "id": "care_instructions",
+      "label": "Uitleg & Onderhoud tekst",
+      "info": "Tekst voor het 'Uitleg & Onderhoud' accordeon op de PDP."
     },
     {
       "type": "header",

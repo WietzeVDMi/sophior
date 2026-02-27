@@ -61,26 +61,73 @@
               </a>
 
               <div class="sophior-mega-menu" role="region" aria-label="{{ link.title }}">
-                {%- for child_link in link.links -%}
-                  <div class="sophior-mega-menu__col">
-                    <p class="sophior-mega-menu__col-title">{{ child_link.title }}</p>
-                    {%- if child_link.links.size > 0 -%}
-                      <ul class="sophior-mega-menu__list" role="list">
-                        {%- for grandchild_link in child_link.links -%}
-                          <li>
-                            <a href="{{ grandchild_link.url }}" class="sophior-mega-menu__link">
-                              {{ grandchild_link.title }}
-                            </a>
-                          </li>
-                        {%- endfor -%}
-                      </ul>
-                    {%- else -%}
-                      <a href="{{ child_link.url }}" class="sophior-mega-menu__link">
-                        {{ 'sections.sophior-header.view_all' | t }}
+
+                {%- comment -%} Categorie-kolommen met sfeerfoto {%- endcomment -%}
+                <div class="sophior-mega-menu__categories">
+                  {%- for child_link in link.links -%}
+                    {%- case forloop.index -%}
+                      {%- when 1 -%}{%- assign col_img = section.settings.mega_col_1_image -%}
+                      {%- when 2 -%}{%- assign col_img = section.settings.mega_col_2_image -%}
+                      {%- when 3 -%}{%- assign col_img = section.settings.mega_col_3_image -%}
+                      {%- when 4 -%}{%- assign col_img = section.settings.mega_col_4_image -%}
+                      {%- else -%}{%- assign col_img = blank -%}
+                    {%- endcase -%}
+                    <div class="sophior-mega-menu__col">
+                      {%- if col_img != blank -%}
+                        <a href="{{ child_link.url }}" class="sophior-mega-menu__col-img-link" tabindex="-1" aria-hidden="true">
+                          {{
+                            col_img
+                            | image_url: width: 240
+                            | image_tag:
+                              class: 'sophior-mega-menu__col-img',
+                              loading: 'lazy',
+                              alt: child_link.title | escape,
+                              widths: '160, 240',
+                              sizes: '200px'
+                          }}
+                        </a>
+                      {%- endif -%}
+                      <a href="{{ child_link.url }}" class="sophior-mega-menu__col-title-link">
+                        <p class="sophior-mega-menu__col-title">{{ child_link.title }}</p>
                       </a>
-                    {%- endif -%}
-                  </div>
-                {%- endfor -%}
+                      {%- if child_link.links.size > 0 -%}
+                        <ul class="sophior-mega-menu__list" role="list">
+                          {%- for grandchild_link in child_link.links -%}
+                            <li>
+                              <a href="{{ grandchild_link.url }}" class="sophior-mega-menu__link">
+                                {{ grandchild_link.title }}
+                              </a>
+                            </li>
+                          {%- endfor -%}
+                        </ul>
+                      {%- else -%}
+                        <a href="{{ child_link.url }}" class="sophior-mega-menu__link">
+                          {{ 'sections.sophior-header.view_all' | t }}
+                        </a>
+                      {%- endif -%}
+                    </div>
+                  {%- endfor -%}
+                </div>
+
+                {%- comment -%} Rechter actie-blokken {%- endcomment -%}
+                <div class="sophior-mega-menu__actions">
+                  <a href="/collections/all" class="sophior-mega-menu__action-block sophior-mega-menu__action-block--all">
+                    <span class="sophior-mega-menu__action-label">Alle Producten</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                      <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                  </a>
+                  {%- if section.settings.mega_sale_label != blank -%}
+                    <a href="{{ section.settings.mega_sale_url | default: '/collections/sale' }}" class="sophior-mega-menu__action-block sophior-mega-menu__action-block--sale">
+                      <span class="sophior-mega-menu__action-badge">Actie</span>
+                      <span class="sophior-mega-menu__action-label">{{ section.settings.mega_sale_label | escape }}</span>
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                      </svg>
+                    </a>
+                  {%- endif -%}
+                </div>
+
               </div>
             </li>
           {%- else -%}
@@ -250,6 +297,46 @@
       "label": "t:sections.sophior-header.settings.mega_menu_trigger.label",
       "default": "Producten",
       "info": "t:sections.sophior-header.settings.mega_menu_trigger.info"
+    },
+    {
+      "type": "header",
+      "content": "Mega menu — Categorie afbeeldingen"
+    },
+    {
+      "type": "image_picker",
+      "id": "mega_col_1_image",
+      "label": "Categorie 1 afbeelding (bijv. Snijplanken)"
+    },
+    {
+      "type": "image_picker",
+      "id": "mega_col_2_image",
+      "label": "Categorie 2 afbeelding (bijv. Pannen)"
+    },
+    {
+      "type": "image_picker",
+      "id": "mega_col_3_image",
+      "label": "Categorie 3 afbeelding (bijv. Messen)"
+    },
+    {
+      "type": "image_picker",
+      "id": "mega_col_4_image",
+      "label": "Categorie 4 afbeelding (bijv. Accessoires)"
+    },
+    {
+      "type": "header",
+      "content": "Mega menu — Actie-blok"
+    },
+    {
+      "type": "text",
+      "id": "mega_sale_label",
+      "label": "Actie-label tekst",
+      "info": "Leeg laten om het actie-blok te verbergen.",
+      "default": "Nu tot 30% korting"
+    },
+    {
+      "type": "url",
+      "id": "mega_sale_url",
+      "label": "Actie-blok URL"
     }
   ],
   "presets": [

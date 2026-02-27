@@ -28,6 +28,7 @@
 .sophior-product-card__image-link {
   display: block;
   height: 100%;
+  position: relative;
 }
 
 .sophior-product-card__image {
@@ -36,11 +37,32 @@
   height: 100%;
   object-fit: cover;
   object-position: center;
-  transition: transform 0.4s ease;
+  transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
-.sophior-product-card:hover .sophior-product-card__image,
-.sophior-product-card:focus-within .sophior-product-card__image {
+/* Primaire afbeelding: zichtbaar, verdwijnt bij hover als tweede afbeelding beschikbaar */
+.sophior-product-card__image--primary {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+/* Tweede (lifestyle) afbeelding: onzichtbaar, verschijnt bij hover */
+.sophior-product-card__image--hover {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  opacity: 0;
+}
+
+.sophior-product-card:hover .sophior-product-card__image--hover,
+.sophior-product-card:focus-within .sophior-product-card__image--hover {
+  opacity: 1;
+}
+
+/* Schaal op primaire afbeelding als geen tweede afbeelding aanwezig */
+.sophior-product-card__image-link:not(:has(.sophior-product-card__image--hover)) .sophior-product-card__image--primary,
+.sophior-product-card:hover .sophior-product-card__image--primary {
   transform: scale(1.04);
 }
 
@@ -128,6 +150,18 @@
   font-size: 1.2rem;
   letter-spacing: 0.05em;
   margin-bottom: var(--sophior-space-xs);
+}
+
+/* ---- Merknaam SOPHIOR (kleine kapitalen) ---- */
+.sophior-product-card__brand {
+  font-family: var(--sophior-font-body);
+  font-size: var(--sophior-text-xs, 0.75rem);
+  font-weight: 400;
+  font-variant: small-caps;
+  letter-spacing: 0.1em;
+  color: var(--sophior-muted-green);
+  margin: 0 0 var(--sophior-space-xs);
+  text-transform: lowercase;
 }
 
 .sophior-product-card__title {

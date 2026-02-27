@@ -1,25 +1,56 @@
 /* ============================================================
    SOPHIOR — Hero Sectie
-   Full-width afbeelding met gradient fade overlay (links donker → rechts transparant).
-   Tekst links over de afbeelding (desktop).
-   Mobile: afbeelding bovenaan, tekst eronder op cream achtergrond.
+   50/50 split-screen: tekst (crème) links, sfeerfoto rechts.
+   Mobile: afbeelding boven, tekst eronder op cream achtergrond.
    ============================================================ */
 
 .sophior-hero {
-  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   min-height: 80vh;
-  display: flex;
-  align-items: center;
   overflow: hidden;
-  background-color: var(--sophior-dark-green);
 }
 
-/* ---- Full-width achtergrondafbeelding ---- */
-.sophior-hero__media {
+/* ---- Linker kolom: crème achtergrond met tekst ---- */
+.sophior-hero__content {
+  background-color: var(--sophior-cream);
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.sophior-hero__content-inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--sophior-space-2xl);
+  padding-left: clamp(2.4rem, 6vw, 8rem);
+  padding-right: clamp(2rem, 4vw, 6rem);
+  max-width: 640px;
+}
+
+/* ---- Decoratieve ring — jaarringen motief ---- */
+.sophior-hero__ring-bg {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+  width: 600px;
+  height: 600px;
+  top: 50%;
+  right: -120px;
+  transform: translateY(-50%);
+  color: var(--sophior-light-tan);
+  opacity: 0.5;
+  animation: ring-breathe 11s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ---- Rechter kolom: sfeerfoto ---- */
+.sophior-hero__media {
+  position: relative;
+  overflow: hidden;
 }
 
 .sophior-hero__image {
@@ -33,6 +64,7 @@
 .sophior-hero__placeholder {
   width: 100%;
   height: 100%;
+  min-height: 480px;
   background: linear-gradient(
     135deg,
     var(--sophior-dark-green) 0%,
@@ -50,56 +82,12 @@
   fill: var(--sophior-gold);
 }
 
-/* ---- Gradient overlay: links donker → rechts transparant ---- */
-.sophior-hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background: linear-gradient(
-    90deg,
-    rgba(0, 0, 0, 0.75) 0%,
-    rgba(0, 0, 0, 0.35) 35%,
-    rgba(0, 0, 0, 0) 70%
-  );
-}
-
-/* ---- Decoratieve achtergrond-ring ---- */
-.sophior-hero__ring-bg {
-  position: absolute;
-  width: 600px;
-  height: 600px;
-  top: 50%;
-  left: 0;
-  transform: translateY(-50%) translateX(-30%);
-  color: var(--sophior-gold);
-  opacity: 0.05;
-  animation: ring-breathe 11s ease-in-out infinite;
-  pointer-events: none;
-  z-index: 1;
-}
-
-/* ---- Tekst inhoud ---- */
-.sophior-hero__content {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 52%;
-  max-width: 680px;
-  padding: var(--sophior-space-2xl);
-  padding-left: clamp(2.4rem, 6vw, 8rem);
-  color: var(--sophior-cream);
-}
-
 /* ---- Social proof sterren ---- */
 .sophior-hero__social-proof {
   font-family: var(--sophior-font-body);
   font-size: var(--sophior-text-sm);
   font-weight: 500;
-  color: var(--sophior-cream);
+  color: var(--sophior-dark-green);
   letter-spacing: 0.04em;
   margin: 0 0 var(--sophior-space-md);
 }
@@ -107,10 +95,10 @@
 /* ---- Heading ---- */
 .sophior-hero__heading {
   font-family: var(--sophior-font-heading);
-  font-size: var(--sophior-text-3xl);
+  font-size: clamp(2rem, 3.5vw, var(--sophior-text-4xl, 3rem));
   font-weight: 300;
   line-height: 1.1;
-  color: var(--sophior-cream);
+  color: var(--sophior-dark-green);
   margin: 0 0 var(--sophior-space-lg);
 }
 
@@ -120,7 +108,7 @@
   font-size: var(--sophior-text-lg);
   font-weight: 300;
   line-height: 1.6;
-  color: var(--sophior-light-tan);
+  color: var(--sophior-muted-green);
   margin: 0 0 var(--sophior-space-xl);
   max-width: 46ch;
 }
@@ -142,7 +130,7 @@
   font-family: var(--sophior-font-body);
   font-size: var(--sophior-text-base);
   font-weight: 400;
-  color: var(--sophior-cream);
+  color: var(--sophior-dark-green);
 }
 
 .sophior-hero__usp-icon {
@@ -179,20 +167,15 @@
 /* ---- Mobile: afbeelding boven, tekst eronder op cream achtergrond ---- */
 @media screen and (max-width: 749px) {
   .sophior-hero {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
     min-height: auto;
-    flex-direction: column;
-    align-items: stretch;
   }
 
   .sophior-hero__media {
-    position: static;
-    height: 56vw;
-    min-height: 240px;
-    flex-shrink: 0;
-  }
-
-  .sophior-hero::before {
-    display: none;
+    order: -1;
+    height: 62vw;
+    min-height: 260px;
   }
 
   .sophior-hero__ring-bg {
@@ -200,37 +183,16 @@
   }
 
   .sophior-hero__content {
-    position: static;
-    width: auto;
-    max-width: none;
-    background-color: var(--sophior-cream);
+    align-items: stretch;
+  }
+
+  .sophior-hero__content-inner {
     padding: var(--sophior-space-xl) var(--sophior-space-md);
-    color: var(--sophior-dark-green);
-  }
-
-  .sophior-hero__social-proof {
-    color: var(--sophior-dark-green);
-  }
-
-  .sophior-hero__heading {
-    font-size: var(--sophior-text-2xl);
-    color: var(--sophior-dark-green);
-  }
-
-  .sophior-hero__subheading {
-    font-size: var(--sophior-text-base);
-    color: var(--sophior-muted-green);
-  }
-
-  .sophior-hero__usp-item {
-    color: var(--sophior-dark-green);
+    max-width: none;
   }
 
   .sophior-hero__cta {
     align-self: stretch;
     text-align: center;
-    background-color: var(--sophior-dark-green);
-    color: var(--sophior-cream);
-    border-color: var(--sophior-dark-green);
   }
 }

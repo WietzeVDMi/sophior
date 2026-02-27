@@ -145,16 +145,53 @@
   border: 1px solid var(--sophior-light-tan);
   border-top: 2px solid var(--sophior-gold);
   box-shadow: 0 8px 32px var(--sophior-dark-green-10);
-  min-width: 640px;
+  min-width: 760px;
   padding: var(--sophior-space-xl);
   z-index: 50;
 }
 
 .sophior-header__nav-item:hover .sophior-mega-menu,
 .sophior-header__nav-item[open] .sophior-mega-menu {
+  display: flex;
+  gap: var(--sophior-space-xl);
+  align-items: flex-start;
+}
+
+/* ---- Categorie-kolommen (linkerkant) ---- */
+.sophior-mega-menu__categories {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: var(--sophior-space-lg);
+  flex: 1;
+}
+
+.sophior-mega-menu__col {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---- Sfeerfoto per categorie ---- */
+.sophior-mega-menu__col-img-link {
+  display: block;
+  overflow: hidden;
+  margin-bottom: var(--sophior-space-sm);
+  aspect-ratio: 4 / 3;
+}
+
+.sophior-mega-menu__col-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+
+.sophior-mega-menu__col:hover .sophior-mega-menu__col-img {
+  transform: scale(1.05);
+}
+
+.sophior-mega-menu__col-title-link {
+  text-decoration: none;
 }
 
 .sophior-mega-menu__col-title {
@@ -165,6 +202,11 @@
   margin: 0 0 var(--sophior-space-md);
   padding-bottom: var(--sophior-space-sm);
   border-bottom: 1px solid var(--sophior-light-tan);
+  transition: color var(--sophior-transition);
+}
+
+.sophior-mega-menu__col-title-link:hover .sophior-mega-menu__col-title {
+  color: var(--sophior-gold);
 }
 
 .sophior-mega-menu__list {
@@ -187,6 +229,76 @@
 
 .sophior-mega-menu__link:hover {
   color: var(--sophior-gold);
+}
+
+/* ---- Actie-blokken (rechterkant) ---- */
+.sophior-mega-menu__actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sophior-space-sm);
+  flex-shrink: 0;
+  width: 160px;
+  border-left: 1px solid var(--sophior-light-tan);
+  padding-left: var(--sophior-space-lg);
+}
+
+.sophior-mega-menu__action-block {
+  display: flex;
+  flex-direction: column;
+  padding: var(--sophior-space-md);
+  text-decoration: none;
+  gap: var(--sophior-space-xs);
+  position: relative;
+  transition: background-color var(--sophior-transition);
+}
+
+.sophior-mega-menu__action-block--all {
+  background-color: var(--sophior-cream);
+  color: var(--sophior-dark-green);
+}
+
+.sophior-mega-menu__action-block--all:hover {
+  background-color: var(--sophior-light-tan);
+}
+
+.sophior-mega-menu__action-block--sale {
+  background-color: var(--sophior-dark-green);
+  color: var(--sophior-cream);
+}
+
+.sophior-mega-menu__action-block--sale:hover {
+  background-color: var(--sophior-gold);
+  color: var(--sophior-dark-green);
+}
+
+.sophior-mega-menu__action-badge {
+  display: inline-block;
+  background-color: var(--sophior-gold);
+  color: var(--sophior-dark-green);
+  font-family: var(--sophior-font-body);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.15em 0.5em;
+  align-self: flex-start;
+}
+
+.sophior-mega-menu__action-block--sale:hover .sophior-mega-menu__action-badge {
+  background-color: var(--sophior-dark-green);
+  color: var(--sophior-gold);
+}
+
+.sophior-mega-menu__action-label {
+  font-family: var(--sophior-font-body);
+  font-size: var(--sophior-text-sm);
+  font-weight: 500;
+}
+
+.sophior-mega-menu__action-block svg {
+  width: 16px;
+  height: 16px;
+  align-self: flex-end;
 }
 
 /* ---- Hamburger (mobile) ---- */

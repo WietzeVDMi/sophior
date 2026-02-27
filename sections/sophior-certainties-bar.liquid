@@ -5,6 +5,10 @@
     {%- if section.blocks.size > 0 -%}
       <ul class="sophior-certainties-bar__list">
         {%- for block in section.blocks -%}
+          {%- comment -%} Toon blok alleen als product_type_filter leeg is of overeenkomt met huidig product.type {%- endcomment -%}
+          {%- assign ptype_filter = block.settings.product_type_filter | strip | downcase -%}
+          {%- assign cur_type = product.type | strip | downcase -%}
+          {%- unless ptype_filter != blank and ptype_filter != cur_type -%}
           {%- if block.settings.text != blank -%}
             <li class="sophior-certainties-bar__item" {{ block.shopify_attributes }}>
               <span class="sophior-certainties-bar__icon" aria-hidden="true">
@@ -26,6 +30,7 @@
               <span class="sophior-certainties-bar__text">{{ block.settings.text | escape }}</span>
             </li>
           {%- endif -%}
+          {%- endunless -%}
         {%- endfor -%}
       </ul>
     {%- endif -%}
@@ -125,6 +130,12 @@
           "type": "text",
           "id": "text",
           "label": "t:sections.sophior-certainties-bar.blocks.item.settings.text.label"
+        },
+        {
+          "type": "text",
+          "id": "product_type_filter",
+          "label": "Alleen tonen voor product-type",
+          "info": "Bijv. 'snijplank', 'pan', 'mes', 'accessoire'. Leeg = altijd tonen."
         }
       ]
     }

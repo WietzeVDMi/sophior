@@ -2,20 +2,76 @@
 
 <section class="sophior-hero" aria-label="{{ section.settings.heading | escape }}">
 
-  {%- comment -%} Full-width afbeelding (LCP) {%- endcomment -%}
+  {%- comment -%} Linker kolom: tekst op crème achtergrond {%- endcomment -%}
+  <div class="sophior-hero__content">
+
+    {%- comment -%} Decoratieve achtergrond-ring — jaarringen motief {%- endcomment -%}
+    <svg class="sophior-ring-deco sophior-hero__ring-bg"
+         viewBox="0 0 600 600" fill="none" aria-hidden="true" focusable="false">
+      <circle cx="300" cy="300" r="55"  stroke="currentColor" stroke-width="1.5"/>
+      <circle cx="300" cy="300" r="110" stroke="currentColor" stroke-width="1.2"/>
+      <circle cx="300" cy="300" r="170" stroke="currentColor" stroke-width="1"/>
+      <circle cx="300" cy="300" r="235" stroke="currentColor" stroke-width="0.8"/>
+      <circle cx="300" cy="300" r="290" stroke="currentColor" stroke-width="0.6"/>
+    </svg>
+
+    <div class="sophior-hero__content-inner">
+
+      {%- if section.settings.social_proof != blank -%}
+        <p class="sophior-hero__social-proof" aria-label="{{ section.settings.social_proof | escape }}">
+          {{ section.settings.social_proof }}
+        </p>
+      {%- endif -%}
+
+      <h1 class="sophior-hero__heading">{{ section.settings.heading }}</h1>
+
+      {%- if section.settings.subheading != blank -%}
+        <p class="sophior-hero__subheading">{{ section.settings.subheading }}</p>
+      {%- endif -%}
+
+      {%- comment -%} USP bullets met goud vinkje {%- endcomment -%}
+      {%- assign has_usp = false -%}
+      {%- if section.settings.usp_1 != blank or section.settings.usp_2 != blank or section.settings.usp_3 != blank -%}
+        {%- assign has_usp = true -%}
+      {%- endif -%}
+      {%- if has_usp -%}
+        {%- assign checkmark_icon = '<svg class="sophior-hero__usp-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true" focusable="false"><path d="M16.667 5L7.5 14.167 3.333 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>' -%}
+        <ul class="sophior-hero__usp-list">
+          {%- if section.settings.usp_1 != blank -%}
+            <li class="sophior-hero__usp-item">{{ checkmark_icon }}{{ section.settings.usp_1 }}</li>
+          {%- endif -%}
+          {%- if section.settings.usp_2 != blank -%}
+            <li class="sophior-hero__usp-item">{{ checkmark_icon }}{{ section.settings.usp_2 }}</li>
+          {%- endif -%}
+          {%- if section.settings.usp_3 != blank -%}
+            <li class="sophior-hero__usp-item">{{ checkmark_icon }}{{ section.settings.usp_3 }}</li>
+          {%- endif -%}
+        </ul>
+      {%- endif -%}
+
+      {%- if section.settings.cta_label != blank -%}
+        <a href="{{ section.settings.cta_link }}" class="sophior-hero__cta">
+          {{ section.settings.cta_label }}
+        </a>
+      {%- endif -%}
+
+    </div>
+  </div>
+
+  {%- comment -%} Rechter kolom: sfeerfoto {%- endcomment -%}
   <div class="sophior-hero__media">
     {%- if section.settings.image != blank -%}
       {%- assign hero_alt = section.settings.heading | escape -%}
       {{
         section.settings.image
-        | image_url: width: 2000
+        | image_url: width: 1400
         | image_tag:
           class: 'sophior-hero__image',
           loading: 'eager',
           fetchpriority: 'high',
           alt: hero_alt,
-          widths: '750, 1100, 1500, 2000',
-          sizes: '100vw'
+          widths: '750, 900, 1100, 1400',
+          sizes: '(max-width: 749px) 100vw, 50vw'
       }}
     {%- else -%}
       <div class="sophior-hero__placeholder" aria-hidden="true">
@@ -24,59 +80,6 @@
         </svg>
       </div>
     {%- endif -%}
-  </div>
-
-  {%- comment -%} Decoratieve achtergrond-ring — jaarringen motief {%- endcomment -%}
-  <svg class="sophior-ring-deco sophior-hero__ring-bg"
-       viewBox="0 0 600 600" fill="none" aria-hidden="true" focusable="false">
-    <circle cx="300" cy="300" r="55"  stroke="currentColor" stroke-width="1.5"/>
-    <circle cx="300" cy="300" r="110" stroke="currentColor" stroke-width="1.2"/>
-    <circle cx="300" cy="300" r="170" stroke="currentColor" stroke-width="1"/>
-    <circle cx="300" cy="300" r="235" stroke="currentColor" stroke-width="0.8"/>
-    <circle cx="300" cy="300" r="290" stroke="currentColor" stroke-width="0.6"/>
-  </svg>
-
-  {%- comment -%} Tekst inhoud {%- endcomment -%}
-  <div class="sophior-hero__content">
-
-    {%- if section.settings.social_proof != blank -%}
-      <p class="sophior-hero__social-proof" aria-label="{{ section.settings.social_proof | escape }}">
-        {{ section.settings.social_proof }}
-      </p>
-    {%- endif -%}
-
-    <h1 class="sophior-hero__heading">{{ section.settings.heading }}</h1>
-
-    {%- if section.settings.subheading != blank -%}
-      <p class="sophior-hero__subheading">{{ section.settings.subheading }}</p>
-    {%- endif -%}
-
-    {%- comment -%} USP bullets met goud vinkje {%- endcomment -%}
-    {%- assign has_usp = false -%}
-    {%- if section.settings.usp_1 != blank or section.settings.usp_2 != blank or section.settings.usp_3 != blank -%}
-      {%- assign has_usp = true -%}
-    {%- endif -%}
-    {%- if has_usp -%}
-      {%- assign checkmark_icon = '<svg class="sophior-hero__usp-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true" focusable="false"><path d="M16.667 5L7.5 14.167 3.333 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>' -%}
-      <ul class="sophior-hero__usp-list">
-        {%- if section.settings.usp_1 != blank -%}
-          <li class="sophior-hero__usp-item">{{ checkmark_icon }}{{ section.settings.usp_1 }}</li>
-        {%- endif -%}
-        {%- if section.settings.usp_2 != blank -%}
-          <li class="sophior-hero__usp-item">{{ checkmark_icon }}{{ section.settings.usp_2 }}</li>
-        {%- endif -%}
-        {%- if section.settings.usp_3 != blank -%}
-          <li class="sophior-hero__usp-item">{{ checkmark_icon }}{{ section.settings.usp_3 }}</li>
-        {%- endif -%}
-      </ul>
-    {%- endif -%}
-
-    {%- if section.settings.cta_label != blank -%}
-      <a href="{{ section.settings.cta_link }}" class="sophior-hero__cta">
-        {{ section.settings.cta_label }}
-      </a>
-    {%- endif -%}
-
   </div>
 
 </section>

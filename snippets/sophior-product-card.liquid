@@ -18,6 +18,7 @@
     </div>
     <div class="sophior-product-card__info">
       <div class="sophior-product-card__stars" aria-hidden="true">★★★★★</div>
+      <p class="sophior-product-card__brand">SOPHIOR</p>
       <p class="sophior-product-card__title">Product naam</p>
       <div class="sophior-product-card__price">€ —</div>
     </div>
@@ -28,30 +29,39 @@
   {%- assign card_rating = 5 -%}
   {%- assign card_alt = card_product.featured_image.alt | default: card_product.title | escape -%}
 
+  {%- comment -%} Kortingspercentage berekenen voor sale badge {%- endcomment -%}
+  {%- assign discount_pct = 0 -%}
+  {%- if card_product.compare_at_price > card_product.price -%}
+    {%- assign discount_pct = card_product.compare_at_price | minus: card_product.price | times: 100 | divided_by: card_product.compare_at_price | round -%}
+  {%- endif -%}
+
   <article
     class="sophior-product-card"
     data-product-handle="{{ card_product.handle }}"
   >
     <div class="sophior-product-card__media">
+      {%- comment -%} Badges — prioriteit: bestseller > nieuw > sale {%- endcomment -%}
       {%- if card_product.tags contains 'bestseller' -%}
         <span class="sophior-product-card__badge sophior-product-card__badge--bestseller">Bestseller</span>
       {%- elsif card_product.tags contains 'nieuw' -%}
         <span class="sophior-product-card__badge sophior-product-card__badge--nieuw">Nieuw</span>
-      {%- elsif card_product.compare_at_price > card_product.price -%}
-        <span class="sophior-product-card__badge sophior-product-card__badge--sale">Sale</span>
+      {%- elsif discount_pct > 0 -%}
+        <span class="sophior-product-card__badge sophior-product-card__badge--sale">-{{ discount_pct }}%</span>
       {%- endif -%}
+
       <a
         href="{{ card_product.url }}"
         class="sophior-product-card__image-link"
         aria-label="{{ card_product.title | escape }}"
         tabindex="0"
       >
+        {%- comment -%} Primaire afbeelding {%- endcomment -%}
         {%- if card_product.featured_image != blank -%}
           {{
             card_product.featured_image
             | image_url: width: 600
             | image_tag:
-              class: 'sophior-product-card__image',
+              class: 'sophior-product-card__image sophior-product-card__image--primary',
               loading: card_loading,
               alt: card_alt,
               widths: '300, 400, 600',
@@ -59,6 +69,22 @@
           }}
         {%- else -%}
           <div class="sophior-product-card__placeholder-img" aria-hidden="true"></div>
+        {%- endif -%}
+
+        {%- comment -%} Tweede afbeelding (lifestyle) — tonen bij hover {%- endcomment -%}
+        {%- assign second_image = card_product.images[1] -%}
+        {%- if second_image != blank -%}
+          {%- assign second_alt = second_image.alt | default: card_product.title | escape -%}
+          {{
+            second_image
+            | image_url: width: 600
+            | image_tag:
+              class: 'sophior-product-card__image sophior-product-card__image--hover',
+              loading: 'lazy',
+              alt: second_alt,
+              widths: '300, 400, 600',
+              sizes: '(max-width: 749px) 50vw, (max-width: 989px) 33vw, 25vw'
+          }}
         {%- endif -%}
       </a>
 
@@ -96,6 +122,7 @@
           ★★★★★
         </div>
       {%- endif -%}
+      <p class="sophior-product-card__brand">SOPHIOR</p>
       <h3 class="sophior-product-card__title">{{ card_product.title | escape }}</h3>
       <div class="sophior-product-card__price">
         {{ card_product.price | money }}
