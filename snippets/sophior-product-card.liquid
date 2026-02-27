@@ -75,12 +75,27 @@
     </div>
 
     <a href="{{ card_product.url }}" class="sophior-product-card__info" tabindex="-1" aria-hidden="true">
-      <div
-        class="sophior-product-card__stars"
-        aria-label="{{ 'sections.sophior-bestsellers.rating_label' | t: rating: card_rating }}"
-      >
-        ★★★★★
-      </div>
+      {%- if settings.judgeme_public_key != blank -%}
+        {%- comment -%} Judge.me badge — auto-rendered door Judge.me JS app embed {%- endcomment -%}
+        <div
+          class="jdgm-widget jdgm-star-rating sophior-product-card__stars"
+          data-id="{{ card_product.id }}"
+          data-product-title="{{ card_product.title | escape }}"
+          aria-label="{{ 'sections.sophior-bestsellers.rating_label' | t: rating: card_rating }}"
+        >
+          <span class="jdgm-prev-badge" data-average-rating="{{ card_product.metafields.judgeme.avg_rating | default: 5 }}" data-number-of-reviews="{{ card_product.metafields.judgeme.reviews_count | default: 0 }}">
+            ★★★★★
+          </span>
+        </div>
+      {%- else -%}
+        <div
+          class="sophior-product-card__stars"
+          aria-label="{{ 'sections.sophior-bestsellers.rating_label' | t: rating: card_rating }}"
+          aria-hidden="true"
+        >
+          ★★★★★
+        </div>
+      {%- endif -%}
       <h3 class="sophior-product-card__title">{{ card_product.title | escape }}</h3>
       <div class="sophior-product-card__price">
         {{ card_product.price | money }}

@@ -2,6 +2,33 @@
 
 <section class="sophior-hero" aria-label="{{ section.settings.heading | escape }}">
 
+  {%- comment -%} Full-width afbeelding (LCP) {%- endcomment -%}
+  <div class="sophior-hero__media">
+    {%- if section.settings.image != blank -%}
+      {%- assign hero_alt = section.settings.heading | escape -%}
+      {{
+        section.settings.image
+        | image_url: width: 2000
+        | image_tag:
+          class: 'sophior-hero__image',
+          loading: 'eager',
+          fetchpriority: 'high',
+          alt: hero_alt,
+          widths: '750, 1100, 1500, 2000',
+          sizes: '100vw'
+      }}
+    {%- else -%}
+      <div class="sophior-hero__placeholder" aria-hidden="true">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M21 15l-5-5L11 15l-4-4L3 15V5a2 2 0 012-2h14a2 2 0 012 2v10zM3 19v-2l4-4 4 4 5-5 5 5v2a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+        </svg>
+      </div>
+    {%- endif -%}
+  </div>
+
+  {%- comment -%} Gradient overlay voor tekstleesbaarheid (desktop) {%- endcomment -%}
+  <div class="sophior-hero__overlay" aria-hidden="true"></div>
+
   {%- comment -%} Decoratieve achtergrond-ring — jaarringen motief {%- endcomment -%}
   <svg class="sophior-ring-deco sophior-hero__ring-bg"
        viewBox="0 0 600 600" fill="none" aria-hidden="true" focusable="false">
@@ -12,12 +39,39 @@
     <circle cx="300" cy="300" r="290" stroke="currentColor" stroke-width="0.6"/>
   </svg>
 
-  {%- comment -%} Tekst kant (links) {%- endcomment -%}
+  {%- comment -%} Tekst inhoud {%- endcomment -%}
   <div class="sophior-hero__content">
+
+    {%- if section.settings.social_proof != blank -%}
+      <p class="sophior-hero__social-proof" aria-label="{{ section.settings.social_proof | escape }}">
+        {{ section.settings.social_proof }}
+      </p>
+    {%- endif -%}
+
     <h1 class="sophior-hero__heading">{{ section.settings.heading }}</h1>
 
     {%- if section.settings.subheading != blank -%}
       <p class="sophior-hero__subheading">{{ section.settings.subheading }}</p>
+    {%- endif -%}
+
+    {%- comment -%} USP bullets met goud vinkje {%- endcomment -%}
+    {%- assign has_usp = false -%}
+    {%- if section.settings.usp_1 != blank or section.settings.usp_2 != blank or section.settings.usp_3 != blank -%}
+      {%- assign has_usp = true -%}
+    {%- endif -%}
+    {%- if has_usp -%}
+      {%- assign checkmark_icon = '<svg class="sophior-hero__usp-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true" focusable="false"><path d="M16.667 5L7.5 14.167 3.333 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>' -%}
+      <ul class="sophior-hero__usp-list">
+        {%- if section.settings.usp_1 != blank -%}
+          <li class="sophior-hero__usp-item">{{ checkmark_icon }}{{ section.settings.usp_1 }}</li>
+        {%- endif -%}
+        {%- if section.settings.usp_2 != blank -%}
+          <li class="sophior-hero__usp-item">{{ checkmark_icon }}{{ section.settings.usp_2 }}</li>
+        {%- endif -%}
+        {%- if section.settings.usp_3 != blank -%}
+          <li class="sophior-hero__usp-item">{{ checkmark_icon }}{{ section.settings.usp_3 }}</li>
+        {%- endif -%}
+      </ul>
     {%- endif -%}
 
     {%- if section.settings.cta_label != blank -%}
@@ -25,30 +79,7 @@
         {{ section.settings.cta_label }}
       </a>
     {%- endif -%}
-  </div>
 
-  {%- comment -%} Afbeelding kant (rechts) {%- endcomment -%}
-  <div class="sophior-hero__media">
-    {%- if section.settings.image != blank -%}
-      {%- assign hero_alt = section.settings.heading | escape -%}
-      {{
-        section.settings.image
-        | image_url: width: 1200
-        | image_tag:
-          class: 'sophior-hero__image',
-          loading: 'eager',
-          fetchpriority: 'high',
-          alt: hero_alt,
-          widths: '600, 900, 1200',
-          sizes: '(max-width: 749px) 100vw, 50vw'
-      }}
-    {%- else -%}
-      <div class="sophior-hero__placeholder" aria-hidden="true">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path d="M21 15l-5-5L11 15l-4-4L3 15V5a2 2 0 012-2h14a2 2 0 012 2v10zM3 19v-2l4-4 4 4 5-5 5 5v2a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
-        </svg>
-      </div>
-    {%- endif -%}
   </div>
 
 </section>
@@ -61,6 +92,12 @@
   "settings": [
     {
       "type": "text",
+      "id": "social_proof",
+      "label": "t:sections.sophior-hero.settings.social_proof.label",
+      "default": "★★★★★ 4,8/5 uit 500+ reviews"
+    },
+    {
+      "type": "text",
       "id": "heading",
       "label": "t:sections.sophior-hero.settings.heading.label",
       "default": "Koken begint bij het juiste materiaal"
@@ -70,6 +107,32 @@
       "id": "subheading",
       "label": "t:sections.sophior-hero.settings.subheading.label",
       "default": "Houten snijplanken, PFAS-vrije pannen en premium messen voor dagelijks gebruik."
+    },
+    {
+      "type": "header",
+      "content": "t:sections.sophior-hero.settings.usp_header.content"
+    },
+    {
+      "type": "text",
+      "id": "usp_1",
+      "label": "t:sections.sophior-hero.settings.usp_1.label",
+      "default": "Massief houten snijplanken"
+    },
+    {
+      "type": "text",
+      "id": "usp_2",
+      "label": "t:sections.sophior-hero.settings.usp_2.label",
+      "default": "PFAS-vrije RVS pannen"
+    },
+    {
+      "type": "text",
+      "id": "usp_3",
+      "label": "t:sections.sophior-hero.settings.usp_3.label",
+      "default": "Perfect gebalanceerde messen"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.sophior-hero.settings.cta_header.content"
     },
     {
       "type": "text",

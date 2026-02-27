@@ -1,11 +1,11 @@
 /* ============================================================
    SOPHIOR — Trustbadge Bar
-   4 USP-items horizontaal. Achtergrond: light-tan.
-   Mobile: 2×2 grid.
+   4 USP-items horizontaal. Achtergrond: cream.
+   Mobile: horizontale scroll-snap carousel.
    ============================================================ */
 
 .sophior-trustbadge {
-  background-color: var(--sophior-light-tan);
+  background-color: var(--sophior-cream);
   padding: var(--sophior-space-lg) var(--sophior-space-xl);
   border-top: 1px solid var(--sophior-dark-green-10);
   border-bottom: 1px solid var(--sophior-dark-green-10);
@@ -57,25 +57,42 @@
   padding-left: var(--sophior-space-lg);
 }
 
-/* ---- Mobile: 2×2 grid ---- */
+/* ---- Mobile: horizontale carousel ---- */
 @media screen and (max-width: 749px) {
   .sophior-trustbadge {
-    padding: var(--sophior-space-lg);
+    padding: var(--sophior-space-md) 0;
+    overflow: hidden;
   }
 
   .sophior-trustbadge__list {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--sophior-space-md);
-    justify-items: start;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    gap: 0;
+    justify-content: flex-start;
+    /* Scrollbar verbergen */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .sophior-trustbadge__list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .sophior-trustbadge__item {
+    flex: 0 0 100%;
+    min-width: 100%;
+    scroll-snap-align: start;
+    justify-content: center;
+    padding: var(--sophior-space-sm) var(--sophior-space-md);
+    border-left: none;
   }
 
   .sophior-trustbadge__item + .sophior-trustbadge__item {
     border-left: none;
-    padding-left: 0;
-  }
-
-  .sophior-trustbadge__item {
-    justify-content: flex-start;
+    padding-left: var(--sophior-space-md);
   }
 }

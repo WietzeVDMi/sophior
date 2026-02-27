@@ -1451,5 +1451,38 @@
         "default": "scheme-1"
       }
     ]
+  },
+  {
+    "name": "SOPHIOR — Integraties",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Judge.me Reviews"
+      },
+      {
+        "type": "text",
+        "id": "judgeme_public_key",
+        "label": "Judge.me Public Key",
+        "info": "Ga naar Judge.me Admin → Installatie → kopieer de Public Key. Laat leeg om placeholder te tonen."
+      },
+      {
+        "type": "header",
+        "content": "Klaviyo"
+      },
+      {
+        "type": "text",
+        "id": "klaviyo_list_id",
+        "label": "Klaviyo Lijst-ID",
+        "info": "Bijv. ABC123. Ga naar Klaviyo → Lists & Segments → kopieer de lijst-ID. Laat leeg voor Shopify contact-formulier."
+      },
+      {
+        "type": "header",
+        "content": "Analytics"
+      },
+      {
+        "type": "paragraph",
+        "content": "GA4 en Meta Pixel installeert u via Admin → Settings → Customer events. Nooit via theme.liquid."
+      }
+    ]
   }
 ]

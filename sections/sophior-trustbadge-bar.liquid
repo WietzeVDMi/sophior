@@ -9,7 +9,7 @@
   assign icon_shield = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>'
 -%}
 
-<div class="sophior-trustbadge">
+<div class="sophior-trustbadge" data-trustbadge>
   <ul class="sophior-trustbadge__list">
     {%- for i in (1..4) -%}
       {%- assign block_prefix = 'item_' | append: i -%}
@@ -35,6 +35,41 @@
     {%- endfor -%}
   </ul>
 </div>
+
+<script>
+(function () {
+  function initTrustbadgeCarousel() {
+    if (window.innerWidth > 749) return;
+    var bar = document.querySelector('[data-trustbadge]');
+    if (!bar) return;
+    var list = bar.querySelector('.sophior-trustbadge__list');
+    var items = list ? list.querySelectorAll('.sophior-trustbadge__item') : [];
+    if (items.length <= 1) return;
+
+    var current = 0;
+    var paused = false;
+
+    list.addEventListener('touchstart', function () { paused = true; }, { passive: true });
+    list.addEventListener('touchend', function () {
+      setTimeout(function () { paused = false; }, 4000);
+    }, { passive: true });
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    setInterval(function () {
+      if (paused) return;
+      current = (current + 1) % items.length;
+      list.scrollTo({ left: current * list.clientWidth, behavior: 'smooth' });
+    }, 3000);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initTrustbadgeCarousel);
+  } else {
+    initTrustbadgeCarousel();
+  }
+})();
+</script>
 
 {% schema %}
 {

@@ -48,31 +48,38 @@
         <p class="sophior-footer__tagline">{{ section.settings.tagline }}</p>
       {%- endif -%}
 
-      {%- comment -%}
-        Klaviyo newsletter formulier — placeholder tot Klaviyo lijst-ID ontvangen is.
-        Vervang onderstaand formulier door Klaviyo embed snippet.
-      {%- endcomment -%}
       <div class="sophior-footer__newsletter">
-        <label for="sophior-newsletter-email" class="sophior-footer__newsletter-label">
-          {{ 'sections.sophior-footer.newsletter_label' | t }}
-        </label>
-        <form class="sophior-footer__newsletter-form" action="/contact#newsletter" method="post" accept-charset="UTF-8">
-          <input type="hidden" name="form_type" value="customer">
-          <input type="hidden" name="utf8" value="✓">
-          <input type="hidden" name="contact[tags]" value="newsletter">
-          <input
-            type="email"
-            id="sophior-newsletter-email"
-            name="contact[email]"
-            class="sophior-footer__newsletter-input"
-            placeholder="{{ 'sections.sophior-footer.newsletter_placeholder' | t }}"
-            required
-            aria-required="true"
-          >
-          <button type="submit" class="sophior-footer__newsletter-btn">
-            {{ 'sections.sophior-footer.newsletter_btn' | t }}
-          </button>
-        </form>
+        {%- if settings.klaviyo_list_id != blank -%}
+          {%- comment -%}
+            Klaviyo embed — wordt actief zodra het lijst-ID is ingevuld in
+            Admin → Themes → Customize → SOPHIOR Integraties → Klaviyo Lijst-ID.
+            Klaviyo laadt hun script automatisch via de app embed.
+          {%- endcomment -%}
+          <p class="sophior-footer__newsletter-label">{{ 'sections.sophior-footer.newsletter_label' | t }}</p>
+          <div class="klaviyo-form-{{ settings.klaviyo_list_id }}"></div>
+        {%- else -%}
+          {%- comment -%} Shopify contact-formulier als fallback {%- endcomment -%}
+          <label for="sophior-newsletter-email" class="sophior-footer__newsletter-label">
+            {{ 'sections.sophior-footer.newsletter_label' | t }}
+          </label>
+          <form class="sophior-footer__newsletter-form" action="/contact#newsletter" method="post" accept-charset="UTF-8">
+            <input type="hidden" name="form_type" value="customer">
+            <input type="hidden" name="utf8" value="✓">
+            <input type="hidden" name="contact[tags]" value="newsletter">
+            <input
+              type="email"
+              id="sophior-newsletter-email"
+              name="contact[email]"
+              class="sophior-footer__newsletter-input"
+              placeholder="{{ 'sections.sophior-footer.newsletter_placeholder' | t }}"
+              required
+              aria-required="true"
+            >
+            <button type="submit" class="sophior-footer__newsletter-btn">
+              {{ 'sections.sophior-footer.newsletter_btn' | t }}
+            </button>
+          </form>
+        {%- endif -%}
       </div>
 
       <div class="sophior-footer__social">

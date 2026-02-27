@@ -19,24 +19,27 @@
       <h2 class="sophior-judge__heading">{{ section.settings.heading | escape }}</h2>
     {%- endif -%}
 
-    {%- if section.settings.judgeme_public_key != blank -%}
+    {%- assign jdgm_key = section.settings.judgeme_public_key | default: settings.judgeme_public_key -%}
+    {%- if jdgm_key != blank -%}
       {%- comment -%}
         Judge.me reviews widget.
-        Vervang [SHOP_DOMAIN] met je Shopify winkel domein.
+        Key wordt gelezen uit: sectie-instelling (heeft prioriteit) of globale instelling
+        (Admin → Themes → Customize → SOPHIOR Integraties → Judge.me Public Key).
         De widget laadt async — layout verschuift niet door min-height.
       {%- endcomment -%}
       <div
         class="jdgm-widget jdgm-review-widget sophior-judge__widget"
         data-id="{{ product.id }}"
         data-product-title="{{ product.title | escape }}"
-        data-public-key="{{ section.settings.judgeme_public_key | escape }}"
+        data-public-key="{{ jdgm_key | escape }}"
       ></div>
       <script
         src="https://cdn.judge.me/assets/all_widgets.js"
-        data-public-key="{{ section.settings.judgeme_public_key | escape }}"
+        data-public-key="{{ jdgm_key | escape }}"
         defer="defer"
       ></script>
     {%- else -%}
+      {%- comment -%} Vul de Judge.me Public Key in via Admin → Themes → Customize → SOPHIOR Integraties {%- endcomment -%}
       {%- comment -%} Placeholder zolang Judge.me key nog niet ingevuld {%- endcomment -%}
       <div class="sophior-judge__placeholder">
         <div class="sophior-judge__placeholder-stars" aria-hidden="true">★★★★★</div>

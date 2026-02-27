@@ -3464,11 +3464,17 @@
     "sophior-hero": {
       "name": "SOPHIOR Hero",
       "settings": {
+        "social_proof": { "label": "Social proof tekst (sterren + score)" },
         "heading": { "label": "Hoofdtitel (H1)" },
         "subheading": { "label": "Ondertitel" },
+        "usp_header": { "content": "USP bullets" },
+        "usp_1": { "label": "USP 1" },
+        "usp_2": { "label": "USP 2" },
+        "usp_3": { "label": "USP 3" },
+        "cta_header": { "content": "Call-to-action button" },
         "cta_label": { "label": "Button tekst" },
         "cta_link": { "label": "Button link" },
-        "image": { "label": "Afbeelding (rechterkolom)" }
+        "image": { "label": "Achtergrondafbeelding (full-width)" }
       },
       "presets": {
         "name": "SOPHIOR Hero"
