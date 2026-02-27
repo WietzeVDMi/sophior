@@ -1,6 +1,6 @@
 # Sprint 0 — Setup & Fundament
 
-**Status:** ⏳ Bezig
+**Status:** ✅ Bijna klaar — alleen Shopify auth + staging thema nog
 **Duur:** 1–2 dagen
 **Branch:** `feature/sprint-0-setup`
 
@@ -55,24 +55,21 @@ SHOPIFY_CLI_PARTNERS_TOKEN=
 
 ### GitHub setup
 - [x] SSH verbinding bevestigd (`Hi WietzeVDMi! You've successfully authenticated`)
-- [ ] Repository clonen: `git clone git@github.com:WietzeVDMi/sophior.git`
-- [ ] Branches aanmaken: `main`, `develop`
+- [x] Repository gekoppeld: `git@github.com:WietzeVDMi/sophior.git`
+- [x] Branches aangemaakt: `main`, `develop`
 
 ### Docker setup
-- [ ] `Dockerfile` aanmaken (Node 20 slim + Shopify CLI)
-- [ ] `docker-compose.yml` aanmaken met volume mounts + poortkoppeling
-- [ ] `.env` aanmaken met `SHOPIFY_CLI_PARTNERS_TOKEN`
-- [ ] `.env.example` aanmaken (geen secrets, wel in git)
-- [ ] `.gitignore` instellen: `.env`, `node_modules`, `.DS_Store`, `.shopify`
+- [x] `Dockerfile` aangemaakt (Node 20 slim + Shopify CLI)
+- [x] `docker-compose.yml` aangemaakt met volume mounts + poortkoppeling
+- [x] `.env` aangemaakt (leeg — token nog in te vullen)
+- [x] `.env.example` aangemaakt (in git)
+- [x] `.gitignore` ingesteld: `.env`, `node_modules`, `.DS_Store`, `.shopify`
 
 ### Shopify setup
-- [ ] Dawn thema in `theme/` initialiseren:
-  ```bash
-  docker compose run --rm shopify shopify theme init --path theme
-  ```
-- [ ] `docker compose up` testen — preview op localhost:9292 bevestigen
-- [ ] Staging thema aanmaken in Shopify Admin (separaat van live thema)
-- [ ] Shopify Partners token ophalen (Admin → Apps → Manage private apps of Partners dashboard)
+- [x] Dawn thema gecloned in `theme/` (shallow clone van `Shopify/dawn`)
+- [ ] `docker compose up` testen — preview op localhost:9292 bevestigen ← **jij**
+- [ ] Staging thema aanmaken in Shopify Admin (separaat van live thema) ← **jij**
+- [ ] Shopify Partners token ophalen + invullen in `.env` ← **jij**
 
 ---
 
