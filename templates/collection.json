@@ -36,20 +36,93 @@
         "padding_bottom": 36
       }
     },
+    "social-proof": {
+      "type": "sophior-collection-social-proof",
+      "blocks": {
+        "proof-1": {
+          "type": "item",
+          "settings": {
+            "icon": "truck",
+            "text": "Voor 23:59 besteld, morgen in huis"
+          }
+        },
+        "proof-2": {
+          "type": "item",
+          "settings": {
+            "icon": "star",
+            "text": "4,8/5 uit 500+ reviews"
+          }
+        },
+        "proof-3": {
+          "type": "item",
+          "settings": {
+            "icon": "package",
+            "text": "Gratis verzending vanaf €59"
+          }
+        }
+      },
+      "block_order": ["proof-1", "proof-2", "proof-3"],
+      "settings": {
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    },
     "seo-text": {
       "type": "sophior-collection-seo-text",
       "settings": {
         "heading": "",
         "content": "",
         "show_toggle": true,
+        "show_sidebar": true,
+        "sidebar_heading": "Gidsen",
         "padding_top": 36,
         "padding_bottom": 48
       }
+    },
+    "waarom-sophior": {
+      "type": "sophior-usp-accordion",
+      "blocks": {
+        "usp-1": {
+          "type": "accordion_item",
+          "settings": {
+            "question": "Specialist in houten snijplanken",
+            "answer": "SOPHIOR ontwikkelt hoogwaardige snijplanken van massief hout. Met een zorgvuldig productieproces zorgen we voor stabiliteit, hygiëne en jarenlang dagelijks gebruik in elke keuken."
+          }
+        },
+        "usp-2": {
+          "type": "accordion_item",
+          "settings": {
+            "question": "Gezond koken zonder schadelijke stoffen",
+            "answer": "Onze pannen zijn PFAS-vrij en onze snijplanken bevatten geen microplastics. Je kookt met pure materialen zoals massief hout en roestvrij staal. Veilig voor jou en je gezin."
+          }
+        },
+        "usp-3": {
+          "type": "accordion_item",
+          "settings": {
+            "question": "Gemaakt voor dagelijks gebruik",
+            "answer": "Duurzaamheid betekent bij ons: producten die lang meegaan. Door te kiezen voor massief hout en sterk roestvrij staal blijven onze producten betrouwbaar, scherp en stabiel. Elke dag opnieuw."
+          }
+        }
+      },
+      "block_order": ["usp-1", "usp-2", "usp-3"],
+      "settings": {
+        "title": "Waarom kiezen voor SOPHIOR",
+        "subtitle": "Koken begint bij het juiste materiaal",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "trustbar": {
+      "type": "sophior-trustbar-footer",
+      "settings": {}
     }
   },
   "order": [
     "category-header",
     "product-grid",
-    "seo-text"
+    "social-proof",
+    "seo-text",
+    "waarom-sophior",
+    "trustbar"
   ]
 }

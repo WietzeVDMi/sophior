@@ -1,6 +1,6 @@
 # Sprint 7 — Integraties & Apps
 
-**Status:** 🔒 Wacht op klant (API keys + app keuze)
+**Status:** 🔒 Wacht op klant (API keys + widget ID)
 **Duur:** 3–4 dagen
 **Branch:** `feature/sprint-7-integraties`
 **Vereist:** Sprints 1–6 afgerond | Alle API keys + IDs van klant
@@ -23,7 +23,8 @@ Alle externe services live en werkend: reviews, e-mail, analytics en cart upsell
 | Klaviyo lijst-ID | ❌ Niet ontvangen |
 | GA4 property ID | ❌ Niet ontvangen |
 | Meta Pixel ID | ❌ Niet ontvangen |
-| Cart upsell app keuze (Rebuy vs In Cart Upsell) | ❌ Niet ontvangen |
+| Rebuy Widget ID | ❌ Niet ontvangen |
+| Cart upsell app keuze | ✅ Rebuy gekozen |
 
 ---
 
@@ -35,12 +36,14 @@ De volgende code is **reeds gebouwd** en activeert automatisch zodra de klant de
 
 - **Judge.me Public Key** invullen → PDP review widget + product card sterren worden automatisch geladen
 - **Klaviyo Lijst-ID** invullen → footer newsletter form switcht naar Klaviyo embed
+- **Rebuy Widget ID** invullen → Rebuy upsell widget verschijnt in cart drawer (boven checkout-knop)
 
 Bestanden bijgewerkt:
-- `config/settings_schema.json` — nieuw tabblad "SOPHIOR — Integraties" (Judge.me key + Klaviyo lijst-ID)
+- `config/settings_schema.json` — tabblad "SOPHIOR — Integraties" (Judge.me key + Klaviyo lijst-ID + Rebuy Widget ID)
 - `sections/sophior-judge-placeholder.liquid` — leest key uit globale setting als fallback
 - `snippets/sophior-product-card.liquid` — toont Judge.me badge wanneer key is ingevuld
 - `sections/sophior-footer.liquid` — toont `klaviyo-form-[ID]` div of contact-formulier als fallback
+- `snippets/sophior-cart-drawer.liquid` — toont `<rebuy-widget id="[ID]">` wanneer widget-ID is ingevuld
 
 ---
 
@@ -87,37 +90,40 @@ Vereiste events: `page_view`, `view_item`, `add_to_cart`, `purchase`
 
 ---
 
-## Cart Upsell App
+## Cart Upsell App — Rebuy ✅
 
-**Optie A — Rebuy Smart Cart:**
-- [ ] App installeren ← **klant**
-- [ ] Smart Cart configureren als vervanging van default cart ← **klant**
-- [ ] Upsell regels instellen per product.type ← **klant**
+**Gekozen aanpak:** Rebuy widget in de bestaande `sophior-cart-drawer` (cart drawer blijft intact).
 
-**Optie B — In Cart Upsell:**
-- [ ] App installeren ← **klant**
-- [ ] Upsell widgets configureren in cart drawer ← **klant**
-- [ ] Regels: "Als cart bevat snijplank → toon onderhoudsolie" ← **klant**
+**Installatie (klant):**
+- [ ] Rebuy app installeren via Shopify App Store ← **klant**
+- [ ] Widget aanmaken in Rebuy Admin → Widgets (type: cart upsell / related products)
+- [ ] Upsell regels instellen per product.type (snijplank → onderhoudsolie, pan → panbeschermers, etc.) ← **klant**
+- [ ] Widget ID kopiëren en invullen in **Admin → Themes → Customize → SOPHIOR Integraties → Rebuy Widget ID**
 
-Placeholder comment aanwezig in `snippets/sophior-cart-drawer.liquid` voor add-on upsell logica.
+**Integratie in thema (code klaar):**
+- [x] `<rebuy-widget id="{{ settings.rebuy_widget_id }}">` in cart drawer upsell-zone
+- [x] Conditie: toont alleen wanneer `settings.rebuy_widget_id != blank`
+- [x] Rebuy injecteert eigen stijlen via app embed — geen extra CSS nodig
 
 ---
 
 ## Aangemaakte/gewijzigde bestanden
 
 ### Gewijzigd
-- `config/settings_schema.json` — "SOPHIOR — Integraties" sectie toegevoegd
+
+- `config/settings_schema.json` — "SOPHIOR — Integraties" sectie (Judge.me key + Klaviyo lijst-ID + Rebuy Widget ID)
 - `sections/sophior-judge-placeholder.liquid` — leest key uit globale `settings.judgeme_public_key`
 - `snippets/sophior-product-card.liquid` — conditie Judge.me badge vs placeholder sterren
 - `sections/sophior-footer.liquid` — Klaviyo form of contact-formulier op basis van `settings.klaviyo_list_id`
+- `snippets/sophior-cart-drawer.liquid` — Rebuy widget blok op basis van `settings.rebuy_widget_id`
 
 ---
 
 ## Deliverable
 
 Zodra klant keys aanlevert:
-1. Key invullen in Admin → Themes → Customize → SOPHIOR Integraties
+1. Keys invullen in Admin → Themes → Customize → SOPHIOR Integraties
 2. Judge.me widget live op PDP + sterren op productkaarten
 3. Klaviyo newsletter formulier actief
 4. GA4 + Meta Pixel installeren via Customer Events (Admin-only, geen code)
-5. Cart upsell app configureren (na klantkeuze)
+5. Rebuy widget live in cart drawer na invullen widget-ID

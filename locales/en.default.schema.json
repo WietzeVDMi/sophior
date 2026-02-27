@@ -3943,11 +3943,59 @@
           "label": "Show 'Read more' button",
           "info": "Collapse text with an expand button for better UX"
         },
+        "sidebar_header":  "Guides sidebar",
+        "show_sidebar":    { "label": "Show guides sidebar", "info": "Shows 3 recent articles from the selected blog next to the SEO text" },
+        "sidebar_blog":    { "label": "Blog for guides", "info": "Choose the blog whose articles are shown in the sidebar" },
+        "sidebar_heading": { "label": "Sidebar heading" },
         "padding_top": { "label": "Top padding" },
         "padding_bottom": { "label": "Bottom padding" }
       },
+      "sidebar_default_heading": "Guides",
+      "sidebar_label": "Guides sidebar",
+      "view_all_guides": "View all guides",
       "presets": {
         "default": { "name": "SOPHIOR Category SEO Text" }
+      }
+    },
+    "sophior-collection-social-proof": {
+      "name": "SOPHIOR Social Proof Bar",
+      "settings": {
+        "padding_top": { "label": "Top padding" },
+        "padding_bottom": { "label": "Bottom padding" }
+      },
+      "blocks": {
+        "item": {
+          "name": "Item",
+          "settings": {
+            "icon": { "label": "Icon" },
+            "text": { "label": "Text" }
+          }
+        }
+      },
+      "presets": {
+        "default": { "name": "SOPHIOR Social Proof Bar" }
+      }
+    },
+    "sophior-expertise-grid": {
+      "name": "SOPHIOR Expertise Grid",
+      "default_cta": "More info",
+      "view_label": "View %{label}",
+      "settings": {
+        "heading": { "label": "Section heading" }
+      },
+      "blocks": {
+        "item": {
+          "name": "Category",
+          "settings": {
+            "image":     { "label": "Image" },
+            "label":     { "label": "Category name" },
+            "link":      { "label": "Link" },
+            "link_text": { "label": "Button text" }
+          }
+        }
+      },
+      "presets": {
+        "default": { "name": "SOPHIOR Expertise Grid" }
       }
     }
   }

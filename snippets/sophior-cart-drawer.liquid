@@ -179,12 +179,12 @@
     {%- if cart.item_count > 0 -%}
       <div class="sophior-cart-drawer__footer" id="sophior-cart-footer">
 
-        {%- comment -%} Add-on upsell placeholder — wordt actief zodra klant cart-upsell app kiest {%- endcomment -%}
-        {%- comment -%}
-          TODO Sprint 5: add-on upsell integratie
-          Logica: loop cart.items → check item.product.type → toon add-on via custom.addon_product metafield
-          Wacht op klant: Rebuy Smart Cart OF In Cart Upsell app keuze
-        {%- endcomment -%}
+        {%- comment -%} Rebuy upsell widget — actief zodra widget-ID is ingevuld in SOPHIOR Integraties {%- endcomment -%}
+        {%- if settings.rebuy_widget_id != blank -%}
+          <div class="sophior-cart-drawer__upsell">
+            <rebuy-widget id="{{ settings.rebuy_widget_id }}"></rebuy-widget>
+          </div>
+        {%- endif -%}
 
         {%- comment -%} Subtotaal {%- endcomment -%}
         <div class="sophior-cart-drawer__totals" id="sophior-cart-totals">

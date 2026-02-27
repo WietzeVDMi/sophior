@@ -3943,11 +3943,59 @@
           "label": "\"Lees meer\" knop tonen",
           "info": "Tekst inkorten met een uitklapknop voor betere UX"
         },
+        "sidebar_header":  "Gidsen sidebar",
+        "show_sidebar":    { "label": "Gidsen sidebar tonen", "info": "Toont 3 recente artikelen uit het geselecteerde blog naast de SEO-tekst" },
+        "sidebar_blog":    { "label": "Blog voor gidsen", "info": "Kies het blog waarvan de gidsen in de sidebar worden getoond" },
+        "sidebar_heading": { "label": "Sidebar kopje" },
         "padding_top": { "label": "Opvulling boven" },
         "padding_bottom": { "label": "Opvulling onder" }
       },
+      "sidebar_default_heading": "Gidsen",
+      "sidebar_label": "Gidsen sidebar",
+      "view_all_guides": "Alle gidsen bekijken",
       "presets": {
         "default": { "name": "SOPHIOR Categorie SEO Tekst" }
+      }
+    },
+    "sophior-collection-social-proof": {
+      "name": "SOPHIOR Social Proof Balk",
+      "settings": {
+        "padding_top": { "label": "Opvulling boven" },
+        "padding_bottom": { "label": "Opvulling onder" }
+      },
+      "blocks": {
+        "item": {
+          "name": "Item",
+          "settings": {
+            "icon": { "label": "Icoon" },
+            "text": { "label": "Tekst" }
+          }
+        }
+      },
+      "presets": {
+        "default": { "name": "SOPHIOR Social Proof Balk" }
+      }
+    },
+    "sophior-expertise-grid": {
+      "name": "SOPHIOR Expertise Grid",
+      "default_cta": "Meer info",
+      "view_label": "Bekijk %{label}",
+      "settings": {
+        "heading": { "label": "Sectietitel" }
+      },
+      "blocks": {
+        "item": {
+          "name": "Categorie",
+          "settings": {
+            "image":     { "label": "Afbeelding" },
+            "label":     { "label": "Categorienaam" },
+            "link":      { "label": "Link" },
+            "link_text": { "label": "Knoptekst" }
+          }
+        }
+      },
+      "presets": {
+        "default": { "name": "SOPHIOR Expertise Grid" }
       }
     }
   }

@@ -1,0 +1,71 @@
+/* ============================================================
+   SOPHIOR — Collection Social Proof Bar (Categoriepagina §5.3)
+   Gebruikt door sections/sophior-collection-social-proof.liquid
+   ============================================================ */
+
+.sophior-csp {
+  background-color: var(--sophior-cream);
+  border-top: 1px solid var(--sophior-light-tan);
+  border-bottom: 1px solid var(--sophior-light-tan);
+}
+
+/* ---- Lijst ---- */
+.sophior-csp__list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3.2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap;
+}
+
+/* ---- Item ---- */
+.sophior-csp__item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+/* ---- Icoon ---- */
+.sophior-csp__icon {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: var(--sophior-gold);
+}
+
+.sophior-csp__icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* ---- Tekst ---- */
+.sophior-csp__text {
+  font-family: var(--sophior-font-body);
+  font-size: var(--sophior-text-sm);
+  font-weight: 400;
+  color: var(--sophior-dark-green);
+  white-space: nowrap;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 749px) {
+  .sophior-csp__list {
+    gap: 1.6rem;
+    justify-content: flex-start;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 0.4rem;
+  }
+
+  .sophior-csp__list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .sophior-csp__text {
+    font-size: var(--sophior-text-xs);
+  }
+}

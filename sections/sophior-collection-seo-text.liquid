@@ -1,50 +1,114 @@
 {{ 'sophior-collection-seo-text.css' | asset_url | stylesheet_tag }}
 
 {%- comment -%}
-  sophior-collection-seo-text — Bewerkbaar SEO tekstblok onderaan de categoriepagina.
+  sophior-collection-seo-text — SEO tekstblok onderaan de categoriepagina.
+  Optioneel: gidsen sidebar rechts (1/3) met dynamische artikelen uit een blog.
+  Briefing §5.4: "2/3 tekst links, 1/3 Gidsen sidebar rechts"
   Toevoegen aan templates/collection.json na het product-grid.
-  Schema: SEO tekst per collectie instelbaar via de theme editor.
 {%- endcomment -%}
 
 {%- if section.settings.content != blank -%}
+  {%- assign show_sidebar = section.settings.show_sidebar -%}
+  {%- assign sidebar_blog = blogs[section.settings.sidebar_blog] -%}
+  {%- assign has_sidebar = false -%}
+  {%- if show_sidebar and sidebar_blog != blank and sidebar_blog.articles_count > 0 -%}
+    {%- assign has_sidebar = true -%}
+  {%- endif -%}
+
   <section
     class="sophior-collection-seo-text section-{{ section.id }}-padding"
     id="sophior-collection-seo-text-{{ section.id }}"
   >
     <div class="page-width">
-      <div class="sophior-collection-seo-text__inner">
-        {%- if section.settings.heading != blank -%}
-          <h2 class="sophior-collection-seo-text__heading">{{ section.settings.heading | escape }}</h2>
-        {%- endif -%}
-        <div class="sophior-collection-seo-text__content rte">
-          {{ section.settings.content }}
+      <div class="sophior-collection-seo-text__layout{% if has_sidebar %} sophior-collection-seo-text__layout--with-sidebar{% endif %}">
+
+        {%- comment -%} Linker kolom: SEO tekst (2/3) {%- endcomment -%}
+        <div class="sophior-collection-seo-text__main">
+          {%- if section.settings.heading != blank -%}
+            <h2 class="sophior-collection-seo-text__heading">{{ section.settings.heading | escape }}</h2>
+          {%- endif -%}
+
+          <div
+            class="sophior-collection-seo-text__content rte"
+            id="sophior-seo-content-{{ section.id }}"
+          >
+            {{ section.settings.content }}
+          </div>
+
+          {%- if section.settings.show_toggle and section.settings.content contains '<p>' -%}
+            <button
+              class="sophior-collection-seo-text__toggle"
+              type="button"
+              aria-expanded="false"
+              aria-controls="sophior-seo-content-{{ section.id }}"
+              data-seo-toggle="{{ section.id }}"
+            >
+              <span class="sophior-collection-seo-text__toggle-label--show">{{ 'sections.sophior-collection-seo-text.show_more' | t }}</span>
+              <span class="sophior-collection-seo-text__toggle-label--hide">{{ 'sections.sophior-collection-seo-text.show_less' | t }}</span>
+            </button>
+            <script>
+              (function() {
+                var btn = document.querySelector('[data-seo-toggle="{{ section.id }}"]');
+                var content = document.getElementById('sophior-seo-content-{{ section.id }}');
+                if (!btn || !content) return;
+                content.classList.add('sophior-collection-seo-text__content--collapsed');
+                btn.setAttribute('aria-expanded', 'false');
+                btn.addEventListener('click', function() {
+                  var expanded = btn.getAttribute('aria-expanded') === 'true';
+                  btn.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+                  content.classList.toggle('sophior-collection-seo-text__content--collapsed', expanded);
+                });
+              })();
+            </script>
+          {%- endif -%}
         </div>
 
-        {%- if section.settings.show_toggle and section.settings.content contains '<p>' -%}
-          <button
-            class="sophior-collection-seo-text__toggle"
-            type="button"
-            aria-expanded="false"
-            data-seo-toggle
-          >
-            <span class="sophior-collection-seo-text__toggle-label--show">{{ 'sections.sophior-collection-seo-text.show_more' | t }}</span>
-            <span class="sophior-collection-seo-text__toggle-label--hide">{{ 'sections.sophior-collection-seo-text.show_less' | t }}</span>
-          </button>
-          <script>
-            (function() {
-              var btn = document.querySelector('[data-seo-toggle]');
-              var content = btn && btn.closest('.sophior-collection-seo-text__inner').querySelector('.sophior-collection-seo-text__content');
-              if (!btn || !content) return;
-              content.classList.add('sophior-collection-seo-text__content--collapsed');
-              btn.setAttribute('aria-expanded', 'false');
-              btn.addEventListener('click', function() {
-                var expanded = btn.getAttribute('aria-expanded') === 'true';
-                btn.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-                content.classList.toggle('sophior-collection-seo-text__content--collapsed', expanded);
-              });
-            })();
-          </script>
+        {%- comment -%} Rechter kolom: Gidsen sidebar (1/3) {%- endcomment -%}
+        {%- if has_sidebar -%}
+          <aside class="sophior-collection-seo-text__sidebar" aria-label="{{ 'sections.sophior-collection-seo-text.sidebar_label' | t }}">
+            {%- assign sidebar_h = section.settings.sidebar_heading -%}
+            {%- if sidebar_h == blank -%}
+              {%- assign sidebar_h = 'sections.sophior-collection-seo-text.sidebar_default_heading' | t -%}
+            {%- endif -%}
+            <h3 class="sophior-collection-seo-text__sidebar-heading">{{ sidebar_h | escape }}</h3>
+
+            <ul class="sophior-collection-seo-text__sidebar-list" role="list">
+              {%- for article in sidebar_blog.articles limit: 3 -%}
+                <li class="sophior-collection-seo-text__sidebar-item">
+                  <a
+                    href="{{ article.url }}"
+                    class="sophior-collection-seo-text__sidebar-link"
+                  >
+                    {%- if article.image != blank -%}
+                      <div class="sophior-collection-seo-text__sidebar-thumb">
+                        {{
+                          article.image
+                          | image_url: width: 120
+                          | image_tag:
+                            loading: 'lazy',
+                            alt: article.title | escape,
+                            widths: '80, 120',
+                            sizes: '80px'
+                        }}
+                      </div>
+                    {%- endif -%}
+                    <span class="sophior-collection-seo-text__sidebar-title">{{ article.title | escape }}</span>
+                  </a>
+                </li>
+              {%- endfor -%}
+            </ul>
+
+            {%- if sidebar_blog.articles_count > 3 -%}
+              <a
+                href="{{ sidebar_blog.url }}"
+                class="sophior-collection-seo-text__sidebar-cta"
+              >
+                {{ 'sections.sophior-collection-seo-text.view_all_guides' | t }}
+              </a>
+            {%- endif -%}
+          </aside>
         {%- endif -%}
+
       </div>
     </div>
   </section>
@@ -74,6 +138,29 @@
       "label": "t:sections.sophior-collection-seo-text.settings.show_toggle.label",
       "info": "t:sections.sophior-collection-seo-text.settings.show_toggle.info",
       "default": true
+    },
+    {
+      "type": "header",
+      "content": "t:sections.sophior-collection-seo-text.settings.sidebar_header"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_sidebar",
+      "label": "t:sections.sophior-collection-seo-text.settings.show_sidebar.label",
+      "info": "t:sections.sophior-collection-seo-text.settings.show_sidebar.info",
+      "default": false
+    },
+    {
+      "type": "blog",
+      "id": "sidebar_blog",
+      "label": "t:sections.sophior-collection-seo-text.settings.sidebar_blog.label",
+      "info": "t:sections.sophior-collection-seo-text.settings.sidebar_blog.info"
+    },
+    {
+      "type": "text",
+      "id": "sidebar_heading",
+      "label": "t:sections.sophior-collection-seo-text.settings.sidebar_heading.label",
+      "default": "Gidsen"
     },
     {
       "type": "range",

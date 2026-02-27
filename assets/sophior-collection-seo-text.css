@@ -1,5 +1,5 @@
 /* ============================================================
-   SOPHIOR — Collection SEO Text
+   SOPHIOR — Collection SEO Text (§5.4)
    Gebruikt door sections/sophior-collection-seo-text.liquid
    ============================================================ */
 
@@ -8,17 +8,27 @@
   border-top: 1px solid var(--sophior-light-tan);
 }
 
-.sophior-collection-seo-text__inner {
+/* ---- Layout: standaard (zonder sidebar) ---- */
+.sophior-collection-seo-text__layout {
   max-width: 840px;
+}
+
+/* ---- Layout: met sidebar (2/3 + 1/3) ---- */
+.sophior-collection-seo-text__layout--with-sidebar {
+  max-width: 100%;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 4.8rem;
+  align-items: start;
 }
 
 /* ---- Heading ---- */
 .sophior-collection-seo-text__heading {
   font-family: var(--sophior-font-heading);
-  font-size: clamp(1.2rem, 2vw, 1.6rem);
+  font-size: clamp(1.4rem, 2vw, 2rem);
   font-weight: 300;
   color: var(--sophior-dark-green);
-  margin: 0 0 1rem;
+  margin: 0 0 1.2rem;
 }
 
 /* ---- Content ---- */
@@ -37,9 +47,9 @@
   margin-bottom: 0;
 }
 
-/* Ingeklapt: toon alleen eerste alinea */
+/* Ingeklapt: toon eerste 3 regels */
 .sophior-collection-seo-text__content--collapsed {
-  max-height: 5.5em; /* ~3 regels */
+  max-height: 5.5em;
   overflow: hidden;
   position: relative;
 }
@@ -82,7 +92,6 @@
   outline-offset: 4px;
 }
 
-/* Toon/verberg labels via aria-expanded */
 .sophior-collection-seo-text__toggle-label--hide {
   display: none;
 }
@@ -93,4 +102,119 @@
 
 .sophior-collection-seo-text__toggle[aria-expanded="true"] .sophior-collection-seo-text__toggle-label--hide {
   display: inline;
+}
+
+/* ============================================================
+   Gidsen Sidebar (§5.4 — 1/3 rechterkolom)
+   ============================================================ */
+
+.sophior-collection-seo-text__sidebar {
+  border-left: 1px solid var(--sophior-light-tan);
+  padding-left: 3.2rem;
+}
+
+.sophior-collection-seo-text__sidebar-heading {
+  font-family: var(--sophior-font-heading);
+  font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+  font-weight: 300;
+  color: var(--sophior-dark-green);
+  margin: 0 0 1.6rem;
+}
+
+.sophior-collection-seo-text__sidebar-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.sophior-collection-seo-text__sidebar-item {
+  border-bottom: 1px solid var(--sophior-light-tan);
+  padding-bottom: 1.2rem;
+}
+
+.sophior-collection-seo-text__sidebar-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.sophior-collection-seo-text__sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-decoration: none;
+  color: var(--sophior-dark-green);
+  transition: color 0.2s;
+}
+
+.sophior-collection-seo-text__sidebar-link:hover {
+  color: var(--sophior-gold);
+}
+
+.sophior-collection-seo-text__sidebar-link:focus-visible {
+  outline: 2px solid var(--sophior-gold);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.sophior-collection-seo-text__sidebar-thumb {
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+  border-radius: 4px;
+  overflow: hidden;
+  background-color: var(--sophior-light-tan);
+}
+
+.sophior-collection-seo-text__sidebar-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.sophior-collection-seo-text__sidebar-title {
+  font-family: var(--sophior-font-body);
+  font-size: var(--sophior-text-sm);
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.sophior-collection-seo-text__sidebar-cta {
+  display: inline-block;
+  margin-top: 1.6rem;
+  font-family: var(--sophior-font-body);
+  font-size: var(--sophior-text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--sophior-gold);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.sophior-collection-seo-text__sidebar-cta:hover {
+  color: var(--sophior-dark-green);
+}
+
+.sophior-collection-seo-text__sidebar-cta:focus-visible {
+  outline: 2px solid var(--sophior-gold);
+  outline-offset: 4px;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 989px) {
+  .sophior-collection-seo-text__layout--with-sidebar {
+    grid-template-columns: 1fr;
+    gap: 3.2rem;
+  }
+
+  .sophior-collection-seo-text__sidebar {
+    border-left: none;
+    border-top: 1px solid var(--sophior-light-tan);
+    padding-left: 0;
+    padding-top: 2.4rem;
+  }
 }

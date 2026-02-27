@@ -1477,6 +1477,16 @@
       },
       {
         "type": "header",
+        "content": "Rebuy Cart Upsell"
+      },
+      {
+        "type": "text",
+        "id": "rebuy_widget_id",
+        "label": "Rebuy Widget ID",
+        "info": "Kopieer het widget-ID uit Rebuy Admin → Widgets. Vul in om de upsell-widget in de cart drawer te activeren."
+      },
+      {
+        "type": "header",
         "content": "Analytics"
       },
       {

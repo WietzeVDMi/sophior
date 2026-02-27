@@ -88,6 +88,49 @@
         "padding_bottom": 60
       }
     },
+    "expertise-grid": {
+      "type": "sophior-expertise-grid",
+      "blocks": {
+        "exp-1": {
+          "type": "item",
+          "settings": {
+            "label": "Snijplanken",
+            "link": "/collections/snijplanken",
+            "link_text": "Meer info"
+          }
+        },
+        "exp-2": {
+          "type": "item",
+          "settings": {
+            "label": "Pannen",
+            "link": "/collections/pannen",
+            "link_text": "Meer info"
+          }
+        },
+        "exp-3": {
+          "type": "item",
+          "settings": {
+            "label": "Messen",
+            "link": "/collections/messen",
+            "link_text": "Meer info"
+          }
+        },
+        "exp-4": {
+          "type": "item",
+          "settings": {
+            "label": "Accessoires",
+            "link": "/collections/accessoires",
+            "link_text": "Meer info"
+          }
+        }
+      },
+      "block_order": ["exp-1", "exp-2", "exp-3", "exp-4"],
+      "settings": {
+        "heading": "Meer dan alleen producten",
+        "padding_top": 48,
+        "padding_bottom": 60
+      }
+    },
     "trustbar-footer": {
       "type": "sophior-trustbar-footer",
       "settings": {}
@@ -98,6 +141,7 @@
     "zigzag",
     "values-bar",
     "sustainability",
+    "expertise-grid",
     "trustbar-footer"
   ]
 }
