@@ -13,11 +13,11 @@
     {%- render 'sophior-ring', variant: 'divider' -%}
 
     <div class="sophior-review-slider__header">
-      <h2 class="sophior-review-slider__title">{{ section.settings.title }}</h2>
       <div class="sophior-review-slider__aggregate">
         <span class="sophior-review-slider__aggregate-stars" aria-label="{{ 'sections.sophior-review-slider.aggregate_label' | t: rating: section.settings.rating_aggregate }}">★★★★★</span>
         <span class="sophior-review-slider__aggregate-text">{{ section.settings.aggregate_text }}</span>
       </div>
+      <h2 class="sophior-review-slider__title">{{ section.settings.title }}</h2>
     </div>
 
     <div class="sophior-review-slider__wrapper" id="sophior-reviews-{{ section.id }}">

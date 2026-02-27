@@ -5,7 +5,7 @@
    ============================================================ */
 
 .sophior-review-slider {
-  background-color: var(--sophior-light-tan);
+  background-color: var(--sophior-cream);
   padding: var(--sophior-space-2xl) var(--sophior-space-xl);
   overflow: hidden;
 }
@@ -16,7 +16,7 @@
 }
 
 .sophior-review-slider__header {
-  text-align: center;
+  text-align: left;
   margin-bottom: var(--sophior-space-xl);
 }
 
@@ -37,9 +37,9 @@
 .sophior-review-slider__aggregate {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: var(--sophior-space-sm);
-  margin-top: var(--sophior-space-sm);
+  margin-bottom: var(--sophior-space-sm);
 }
 
 .sophior-review-slider__aggregate-stars {
@@ -193,6 +193,14 @@
 @media screen and (max-width: 749px) {
   .sophior-review-slider {
     padding: var(--sophior-space-xl) var(--sophior-space-md);
+  }
+
+  .sophior-review-slider__header {
+    text-align: center;
+  }
+
+  .sophior-review-slider__aggregate {
+    justify-content: center;
   }
 
   .sophior-review-slider__card {

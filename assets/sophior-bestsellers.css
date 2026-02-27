@@ -6,7 +6,7 @@
 
 .sophior-bestsellers {
   padding: var(--sophior-space-2xl) 0;
-  background-color: var(--sophior-white);
+  background-color: var(--sophior-cream);
   overflow: hidden;
   position: relative;
 }
@@ -81,7 +81,7 @@
 
 /* ---- Product card ---- */
 .sophior-bestsellers__card {
-  flex: 0 0 calc(25% - 1.2rem);
+  flex: 0 0 calc(20% - 1.28rem);
   scroll-snap-align: start;
   background-color: var(--sophior-cream);
   text-decoration: none;

@@ -1,75 +1,60 @@
 {{ 'sophior-category-header.css' | asset_url | stylesheet_tag }}
 
 {%- comment -%}
-  LCP-element: afbeelding eager + fetchpriority high.
-  Vervangt main-collection-banner op de collection-pagina.
+  Categorie header — split-screen: tekst links, vrijstaande productafbeelding rechts.
+  Achtergrond: cream. Compact — focus direct op producten.
+  LCP-afbeelding: eager + fetchpriority high.
 {%- endcomment -%}
 
-{%- assign has_image = false -%}
-{%- if section.settings.show_image and collection.image -%}
-  {%- assign has_image = true -%}
-{%- endif -%}
-
-{%- assign overlay_alpha = section.settings.overlay_opacity | times: 0.01 -%}
-
-<div class="sophior-category-header{% if has_image %} sophior-category-header--has-image{% endif %}">
-
-  {%- comment -%} Decoratieve achtergrond-ring — jaarringen motief {%- endcomment -%}
-  <svg class="sophior-ring-deco sophior-category-header__ring-bg"
-       viewBox="0 0 300 300" fill="none" aria-hidden="true" focusable="false">
-    <circle cx="150" cy="150" r="40"  stroke="currentColor" stroke-width="1.5"/>
-    <circle cx="150" cy="150" r="85"  stroke="currentColor" stroke-width="1.2"/>
-    <circle cx="150" cy="150" r="130" stroke="currentColor" stroke-width="1"/>
-    <circle cx="150" cy="150" r="147" stroke="currentColor" stroke-width="0.8"/>
-  </svg>
-
-  {%- if has_image -%}
-    <div class="sophior-category-header__media" aria-hidden="true">
-      {{
-        collection.image
-        | image_url: width: 1500
-        | image_tag:
-          class: 'sophior-category-header__image',
-          loading: 'eager',
-          fetchpriority: 'high',
-          widths: '750, 1000, 1500',
-          sizes: '100vw',
-          alt: collection.image.alt | default: collection.title | escape
-      }}
-      <div
-        class="sophior-category-header__overlay"
-        style="--overlay-opacity: {{ overlay_alpha }};"
-        aria-hidden="true"
-      ></div>
-    </div>
-  {%- endif -%}
-
+<div class="sophior-category-header">
   <div class="sophior-category-header__inner">
 
-    <nav
-      class="sophior-category-header__breadcrumb"
-      aria-label="{{ 'sections.sophior-category-header.breadcrumb_label' | t }}"
-    >
-      <ol class="sophior-category-header__breadcrumb-list">
-        <li>
-          <a href="{{ routes.root_url }}" class="sophior-category-header__breadcrumb-link">
-            {{ 'sections.sophior-category-header.breadcrumb_home' | t }}
-          </a>
-        </li>
-        <li aria-hidden="true" class="sophior-category-header__breadcrumb-sep">›</li>
-        <li>
-          <span class="sophior-category-header__breadcrumb-current" aria-current="page">
-            {{- collection.title | escape -}}
-          </span>
-        </li>
-      </ol>
-    </nav>
+    {%- comment -%} Links: tekst {%- endcomment -%}
+    <div class="sophior-category-header__content">
 
-    <h1 class="sophior-category-header__title">{{ collection.title | escape }}</h1>
+      <nav
+        class="sophior-category-header__breadcrumb"
+        aria-label="{{ 'sections.sophior-category-header.breadcrumb_label' | t }}"
+      >
+        <ol class="sophior-category-header__breadcrumb-list">
+          <li>
+            <a href="{{ routes.root_url }}" class="sophior-category-header__breadcrumb-link">
+              {{ 'sections.sophior-category-header.breadcrumb_home' | t }}
+            </a>
+          </li>
+          <li aria-hidden="true" class="sophior-category-header__breadcrumb-sep">›</li>
+          <li>
+            <span class="sophior-category-header__breadcrumb-current" aria-current="page">
+              {{- collection.title | escape -}}
+            </span>
+          </li>
+        </ol>
+      </nav>
 
-    {%- if section.settings.show_description and collection.description != blank -%}
-      <div class="sophior-category-header__description rte">
-        {{ collection.description }}
+      <h1 class="sophior-category-header__title">{{ collection.title | escape }}</h1>
+
+      {%- if section.settings.show_description and collection.description != blank -%}
+        <div class="sophior-category-header__description rte">
+          {{ collection.description }}
+        </div>
+      {%- endif -%}
+
+    </div>
+
+    {%- comment -%} Rechts: vrijstaande productafbeelding {%- endcomment -%}
+    {%- if section.settings.show_image and collection.image -%}
+      <div class="sophior-category-header__media">
+        {{
+          collection.image
+          | image_url: width: 800
+          | image_tag:
+            class: 'sophior-category-header__image',
+            loading: 'eager',
+            fetchpriority: 'high',
+            widths: '400, 600, 800',
+            sizes: '(max-width: 749px) 80vw, 40vw',
+            alt: collection.image.alt | default: collection.title | escape
+        }}
       </div>
     {%- endif -%}
 
@@ -92,16 +77,6 @@
       "id": "show_image",
       "label": "t:sections.sophior-category-header.settings.show_image.label",
       "default": true
-    },
-    {
-      "type": "range",
-      "id": "overlay_opacity",
-      "label": "t:sections.sophior-category-header.settings.overlay_opacity.label",
-      "min": 0,
-      "max": 80,
-      "step": 10,
-      "default": 50,
-      "unit": "%"
     }
   ],
   "presets": [
