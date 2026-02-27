@@ -1,6 +1,6 @@
 # SOPHIOR.nl — Project Plan 2026
 
-**Store:** sophior.myshopify.com
+**Store:** sophior-keuken.myshopify.com
 **Repo:** git@github.com:WietzeVDMi/sophior.git
 **Platform:** Shopify Dawn thema
 **Taal:** Nederlands (NL-only, D2C, mobile-first)

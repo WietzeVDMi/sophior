@@ -14,16 +14,16 @@ SOPHIOR.nl — Shopify webshop voor premium keukenproducten (snijplanken, pannen
 
 ```bash
 # Shopify CLI lokaal development
-shopify theme dev --store sophior.myshopify.com
+shopify theme dev --store sophior-keuken.myshopify.com
 
 # Thema initialiseren (eenmalig)
 shopify theme init --theme-url https://github.com/Shopify/dawn
 
 # Pushen naar staging
-shopify theme push --store sophior.myshopify.com --theme-id [staging-id]
+shopify theme push --store sophior-keuken.myshopify.com --theme-id [staging-id]
 
 # Publiceren naar live
-shopify theme publish --store sophior.myshopify.com --theme-id [live-id]
+shopify theme publish --store sophior-keuken.myshopify.com --theme-id [live-id]
 ```
 
 ## Tech Stack

@@ -111,7 +111,7 @@ Volledig getest op staging. Klantgoedkeuring. SOPHIOR.nl live met nieuw design.
 ```bash
 # Publiceer het thema naar live store
 docker compose run --rm shopify shopify theme publish \
-  --store sophior.myshopify.com \
+  --store sophior-keuken.myshopify.com \
   --theme-id [live-thema-id]
 ```
 
