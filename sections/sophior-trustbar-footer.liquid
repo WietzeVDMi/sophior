@@ -1,0 +1,118 @@
+{{ 'sophior-trustbar-footer.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign icon_truck = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zM6 18.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm13.5-9l1.96 2.5H17V9.5h2.5zm-1.5 9c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>'
+  assign icon_return = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 5.41L18.59 4 7 15.59V9H5v10h10v-2H8.41L20 5.41z"/></svg>'
+  assign icon_card = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>'
+  assign icon_headset = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1c-4.97 0-9 4.03-9 9v7c0 1.66 1.34 3 3 3h3v-8H5v-2c0-3.87 3.13-7 7-7s7 3.13 7 7v2h-4v8h3c1.66 0 3-1.34 3-3v-7c0-4.97-4.03-9-9-9z"/></svg>'
+  assign icon_shield = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>'
+  assign icon_leaf = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3A4.49 4.49 0 008 20C19 20 22 3 22 3c-1 2-8 5.5-8 5.5-.76-1.38-2.05-2.32-3.5-2.5H17v2z"/></svg>'
+-%}
+
+<div class="sophior-trustbar-footer">
+  <div class="sophior-trustbar-footer__grid">
+    {%- for block in section.blocks -%}
+      {%- assign item_icon = block.settings.icon -%}
+      <div class="sophior-trustbar-footer__item" {{ block.shopify_attributes }}>
+        <div class="sophior-trustbar-footer__icon">
+          {%- case item_icon -%}
+            {%- when 'return' -%}{{ icon_return }}
+            {%- when 'card' -%}{{ icon_card }}
+            {%- when 'headset' -%}{{ icon_headset }}
+            {%- when 'shield' -%}{{ icon_shield }}
+            {%- when 'leaf' -%}{{ icon_leaf }}
+            {%- else -%}{{ icon_truck }}
+          {%- endcase -%}
+        </div>
+        <div class="sophior-trustbar-footer__text">
+          <strong class="sophior-trustbar-footer__item-title">{{ block.settings.title }}</strong>
+          {%- if block.settings.text != blank -%}
+            <p class="sophior-trustbar-footer__item-text">{{ block.settings.text }}</p>
+          {%- endif -%}
+        </div>
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Trustbar Pre-Footer",
+  "tag": "div",
+  "class": "sophior-section",
+  "max_blocks": 4,
+  "blocks": [
+    {
+      "type": "trust_item",
+      "name": "Trust item",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "t:sections.sophior-trustbar-footer.blocks.trust_item.settings.icon.label",
+          "options": [
+            { "value": "truck", "label": "Vrachtwagen (verzending)" },
+            { "value": "return", "label": "Pijl (retour)" },
+            { "value": "card", "label": "Creditcard (betaling)" },
+            { "value": "headset", "label": "Headset (support)" },
+            { "value": "shield", "label": "Schild (veiligheid)" },
+            { "value": "leaf", "label": "Blad (duurzaamheid)" }
+          ],
+          "default": "truck"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "t:sections.sophior-trustbar-footer.blocks.trust_item.settings.title.label",
+          "default": "Gratis verzending"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "t:sections.sophior-trustbar-footer.blocks.trust_item.settings.text.label",
+          "default": "Vanaf €59 gratis verzending in Nederland"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "SOPHIOR Trustbar Pre-Footer",
+      "blocks": [
+        {
+          "type": "trust_item",
+          "settings": {
+            "icon": "truck",
+            "title": "Gratis verzending",
+            "text": "Vanaf €59 gratis verzending in Nederland"
+          }
+        },
+        {
+          "type": "trust_item",
+          "settings": {
+            "icon": "return",
+            "title": "30 dagen retour",
+            "text": "Niet tevreden? Gratis retourneren binnen 30 dagen"
+          }
+        },
+        {
+          "type": "trust_item",
+          "settings": {
+            "icon": "card",
+            "title": "Veilig betalen",
+            "text": "iDEAL, creditcard, Klarna en meer"
+          }
+        },
+        {
+          "type": "trust_item",
+          "settings": {
+            "icon": "headset",
+            "title": "Klantenservice",
+            "text": "Ma–vr 9:00–17:00 bereikbaar"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

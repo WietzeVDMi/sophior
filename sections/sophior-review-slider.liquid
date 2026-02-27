@@ -1,0 +1,279 @@
+{{ 'sophior-review-slider.css' | asset_url | stylesheet_tag }}
+
+{%- comment -%}
+  Placeholder reviews — worden vervangen door Judge.me widget in Sprint 7.
+  Schema bevat een waarschuwingstekst voor de winkelbeheerder.
+{%- endcomment -%}
+
+{%- assign reviews = section.blocks -%}
+
+<div class="sophior-review-slider">
+  <div class="sophior-review-slider__inner">
+
+    <div class="sophior-review-slider__header">
+      <h2 class="sophior-review-slider__title">{{ section.settings.title }}</h2>
+      <div class="sophior-review-slider__aggregate">
+        <span class="sophior-review-slider__aggregate-stars" aria-label="4.9 sterren">★★★★★</span>
+        <span class="sophior-review-slider__aggregate-text">{{ section.settings.aggregate_text }}</span>
+      </div>
+    </div>
+
+    <div class="sophior-review-slider__wrapper" id="sophior-reviews-{{ section.id }}">
+      <button
+        class="sophior-review-slider__arrow sophior-review-slider__arrow--prev"
+        aria-label="{{ 'sections.sophior-review-slider.prev' | t }}"
+        type="button"
+        disabled
+      >
+        <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+      </button>
+
+      <div class="sophior-review-slider__track" role="list" aria-label="{{ section.settings.title }}">
+        {%- for block in section.blocks -%}
+          <article class="sophior-review-slider__card" role="listitem" {{ block.shopify_attributes }}>
+            <div class="sophior-review-slider__card-stars" aria-label="{{ block.settings.rating }} sterren">
+              {%- assign rating = block.settings.rating | default: 5 -%}
+              {%- for i in (1..rating) -%}★{%- endfor -%}
+            </div>
+            <p class="sophior-review-slider__card-text">{{ block.settings.review_text }}</p>
+            <div class="sophior-review-slider__card-author">
+              <span class="sophior-review-slider__card-name">{{ block.settings.reviewer_name }}</span>
+              <span class="sophior-review-slider__card-meta">{{ block.settings.reviewer_meta }}</span>
+            </div>
+          </article>
+        {%- endfor -%}
+      </div>
+
+      <button
+        class="sophior-review-slider__arrow sophior-review-slider__arrow--next"
+        aria-label="{{ 'sections.sophior-review-slider.next' | t }}"
+        type="button"
+      >
+        <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+      </button>
+    </div>
+
+    {%- if section.blocks.size > 3 -%}
+      <ul class="sophior-review-slider__dots" aria-label="{{ 'sections.sophior-review-slider.navigation' | t }}">
+        {%- assign dot_count = section.blocks.size | minus: 2 -%}
+        {%- for i in (1..dot_count) -%}
+          <li>
+            <button
+              class="sophior-review-slider__dot{% if forloop.first %} sophior-review-slider__dot--active{% endif %}"
+              aria-label="{{ 'sections.sophior-review-slider.dot' | t: index: forloop.index }}"
+              type="button"
+              data-index="{{ forloop.index0 }}"
+            ></button>
+          </li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+
+  </div>
+</div>
+
+<script>
+(function () {
+  var wrapper = document.getElementById('sophior-reviews-{{ section.id }}');
+  if (!wrapper) return;
+
+  var track = wrapper.querySelector('.sophior-review-slider__track');
+  var prevBtn = wrapper.querySelector('.sophior-review-slider__arrow--prev');
+  var nextBtn = wrapper.querySelector('.sophior-review-slider__arrow--next');
+  var dots = document.querySelectorAll('#sophior-reviews-{{ section.id }} ~ .sophior-review-slider__dots .sophior-review-slider__dot');
+  var autoTimer = null;
+  var AUTO_INTERVAL = {{ section.settings.autoplay_interval | default: 5000 }};
+
+  function getCardWidth() {
+    var card = track.querySelector('.sophior-review-slider__card');
+    if (!card) return 320;
+    return card.offsetWidth + parseInt(getComputedStyle(track).gap || '24');
+  }
+
+  function updateArrows() {
+    if (prevBtn) prevBtn.disabled = track.scrollLeft <= 4;
+    if (nextBtn) nextBtn.disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 4;
+  }
+
+  function updateDots() {
+    if (!dots.length) return;
+    var idx = Math.round(track.scrollLeft / getCardWidth());
+    dots.forEach(function (d, i) {
+      d.classList.toggle('sophior-review-slider__dot--active', i === idx);
+    });
+  }
+
+  function scrollTo(idx) {
+    track.scrollTo({ left: idx * getCardWidth(), behavior: 'smooth' });
+  }
+
+  function startAuto() {
+    stopAuto();
+    autoTimer = setInterval(function () {
+      if (track.scrollLeft + track.clientWidth >= track.scrollWidth - 4) {
+        track.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        track.scrollBy({ left: getCardWidth(), behavior: 'smooth' });
+      }
+    }, AUTO_INTERVAL);
+  }
+
+  function stopAuto() {
+    if (autoTimer) clearInterval(autoTimer);
+  }
+
+  if (prevBtn) {
+    prevBtn.addEventListener('click', function () {
+      stopAuto();
+      track.scrollBy({ left: -getCardWidth() * 3, behavior: 'smooth' });
+    });
+  }
+  if (nextBtn) {
+    nextBtn.addEventListener('click', function () {
+      stopAuto();
+      track.scrollBy({ left: getCardWidth() * 3, behavior: 'smooth' });
+    });
+  }
+
+  dots.forEach(function (dot, i) {
+    dot.addEventListener('click', function () {
+      stopAuto();
+      scrollTo(i);
+    });
+  });
+
+  track.addEventListener('scroll', function () {
+    updateArrows();
+    updateDots();
+  }, { passive: true });
+
+  track.addEventListener('mouseenter', stopAuto);
+  track.addEventListener('mouseleave', startAuto);
+
+  updateArrows();
+  startAuto();
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Review Slider",
+  "tag": "div",
+  "class": "sophior-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "t:sections.sophior-review-slider.settings.title.label",
+      "default": "Wat onze klanten zeggen"
+    },
+    {
+      "type": "text",
+      "id": "aggregate_text",
+      "label": "t:sections.sophior-review-slider.settings.aggregate_text.label",
+      "default": "4.9 / 5 — gebaseerd op 124 reviews"
+    },
+    {
+      "type": "range",
+      "id": "autoplay_interval",
+      "label": "t:sections.sophior-review-slider.settings.autoplay_interval.label",
+      "min": 3000,
+      "max": 10000,
+      "step": 1000,
+      "default": 5000,
+      "unit": "ms"
+    },
+    {
+      "type": "paragraph",
+      "content": "t:sections.sophior-review-slider.settings.sprint7_notice"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        {
+          "type": "range",
+          "id": "rating",
+          "label": "t:sections.sophior-review-slider.blocks.review.settings.rating.label",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "default": 5
+        },
+        {
+          "type": "textarea",
+          "id": "review_text",
+          "label": "t:sections.sophior-review-slider.blocks.review.settings.review_text.label",
+          "default": "Geweldige kwaliteit, super tevreden met mijn bestelling!"
+        },
+        {
+          "type": "text",
+          "id": "reviewer_name",
+          "label": "t:sections.sophior-review-slider.blocks.review.settings.reviewer_name.label",
+          "default": "Anna de Vries"
+        },
+        {
+          "type": "text",
+          "id": "reviewer_meta",
+          "label": "t:sections.sophior-review-slider.blocks.review.settings.reviewer_meta.label",
+          "default": "Geverifieerde koper · Snijplank Walnoot"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "SOPHIOR Review Slider",
+      "blocks": [
+        {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "review_text": "De snijplank van SOPHIOR is prachtig. Zwaar, stabiel en ziet er fantastisch uit in mijn keuken. Al 6 maanden elke dag in gebruik en hij ziet er nog als nieuw uit.",
+            "reviewer_name": "Lisa van den Berg",
+            "reviewer_meta": "Geverifieerde koper · Snijplank Walnoot L"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "review_text": "Eindelijk messen die echt scherp blijven. Heel tevreden met de kwaliteit en de snelle levering. Zeker een aanrader voor iedereen die serieus kookt.",
+            "reviewer_name": "Thomas Jansen",
+            "reviewer_meta": "Geverifieerde koper · Koksmes 20cm"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "review_text": "De pan verhit super gelijkmatig en kleeft niets aan. Perfect cadeau gehad en ik ben er erg blij mee. De verpakking was ook heel mooi.",
+            "reviewer_name": "Nathalie Smit",
+            "reviewer_meta": "Geverifieerde koper · Gietijzeren pan 26cm"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "review_text": "Super goede service, pakket snel ontvangen en alles klopte. De kwaliteit is echt top, dit is niet te vergelijken met goedkopere merken.",
+            "reviewer_name": "Mark de Boer",
+            "reviewer_meta": "Geverifieerde koper · Accessoires set"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "review_text": "Ik heb de snijplank als cadeau gekregen en ben er helemaal verliefd op. Zo mooi afgewerkt en ruikt nog lekker naar het hout. Top product!",
+            "reviewer_name": "Emma Visser",
+            "reviewer_meta": "Geverifieerde koper · Snijplank Acacia M"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

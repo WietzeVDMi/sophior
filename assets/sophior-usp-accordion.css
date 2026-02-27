@@ -1,0 +1,158 @@
+/* ============================================================
+   SOPHIOR — USP Accordeon
+   50/50 split: accordeons links, afbeelding rechts.
+   Gebruikt native <details>/<summary> — geen JS nodig voor toggle.
+   Mobile: gestapeld, accordeons boven afbeelding.
+   ============================================================ */
+
+.sophior-usp-accordion {
+  background-color: var(--sophior-cream);
+  padding: var(--sophior-space-2xl) var(--sophior-space-xl);
+}
+
+.sophior-usp-accordion__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sophior-space-2xl);
+  align-items: center;
+  max-width: var(--sophior-max-width);
+  margin: 0 auto;
+}
+
+/* ---- Tekst kant (links) ---- */
+.sophior-usp-accordion__content {}
+
+.sophior-usp-accordion__title {
+  font-family: var(--sophior-font-heading);
+  font-size: var(--sophior-text-2xl);
+  font-weight: 300;
+  color: var(--sophior-dark-green);
+  margin: 0 0 var(--sophior-space-xl);
+}
+
+.sophior-usp-accordion__items {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* ---- Individueel accordeon item (native details/summary) ---- */
+.sophior-usp-accordion__item {
+  border-bottom: 1px solid var(--sophior-light-tan);
+}
+
+.sophior-usp-accordion__item:first-child {
+  border-top: 1px solid var(--sophior-light-tan);
+}
+
+.sophior-usp-accordion__summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--sophior-space-lg) 0;
+  cursor: pointer;
+  list-style: none;
+  font-family: var(--sophior-font-body);
+  font-size: var(--sophior-text-base);
+  font-weight: 500;
+  color: var(--sophior-dark-green);
+  gap: var(--sophior-space-md);
+  user-select: none;
+}
+
+/* Verberg standaard details marker in alle browsers */
+.sophior-usp-accordion__summary::-webkit-details-marker {
+  display: none;
+}
+
+.sophior-usp-accordion__summary::marker {
+  display: none;
+}
+
+.sophior-usp-accordion__summary:hover {
+  color: var(--sophior-gold);
+}
+
+.sophior-usp-accordion__chevron {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  color: var(--sophior-gold);
+  transition: transform 0.25s ease;
+}
+
+.sophior-usp-accordion__chevron svg {
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
+}
+
+/* Chevron roteren als open */
+.sophior-usp-accordion__item[open] .sophior-usp-accordion__chevron {
+  transform: rotate(180deg);
+}
+
+.sophior-usp-accordion__answer {
+  font-family: var(--sophior-font-body);
+  font-size: var(--sophior-text-base);
+  font-weight: 300;
+  color: #4a6b60;
+  line-height: 1.65;
+  padding: 0 0 var(--sophior-space-lg);
+  max-width: 52ch;
+}
+
+/* ---- Afbeelding kant (rechts) ---- */
+.sophior-usp-accordion__media {
+  position: relative;
+  overflow: hidden;
+}
+
+.sophior-usp-accordion__image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center;
+}
+
+.sophior-usp-accordion__placeholder {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  background: linear-gradient(135deg, var(--sophior-dark-green) 0%, #1a4a3c 100%);
+}
+
+/* Goud accent blokje in hoek */
+.sophior-usp-accordion__media::after {
+  content: '';
+  position: absolute;
+  bottom: var(--sophior-space-lg);
+  left: calc(-1 * var(--sophior-space-md));
+  width: 80px;
+  height: 6px;
+  background-color: var(--sophior-gold);
+}
+
+/* ---- Mobile: gestapeld ---- */
+@media screen and (max-width: 749px) {
+  .sophior-usp-accordion {
+    padding: var(--sophior-space-xl) var(--sophior-space-md);
+  }
+
+  .sophior-usp-accordion__grid {
+    grid-template-columns: 1fr;
+    gap: var(--sophior-space-xl);
+  }
+
+  .sophior-usp-accordion__content {
+    order: 1;
+  }
+
+  .sophior-usp-accordion__media {
+    order: 2;
+  }
+
+  .sophior-usp-accordion__media::after {
+    display: none;
+  }
+}

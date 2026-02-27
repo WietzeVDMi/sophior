@@ -1,0 +1,212 @@
+/* ============================================================
+   SOPHIOR — Review Slider
+   Auto-carousel met placeholder reviews.
+   Sprint 7: vervangen door echte Judge.me widget.
+   ============================================================ */
+
+.sophior-review-slider {
+  background-color: var(--sophior-light-tan);
+  padding: var(--sophior-space-2xl) var(--sophior-space-xl);
+  overflow: hidden;
+}
+
+.sophior-review-slider__inner {
+  max-width: var(--sophior-max-width);
+  margin: 0 auto;
+}
+
+.sophior-review-slider__header {
+  text-align: center;
+  margin-bottom: var(--sophior-space-xl);
+}
+
+.sophior-review-slider__title {
+  font-family: var(--sophior-font-heading);
+  font-size: var(--sophior-text-2xl);
+  font-weight: 300;
+  color: var(--sophior-dark-green);
+  margin: 0 0 var(--sophior-space-sm);
+}
+
+.sophior-review-slider__subtitle {
+  font-family: var(--sophior-font-body);
+  font-size: var(--sophior-text-sm);
+  color: #4a6b60;
+}
+
+.sophior-review-slider__aggregate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sophior-space-sm);
+  margin-top: var(--sophior-space-sm);
+}
+
+.sophior-review-slider__aggregate-stars {
+  color: var(--sophior-gold);
+  font-size: var(--sophior-text-lg);
+}
+
+.sophior-review-slider__aggregate-text {
+  font-family: var(--sophior-font-body);
+  font-size: var(--sophior-text-sm);
+  color: var(--sophior-dark-green);
+  font-weight: 500;
+}
+
+/* ---- Track ---- */
+.sophior-review-slider__wrapper {
+  position: relative;
+}
+
+.sophior-review-slider__track {
+  display: flex;
+  gap: var(--sophior-space-lg);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.sophior-review-slider__track::-webkit-scrollbar {
+  display: none;
+}
+
+/* ---- Review kaart ---- */
+.sophior-review-slider__card {
+  flex: 0 0 calc(33.333% - 1.1rem);
+  scroll-snap-align: start;
+  background-color: var(--sophior-white);
+  padding: var(--sophior-space-xl);
+  box-shadow: 0 2px 16px rgba(13, 43, 35, 0.06);
+}
+
+.sophior-review-slider__card-stars {
+  color: var(--sophior-gold);
+  font-size: var(--sophior-text-lg);
+  margin-bottom: var(--sophior-space-md);
+  line-height: 1;
+}
+
+.sophior-review-slider__card-text {
+  font-family: var(--sophior-font-body);
+  font-size: var(--sophior-text-base);
+  font-weight: 300;
+  color: var(--sophior-dark-green);
+  line-height: 1.65;
+  margin: 0 0 var(--sophior-space-lg);
+  font-style: italic;
+}
+
+.sophior-review-slider__card-text::before {
+  content: '"';
+  font-family: var(--sophior-font-heading);
+  font-size: 2em;
+  color: var(--sophior-gold);
+  line-height: 0;
+  vertical-align: -0.3em;
+  margin-right: 0.15em;
+}
+
+.sophior-review-slider__card-author {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sophior-space-xs);
+}
+
+.sophior-review-slider__card-name {
+  font-family: var(--sophior-font-body);
+  font-size: var(--sophior-text-sm);
+  font-weight: 700;
+  color: var(--sophior-dark-green);
+}
+
+.sophior-review-slider__card-meta {
+  font-family: var(--sophior-font-body);
+  font-size: var(--sophior-text-xs);
+  color: #4a6b60;
+}
+
+/* ---- Pijlen ---- */
+.sophior-review-slider__arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: var(--sophior-white);
+  border: 1px solid var(--sophior-light-tan);
+  color: var(--sophior-dark-green);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+  transition: background-color var(--sophior-transition);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.sophior-review-slider__arrow:hover {
+  background-color: var(--sophior-dark-green);
+  color: var(--sophior-cream);
+}
+
+.sophior-review-slider__arrow svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.sophior-review-slider__arrow--prev { left: -22px; }
+.sophior-review-slider__arrow--next { right: -22px; }
+
+/* ---- Dots ---- */
+.sophior-review-slider__dots {
+  display: flex;
+  justify-content: center;
+  gap: var(--sophior-space-sm);
+  margin-top: var(--sophior-space-xl);
+  list-style: none;
+  padding: 0;
+}
+
+.sophior-review-slider__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--sophior-light-tan);
+  border: 1px solid var(--sophior-dark-green);
+  cursor: pointer;
+  padding: 0;
+  transition: background-color var(--sophior-transition);
+}
+
+.sophior-review-slider__dot--active,
+.sophior-review-slider__dot:hover {
+  background-color: var(--sophior-gold);
+  border-color: var(--sophior-gold);
+}
+
+/* ---- Mobile ---- */
+@media screen and (max-width: 749px) {
+  .sophior-review-slider {
+    padding: var(--sophior-space-xl) var(--sophior-space-md);
+  }
+
+  .sophior-review-slider__card {
+    flex: 0 0 calc(85%);
+  }
+
+  .sophior-review-slider__arrow {
+    display: none;
+  }
+}
+
+/* ---- Tablet ---- */
+@media screen and (min-width: 750px) and (max-width: 989px) {
+  .sophior-review-slider__card {
+    flex: 0 0 calc(50% - 1.2rem);
+  }
+}

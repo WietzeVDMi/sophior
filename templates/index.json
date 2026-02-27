@@ -1,210 +1,231 @@
 {
   "sections": {
-    "image_banner": {
-      "type": "image-banner",
+    "sophior-hero": {
+      "type": "sophior-hero",
+      "settings": {
+        "heading": "Premium keukenproducten voor thuiskoks",
+        "subheading": "Handgeselecteerde snijplanken, pannen en messen. Gemaakt om generaties mee te gaan.",
+        "cta_label": "Bekijk de collectie",
+        "cta_link": "/collections/all"
+      }
+    },
+    "sophior-trustbadge-bar": {
+      "type": "sophior-trustbadge-bar",
+      "settings": {
+        "icon_1": "truck",
+        "text_1": "Gratis verzending vanaf €59",
+        "icon_2": "checkmark",
+        "text_2": "30 dagen retourrecht",
+        "icon_3": "leaf",
+        "text_3": "Duurzaam geproduceerd",
+        "icon_4": "shield",
+        "text_4": "Veilig & versleuteld betalen"
+      }
+    },
+    "sophior-collections-grid": {
+      "type": "sophior-collections-grid",
       "blocks": {
-        "heading": {
-          "type": "heading",
+        "card-snijplanken": {
+          "type": "collection_card",
           "settings": {
-            "heading": "Image banner",
-            "heading_size": "h0"
+            "label": "Snijplanken"
           }
         },
-        "text": {
-          "type": "text",
+        "card-pannen": {
+          "type": "collection_card",
           "settings": {
-            "text": "Give customers details about the banner image(s) or content on the template.",
-            "text_style": "body"
+            "label": "Pannen"
           }
         },
-        "button": {
-          "type": "buttons",
+        "card-messen": {
+          "type": "collection_card",
           "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
+            "label": "Messen"
+          }
+        },
+        "card-accessoires": {
+          "type": "collection_card",
+          "settings": {
+            "label": "Accessoires"
           }
         }
       },
       "block_order": [
-        "heading",
-        "text",
-        "button"
+        "card-snijplanken",
+        "card-pannen",
+        "card-messen",
+        "card-accessoires"
       ],
       "settings": {
-        "image_overlay_opacity": 40,
-        "image_height": "large",
-        "desktop_content_position": "bottom-center",
-        "show_text_box": false,
-        "desktop_content_alignment": "center",
-        "color_scheme": "scheme-3",
-        "mobile_content_alignment": "center",
-        "stack_images_on_mobile": false,
-        "show_text_below": false
+        "title": "Onze collecties",
+        "cta_label": "Bekijk collectie"
       }
     },
-    "rich_text": {
-      "type": "rich-text",
-      "blocks": {
-        "heading": {
-          "type": "heading",
-          "settings": {
-            "heading": "Talk about your brand",
-            "heading_size": "h1"
-          }
-        },
-        "text": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.<\/p>"
-          }
-        }
-      },
-      "block_order": [
-        "heading",
-        "text"
-      ],
+    "sophior-bestsellers": {
+      "type": "sophior-bestsellers",
       "settings": {
-        "color_scheme": "scheme-1",
-        "full_width": true,
-        "padding_top": 40,
-        "padding_bottom": 0
-      }
-    },
-    "featured_collection": {
-      "type": "featured-collection",
-      "settings": {
-        "title": "Featured products",
-        "heading_size": "h2",
-        "collection": "all",
+        "title": "Onze bestsellers",
         "products_to_show": 8,
-        "columns_desktop": 4,
-        "color_scheme": "scheme-1",
-        "show_view_all": false,
-        "swipe_on_mobile": false,
-        "image_ratio": "adapt",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "columns_mobile": "2",
-        "padding_top": 28,
-        "padding_bottom": 36
+        "view_all_label": "Alle bestsellers"
       }
     },
-    "collage": {
-      "type": "collage",
+    "sophior-usp-accordion": {
+      "type": "sophior-usp-accordion",
       "blocks": {
-        "collection-0": {
-          "type": "collection",
+        "usp-1": {
+          "type": "accordion_item",
           "settings": {
-            "collection": ""
+            "question": "Waarom kiezen voor SOPHIOR?",
+            "answer": "SOPHIOR combineert ambacht en design. Elk product is zorgvuldig geselecteerd op duurzaamheid, gebruiksgemak en uitstraling — voor thuiskoks die kwaliteit serieus nemen."
           }
         },
-        "product": {
-          "type": "product",
+        "usp-2": {
+          "type": "accordion_item",
           "settings": {
-            "product": "",
-            "second_image": false
+            "question": "Van welke materialen zijn jullie producten gemaakt?",
+            "answer": "We werken uitsluitend met premium materialen: RVS 18/10, acaciahout FSC-gecertificeerd en gehard glas. Elk materiaal is geselecteerd op levensduur en hygiëne."
           }
         },
-        "collection-1": {
-          "type": "collection",
+        "usp-3": {
+          "type": "accordion_item",
           "settings": {
-            "collection": ""
+            "question": "Hoe lang gaan SOPHIOR producten mee?",
+            "answer": "Met de juiste verzorging gaan onze snijplanken en messen jaren mee. We bieden bij elk product onderhoudsinstructies en bijpassende beschermingsproducten."
+          }
+        },
+        "usp-4": {
+          "type": "accordion_item",
+          "settings": {
+            "question": "Zijn jullie producten vaatwasmachinebestendig?",
+            "answer": "We raden handwassen aan voor onze houten producten. RVS producten zijn vaatwasmachinebestendig. Details per product zijn te vinden op de productpagina."
+          }
+        },
+        "usp-5": {
+          "type": "accordion_item",
+          "settings": {
+            "question": "Bieden jullie gratis verzending?",
+            "answer": "Ja! Bij bestellingen vanaf €59 verzenden we gratis. Bestellingen geplaatst voor 15:00 worden dezelfde dag verzonden (werkdagen)."
           }
         }
       },
-      "block_order": [
-        "collection-0",
-        "product",
-        "collection-1"
-      ],
+      "block_order": ["usp-1", "usp-2", "usp-3", "usp-4", "usp-5"],
       "settings": {
-        "heading": "Multimedia collage",
-        "heading_size": "h2",
-        "desktop_layout": "left",
-        "mobile_layout": "collage",
-        "color_scheme": "scheme-1",
-        "padding_top": 36,
-        "padding_bottom": 36
+        "title": "Waarom SOPHIOR?"
       }
     },
-    "video": {
-      "type": "video",
-      "settings": {
-        "heading": "",
-        "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
-        "heading_size": "h1",
-        "description": "",
-        "full_width": false,
-        "color_scheme": "scheme-1",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
-    "multicolumn": {
-      "type": "multicolumn",
+    "sophior-review-slider": {
+      "type": "sophior-review-slider",
       "blocks": {
-        "column1": {
-          "type": "column",
+        "review-1": {
+          "type": "review",
           "settings": {
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
-            "link_label": "",
-            "link": ""
+            "rating": 5,
+            "review_text": "De snijplank van SOPHIOR is prachtig. Zwaar, stabiel en ziet er fantastisch uit in mijn keuken. Al 6 maanden elke dag in gebruik en hij ziet er nog als nieuw uit.",
+            "reviewer_name": "Lisa van den Berg",
+            "reviewer_meta": "Geverifieerde koper · Snijplank Walnoot L"
           }
         },
-        "column2": {
-          "type": "column",
+        "review-2": {
+          "type": "review",
           "settings": {
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
-            "link_label": "",
-            "link": ""
+            "rating": 5,
+            "review_text": "Eindelijk messen die echt scherp blijven. Heel tevreden met de kwaliteit en de snelle levering. Zeker een aanrader voor iedereen die serieus kookt.",
+            "reviewer_name": "Thomas Jansen",
+            "reviewer_meta": "Geverifieerde koper · Koksmes 20cm"
           }
         },
-        "column3": {
-          "type": "column",
+        "review-3": {
+          "type": "review",
           "settings": {
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
-            "link_label": "",
-            "link": ""
+            "rating": 5,
+            "review_text": "De pan verhit super gelijkmatig en kleeft niets aan. Perfect cadeau gehad en ik ben er erg blij mee. De verpakking was ook heel mooi.",
+            "reviewer_name": "Nathalie Smit",
+            "reviewer_meta": "Geverifieerde koper · Gietijzeren pan 26cm"
+          }
+        },
+        "review-4": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "review_text": "Super goede service, pakket snel ontvangen en alles klopte. De kwaliteit is echt top, dit is niet te vergelijken met goedkopere merken.",
+            "reviewer_name": "Mark de Boer",
+            "reviewer_meta": "Geverifieerde koper · Accessoires set"
+          }
+        },
+        "review-5": {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "review_text": "Ik heb de snijplank als cadeau gekregen en ben er helemaal verliefd op. Zo mooi afgewerkt en ruikt nog lekker naar het hout. Top product!",
+            "reviewer_name": "Emma Visser",
+            "reviewer_meta": "Geverifieerde koper · Snijplank Acacia M"
           }
         }
       },
-      "block_order": [
-        "column1",
-        "column2",
-        "column3"
-      ],
+      "block_order": ["review-1", "review-2", "review-3", "review-4", "review-5"],
       "settings": {
-        "title": "",
-        "heading_size": "h1",
-        "image_width": "third",
-        "image_ratio": "adapt",
-        "columns_desktop": 3,
-        "column_alignment": "center",
-        "background_style": "none",
-        "button_label": "",
-        "button_link": "",
-        "swipe_on_mobile": false,
-        "color_scheme": "scheme-1",
-        "columns_mobile": "1",
-        "padding_top": 36,
-        "padding_bottom": 36
+        "title": "Wat onze klanten zeggen",
+        "aggregate_text": "4.9 / 5 — gebaseerd op 124 reviews",
+        "autoplay_interval": 5000
       }
+    },
+    "sophior-blog-preview": {
+      "type": "sophior-blog-preview",
+      "settings": {
+        "title": "Kookgidsen & Inspiratie",
+        "cta_label": "Alle gidsen",
+        "cta_link": "/blogs/gidsen",
+        "read_more_label": "Lees meer"
+      }
+    },
+    "sophior-trustbar-footer": {
+      "type": "sophior-trustbar-footer",
+      "blocks": {
+        "trust-1": {
+          "type": "trust_item",
+          "settings": {
+            "icon": "truck",
+            "title": "Gratis verzending",
+            "text": "Vanaf €59 gratis verzending in Nederland"
+          }
+        },
+        "trust-2": {
+          "type": "trust_item",
+          "settings": {
+            "icon": "return",
+            "title": "30 dagen retour",
+            "text": "Niet tevreden? Gratis retourneren binnen 30 dagen"
+          }
+        },
+        "trust-3": {
+          "type": "trust_item",
+          "settings": {
+            "icon": "card",
+            "title": "Veilig betalen",
+            "text": "iDEAL, creditcard, Klarna en meer"
+          }
+        },
+        "trust-4": {
+          "type": "trust_item",
+          "settings": {
+            "icon": "headset",
+            "title": "Klantenservice",
+            "text": "Ma–vr 9:00–17:00 bereikbaar"
+          }
+        }
+      },
+      "block_order": ["trust-1", "trust-2", "trust-3", "trust-4"],
+      "settings": {}
     }
   },
   "order": [
-    "image_banner",
-    "rich_text",
-    "featured_collection",
-    "collage",
-    "video",
-    "multicolumn"
+    "sophior-hero",
+    "sophior-trustbadge-bar",
+    "sophior-collections-grid",
+    "sophior-bestsellers",
+    "sophior-usp-accordion",
+    "sophior-review-slider",
+    "sophior-blog-preview",
+    "sophior-trustbar-footer"
   ]
 }

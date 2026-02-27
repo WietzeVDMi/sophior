@@ -295,6 +295,129 @@
         }
       }
     },
+    "sophior-hero": {
+      "name": "SOPHIOR Hero",
+      "settings": {
+        "heading": { "label": "Hoofdtitel (H1)" },
+        "subheading": { "label": "Subtitel" },
+        "cta_label": { "label": "Knoptekst" },
+        "cta_link": { "label": "Knoplink" },
+        "image": { "label": "Hero afbeelding (rechts)" }
+      }
+    },
+    "sophior-trustbadge-bar": {
+      "name": "SOPHIOR Trustbadge Bar",
+      "settings": {
+        "header_item1": { "content": "USP item 1" },
+        "header_item2": { "content": "USP item 2" },
+        "header_item3": { "content": "USP item 3" },
+        "header_item4": { "content": "USP item 4" },
+        "icon": { "label": "Icoon" },
+        "text": { "label": "Tekst" }
+      }
+    },
+    "sophior-collections-grid": {
+      "name": "SOPHIOR Collecties Grid",
+      "settings": {
+        "title": { "label": "Sectietitel" },
+        "cta_label": { "label": "CTA-tekst op kaart" }
+      },
+      "blocks": {
+        "collection_card": {
+          "name": "Collectie kaart",
+          "settings": {
+            "collection": { "label": "Collectie" },
+            "label": {
+              "label": "Label (override)",
+              "info": "Laat leeg om de collectienaam te gebruiken"
+            },
+            "image": {
+              "label": "Afbeelding (override)",
+              "info": "Laat leeg om de collectie-afbeelding te gebruiken"
+            }
+          }
+        }
+      }
+    },
+    "sophior-bestsellers": {
+      "name": "SOPHIOR Bestseller Slider",
+      "prev": "Vorige producten",
+      "next": "Volgende producten",
+      "add_to_cart": "Voeg toe",
+      "quick_add": "Voeg {{ title }} toe aan winkelwagen",
+      "settings": {
+        "title": { "label": "Sectietitel" },
+        "collection": {
+          "label": "Collectie",
+          "info": "Laat leeg om 'bestsellers' collectie te gebruiken"
+        },
+        "products_to_show": { "label": "Aantal producten" },
+        "view_all_label": { "label": "\"Alles bekijken\" tekst" }
+      }
+    },
+    "sophior-usp-accordion": {
+      "name": "SOPHIOR USP Accordeon",
+      "settings": {
+        "title": { "label": "Sectietitel" },
+        "image": { "label": "Afbeelding (rechts)" }
+      },
+      "blocks": {
+        "accordion_item": {
+          "name": "Accordeon item",
+          "settings": {
+            "question": { "label": "Vraag / titel" },
+            "answer": { "label": "Antwoord / tekst" }
+          }
+        }
+      }
+    },
+    "sophior-review-slider": {
+      "name": "SOPHIOR Review Slider",
+      "prev": "Vorige reviews",
+      "next": "Volgende reviews",
+      "navigation": "Review navigatie",
+      "dot": "Ga naar review {{ index }}",
+      "settings": {
+        "title": { "label": "Sectietitel" },
+        "aggregate_text": { "label": "Samengevatte beoordeling tekst" },
+        "autoplay_interval": { "label": "Auto-play interval" },
+        "sprint7_notice": { "content": "⚠️ Deze reviews zijn tijdelijke placeholders. In Sprint 7 worden ze vervangen door echte Judge.me reviews." }
+      },
+      "blocks": {
+        "review": {
+          "name": "Review",
+          "settings": {
+            "rating": { "label": "Beoordeling (sterren)" },
+            "review_text": { "label": "Reviewtekst" },
+            "reviewer_name": { "label": "Naam reviewer" },
+            "reviewer_meta": { "label": "Meta (bijv. product + verificatie)" }
+          }
+        }
+      }
+    },
+    "sophior-blog-preview": {
+      "name": "SOPHIOR Blog Preview",
+      "settings": {
+        "title": { "label": "Sectietitel" },
+        "blog": { "label": "Blog" },
+        "cta_label": { "label": "\"Alles bekijken\" tekst" },
+        "cta_link": { "label": "\"Alles bekijken\" link" },
+        "read_more_label": { "label": "\"Lees meer\" tekst" }
+      }
+    },
+    "sophior-trustbar-footer": {
+      "name": "SOPHIOR Trustbar Pre-Footer",
+      "blocks": {
+        "trust_item": {
+          "name": "Trust item",
+          "settings": {
+            "icon": { "label": "Icoon" },
+            "title": { "label": "Titel" },
+            "text": { "label": "Ondertekst" }
+          }
+        }
+      }
+    },
     "sophior-footer": {
       "name": "SOPHIOR Footer",
       "newsletter_label": "Schrijf je in voor onze nieuwsbrief",

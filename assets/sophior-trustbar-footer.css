@@ -1,0 +1,101 @@
+/* ============================================================
+   SOPHIOR — Pre-Footer Trustbar
+   4 kolommen: Verzending | Retour | Betaling | Support
+   Desktop: 4 kolommen flex | Mobile: 2×2 grid
+   ============================================================ */
+
+.sophior-trustbar-footer {
+  background-color: var(--sophior-cream);
+  border-top: 1px solid var(--sophior-light-tan);
+  border-bottom: 1px solid var(--sophior-light-tan);
+  padding: var(--sophior-space-2xl) var(--sophior-space-xl);
+}
+
+.sophior-trustbar-footer__grid {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--sophior-space-xl);
+  max-width: var(--sophior-max-width);
+  margin: 0 auto;
+}
+
+/* ---- Kolom ---- */
+.sophior-trustbar-footer__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  flex: 1;
+  gap: var(--sophior-space-md);
+}
+
+.sophior-trustbar-footer__icon {
+  width: 48px;
+  height: 48px;
+  color: var(--sophior-dark-green);
+  flex-shrink: 0;
+}
+
+.sophior-trustbar-footer__icon svg {
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
+}
+
+/* Goud accent lijn onder icoon */
+.sophior-trustbar-footer__icon::after {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 2px;
+  background-color: var(--sophior-gold);
+  margin: var(--sophior-space-sm) auto 0;
+}
+
+.sophior-trustbar-footer__text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sophior-space-xs);
+}
+
+.sophior-trustbar-footer__item-title {
+  font-family: var(--sophior-font-body);
+  font-size: var(--sophior-text-base);
+  font-weight: 700;
+  color: var(--sophior-dark-green);
+  margin: 0;
+}
+
+.sophior-trustbar-footer__item-text {
+  font-family: var(--sophior-font-body);
+  font-size: var(--sophior-text-sm);
+  font-weight: 300;
+  color: #4a6b60;
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* Scheidingslijn tussen kolommen */
+.sophior-trustbar-footer__item + .sophior-trustbar-footer__item {
+  padding-left: var(--sophior-space-xl);
+  border-left: 1px solid var(--sophior-light-tan);
+}
+
+/* ---- Mobile: 2×2 ---- */
+@media screen and (max-width: 749px) {
+  .sophior-trustbar-footer {
+    padding: var(--sophior-space-xl) var(--sophior-space-md);
+  }
+
+  .sophior-trustbar-footer__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--sophior-space-xl) var(--sophior-space-md);
+  }
+
+  .sophior-trustbar-footer__item + .sophior-trustbar-footer__item {
+    padding-left: 0;
+    border-left: none;
+  }
+}

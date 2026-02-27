@@ -1,0 +1,131 @@
+{{ 'sophior-blog-preview.css' | asset_url | stylesheet_tag }}
+
+{%- comment -%}
+  Laad de blog op basis van de schema-instelling.
+  Fallback: eerste beschikbare blog.
+{%- endcomment -%}
+{%- if section.settings.blog != blank -%}
+  {%- assign preview_blog = blogs[section.settings.blog] -%}
+{%- endif -%}
+{%- if preview_blog == blank -%}
+  {%- assign preview_blog = blogs.first -%}
+{%- endif -%}
+
+<div class="sophior-blog-preview">
+  <div class="sophior-blog-preview__inner">
+
+    <div class="sophior-blog-preview__header">
+      <h2 class="sophior-blog-preview__title">{{ section.settings.title }}</h2>
+      {%- if section.settings.cta_link != blank -%}
+        <a href="{{ section.settings.cta_link }}" class="sophior-blog-preview__view-all">
+          {{ section.settings.cta_label | default: 'Alle gidsen' }}
+        </a>
+      {%- endif -%}
+    </div>
+
+    <div class="sophior-blog-preview__grid">
+      {%- if preview_blog != blank and preview_blog.articles.size > 0 -%}
+        {%- for article in preview_blog.articles limit: 3 -%}
+          <a
+            href="{{ article.url }}"
+            class="sophior-blog-preview__card"
+            aria-label="{{ article.title | escape }}"
+          >
+            <div class="sophior-blog-preview__card-media">
+              {%- if article.image != blank -%}
+                {{
+                  article.image
+                  | image_url: width: 800
+                  | image_tag:
+                    class: 'sophior-blog-preview__card-image',
+                    loading: 'lazy',
+                    alt: article.image.alt | default: article.title | escape,
+                    widths: '400, 600, 800',
+                    sizes: '(max-width: 749px) 100vw, (max-width: 989px) 50vw, 33vw'
+                }}
+              {%- else -%}
+                <div class="sophior-blog-preview__card-placeholder" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+                </div>
+              {%- endif -%}
+              <span class="sophior-blog-preview__card-category" aria-hidden="true">
+                {{ preview_blog.title }}
+              </span>
+            </div>
+
+            <div class="sophior-blog-preview__card-body">
+              <h3 class="sophior-blog-preview__card-title">{{ article.title }}</h3>
+              <p class="sophior-blog-preview__card-excerpt">
+                {{ article.excerpt_or_content | strip_html | truncate: 120 }}
+              </p>
+              <span class="sophior-blog-preview__card-link" aria-hidden="true">
+                {{ section.settings.read_more_label | default: 'Lees meer' }} →
+              </span>
+            </div>
+          </a>
+        {%- endfor -%}
+      {%- else -%}
+        {%- comment -%} Placeholder kaarten als er nog geen artikelen zijn {%- endcomment -%}
+        {%- for i in (1..3) -%}
+          <div class="sophior-blog-preview__card" aria-hidden="true">
+            <div class="sophior-blog-preview__card-media">
+              <div class="sophior-blog-preview__card-placeholder">
+                <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+              </div>
+              <span class="sophior-blog-preview__card-category">Gidsen</span>
+            </div>
+            <div class="sophior-blog-preview__card-body">
+              <h3 class="sophior-blog-preview__card-title">Artikeltitel volgt binnenkort</h3>
+              <p class="sophior-blog-preview__card-excerpt">Hier komt binnenkort een gids over SOPHIOR producten.</p>
+              <span class="sophior-blog-preview__card-link">Lees meer →</span>
+            </div>
+          </div>
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Blog Preview",
+  "tag": "div",
+  "class": "sophior-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "t:sections.sophior-blog-preview.settings.title.label",
+      "default": "Kookgidsen & Inspiratie"
+    },
+    {
+      "type": "blog",
+      "id": "blog",
+      "label": "t:sections.sophior-blog-preview.settings.blog.label"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "t:sections.sophior-blog-preview.settings.cta_label.label",
+      "default": "Alle gidsen"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "t:sections.sophior-blog-preview.settings.cta_link.label"
+    },
+    {
+      "type": "text",
+      "id": "read_more_label",
+      "label": "t:sections.sophior-blog-preview.settings.read_more_label.label",
+      "default": "Lees meer"
+    }
+  ],
+  "presets": [
+    {
+      "name": "SOPHIOR Blog Preview"
+    }
+  ]
+}
+{% endschema %}

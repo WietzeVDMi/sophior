@@ -1,0 +1,136 @@
+{{ 'sophior-usp-accordion.css' | asset_url | stylesheet_tag }}
+
+<div class="sophior-usp-accordion">
+  <div class="sophior-usp-accordion__grid">
+
+    {%- comment -%} Links: titel + accordeon items {%- endcomment -%}
+    <div class="sophior-usp-accordion__content">
+      <h2 class="sophior-usp-accordion__title">{{ section.settings.title }}</h2>
+
+      <div class="sophior-usp-accordion__items">
+        {%- for block in section.blocks -%}
+          {%- if block.settings.question != blank -%}
+            <details
+              class="sophior-usp-accordion__item"
+              {% if forloop.first %}open{% endif %}
+              {{ block.shopify_attributes }}
+            >
+              <summary class="sophior-usp-accordion__summary">
+                {{ block.settings.question }}
+                <span class="sophior-usp-accordion__chevron" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+                </span>
+              </summary>
+              {%- if block.settings.answer != blank -%}
+                <p class="sophior-usp-accordion__answer">{{ block.settings.answer }}</p>
+              {%- endif -%}
+            </details>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+
+    {%- comment -%} Rechts: afbeelding {%- endcomment -%}
+    <div class="sophior-usp-accordion__media">
+      {%- if section.settings.image != blank -%}
+        {{
+          section.settings.image
+          | image_url: width: 800
+          | image_tag:
+            class: 'sophior-usp-accordion__image',
+            loading: 'lazy',
+            alt: section.settings.title | escape,
+            widths: '400, 600, 800',
+            sizes: '(max-width: 749px) 100vw, 50vw'
+        }}
+      {%- else -%}
+        <div class="sophior-usp-accordion__placeholder" aria-hidden="true"></div>
+      {%- endif -%}
+    </div>
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "USP Accordeon",
+  "tag": "div",
+  "class": "sophior-section",
+  "max_blocks": 5,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "t:sections.sophior-usp-accordion.settings.title.label",
+      "default": "Waarom SOPHIOR?"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:sections.sophior-usp-accordion.settings.image.label"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "accordion_item",
+      "name": "Accordeon item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "t:sections.sophior-usp-accordion.blocks.accordion_item.settings.question.label",
+          "default": "Waarom kiezen voor SOPHIOR?"
+        },
+        {
+          "type": "textarea",
+          "id": "answer",
+          "label": "t:sections.sophior-usp-accordion.blocks.accordion_item.settings.answer.label",
+          "default": "SOPHIOR combineert ambacht en design. Elk product is zorgvuldig geselecteerd op duurzaamheid, gebruiksgemak en uitstraling."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "SOPHIOR USP Accordeon",
+      "blocks": [
+        {
+          "type": "accordion_item",
+          "settings": {
+            "question": "Waarom kiezen voor SOPHIOR?",
+            "answer": "SOPHIOR combineert ambacht en design. Elk product is zorgvuldig geselecteerd op duurzaamheid, gebruiksgemak en uitstraling — voor thuiskoks die kwaliteit serieus nemen."
+          }
+        },
+        {
+          "type": "accordion_item",
+          "settings": {
+            "question": "Van welke materialen zijn jullie producten gemaakt?",
+            "answer": "We werken uitsluitend met premium materialen: RVS 18/10, acaciahout FSC-gecertificeerd en gehard glas. Elk materiaal is geselecteerd op levensduur en hygiëne."
+          }
+        },
+        {
+          "type": "accordion_item",
+          "settings": {
+            "question": "Hoe lang gaan SOPHIOR producten mee?",
+            "answer": "Met de juiste verzorging gaan onze snijplanken en messen jaren mee. We bieden bij elk product onderhoudsinstructies en bijpassende beschermingsproducten."
+          }
+        },
+        {
+          "type": "accordion_item",
+          "settings": {
+            "question": "Zijn jullie producten vaatwasmachinebestendig?",
+            "answer": "We raden handwassen aan voor onze houten producten. RVS producten zijn vaatwasmachinebestendig. Details per product zijn te vinden op de productpagina."
+          }
+        },
+        {
+          "type": "accordion_item",
+          "settings": {
+            "question": "Bieden jullie gratis verzending?",
+            "answer": "Ja! Bij bestellingen vanaf €59 verzenden we gratis. Bestellingen geplaatst voor 15:00 worden dezelfde dag verzonden (werkdagen)."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

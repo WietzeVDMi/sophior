@@ -1,0 +1,120 @@
+{{ 'sophior-collections-grid.css' | asset_url | stylesheet_tag }}
+
+{%- assign default_labels = 'Snijplanken,Pannen,Messen,Accessoires' | split: ',' -%}
+{%- assign default_handles = 'snijplanken,pannen,messen,accessoires' | split: ',' -%}
+{%- assign default_cta = section.settings.cta_label | default: 'Bekijk collectie' -%}
+
+<div class="sophior-collections-grid">
+
+  {%- if section.settings.title != blank -%}
+    <div class="sophior-collections-grid__header">
+      <h2 class="sophior-collections-grid__title">{{ section.settings.title }}</h2>
+    </div>
+  {%- endif -%}
+
+  <div class="sophior-collections-grid__grid">
+    {%- for block in section.blocks -%}
+      {%- assign col_index = forloop.index0 -%}
+      {%- assign fallback_label = default_labels[col_index] -%}
+      {%- assign fallback_handle = default_handles[col_index] -%}
+
+      {%- if block.settings.collection != blank -%}
+        {%- assign col = collections[block.settings.collection] -%}
+        {%- assign col_url = col.url -%}
+        {%- assign col_label = block.settings.label | default: col.title | default: fallback_label -%}
+        {%- assign col_image = block.settings.image | default: col.image -%}
+      {%- else -%}
+        {%- assign col_url = '/collections/' | append: fallback_handle -%}
+        {%- assign col_label = block.settings.label | default: fallback_label -%}
+        {%- assign col_image = block.settings.image -%}
+      {%- endif -%}
+
+      <a
+        href="{{ col_url }}"
+        class="sophior-collections-grid__card"
+        aria-label="{{ col_label | escape }}"
+        {{ block.shopify_attributes }}
+      >
+        {%- if col_image != blank -%}
+          {{
+            col_image
+            | image_url: width: 600
+            | image_tag:
+              class: 'sophior-collections-grid__card-image',
+              loading: 'lazy',
+              alt: col_label | escape,
+              widths: '300, 400, 600',
+              sizes: '(max-width: 749px) 50vw, 25vw'
+          }}
+        {%- else -%}
+          <div class="sophior-collections-grid__card-placeholder" aria-hidden="true"></div>
+        {%- endif -%}
+
+        <div class="sophior-collections-grid__card-overlay">
+          <span class="sophior-collections-grid__card-label">{{ col_label }}</span>
+          <span class="sophior-collections-grid__card-cta">{{ default_cta }}</span>
+        </div>
+      </a>
+    {%- endfor -%}
+  </div>
+
+</div>
+
+{% schema %}
+{
+  "name": "Collecties Grid",
+  "tag": "div",
+  "class": "sophior-section",
+  "max_blocks": 4,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "t:sections.sophior-collections-grid.settings.title.label",
+      "default": "Onze collecties"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "t:sections.sophior-collections-grid.settings.cta_label.label",
+      "default": "Bekijk collectie"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection_card",
+      "name": "Collectie kaart",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "t:sections.sophior-collections-grid.blocks.collection_card.settings.collection.label"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "t:sections.sophior-collections-grid.blocks.collection_card.settings.label.label",
+          "info": "t:sections.sophior-collections-grid.blocks.collection_card.settings.label.info"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:sections.sophior-collections-grid.blocks.collection_card.settings.image.label",
+          "info": "t:sections.sophior-collections-grid.blocks.collection_card.settings.image.info"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "SOPHIOR Collecties Grid",
+      "blocks": [
+        { "type": "collection_card", "settings": { "label": "Snijplanken" } },
+        { "type": "collection_card", "settings": { "label": "Pannen" } },
+        { "type": "collection_card", "settings": { "label": "Messen" } },
+        { "type": "collection_card", "settings": { "label": "Accessoires" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
