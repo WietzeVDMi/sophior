@@ -51,6 +51,36 @@
   background: linear-gradient(135deg, var(--sophior-dark-green) 0%, var(--sophior-mid-green) 100%);
 }
 
+/* ---- Badge ---- */
+.sophior-product-card__badge {
+  position: absolute;
+  top: var(--sophior-space-sm, 0.6rem);
+  left: var(--sophior-space-sm, 0.6rem);
+  z-index: 1;
+  font-family: var(--sophior-font-body);
+  font-size: var(--sophior-text-xs, 0.75rem);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.25em 0.6em;
+  pointer-events: none;
+}
+
+.sophior-product-card__badge--bestseller {
+  background-color: var(--sophior-gold);
+  color: var(--sophior-dark-green);
+}
+
+.sophior-product-card__badge--nieuw {
+  background-color: var(--sophior-dark-green);
+  color: var(--sophior-cream);
+}
+
+.sophior-product-card__badge--sale {
+  background-color: var(--sophior-light-gold);
+  color: var(--sophior-dark-green);
+}
+
 /* ---- Quick-add knop ---- */
 .sophior-product-card__quick-add {
   position: absolute;

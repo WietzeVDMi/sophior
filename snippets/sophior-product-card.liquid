@@ -33,6 +33,13 @@
     data-product-handle="{{ card_product.handle }}"
   >
     <div class="sophior-product-card__media">
+      {%- if card_product.tags contains 'bestseller' -%}
+        <span class="sophior-product-card__badge sophior-product-card__badge--bestseller">Bestseller</span>
+      {%- elsif card_product.tags contains 'nieuw' -%}
+        <span class="sophior-product-card__badge sophior-product-card__badge--nieuw">Nieuw</span>
+      {%- elsif card_product.compare_at_price > card_product.price -%}
+        <span class="sophior-product-card__badge sophior-product-card__badge--sale">Sale</span>
+      {%- endif -%}
       <a
         href="{{ card_product.url }}"
         class="sophior-product-card__image-link"

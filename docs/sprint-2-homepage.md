@@ -122,3 +122,18 @@ Footer              (globaal — Sprint 1)
 ## Deliverable
 
 Homepage volledig functioneel op desktop + mobile, live op staging.
+
+---
+
+## Noot: Stabilisatie sprint
+
+Na Sprint 2 is een **Stabilisatie sprint** uitgevoerd (niet in de originele planning voorzien) om de code-kwaliteit van Sprint 0–2 op het juiste niveau te brengen vóór verdere uitbouw. Dit omvatte:
+
+- CSS design tokens uitgebreid (opacity-varianten, mid-green, breakpoint-vars)
+- Hardcoded rgba-waarden vervangen door `var(--sophior-*)` in 10 CSS-bestanden
+- Schema-vertalingen toegevoegd aan `nl.schema.json` + `en.default.schema.json`
+- Liquid hardcoded teksten vervangen door schema-settings + `t:` locale keys
+- CSS cleanup: lege rulesets verwijderd, `focus-visible` toegevoegd
+- Section contracts en playground-template aangemaakt
+
+Zie: [`docs/PLAN.md`](../docs/PLAN.md) Sprint 3 | [`docs/SPRINT_3_STABILIZATION.md`](../docs/SPRINT_3_STABILIZATION.md)

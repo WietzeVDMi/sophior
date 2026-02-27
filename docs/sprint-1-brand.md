@@ -16,10 +16,11 @@ Alle brand-elementen implementeren + header, footer en announcement bar live op 
 
 ## Wacht op klant
 
-- [ ] Nevolasty .woff2 fontbestand + weblicentie bevestiging
-- [ ] Logo SVG + PNG (wordmark + symbool) in zwart en wit
+- [x] Nevolasty font — `.otf` bestand gevonden in `font_logo/`, zelf gehosted via `@font-face` als Nevolasty-Light
+- [ ] Nevolasty commerciële weblicentie bevestiging ← **klant**
+- [x] Logo SVG's gegenereerd uit `.ai` bestand: `assets/sophior-logo-dark.svg` + `assets/sophior-logo-light.svg`
 
-> Tijdelijke placeholders: Playfair Display (i.p.v. Nevolasty), SVG-placeholder logo
+> Font is operationeel; licentie-bevestiging vereist vóór go-live.
 
 ---
 

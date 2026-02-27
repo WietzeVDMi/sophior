@@ -50,10 +50,11 @@ Trust bar                   ← herhaling 3 USPs
 - [ ] Per item: afbeelding, titel, varianten, prijs, qty selector, verwijder knop
 - [ ] AJAX qty update + verwijder (geen pagina refresh)
 
-**Add-on upsell:**
+**Add-on upsell** ← _uitgesteld vanuit Sprint 4_:
 - [ ] Conditioneel tonen op basis van `product.type` in cart
-- [ ] Add-on product ophalen via `custom.addon_product` metafield
+- [ ] Add-on product ophalen via `custom.addon_product` metafield (zie [docs/metafields.md](../docs/metafields.md))
 - [ ] "Voeg toe voor €X.XX" knop (AJAX)
+- [ ] Logica: snijplank → Onderhoudsolie | pan → Panbeschermers | mes → Mesbeschermer
 
 **Totaal + Checkout:**
 - [ ] Subtotaal tonen

@@ -66,12 +66,17 @@ Dit werkt omdat `product.type` overeenkomt met de blog handle (bijv. `snijplank`
 - [ ] Sociale deelknoppen (link kopiëren / WhatsApp / Facebook)
 - [ ] "Gerelateerde artikelen" sectie (3 artikelen uit zelfde blog)
 
-### Blog Preview op PDP (Sprint 4 sectie activeren)
-- [ ] `sections/sophior-product-guides.liquid` (aangemaakt Sprint 4) werkt via:
+### PDP Gidsen sectie — `sections/sophior-product-guides.liquid` ← _uitgesteld vanuit Sprint 4_
+- [ ] Nieuwe section: max 3 gids-artikelen gefilterd op `blog.handle == product.type`
+- [ ] Kaart: afbeelding + categorie label + titel + excerpt + link
+- [ ] Sectie verborgen als geen artikelen beschikbaar
+- [ ] Werkt via:
   ```liquid
   {% assign product_blog = blogs[product.type] %}
+  {% for article in product_blog.articles limit: 3 %}
   ```
 - [ ] Testen met testproducten van elk type
+- [ ] Toevoegen aan `templates/product.json` na reviews-sectie
 
 ### Blog Preview op Homepage (Sprint 2 sectie activeren)
 - [ ] `sections/sophior-blog-preview.liquid` (aangemaakt Sprint 2) toont 3 meest recente artikelen
@@ -79,6 +84,13 @@ Dit werkt omdat `product.type` overeenkomt met de blog handle (bijv. `snijplank`
 
 ---
 
+### Categorie SEO-tekstblok — `sections/sophior-collection-seo-text.liquid` ← _uitgesteld vanuit Sprint 3_
+- [ ] Bewerkbaar SEO tekst blok onderaan de categoriepagina
+- [ ] Schema: SEO-tekst per collectie instelling bewerkbaar
+- [ ] Toevoegen aan `templates/collection.json` na product-grid
+
+---
+
 ## Deliverable
 
-Alle 5 blogs live. Blog overzichtspagina + artikel template werkend. Filtering op PDP en homepage werkt.
+Alle 5 blogs live. Blog overzichtspagina + artikel template werkend. PDP gidsen sectie actief. Categorie SEO-tekstblok live. Filtering op PDP en homepage werkt.

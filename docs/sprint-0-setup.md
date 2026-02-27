@@ -1,6 +1,6 @@
 # Sprint 0 — Setup & Fundament
 
-**Status:** ✅ Bijna klaar — alleen Shopify auth + staging thema nog
+**Status:** ✅ Klaar
 **Duur:** 1–2 dagen
 **Branch:** `feature/sprint-0-setup`
 
@@ -67,9 +67,9 @@ SHOPIFY_CLI_PARTNERS_TOKEN=
 
 ### Shopify setup
 - [x] Dawn thema gecloned in `theme/` (shallow clone van `Shopify/dawn`)
-- [ ] `docker compose up` testen — preview op localhost:9292 bevestigen ← **jij**
-- [ ] Staging thema aanmaken in Shopify Admin (separaat van live thema) ← **jij**
-- [ ] Shopify Partners token ophalen + invullen in `.env` ← **jij**
+- [x] `docker compose up` testen — preview op localhost:9292 bevestigd
+- [x] Staging thema aangemaakt in Shopify Admin
+- [x] Shopify Partners token ingevuld in `.env`
 
 ---
 
