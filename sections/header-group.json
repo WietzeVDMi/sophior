@@ -2,43 +2,28 @@
   "name": "t:sections.header.name",
   "type": "header",
   "sections": {
-    "announcement-bar": {
-      "type": "announcement-bar",
-      "blocks": {
-        "announcement-bar-0": {
-          "type": "announcement",
-          "settings": {
-            "text": "Welcome to our store",
-            "text_alignment": "center",
-            "color_scheme": "scheme-1",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "announcement-bar-0"
-      ]
-    },
-    "header": {
-      "type": "header",
+    "sophior-announcement-bar": {
+      "type": "sophior-announcement-bar",
       "settings": {
-        "color_scheme": "scheme-1",
-        "logo_position": "middle-left",
-        "menu": "main-menu",
-        "menu_type_desktop": "dropdown",
-        "sticky_header_type": "on-scroll-up",
-        "show_line_separator": true,
-        "enable_country_selector": true,
-        "enable_language_selector": true,
-        "mobile_logo_position": "center",
-        "margin_bottom": 0,
-        "padding_top": 20,
-        "padding_bottom": 20
+        "usp_1_icon": "✓",
+        "usp_1_text": "Gratis verzending vanaf €59",
+        "usp_2_icon": "★",
+        "usp_2_text": "Premium kwaliteit — 30 dagen retour",
+        "usp_3_icon": "♦",
+        "usp_3_text": "Voor de echte keukenliefhebber"
+      }
+    },
+    "sophior-header": {
+      "type": "sophior-header",
+      "settings": {
+        "logo_width": 165,
+        "main_menu": "main-menu",
+        "mega_menu_trigger": "Producten"
       }
     }
   },
   "order": [
-    "announcement-bar",
-    "header"
+    "sophior-announcement-bar",
+    "sophior-header"
   ]
 }
