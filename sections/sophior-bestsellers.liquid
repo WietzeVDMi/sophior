@@ -5,6 +5,16 @@
 {%- assign products_to_show = section.settings.products_to_show | default: 8 -%}
 
 <div class="sophior-bestsellers">
+
+  {%- comment -%} Decoratieve achtergrond-ring — jaarringen motief {%- endcomment -%}
+  <svg class="sophior-ring-deco sophior-bestsellers__ring-bg"
+       viewBox="0 0 500 500" fill="none" aria-hidden="true" focusable="false">
+    <circle cx="250" cy="250" r="60"  stroke="currentColor" stroke-width="1.5"/>
+    <circle cx="250" cy="250" r="120" stroke="currentColor" stroke-width="1.2"/>
+    <circle cx="250" cy="250" r="185" stroke="currentColor" stroke-width="1"/>
+    <circle cx="250" cy="250" r="240" stroke="currentColor" stroke-width="0.8"/>
+  </svg>
+
   <div class="sophior-bestsellers__inner">
 
     <div class="sophior-bestsellers__header">
@@ -195,7 +205,7 @@
       "type": "text",
       "id": "title",
       "label": "t:sections.sophior-bestsellers.settings.title.label",
-      "default": "Onze bestsellers"
+      "default": "Onze Bestsellers"
     },
     {
       "type": "collection",
@@ -216,7 +226,7 @@
       "type": "text",
       "id": "view_all_label",
       "label": "t:sections.sophior-bestsellers.settings.view_all_label.label",
-      "default": "Alle bestsellers"
+      "default": "Shop alles"
     }
   ],
   "presets": [

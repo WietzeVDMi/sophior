@@ -8,6 +8,19 @@
   padding: var(--sophior-space-2xl) 0;
   background-color: var(--sophior-white);
   overflow: hidden;
+  position: relative;
+}
+
+/* ---- Decoratieve achtergrond-ring ---- */
+.sophior-bestsellers__ring-bg {
+  width: 500px;
+  height: 500px;
+  top: 50%;
+  right: -120px;
+  transform: translateY(-50%);
+  color: var(--sophior-light-tan);
+  opacity: 0.6;
+  animation: ring-breathe-reverse 12s ease-in-out infinite;
 }
 
 .sophior-bestsellers__inner {

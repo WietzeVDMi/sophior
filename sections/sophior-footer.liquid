@@ -2,6 +2,23 @@
 
 <footer class="sophior-footer" role="contentinfo">
 
+  {%- comment -%} Decoratieve achtergrond-ringen — jaarringen motief {%- endcomment -%}
+  <svg class="sophior-ring-deco sophior-footer__ring-bg sophior-footer__ring-bg--1"
+       viewBox="0 0 500 500" fill="none" aria-hidden="true" focusable="false">
+    <circle cx="250" cy="250" r="50"  stroke="currentColor" stroke-width="1.5"/>
+    <circle cx="250" cy="250" r="100" stroke="currentColor" stroke-width="1.2"/>
+    <circle cx="250" cy="250" r="155" stroke="currentColor" stroke-width="1"/>
+    <circle cx="250" cy="250" r="210" stroke="currentColor" stroke-width="0.8"/>
+    <circle cx="250" cy="250" r="245" stroke="currentColor" stroke-width="0.6"/>
+  </svg>
+  <svg class="sophior-ring-deco sophior-footer__ring-bg sophior-footer__ring-bg--2"
+       viewBox="0 0 400 400" fill="none" aria-hidden="true" focusable="false">
+    <circle cx="200" cy="200" r="40"  stroke="currentColor" stroke-width="1.5"/>
+    <circle cx="200" cy="200" r="90"  stroke="currentColor" stroke-width="1.2"/>
+    <circle cx="200" cy="200" r="145" stroke="currentColor" stroke-width="1"/>
+    <circle cx="200" cy="200" r="195" stroke="currentColor" stroke-width="0.8"/>
+  </svg>
+
   <div class="sophior-footer__main">
 
     {%- comment -%} Kolom 1: Branding + newsletter + social {%- endcomment -%}
@@ -24,6 +41,7 @@
             loading="lazy"
           >
         {%- endif -%}
+        {%- render 'sophior-ring', variant: 'logo', class: 'sophior-footer__ring' -%}
       </a>
 
       {%- if section.settings.tagline != blank -%}

@@ -3498,7 +3498,8 @@
           "settings": {
             "collection": { "label": "Collectie" },
             "label": { "label": "Label (overschrijft collectienaam)" },
-            "image": { "label": "Afbeelding (overschrijft collectie-afbeelding)" }
+            "image": { "label": "Afbeelding (overschrijft collectie-afbeelding)" },
+            "badge_label": { "label": "Badge-tekst (jaarring)", "info": "Korte tekst in het jaarring-badge rechtsboven de kaart. Leeg laten om badge te verbergen." }
           }
         }
       },

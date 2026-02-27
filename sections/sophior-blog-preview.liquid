@@ -14,6 +14,8 @@
 <div class="sophior-blog-preview">
   <div class="sophior-blog-preview__inner">
 
+    {%- render 'sophior-ring', variant: 'divider' -%}
+
     <div class="sophior-blog-preview__header">
       <h2 class="sophior-blog-preview__title">{{ section.settings.title }}</h2>
       {%- if section.settings.cta_link != blank -%}
@@ -98,7 +100,7 @@
       "type": "text",
       "id": "title",
       "label": "t:sections.sophior-blog-preview.settings.title.label",
-      "default": "Kookgidsen & Inspiratie"
+      "default": "Gidsen"
     },
     {
       "type": "blog",
@@ -109,7 +111,7 @@
       "type": "text",
       "id": "cta_label",
       "label": "t:sections.sophior-blog-preview.settings.cta_label.label",
-      "default": "Alle gidsen"
+      "default": "Meer info"
     },
     {
       "type": "url",

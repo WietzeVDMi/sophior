@@ -41,6 +41,15 @@
   --sophior-cream-70:  rgba(241, 239, 234, 0.7);
   --sophior-cream-75:  rgba(241, 239, 234, 0.75);
 
+  /* Opacity-varianten — gold (jaarringen motief) */
+  --sophior-gold-04: rgba(206, 161, 93, 0.04);
+  --sophior-gold-05: rgba(206, 161, 93, 0.05);
+  --sophior-gold-08: rgba(206, 161, 93, 0.08);
+  --sophior-gold-50: rgba(206, 161, 93, 0.50);
+
+  /* Opacity-varianten — light-tan (jaarringen motief op cream) */
+  --sophior-light-tan-60: rgba(227, 215, 193, 0.60);
+
   /* Fonts */
   --sophior-font-heading: 'Nevolasty', 'Playfair Display', serif;
   --sophior-font-body:    'Montserrat', sans-serif;
@@ -69,6 +78,34 @@
 
   /* Transitions */
   --sophior-transition: 0.2s ease;
+}
+
+/* ============================================================
+   Jaarringen motief — animaties en basisklasse
+   Houtjaarringen als visueel brand-element: groei, duurzaamheid
+   ============================================================ */
+
+@keyframes ring-breathe {
+  0%, 100% { opacity: 1;    transform: scale(1); }
+  50%       { opacity: 0.72; transform: scale(1.06); }
+}
+
+@keyframes ring-breathe-reverse {
+  0%, 100% { opacity: 0.85; transform: scale(1.04); }
+  50%       { opacity: 1;   transform: scale(1); }
+}
+
+/* Basisklasse voor alle decoratieve achtergrond-ringen (variant D) */
+.sophior-ring-deco {
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+  overflow: visible;
+}
+
+/* Animaties uitzetten als gebruiker dit verkiest */
+@media (prefers-reduced-motion: reduce) {
+  .sophior-ring-deco { animation: none !important; }
 }
 
 /* Globale font-override — overschrijft Dawn defaults */

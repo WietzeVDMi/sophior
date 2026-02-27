@@ -28,12 +28,25 @@
   flex-shrink: 0;
   display: flex;
   align-items: center;
+  gap: var(--sophior-space-sm);
 }
 
 .sophior-header__logo img,
 .sophior-header__logo svg {
   height: 32px;
   width: auto;
+}
+
+/* ---- Jaarring naast logo ---- */
+.sophior-header__ring {
+  width: 36px;
+  height: 36px;
+  opacity: 0.65;
+  transition: opacity var(--sophior-transition);
+}
+
+.sophior-header__logo:hover .sophior-header__ring {
+  opacity: 1;
 }
 
 /* ---- Desktop navigatie ---- */

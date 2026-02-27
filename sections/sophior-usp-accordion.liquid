@@ -5,6 +5,7 @@
 
     {%- comment -%} Links: titel + accordeon items {%- endcomment -%}
     <div class="sophior-usp-accordion__content">
+      {%- render 'sophior-ring', variant: 'divider' -%}
       <h2 class="sophior-usp-accordion__title">{{ section.settings.title }}</h2>
 
       <div class="sophior-usp-accordion__items">
@@ -30,8 +31,15 @@
       </div>
     </div>
 
-    {%- comment -%} Rechts: afbeelding {%- endcomment -%}
+    {%- comment -%} Rechts: afbeelding met jaarringen achtergrond {%- endcomment -%}
     <div class="sophior-usp-accordion__media">
+      <svg class="sophior-ring-deco sophior-usp-accordion__ring-bg"
+           viewBox="0 0 400 400" fill="none" aria-hidden="true" focusable="false">
+        <circle cx="200" cy="200" r="50"  stroke="currentColor" stroke-width="1.5"/>
+        <circle cx="200" cy="200" r="105" stroke="currentColor" stroke-width="1.2"/>
+        <circle cx="200" cy="200" r="160" stroke="currentColor" stroke-width="1"/>
+        <circle cx="200" cy="200" r="193" stroke="currentColor" stroke-width="0.8"/>
+      </svg>
       {%- if section.settings.image != blank -%}
         {%- assign usp_alt = section.settings.title | escape -%}
         {{
@@ -63,7 +71,7 @@
       "type": "text",
       "id": "title",
       "label": "t:sections.sophior-usp-accordion.settings.title.label",
-      "default": "Waarom SOPHIOR?"
+      "default": "Waarom SOPHIOR"
     },
     {
       "type": "image_picker",
@@ -80,13 +88,13 @@
           "type": "text",
           "id": "question",
           "label": "t:sections.sophior-usp-accordion.blocks.accordion_item.settings.question.label",
-          "default": "Waarom kiezen voor SOPHIOR?"
+          "default": "Specialist in houten snijplanken"
         },
         {
           "type": "textarea",
           "id": "answer",
           "label": "t:sections.sophior-usp-accordion.blocks.accordion_item.settings.answer.label",
-          "default": "SOPHIOR combineert ambacht en design. Elk product is zorgvuldig geselecteerd op duurzaamheid, gebruiksgemak en uitstraling."
+          "default": "SOPHIOR ontwikkelt hoogwaardige snijplanken van massief hout. Met een zorgvuldig productieproces zorgen we voor stabiliteit, hygiëne en jarenlang dagelijks gebruik in elke keuken."
         }
       ]
     }
@@ -98,36 +106,22 @@
         {
           "type": "accordion_item",
           "settings": {
-            "question": "Waarom kiezen voor SOPHIOR?",
-            "answer": "SOPHIOR combineert ambacht en design. Elk product is zorgvuldig geselecteerd op duurzaamheid, gebruiksgemak en uitstraling — voor thuiskoks die kwaliteit serieus nemen."
+            "question": "Specialist in houten snijplanken",
+            "answer": "SOPHIOR ontwikkelt hoogwaardige snijplanken van massief hout. Met een zorgvuldig productieproces zorgen we voor stabiliteit, hygiëne en jarenlang dagelijks gebruik in elke keuken."
           }
         },
         {
           "type": "accordion_item",
           "settings": {
-            "question": "Van welke materialen zijn jullie producten gemaakt?",
-            "answer": "We werken uitsluitend met premium materialen: RVS 18/10, acaciahout FSC-gecertificeerd en gehard glas. Elk materiaal is geselecteerd op levensduur en hygiëne."
+            "question": "Gezond koken zonder schadelijke stoffen",
+            "answer": "Onze pannen zijn PFAS-vrij en onze snijplanken bevatten geen microplastics. Je kookt met pure materialen zoals massief hout en roestvrij staal. Veilig voor jou en je gezin."
           }
         },
         {
           "type": "accordion_item",
           "settings": {
-            "question": "Hoe lang gaan SOPHIOR producten mee?",
-            "answer": "Met de juiste verzorging gaan onze snijplanken en messen jaren mee. We bieden bij elk product onderhoudsinstructies en bijpassende beschermingsproducten."
-          }
-        },
-        {
-          "type": "accordion_item",
-          "settings": {
-            "question": "Zijn jullie producten vaatwasmachinebestendig?",
-            "answer": "We raden handwassen aan voor onze houten producten. RVS producten zijn vaatwasmachinebestendig. Details per product zijn te vinden op de productpagina."
-          }
-        },
-        {
-          "type": "accordion_item",
-          "settings": {
-            "question": "Bieden jullie gratis verzending?",
-            "answer": "Ja! Bij bestellingen vanaf €59 verzenden we gratis. Bestellingen geplaatst voor 15:00 worden dezelfde dag verzonden (werkdagen)."
+            "question": "Gemaakt voor dagelijks gebruik",
+            "answer": "Duurzaamheid betekent bij ons: producten die lang meegaan. Door te kiezen voor massief hout en sterk roestvrij staal blijven onze producten betrouwbaar, scherp en stabiel. Elke dag opnieuw."
           }
         }
       ]

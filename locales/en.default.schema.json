@@ -3498,7 +3498,8 @@
           "settings": {
             "collection": { "label": "Collection" },
             "label": { "label": "Label (overrides collection name)" },
-            "image": { "label": "Image (overrides collection image)" }
+            "image": { "label": "Image (overrides collection image)" },
+            "badge_label": { "label": "Badge text (tree ring)", "info": "Short text inside the ring badge at the top-right of the card. Leave empty to hide the badge." }
           }
         }
       },

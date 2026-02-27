@@ -258,6 +258,8 @@
     {{ 'base.css' | asset_url | stylesheet_tag }}
     {%- comment -%} SOPHIOR — Brand design tokens (kleuren, fonts, spacing) {%- endcomment -%}
     {{ 'sophior-brand.css' | asset_url | stylesheet_tag }}
+    {%- comment -%} SOPHIOR — Jaarringen motief: gedeelde CSS voor snippets {%- endcomment -%}
+    {{ 'sophior-rings.css' | asset_url | stylesheet_tag }}
     <link rel="stylesheet" href="{{ 'component-cart-items.css' | asset_url }}" media="print" onload="this.media='all'">
 
     {%- if settings.cart_type == 'drawer' -%}

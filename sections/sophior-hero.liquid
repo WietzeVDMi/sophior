@@ -2,6 +2,16 @@
 
 <section class="sophior-hero" aria-label="{{ section.settings.heading | escape }}">
 
+  {%- comment -%} Decoratieve achtergrond-ring — jaarringen motief {%- endcomment -%}
+  <svg class="sophior-ring-deco sophior-hero__ring-bg"
+       viewBox="0 0 600 600" fill="none" aria-hidden="true" focusable="false">
+    <circle cx="300" cy="300" r="55"  stroke="currentColor" stroke-width="1.5"/>
+    <circle cx="300" cy="300" r="110" stroke="currentColor" stroke-width="1.2"/>
+    <circle cx="300" cy="300" r="170" stroke="currentColor" stroke-width="1"/>
+    <circle cx="300" cy="300" r="235" stroke="currentColor" stroke-width="0.8"/>
+    <circle cx="300" cy="300" r="290" stroke="currentColor" stroke-width="0.6"/>
+  </svg>
+
   {%- comment -%} Tekst kant (links) {%- endcomment -%}
   <div class="sophior-hero__content">
     <h1 class="sophior-hero__heading">{{ section.settings.heading }}</h1>
@@ -53,19 +63,19 @@
       "type": "text",
       "id": "heading",
       "label": "t:sections.sophior-hero.settings.heading.label",
-      "default": "Premium keukenmessen & snijplanken"
+      "default": "Koken begint bij het juiste materiaal"
     },
     {
       "type": "textarea",
       "id": "subheading",
       "label": "t:sections.sophior-hero.settings.subheading.label",
-      "default": "Handgemaakt voor thuiskoks die kwaliteit serieus nemen. Ontdek de collectie van SOPHIOR."
+      "default": "Houten snijplanken, PFAS-vrije pannen en premium messen voor dagelijks gebruik."
     },
     {
       "type": "text",
       "id": "cta_label",
       "label": "t:sections.sophior-hero.settings.cta_label.label",
-      "default": "Bekijk de collectie"
+      "default": "Shop nu"
     },
     {
       "type": "url",

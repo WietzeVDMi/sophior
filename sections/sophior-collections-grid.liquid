@@ -53,6 +53,12 @@
           <span class="sophior-collections-grid__card-label">{{ col_label }}</span>
           <span class="sophior-collections-grid__card-cta">{{ default_cta }}</span>
         </div>
+
+        {%- render 'sophior-ring',
+          variant: 'badge',
+          class: 'sophior-collections-grid__card-badge',
+          label: block.settings.badge_label
+        -%}
       </a>
     {%- endfor -%}
   </div>
@@ -70,7 +76,7 @@
       "type": "text",
       "id": "title",
       "label": "t:sections.sophior-collections-grid.settings.title.label",
-      "default": "Onze collecties"
+      "default": "Ontdek de Collecties"
     },
     {
       "type": "text",
@@ -100,6 +106,12 @@
           "id": "image",
           "label": "t:sections.sophior-collections-grid.blocks.collection_card.settings.image.label",
           "info": "t:sections.sophior-collections-grid.blocks.collection_card.settings.image.info"
+        },
+        {
+          "type": "text",
+          "id": "badge_label",
+          "label": "t:sections.sophior-collections-grid.blocks.collection_card.settings.badge_label.label",
+          "info": "t:sections.sophior-collections-grid.blocks.collection_card.settings.badge_label.info"
         }
       ]
     }
@@ -108,10 +120,10 @@
     {
       "name": "SOPHIOR Collecties Grid",
       "blocks": [
-        { "type": "collection_card", "settings": { "label": "Snijplanken" } },
-        { "type": "collection_card", "settings": { "label": "Pannen" } },
-        { "type": "collection_card", "settings": { "label": "Messen" } },
-        { "type": "collection_card", "settings": { "label": "Accessoires" } }
+        { "type": "collection_card", "settings": { "label": "Snijplanken", "badge_label": "21+ soorten" } },
+        { "type": "collection_card", "settings": { "label": "Pannen", "badge_label": "Nieuw 2026" } },
+        { "type": "collection_card", "settings": { "label": "Messen", "badge_label": "Chef's keuze" } },
+        { "type": "collection_card", "settings": { "label": "Accessoires", "badge_label": "Must have" } }
       ]
     }
   ]

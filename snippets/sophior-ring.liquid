@@ -1,0 +1,70 @@
+{%- comment -%}
+  sophior-ring — Jaarringen SVG motief
+  Houtjaarringen als visueel brand-element voor SOPHIOR.
+
+  Parameters:
+    variant  {String}  'logo' | 'divider' | 'badge'
+    class    {String}  extra CSS-klassen op de SVG/wrapper (optioneel)
+    label    {String}  badge-tekst, alleen bij variant 'badge' (optioneel)
+{%- endcomment -%}
+
+{%- case variant -%}
+
+  {%- when 'logo' -%}
+    {%- comment -%}
+      Variant A — 4 concentrische cirkels, viewBox 80×80.
+      Gebruik: naast wordmark in header (36px) en footer (28px).
+      Kleur en grootte via .sophior-header__ring of .sophior-footer__ring.
+    {%- endcomment -%}
+    <svg class="sophior-ring sophior-ring--logo{{ class | prepend: ' ' }}"
+         viewBox="0 0 80 80"
+         fill="none"
+         aria-hidden="true"
+         focusable="false">
+      <circle cx="40" cy="40" r="8"  stroke="currentColor" stroke-width="2"/>
+      <circle cx="40" cy="40" r="18" stroke="currentColor" stroke-width="1.5"/>
+      <circle cx="40" cy="40" r="28" stroke="currentColor" stroke-width="1.2"/>
+      <circle cx="40" cy="40" r="36" stroke="currentColor" stroke-width="1"/>
+    </svg>
+
+  {%- when 'divider' -%}
+    {%- comment -%}
+      Variant B — 3 cirkels, viewBox 32×32.
+      Gebruik: gecentreerd in .sophior-section-divider tussen twee gradiëntlijnen,
+      boven section titles (na eyebrow-tekst).
+    {%- endcomment -%}
+    <div class="sophior-section-divider{{ class | prepend: ' ' }}" aria-hidden="true">
+      <span class="sophior-section-divider__line"></span>
+      <svg class="sophior-ring sophior-ring--divider"
+           viewBox="0 0 32 32"
+           fill="none"
+           aria-hidden="true"
+           focusable="false">
+        <circle cx="16" cy="16" r="4"  stroke="currentColor" stroke-width="1.5"/>
+        <circle cx="16" cy="16" r="9"  stroke="currentColor" stroke-width="1.2"/>
+        <circle cx="16" cy="16" r="14" stroke="currentColor" stroke-width="1"/>
+      </svg>
+      <span class="sophior-section-divider__line sophior-section-divider__line--right"></span>
+    </div>
+
+  {%- when 'badge' -%}
+    {%- comment -%}
+      Variant C — 3 cirkels, viewBox 56×56, met optionele badge-tekst.
+      Gebruik: absolute gepositioneerd top-right op collection cards.
+      Kleur en positie via .sophior-collections-grid__card-badge.
+    {%- endcomment -%}
+    <span class="sophior-ring-badge{{ class | prepend: ' ' }}" aria-hidden="true">
+      <svg class="sophior-ring sophior-ring--badge"
+           viewBox="0 0 56 56"
+           fill="none"
+           focusable="false">
+        <circle cx="28" cy="28" r="8"  stroke="currentColor" stroke-width="1.5"/>
+        <circle cx="28" cy="28" r="18" stroke="currentColor" stroke-width="1.2"/>
+        <circle cx="28" cy="28" r="26" stroke="currentColor" stroke-width="1"/>
+      </svg>
+      {%- if label != blank -%}
+        <span class="sophior-ring-badge__text">{{ label }}</span>
+      {%- endif -%}
+    </span>
+
+{%- endcase -%}

@@ -10,6 +10,8 @@
 <div class="sophior-review-slider">
   <div class="sophior-review-slider__inner">
 
+    {%- render 'sophior-ring', variant: 'divider' -%}
+
     <div class="sophior-review-slider__header">
       <h2 class="sophior-review-slider__title">{{ section.settings.title }}</h2>
       <div class="sophior-review-slider__aggregate">
@@ -165,19 +167,19 @@
       "type": "text",
       "id": "title",
       "label": "t:sections.sophior-review-slider.settings.title.label",
-      "default": "Wat onze klanten zeggen"
+      "default": "Wat zeggen onze klanten?"
     },
     {
       "type": "text",
       "id": "rating_aggregate",
       "label": "t:sections.sophior-review-slider.settings.rating_aggregate.label",
-      "default": "4.9"
+      "default": "4.8"
     },
     {
       "type": "text",
       "id": "aggregate_text",
       "label": "t:sections.sophior-review-slider.settings.aggregate_text.label",
-      "default": "4.9 / 5 — gebaseerd op 124 reviews"
+      "default": "4,8/5 uit 500+ reviews"
     },
     {
       "type": "range",

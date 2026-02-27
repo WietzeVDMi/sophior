@@ -186,6 +186,7 @@ _Vastgesteld: 2026-02-27 | Gebaseerd op briefing V4 + postmortem Sprint 0–2_
 - [ ] Alle `t:` keys aanwezig in beide schema-locales
 - [ ] Geen hardcoded kleuren in CSS
 - [ ] `shopify theme check` 0 errors voor gewijzigde files
+- [ ] Schema `"default"` waarden gevuld met definitieve briefing-copy (niet AI-placeholder)
 - [ ] Playground bijgewerkt met ≥3 varianten + 2 edge cases
 - [ ] Mobile + desktop getest in Chrome DevTools
 - [ ] PR-diff ≤ 400 regels

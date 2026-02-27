@@ -17,7 +17,12 @@
   position: relative;
   overflow: hidden;
   aspect-ratio: 4 / 5;
-  background-color: var(--sophior-cream);
+  background: radial-gradient(
+    circle at 50% 35%,
+    var(--sophior-white) 0%,
+    var(--sophior-cream) 55%,
+    var(--sophior-light-tan) 100%
+  );
 }
 
 .sophior-product-card__image-link {

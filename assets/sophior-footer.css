@@ -6,6 +6,8 @@
   background-color: var(--sophior-dark-green);
   color: var(--sophior-cream);
   font-family: var(--sophior-font-body);
+  position: relative;
+  overflow: hidden;
 }
 
 .sophior-footer__main {
@@ -17,9 +19,34 @@
   gap: var(--sophior-space-xl);
 }
 
+/* ---- Jaarringen achtergrond ---- */
+.sophior-footer__ring-bg {
+  color: var(--sophior-gold);
+}
+
+.sophior-footer__ring-bg--1 {
+  width: 500px;
+  height: 500px;
+  top: -120px;
+  right: -100px;
+  opacity: 0.05;
+  animation: ring-breathe 13s ease-in-out infinite;
+}
+
+.sophior-footer__ring-bg--2 {
+  width: 400px;
+  height: 400px;
+  bottom: -80px;
+  left: -60px;
+  opacity: 0.04;
+  animation: ring-breathe-reverse 15s ease-in-out infinite;
+}
+
 /* ---- Kolom 1: Branding ---- */
 .sophior-footer__logo {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: var(--sophior-space-sm);
   margin-bottom: var(--sophior-space-lg);
 }
 
@@ -27,6 +54,14 @@
 .sophior-footer__logo svg {
   height: 28px;
   width: auto;
+}
+
+/* ---- Jaarring naast footer-logo ---- */
+.sophior-footer__ring {
+  width: 28px;
+  height: 28px;
+  opacity: 0.5;
+  color: var(--sophior-gold);
 }
 
 .sophior-footer__tagline {

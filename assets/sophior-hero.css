@@ -9,6 +9,20 @@
   grid-template-columns: 1fr 1fr;
   min-height: 560px;
   background-color: var(--sophior-dark-green);
+  position: relative;
+  overflow: hidden;
+}
+
+/* ---- Decoratieve achtergrond-ring ---- */
+.sophior-hero__ring-bg {
+  width: 600px;
+  height: 600px;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%) translateX(-30%);
+  color: var(--sophior-gold);
+  opacity: 0.06;
+  animation: ring-breathe 11s ease-in-out infinite;
 }
 
 /* ---- Tekst kant ---- */
@@ -18,6 +32,8 @@
   justify-content: center;
   padding: var(--sophior-space-2xl);
   color: var(--sophior-cream);
+  position: relative;
+  z-index: 1;
 }
 
 .sophior-hero__heading {

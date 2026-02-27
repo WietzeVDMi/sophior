@@ -109,6 +109,15 @@
   text-transform: uppercase;
 }
 
+/* ---- Jaarring badge (top-right) ---- */
+.sophior-collections-grid__card-badge {
+  position: absolute;
+  top: var(--sophior-space-md);
+  right: var(--sophior-space-md);
+  z-index: 2;
+  color: var(--sophior-gold-50);
+}
+
 /* Placeholder als geen afbeelding */
 .sophior-collections-grid__card-placeholder {
   width: 100%;

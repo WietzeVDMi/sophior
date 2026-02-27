@@ -1,0 +1,77 @@
+/* ============================================================
+   SOPHIOR — Jaarringen: gedeelde CSS voor snippet-varianten
+   Varianten A (logo), B (section divider) en C (badge)
+   Grote decoratieve ringen (D) staan in de sectie-CSS bestanden.
+   ============================================================ */
+
+/* ---- Base ring ---- */
+.sophior-ring {
+  display: block;
+  overflow: visible;
+  pointer-events: none;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+/* ---- A: Logo ring ---- */
+.sophior-ring--logo {
+  color: var(--sophior-gold);
+}
+
+/* ---- B: Section divider ring ---- */
+.sophior-ring--divider {
+  width: 32px;
+  height: 32px;
+  color: var(--sophior-gold);
+}
+
+/* ---- Section divider: ring + gradiëntlijnen ---- */
+.sophior-section-divider {
+  display: flex;
+  align-items: center;
+  gap: var(--sophior-space-md);
+  margin-bottom: var(--sophior-space-lg);
+}
+
+.sophior-section-divider__line {
+  flex: 1;
+  max-width: 120px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--sophior-light-tan));
+}
+
+.sophior-section-divider__line--right {
+  background: linear-gradient(to right, var(--sophior-light-tan), transparent);
+}
+
+/* ---- C: Badge ring wrapper ---- */
+.sophior-ring-badge {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+}
+
+.sophior-ring--badge {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.sophior-ring-badge__text {
+  position: relative;
+  z-index: 1;
+  font-family: var(--sophior-font-body);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1.15;
+  color: var(--sophior-gold);
+  max-width: 38px;
+  pointer-events: none;
+}
