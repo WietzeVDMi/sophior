@@ -25,8 +25,8 @@ docker compose run --rm shopify shopify theme publish --theme-id [id]
 
 | # | Sprint | Status | Deliverable |
 |---|---|---|---|
-| 0 | [Setup & Fundament](docs/sprint-0-setup.md) | ⏳ Bezig | Docker + GitHub + Dawn draaien |
-| 1 | [Brand & Globale Componenten](docs/sprint-1-brand.md) | ⏳ Bezig | Header, footer, announcement bar |
+| 0 | [Setup & Fundament](docs/sprint-0-setup.md) | ✅ Klaar | Docker + GitHub + Dawn draaien |
+| 1 | [Brand & Globale Componenten](docs/sprint-1-brand.md) | ✅ Klaar | Header, footer, announcement bar |
 | 2 | [Homepage](docs/sprint-2-homepage.md) | ⏸ Gepland | Alle 8 homepage secties |
 | 3 | [Categoriepagina](docs/sprint-3-categorie.md) | ⏸ Gepland | 1 template voor 4 collecties |
 | 4 | [Product Detail Page](docs/sprint-4-pdp.md) | ⏸ Gepland | Volledige PDP + metafields |
@@ -44,8 +44,8 @@ docker compose run --rm shopify shopify theme publish --theme-id [id]
 
 | Asset | Blokkeert | Status |
 |---|---|---|
-| Nevolasty .woff2 + weblicentie | Sprint 1 | ❌ Niet ontvangen |
-| Logo SVG/PNG (zwart + wit) | Sprint 1 | ❌ Niet ontvangen |
+| Nevolasty .otf + weblicentie | Sprint 1 | ✅ Ontvangen (Nevolasty-Light.otf) |
+| Logo SVG/PNG (zwart + wit) | Sprint 1 | ✅ Ontvangen (.ai bestand → SVG geconverteerd) |
 | Judge.me public key | Sprint 7 | ❌ Niet ontvangen |
 | Klaviyo lijst-ID | Sprint 7 | ❌ Niet ontvangen |
 | GA4 property ID + Meta Pixel ID | Sprint 7 | ❌ Niet ontvangen |

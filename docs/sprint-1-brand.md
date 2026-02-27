@@ -1,6 +1,6 @@
 # Sprint 1 — Brand Setup & Globale Componenten
 
-**Status:** ⏳ Bezig — placeholders actief (Playfair Display + SVG logo)
+**Status:** ✅ Klaar — Nevolasty font actief, logo SVG's gegenereerd uit .ai bestand
 **Duur:** 3–5 dagen
 **Branch:** `feature/sprint-1-brand`
 
@@ -47,9 +47,9 @@ Alle brand-elementen implementeren + header, footer en announcement bar live op 
 ### Brand setup
 - [x] `assets/sophior-brand.css` aanmaken met alle CSS custom properties
 - [x] Montserrat preloaden via Google Fonts in `theme/layout/theme.liquid`
-- [x] Playfair Display als Nevolasty placeholder (⏳ .woff2 nog te ontvangen)
-- [x] Logo SVG placeholders: `assets/sophior-logo-dark.svg` + `assets/sophior-logo-light.svg`
-- [ ] Dawn kleurinstellingen overschrijven in `config/settings_schema.json`
+- [x] Nevolasty-Light.otf self-hosted via @font-face (gevonden in font_logo/)
+- [x] Logo SVG's gegenereerd uit .ai bestand: `assets/sophior-logo-dark.svg` + `assets/sophior-logo-light.svg`
+- [x] Dawn kleurinstellingen overschrijven in `config/settings_data.json`
 - [x] `sophior-brand.css` importeren in `theme.liquid`
 
 ### Announcement Bar — `sections/sophior-announcement-bar.liquid`
