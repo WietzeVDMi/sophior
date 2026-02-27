@@ -275,6 +275,115 @@
       "announcement_bar": "Announcement bar"
     },
 
+    "sophior-announcement-bar": {
+      "name": "SOPHIOR Announcement Bar"
+    },
+    "sophior-header": {
+      "name": "SOPHIOR Header",
+      "nav_aria_label": "Main navigation",
+      "mobile_menu_open": "Open menu",
+      "mobile_menu_close": "Close menu",
+      "mobile_menu_label": "Mobile menu",
+      "view_all": "View all"
+    },
+    "sophior-hero": {
+      "name": "SOPHIOR Hero"
+    },
+    "sophior-trustbadge-bar": {
+      "name": "SOPHIOR Trustbadge Bar"
+    },
+    "sophior-collections-grid": {
+      "name": "SOPHIOR Collections Grid"
+    },
+    "sophior-bestsellers": {
+      "name": "SOPHIOR Bestseller Slider",
+      "prev": "Previous products",
+      "next": "Next products",
+      "add_to_cart": "Add",
+      "adding": "Adding...",
+      "added": "Added",
+      "rating_label": "{{ rating }} out of 5 stars",
+      "quick_add": "Add {{ title }} to cart"
+    },
+    "sophior-usp-accordion": {
+      "name": "SOPHIOR USP Accordion"
+    },
+    "sophior-review-slider": {
+      "name": "SOPHIOR Review Slider",
+      "prev": "Previous reviews",
+      "next": "Next reviews",
+      "navigation": "Review navigation",
+      "dot": "Go to review {{ index }}",
+      "rating_label": "{{ rating }} out of 5 stars",
+      "aggregate_label": "Average {{ rating }} stars"
+    },
+    "sophior-blog-preview": {
+      "name": "SOPHIOR Blog Preview"
+    },
+    "sophior-trustbar-footer": {
+      "name": "SOPHIOR Pre-footer Trustbar"
+    },
+    "sophior-footer": {
+      "name": "SOPHIOR Footer",
+      "newsletter_label": "Subscribe to our newsletter",
+      "newsletter_placeholder": "your@email.com",
+      "newsletter_btn": "Subscribe",
+      "shop_title": "Shop",
+      "service_title": "Customer Service",
+      "about_title": "About SOPHIOR",
+      "rights_reserved": "All rights reserved.",
+      "payment_methods_label": "Payment methods"
+    },
+    "sophior-category-header": {
+      "breadcrumb_home": "Home",
+      "breadcrumb_label": "Breadcrumb navigation"
+    },
+    "sophior-judge-placeholder": {
+      "placeholder_text": "Reviews coming soon"
+    },
+    "sophior-collection-seo-text": {
+      "show_more": "Read more",
+      "show_less": "Show less"
+    },
+    "sophior-product-guides": {
+      "default_heading": "Helpful guides",
+      "view_all": "All guides",
+      "read_more": "Read more"
+    },
+    "sophior-article": {
+      "breadcrumb_label": "Breadcrumb navigation",
+      "read_time": "{{ minutes }} min read",
+      "share_label": "Share this article",
+      "share_copy": "Copy link",
+      "share_whatsapp": "Share via WhatsApp",
+      "share_facebook": "Share via Facebook",
+      "back_to_blog": "Back to {{ blog }}",
+      "related_heading": "More guides"
+    },
+    "sophior-blog-listing": {
+      "nav_label": "Blog categories",
+      "read_time": "{{ minutes }} min read",
+      "read_more": "Read more",
+      "empty": "No articles available yet."
+    },
+    "sophior-cart-drawer": {
+      "title": "Your cart",
+      "close": "Close cart",
+      "empty": "Your cart is empty.",
+      "shop_link": "Browse our collection",
+      "shipping_remaining_html": "Only <strong>{{ amount }}</strong> away from free shipping!",
+      "shipping_free": "You have free shipping!",
+      "subtotal": "Subtotal",
+      "shipping_note": "Shipping calculated at checkout",
+      "checkout": "Checkout",
+      "qty_label": "Quantity {{ title }}",
+      "decrease": "Decrease quantity",
+      "increase": "Increase quantity",
+      "remove": "Remove {{ title }}",
+      "trust_delivery": "Fast delivery",
+      "trust_payment": "Secure payment",
+      "trust_return": "30-day returns"
+    },
     "header": {
       "announcement": "Announcement",
       "menu": "Menu",

@@ -1,0 +1,106 @@
+{%- comment -%}
+  sophior-breadcrumbs — Universele breadcrumb snippet.
+
+  Parameters:
+    breadcrumb_type {String} — 'product', 'collection', 'article'
+
+  Outputs:
+    1. Semantische <nav><ol> breadcrumblijst (aria-current op laatste item)
+    2. <script type="application/ld+json"> BreadcrumbList schema
+{%- endcomment -%}
+
+{{ 'sophior-breadcrumbs.css' | asset_url | stylesheet_tag }}
+
+{%- if breadcrumb_type == 'product' -%}
+  {%- assign bc_parent = product.collections.first -%}
+{%- endif -%}
+
+<nav class="sophior-breadcrumbs" aria-label="Navigatie">
+  <ol class="sophior-breadcrumbs__list">
+    <li class="sophior-breadcrumbs__item">
+      <a href="{{ routes.root_url }}" class="sophior-breadcrumbs__link">Home</a>
+    </li>
+
+    {%- if breadcrumb_type == 'product' -%}
+      {%- if bc_parent != blank -%}
+        <li class="sophior-breadcrumbs__sep" aria-hidden="true">›</li>
+        <li class="sophior-breadcrumbs__item">
+          <a href="{{ bc_parent.url }}" class="sophior-breadcrumbs__link">{{ bc_parent.title | escape }}</a>
+        </li>
+      {%- endif -%}
+      <li class="sophior-breadcrumbs__sep" aria-hidden="true">›</li>
+      <li class="sophior-breadcrumbs__item">
+        <span class="sophior-breadcrumbs__current" aria-current="page">{{ product.title | escape }}</span>
+      </li>
+
+    {%- elsif breadcrumb_type == 'collection' -%}
+      <li class="sophior-breadcrumbs__sep" aria-hidden="true">›</li>
+      <li class="sophior-breadcrumbs__item">
+        <span class="sophior-breadcrumbs__current" aria-current="page">{{ collection.title | escape }}</span>
+      </li>
+
+    {%- elsif breadcrumb_type == 'article' -%}
+      <li class="sophior-breadcrumbs__sep" aria-hidden="true">›</li>
+      <li class="sophior-breadcrumbs__item">
+        <a href="{{ blog.url }}" class="sophior-breadcrumbs__link">{{ blog.title | escape }}</a>
+      </li>
+      <li class="sophior-breadcrumbs__sep" aria-hidden="true">›</li>
+      <li class="sophior-breadcrumbs__item">
+        <span class="sophior-breadcrumbs__current" aria-current="page">{{ article.title | escape }}</span>
+      </li>
+    {%- endif -%}
+
+  </ol>
+</nav>
+
+{%- if breadcrumb_type == 'product' -%}
+  {%- if bc_parent != blank -%}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": {{ shop.url | json }} },
+        { "@type": "ListItem", "position": 2, "name": {{ bc_parent.title | json }}, "item": {{ shop.url | append: bc_parent.url | json }} },
+        { "@type": "ListItem", "position": 3, "name": {{ product.title | json }} }
+      ]
+    }
+    </script>
+  {%- else -%}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": {{ shop.url | json }} },
+        { "@type": "ListItem", "position": 2, "name": {{ product.title | json }} }
+      ]
+    }
+    </script>
+  {%- endif -%}
+
+{%- elsif breadcrumb_type == 'collection' -%}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": {{ shop.url | json }} },
+      { "@type": "ListItem", "position": 2, "name": {{ collection.title | json }}, "item": {{ shop.url | append: collection.url | json }} }
+    ]
+  }
+  </script>
+
+{%- elsif breadcrumb_type == 'article' -%}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": {{ shop.url | json }} },
+      { "@type": "ListItem", "position": 2, "name": {{ blog.title | json }}, "item": {{ shop.url | append: blog.url | json }} },
+      { "@type": "ListItem", "position": 3, "name": {{ article.title | json }} }
+    ]
+  }
+  </script>
+{%- endif -%}

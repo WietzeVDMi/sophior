@@ -353,6 +353,9 @@
       "prev": "Vorige producten",
       "next": "Volgende producten",
       "add_to_cart": "Voeg toe",
+      "adding": "Bezig...",
+      "added": "Toegevoegd",
+      "rating_label": "{{ rating }} van 5 sterren",
       "quick_add": "Voeg {{ title }} toe aan winkelwagen",
       "settings": {
         "title": { "label": "Sectietitel" },
@@ -386,6 +389,8 @@
       "next": "Volgende reviews",
       "navigation": "Review navigatie",
       "dot": "Ga naar review {{ index }}",
+      "rating_label": "{{ rating }} van 5 sterren",
+      "aggregate_label": "Gemiddeld {{ rating }} sterren",
       "settings": {
         "title": { "label": "Sectietitel" },
         "aggregate_text": { "label": "Samengevatte beoordeling tekst" },
@@ -454,6 +459,56 @@
         "tagline": { "label": "Tagline" },
         "social_header": { "content": "Social media" }
       }
+    },
+    "sophior-category-header": {
+      "breadcrumb_home": "Home",
+      "breadcrumb_label": "Navigatiepad"
+    },
+    "sophior-judge-placeholder": {
+      "placeholder_text": "Reviews komen binnenkort beschikbaar"
+    },
+    "sophior-collection-seo-text": {
+      "show_more": "Lees meer",
+      "show_less": "Minder tonen"
+    },
+    "sophior-product-guides": {
+      "default_heading": "Handige gidsen",
+      "view_all": "Alle gidsen",
+      "read_more": "Lees verder"
+    },
+    "sophior-article": {
+      "breadcrumb_label": "Broodkruimelpad",
+      "read_time": "{{ minutes }} min lezen",
+      "share_label": "Deel dit artikel",
+      "share_copy": "Link kopiëren",
+      "share_whatsapp": "Delen via WhatsApp",
+      "share_facebook": "Delen via Facebook",
+      "back_to_blog": "Terug naar {{ blog }}",
+      "related_heading": "Meer gidsen"
+    },
+    "sophior-blog-listing": {
+      "nav_label": "Blog categorieën",
+      "read_time": "{{ minutes }} min lezen",
+      "read_more": "Lees verder",
+      "empty": "Nog geen artikelen beschikbaar."
+    },
+    "sophior-cart-drawer": {
+      "title": "Winkelwagen",
+      "close": "Winkelwagen sluiten",
+      "empty": "Je winkelwagen is leeg.",
+      "shop_link": "Bekijk ons assortiment",
+      "shipping_remaining_html": "Nog <strong>{{ amount }}</strong> tot gratis verzending!",
+      "shipping_free": "Je hebt gratis verzending!",
+      "subtotal": "Subtotaal",
+      "shipping_note": "Verzendkosten berekend bij afrekenen",
+      "checkout": "Afrekenen",
+      "qty_label": "Aantal {{ title }}",
+      "decrease": "Aantal verlagen",
+      "increase": "Aantal verhogen",
+      "remove": "Verwijder {{ title }}",
+      "trust_delivery": "Snelle levering",
+      "trust_payment": "Veilig betalen",
+      "trust_return": "30 dagen retour"
     },
     "header": {
       "announcement": "Aankondiging",

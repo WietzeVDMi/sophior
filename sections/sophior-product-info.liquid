@@ -34,6 +34,26 @@
 
 {%- assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' -%}
 
+{%- comment -%} Product JSON-LD structured data {%- endcomment -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": {{ product.title | json }},
+  "image": "{{ product.featured_image | image_url: width: 800 }}",
+  "description": {{ product.description | strip_html | json }},
+  "sku": {{ product.selected_or_first_available_variant.sku | json }},
+  "brand": { "@type": "Brand", "name": "SOPHIOR" },
+  "offers": {
+    "@type": "Offer",
+    "url": "{{ shop.url }}{{ product.url }}",
+    "price": {{ product.price | divided_by: 100.0 }},
+    "priceCurrency": "EUR",
+    "availability": "https://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}"
+  }
+}
+</script>
+
 <product-info
   id="MainProduct-{{ section.id }}"
   class="sophior-product-info section-{{ section.id }}-padding"
@@ -55,6 +75,9 @@
       id="ProductInfo-{{ section.id }}"
     >
       {%- assign product_form_id = 'product-form-' | append: section.id -%}
+
+      {%- comment -%} Breadcrumbs {%- endcomment -%}
+      {%- render 'sophior-breadcrumbs', breadcrumb_type: 'product' -%}
 
       {%- comment -%} Producttitel {%- endcomment -%}
       <h1 class="sophior-product-info__title">{{ product.title | escape }}</h1>

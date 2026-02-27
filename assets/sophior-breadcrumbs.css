@@ -1,0 +1,46 @@
+/* ============================================================
+   SOPHIOR — Breadcrumbs
+   Gebruikt door snippets/sophior-breadcrumbs.liquid
+   ============================================================ */
+
+.sophior-breadcrumbs {
+  margin-bottom: 0.75rem;
+}
+
+.sophior-breadcrumbs__list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 0.25rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-family: var(--sophior-font-body);
+  font-size: var(--sophior-text-xs);
+}
+
+.sophior-breadcrumbs__link {
+  color: var(--sophior-dark-green);
+  text-decoration: none;
+  transition: color var(--sophior-transition);
+}
+
+.sophior-breadcrumbs__link:hover {
+  color: var(--sophior-gold);
+}
+
+.sophior-breadcrumbs__link:focus-visible {
+  outline: 2px solid var(--sophior-gold);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.sophior-breadcrumbs__sep {
+  color: var(--sophior-muted-green);
+  font-size: 0.8em;
+  line-height: 1;
+}
+
+.sophior-breadcrumbs__current {
+  color: var(--sophior-muted-green);
+}

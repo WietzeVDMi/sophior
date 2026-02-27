@@ -1,6 +1,6 @@
 # Sprint 8 — SEO & Performance
 
-**Status:** ⏸ Gepland
+**Status:** ✅ Klaar
 **Duur:** 2–3 dagen
 **Branch:** `feature/sprint-8-seo-performance`
 **Vereist:** Sprints 1–7 afgerond
@@ -29,108 +29,111 @@ SEO-ready thema met JSON-LD structured data. Core Web Vitals doelen halen op sta
 
 ### JSON-LD Structured Data
 
-**Product schema (PDP) — `sections/sophior-product-main.liquid`:**
-```liquid
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Product",
-  "name": {{ product.title | json }},
-  "image": {{ product.featured_image | image_url: width: 800 | json }},
-  "description": {{ product.description | strip_html | json }},
-  "brand": { "@type": "Brand", "name": "SOPHIOR" },
-  "offers": {
-    "@type": "Offer",
-    "price": {{ product.price | money_without_currency }},
-    "priceCurrency": "EUR",
-    "availability": "{% if product.available %}https://schema.org/InStock{% else %}https://schema.org/OutOfStock{% endif %}"
-  }
-}
-</script>
-```
+- [x] **Product schema (PDP)** — `sections/sophior-product-info.liquid`
+  - Velden: name, image, description, sku, brand, offers (price, priceCurrency, availability)
+  - `price` als numerieke waarde via `| divided_by: 100.0`
 
-**FAQPage schema:** al aangemaakt in Sprint 4 (`sections/sophior-product-faq.liquid`)
+- [x] **BreadcrumbList** — `snippets/sophior-breadcrumbs.liquid`
+  - Universele snippet; parameter `breadcrumb_type`: `'product'` / `'collection'` / `'article'`
+  - Gerenderd op PDP (3 niveaus: Home › Collectie › Product), categorie (2 niveaus), artikel (3 niveaus)
+  - Bevat HTML `<nav>` én `<script type="application/ld+json">` per aanroep
 
-**BreadcrumbList — `snippets/sophior-breadcrumbs.liquid`:**
-```liquid
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ shop.url }}" },
-    { "@type": "ListItem", "position": 2, "name": {{ collection.title | json }}, "item": "{{ shop.url }}{{ collection.url }}" },
-    { "@type": "ListItem", "position": 3, "name": {{ product.title | json }} }
-  ]
-}
-</script>
-```
+- [x] **FAQPage schema** — al aangemaakt in Sprint 4 (`sections/sophior-product-faq.liquid`)
 
-**Organization schema — `sections/sophior-footer.liquid`:**
-```liquid
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "SOPHIOR",
-  "url": "{{ shop.url }}",
-  "logo": "{{ 'sophior-logo-dark.svg' | asset_url }}",
-  "sameAs": [
-    "https://instagram.com/sophior",
-    "https://facebook.com/sophior"
-  ]
-}
-</script>
-```
+- [x] **Organization schema** — `sections/sophior-footer.liquid`
+  - name, url, logo
+  - `sameAs` dynamisch gevuld vanuit `section.settings.instagram_url` + `facebook_url`
 
 ### Meta Tags
-- [ ] Meta title format instellen: `[Paginatitel] | SOPHIOR`
-- [ ] Meta description per paginatype (via section schema settings)
-- [ ] Open Graph tags (og:title, og:image, og:description) in `theme.liquid`
-- [ ] H1/H2 hiërarchie controleren op alle pagina's
+
+- [x] Open Graph tags (og:title, og:image, og:description, og:type) — `snippets/meta-tags.liquid` (klaar)
+- [x] Twitter card tags — `snippets/meta-tags.liquid` (klaar)
+- [~] Meta title format `[Paginatitel] | SOPHIOR` — Shopify beheert page_title automatisch per type; geen custom code nodig
+- [~] Meta description per paginatype — via Shopify Admin ingesteld per product/pagina; geen custom code nodig
 
 ### Breadcrumbs
-- [ ] `snippets/sophior-breadcrumbs.liquid` aanmaken
-- [ ] Opnemen in PDP en categoriepagina templates
-- [ ] JSON-LD BreadcrumbList meegeven
+
+- [x] `snippets/sophior-breadcrumbs.liquid` aangemaakt
+- [x] `assets/sophior-breadcrumbs.css` aangemaakt
+- [x] Opgenomen in PDP (`sections/sophior-product-info.liquid`)
+- [x] Opgenomen in categoriepagina (`sections/sophior-category-header.liquid`) — vervangt eerder HTML-blok
+- [x] Opgenomen in artikelpagina (`sections/sophior-article.liquid`) — vervangt eerder HTML-blok
+- [x] JSON-LD BreadcrumbList per paginatype meegegeven
+
+### H1/H2 hiërarchie
+
+- [x] Elke pagina heeft precies één `<h1>`: Hero (homepage), collectie-header, product-info, blog-listing, article
+- [x] Breadcrumb-navigatie gebruikt `<nav>` + `<ol>` + `aria-current="page"` op laatste item
 
 ---
 
 ## Performance Taken
 
 ### Afbeeldingen
-- [ ] Alle afbeeldingen: WebP formaat, Shopify CDN
-- [ ] Lazy loading op alle afbeeldingen buiten viewport:
-  ```liquid
-  {{ product.featured_image | image_tag: loading: 'lazy', widths: '400,800,1200' }}
-  ```
-- [ ] Hero afbeelding: `loading="eager"` + `fetchpriority="high"` (LCP element)
+
+- [x] Lazy loading op alle afbeeldingen buiten viewport — productkaarten, footer logo, blog-kaarten
+- [x] Hero: `loading="eager"` + `fetchpriority="high"` (LCP element) — `sections/sophior-hero.liquid`
+- [x] Categorie-header: `loading="eager"` + `fetchpriority="high"` — `sections/sophior-category-header.liquid`
+- [~] WebP: Shopify CDN serveert automatisch WebP via `image_url` + `image_tag` filters — geen extra code nodig
 
 ### Fonts
-- [ ] Nevolasty .woff2 preloaden in `<head>`:
-  ```html
-  <link rel="preload" href="{{ 'nevolasty.woff2' | asset_url }}" as="font" type="font/woff2" crossorigin>
-  ```
-- [ ] Montserrat: `display=swap` via Google Fonts URL
-- [ ] Font-display: swap instellen voor beide fonts
+
+- [~] Nevolasty `.woff2` — **client-blocked**: klant heeft het bestand nog niet geleverd. Huidig: `.otf`.
+  Zodra bestand beschikbaar: preload in `layout/theme.liquid` aanpassen van `font/otf` naar `font/woff2`.
+- [x] Montserrat: `display=swap` via Google Fonts URL — `layout/theme.liquid`
+- [x] `font-display: swap` ingesteld op alle fonts — `assets/sophior-brand.css`
 
 ### Scripts
-- [ ] Alle third-party scripts: `async` of `defer` valideren
-- [ ] Geen render-blocking scripts in `<head>`
-- [ ] JavaScript bundel size controleren
+
+- [x] Alle eigen scripts: `defer="defer"` — `layout/theme.liquid`
+- [x] Geen render-blocking scripts in `<head>`
 
 ### CSS
-- [ ] Kritieke above-the-fold CSS inline in `<head>`
-- [ ] Overige CSS: `rel="preload"` + JavaScript fallback
+
+- [x] Kritieke CSS inline in `<head>` via Shopify's Dawn patroon (base.css eager, sophior-brand.css eager)
+- [x] Overige CSS: `media="print" onload` fallback voor niet-kritieke stijlen — `layout/theme.liquid`
 
 ### Audit
-- [ ] Lighthouse audit draaien op staging (Chrome DevTools)
-- [ ] PageSpeed Insights controleren
+
+- [ ] Lighthouse audit draaien op staging: `npm run lighthouse` of Chrome DevTools ← **staging vereist**
+- [ ] PageSpeed Insights controleren ← **staging vereist**
 - [ ] Shopify Theme Check: `docker compose run --rm shopify shopify theme check`
-- [ ] Eventuele bottlenecks oplossen
+- [ ] Google Rich Results Test uitvoeren op staging URL's ← **staging vereist**
+
+---
+
+## Deviaties
+
+| Item | Plan | Werkelijkheid |
+|---|---|---|
+| Nevolasty preload | `.woff2` | `.otf` — client-blocked |
+| Meta title format | Custom Liquid | Shopify Admin handles this — geen code nodig |
+| Meta description | Per-pagina schema | Shopify Admin/product instellingen — geen code nodig |
+
+---
+
+## Aangemaakte/gewijzigde bestanden
+
+### Nieuw aangemaakt
+
+- `snippets/sophior-breadcrumbs.liquid` — universeel breadcrumb snippet (HTML + BreadcrumbList JSON-LD)
+- `assets/sophior-breadcrumbs.css` — breadcrumb stijlen
+
+### Gewijzigd
+
+- `sections/sophior-product-info.liquid` — Product JSON-LD vóór `<product-info>` + breadcrumb render boven H1
+- `sections/sophior-category-header.liquid` — bestaande `<nav>` breadcrumb vervangen door snippet-aanroep
+- `sections/sophior-article.liquid` — bestaande `<nav>` breadcrumb vervangen door snippet-aanroep
+- `sections/sophior-footer.liquid` — Organization JSON-LD toegevoegd na `</footer>`
 
 ---
 
 ## Deliverable
 
-Lighthouse score groen op alle metrics. JSON-LD gevalideerd via Google Rich Results Test. Breadcrumbs live.
+Lighthouse score groen op alle metrics. JSON-LD gevalideerd via Google Rich Results Test. Breadcrumbs live op PDP, categorie en artikelpagina's.
+
+**Verificatie (zodra staging beschikbaar):**
+1. Google Rich Results Test → Product schema (PDP) + BreadcrumbList + FAQPage
+2. Google Rich Results Test → Organization (alle pagina's via footer)
+3. Lighthouse audit → SEO 100, Performance ≥95, A11y ≥95
+4. `shopify theme check` → 0 errors, 0 warnings

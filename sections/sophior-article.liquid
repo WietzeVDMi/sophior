@@ -34,15 +34,7 @@
     {%- endif -%}
 
     <div class="sophior-article__hero-content page-width">
-      <nav class="sophior-article__breadcrumb" aria-label="{{ 'sections.sophior-article.breadcrumb_label' | t }}">
-        <ol>
-          <li><a href="{{ routes.root_url }}">{{ 'general.breadcrumbs.home' | t }}</a></li>
-          <li aria-hidden="true">›</li>
-          <li><a href="{{ blog.url }}">{{ blog.title | escape }}</a></li>
-          <li aria-hidden="true">›</li>
-          <li aria-current="page"><span>{{ article.title | escape }}</span></li>
-        </ol>
-      </nav>
+      {%- render 'sophior-breadcrumbs', breadcrumb_type: 'article' -%}
 
       <span class="sophior-article__category" itemprop="articleSection">{{ blog.title | escape }}</span>
       <h1 class="sophior-article__title" itemprop="name">{{ article.title | escape }}</h1>

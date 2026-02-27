@@ -177,6 +177,30 @@
 
 </footer>
 
+{%- comment -%} Organization JSON-LD structured data {%- endcomment -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "SOPHIOR",
+  "url": {{ shop.url | json }},
+  "logo": {{ 'sophior-logo-dark.svg' | asset_url | json }}
+  {%- if section.settings.instagram_url != blank or section.settings.facebook_url != blank -%}
+  ,"sameAs": [
+    {%- assign first_link = true -%}
+    {%- if section.settings.instagram_url != blank -%}
+      {{ section.settings.instagram_url | json }}
+      {%- assign first_link = false -%}
+    {%- endif -%}
+    {%- if section.settings.facebook_url != blank -%}
+      {%- unless first_link -%},{%- endunless -%}
+      {{ section.settings.facebook_url | json }}
+    {%- endif -%}
+  ]
+  {%- endif -%}
+}
+</script>
+
 {% schema %}
 {
   "name": "t:sections.sophior-footer.name",

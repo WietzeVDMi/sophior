@@ -12,24 +12,7 @@
     {%- comment -%} Links: tekst {%- endcomment -%}
     <div class="sophior-category-header__content">
 
-      <nav
-        class="sophior-category-header__breadcrumb"
-        aria-label="{{ 'sections.sophior-category-header.breadcrumb_label' | t }}"
-      >
-        <ol class="sophior-category-header__breadcrumb-list">
-          <li>
-            <a href="{{ routes.root_url }}" class="sophior-category-header__breadcrumb-link">
-              {{ 'sections.sophior-category-header.breadcrumb_home' | t }}
-            </a>
-          </li>
-          <li aria-hidden="true" class="sophior-category-header__breadcrumb-sep">›</li>
-          <li>
-            <span class="sophior-category-header__breadcrumb-current" aria-current="page">
-              {{- collection.title | escape -}}
-            </span>
-          </li>
-        </ol>
-      </nav>
+      {%- render 'sophior-breadcrumbs', breadcrumb_type: 'collection' -%}
 
       <h1 class="sophior-category-header__title">{{ collection.title | escape }}</h1>
 
