@@ -1,0 +1,112 @@
+{{ 'sophior-announcement-bar.css' | asset_url | stylesheet_tag }}
+
+<div class="sophior-announce" role="region" aria-label="{{ 'sections.sophior-announcement-bar.aria_label' | t }}">
+
+  {%- comment -%} Desktop: 3 USPs naast elkaar {%- endcomment -%}
+  <div class="sophior-announce__desktop">
+    {%- for i in (1..3) -%}
+      {%- liquid
+        assign icon_key = 'usp_' | append: i | append: '_icon'
+        assign text_key = 'usp_' | append: i | append: '_text'
+        assign icon = section.settings[icon_key]
+        assign text = section.settings[text_key]
+      -%}
+      {%- if text != blank -%}
+        <div class="sophior-announce__item">
+          {%- if icon != blank -%}
+            <span class="sophior-announce__icon" aria-hidden="true">{{ icon }}</span>
+          {%- endif -%}
+          <span>{{ text }}</span>
+        </div>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+
+  {%- comment -%} Mobile: auto-carousel {%- endcomment -%}
+  <div class="sophior-announce__mobile" aria-hidden="true">
+    <div class="sophior-announce__track">
+      {%- for i in (1..3) -%}
+        {%- liquid
+          assign icon_key = 'usp_' | append: i | append: '_icon'
+          assign text_key = 'usp_' | append: i | append: '_text'
+          assign icon = section.settings[icon_key]
+          assign text = section.settings[text_key]
+        -%}
+        {%- if text != blank -%}
+          <div class="sophior-announce__slide">
+            {%- if icon != blank -%}
+              <span class="sophior-announce__icon">{{ icon }}</span>
+            {%- endif -%}
+            <span>{{ text }}</span>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.sophior-announcement-bar.name",
+  "class": "sophior-announcement-bar-section",
+  "enabled_on": {
+    "groups": ["header"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.sophior-announcement-bar.settings.usp_1_header.content"
+    },
+    {
+      "type": "text",
+      "id": "usp_1_icon",
+      "label": "t:sections.sophior-announcement-bar.settings.usp_icon.label",
+      "default": "✓"
+    },
+    {
+      "type": "text",
+      "id": "usp_1_text",
+      "label": "t:sections.sophior-announcement-bar.settings.usp_text.label",
+      "default": "Gratis verzending vanaf €59"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.sophior-announcement-bar.settings.usp_2_header.content"
+    },
+    {
+      "type": "text",
+      "id": "usp_2_icon",
+      "label": "t:sections.sophior-announcement-bar.settings.usp_icon.label",
+      "default": "★"
+    },
+    {
+      "type": "text",
+      "id": "usp_2_text",
+      "label": "t:sections.sophior-announcement-bar.settings.usp_text.label",
+      "default": "Premium kwaliteit — 30 dagen retour"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.sophior-announcement-bar.settings.usp_3_header.content"
+    },
+    {
+      "type": "text",
+      "id": "usp_3_icon",
+      "label": "t:sections.sophior-announcement-bar.settings.usp_icon.label",
+      "default": "♦"
+    },
+    {
+      "type": "text",
+      "id": "usp_3_text",
+      "label": "t:sections.sophior-announcement-bar.settings.usp_text.label",
+      "default": "Voor de echte keukenliefhebber"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.sophior-announcement-bar.name"
+    }
+  ]
+}
+{% endschema %}

@@ -267,6 +267,62 @@
     }
   },
   "sections": {
+    "sophior-announcement-bar": {
+      "name": "SOPHIOR Aankondigingsbalk",
+      "aria_label": "Aankondigingsbalk",
+      "settings": {
+        "usp_1_header": { "content": "USP 1" },
+        "usp_2_header": { "content": "USP 2" },
+        "usp_3_header": { "content": "USP 3" },
+        "usp_icon": { "label": "Icoon (emoji of symbool)" },
+        "usp_text": { "label": "Tekst" }
+      }
+    },
+    "sophior-header": {
+      "name": "SOPHIOR Header",
+      "nav_aria_label": "Hoofdnavigatie",
+      "mobile_menu_open": "Menu openen",
+      "mobile_menu_close": "Menu sluiten",
+      "mobile_menu_label": "Mobiel menu",
+      "view_all": "Alles bekijken",
+      "settings": {
+        "logo": { "label": "Logo afbeelding" },
+        "logo_width": { "label": "Logo breedte" },
+        "main_menu": { "label": "Hoofdmenu" },
+        "mega_menu_trigger": {
+          "label": "Mega menu trigger",
+          "info": "Naam van het menu-item dat het mega menu opent"
+        }
+      }
+    },
+    "sophior-footer": {
+      "name": "SOPHIOR Footer",
+      "newsletter_label": "Schrijf je in voor onze nieuwsbrief",
+      "newsletter_placeholder": "jouw@emailadres.nl",
+      "newsletter_btn": "Aanmelden",
+      "shop_title": "Shop",
+      "service_title": "Klantenservice",
+      "about_title": "Over SOPHIOR",
+      "rights_reserved": "Alle rechten voorbehouden.",
+      "payment_methods_label": "Betaalmethoden",
+      "link_cutting_boards": "Snijplanken",
+      "link_pans": "Pannen",
+      "link_knives": "Messen",
+      "link_accessories": "Accessoires",
+      "link_contact": "Contact",
+      "link_returns": "Retour & Ruilen",
+      "link_terms": "Algemene Voorwaarden",
+      "link_privacy": "Privacybeleid",
+      "link_our_story": "Ons Verhaal",
+      "link_guides": "Gidsen",
+      "link_sustainability": "Duurzaamheid",
+      "link_business": "Zakelijk",
+      "settings": {
+        "logo": { "label": "Logo afbeelding (wit)" },
+        "tagline": { "label": "Tagline" },
+        "social_header": { "content": "Social media" }
+      }
+    },
     "header": {
       "announcement": "Aankondiging",
       "menu": "Menu",
