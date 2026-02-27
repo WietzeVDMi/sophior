@@ -1,0 +1,237 @@
+{%- comment -%}
+  sophior-cart-drawer — SOPHIOR cart drawer (slide-in van rechts)
+
+  Renderen in layout/theme.liquid vóór {% sections 'header-group' %}:
+    {%- render 'sophior-cart-drawer' -%}
+
+  Openen via custom event:
+    document.dispatchEvent(new CustomEvent('sophior:open-cart'))
+
+  CSS: assets/sophior-cart-drawer.css
+  JS:  assets/sophior-cart-drawer.js
+{%- endcomment -%}
+
+{{ 'sophior-cart-drawer.css' | asset_url | stylesheet_tag }}
+
+{%- assign shipping_threshold = 5900 -%}
+{%- assign shipping_remaining = shipping_threshold | minus: cart.total_price -%}
+{%- assign shipping_progress = cart.total_price | times: 100 | divided_by: shipping_threshold -%}
+{%- if shipping_progress > 100 -%}{%- assign shipping_progress = 100 -%}{%- endif -%}
+
+<div
+  id="sophior-cart-drawer"
+  class="sophior-cart-drawer"
+  aria-hidden="true"
+  aria-label="{{ 'sections.sophior-cart-drawer.title' | t }}"
+  role="dialog"
+  aria-modal="true"
+>
+  {%- comment -%} Backdrop {%- endcomment -%}
+  <div
+    class="sophior-cart-drawer__overlay"
+    tabindex="-1"
+    data-action="close-cart"
+    aria-hidden="true"
+  ></div>
+
+  {%- comment -%} Panel {%- endcomment -%}
+  <div class="sophior-cart-drawer__panel" role="document">
+
+    {%- comment -%} Header {%- endcomment -%}
+    <div class="sophior-cart-drawer__header">
+      <h2 class="sophior-cart-drawer__title">{{ 'sections.sophior-cart-drawer.title' | t }}</h2>
+      <button
+        class="sophior-cart-drawer__close"
+        type="button"
+        aria-label="{{ 'sections.sophior-cart-drawer.close' | t }}"
+        data-action="close-cart"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+
+    {%- comment -%} Progress bar {%- endcomment -%}
+    <div
+      class="sophior-cart-drawer__progress"
+      id="sophior-cart-progress"
+      data-threshold="{{ shipping_threshold }}"
+    >
+      {%- if shipping_remaining > 0 -%}
+        <p class="sophior-cart-drawer__progress-text">
+          {{ 'sections.sophior-cart-drawer.shipping_remaining_html' | t: amount: shipping_remaining | money }}
+        </p>
+      {%- else -%}
+        <p class="sophior-cart-drawer__progress-text sophior-cart-drawer__progress-text--achieved">
+          {{ 'sections.sophior-cart-drawer.shipping_free' | t }}
+        </p>
+      {%- endif -%}
+      <div class="sophior-cart-drawer__progress-bar">
+        <div
+          class="sophior-cart-drawer__progress-fill"
+          style="width: {{ shipping_progress }}%;"
+          role="progressbar"
+          aria-valuenow="{{ shipping_progress }}"
+          aria-valuemin="0"
+          aria-valuemax="100"
+        ></div>
+      </div>
+    </div>
+
+    {%- comment -%} Producten {%- endcomment -%}
+    <div class="sophior-cart-drawer__body" id="sophior-cart-body">
+      {%- if cart.item_count == 0 -%}
+        <div class="sophior-cart-drawer__empty">
+          <svg viewBox="0 0 24 24" aria-hidden="true" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <path d="M16 10a4 4 0 0 1-8 0"/>
+          </svg>
+          <p>{{ 'sections.sophior-cart-drawer.empty' | t }}</p>
+          <a href="{{ routes.all_products_collection_url }}" class="sophior-cart-drawer__shop-link">
+            {{ 'sections.sophior-cart-drawer.shop_link' | t }}
+          </a>
+        </div>
+      {%- else -%}
+        <ul class="sophior-cart-drawer__items" id="sophior-cart-items" role="list">
+          {%- for item in cart.items -%}
+            <li
+              class="sophior-cart-drawer__item"
+              data-key="{{ item.key }}"
+              data-variant-id="{{ item.variant_id }}"
+            >
+              {%- comment -%} Afbeelding {%- endcomment -%}
+              <a href="{{ item.url }}" class="sophior-cart-drawer__item-img-link" tabindex="-1" aria-hidden="true">
+                {%- if item.image != blank -%}
+                  {{
+                    item.image
+                    | image_url: width: 120
+                    | image_tag:
+                      class: 'sophior-cart-drawer__item-img',
+                      loading: 'lazy',
+                      alt: item.image.alt | default: item.product.title | escape,
+                      width: 80,
+                      height: 100
+                  }}
+                {%- else -%}
+                  <div class="sophior-cart-drawer__item-img sophior-cart-drawer__item-img--placeholder"></div>
+                {%- endif -%}
+              </a>
+
+              {%- comment -%} Info {%- endcomment -%}
+              <div class="sophior-cart-drawer__item-info">
+                <a href="{{ item.url }}" class="sophior-cart-drawer__item-title">{{ item.product.title | escape }}</a>
+                {%- unless item.product.has_only_default_variant -%}
+                  <p class="sophior-cart-drawer__item-variant">{{ item.variant.title | escape }}</p>
+                {%- endunless -%}
+                <div class="sophior-cart-drawer__item-bottom">
+                  {%- comment -%} Qty selector {%- endcomment -%}
+                  <div class="sophior-cart-drawer__qty" role="group" aria-label="{{ 'sections.sophior-cart-drawer.qty_label' | t: title: item.product.title | escape }}">
+                    <button
+                      class="sophior-cart-drawer__qty-btn"
+                      type="button"
+                      data-action="decrease-qty"
+                      data-key="{{ item.key }}"
+                      aria-label="{{ 'sections.sophior-cart-drawer.decrease' | t }}"
+                      {% if item.quantity == 1 %}data-removes="true"{% endif %}
+                    >−</button>
+                    <span class="sophior-cart-drawer__qty-num" aria-live="polite">{{ item.quantity }}</span>
+                    <button
+                      class="sophior-cart-drawer__qty-btn"
+                      type="button"
+                      data-action="increase-qty"
+                      data-key="{{ item.key }}"
+                      aria-label="{{ 'sections.sophior-cart-drawer.increase' | t }}"
+                    >+</button>
+                  </div>
+                  {%- comment -%} Prijs {%- endcomment -%}
+                  <div class="sophior-cart-drawer__item-price">
+                    {{ item.final_line_price | money }}
+                    {%- if item.original_line_price != item.final_line_price -%}
+                      <s class="sophior-cart-drawer__item-price--compare">{{ item.original_line_price | money }}</s>
+                    {%- endif -%}
+                  </div>
+                </div>
+              </div>
+
+              {%- comment -%} Verwijder knop {%- endcomment -%}
+              <button
+                class="sophior-cart-drawer__item-remove"
+                type="button"
+                data-action="remove-item"
+                data-key="{{ item.key }}"
+                aria-label="{{ 'sections.sophior-cart-drawer.remove' | t: title: item.product.title | escape }}"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="18" y1="6" x2="6" y2="18"/>
+                  <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+              </button>
+            </li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+    </div>
+
+    {%- comment -%} Footer {%- endcomment -%}
+    {%- if cart.item_count > 0 -%}
+      <div class="sophior-cart-drawer__footer" id="sophior-cart-footer">
+
+        {%- comment -%} Add-on upsell placeholder — wordt actief zodra klant cart-upsell app kiest {%- endcomment -%}
+        {%- comment -%}
+          TODO Sprint 5: add-on upsell integratie
+          Logica: loop cart.items → check item.product.type → toon add-on via custom.addon_product metafield
+          Wacht op klant: Rebuy Smart Cart OF In Cart Upsell app keuze
+        {%- endcomment -%}
+
+        {%- comment -%} Subtotaal {%- endcomment -%}
+        <div class="sophior-cart-drawer__totals" id="sophior-cart-totals">
+          <div class="sophior-cart-drawer__subtotal">
+            <span>{{ 'sections.sophior-cart-drawer.subtotal' | t }}</span>
+            <span class="sophior-cart-drawer__subtotal-price">{{ cart.total_price | money }}</span>
+          </div>
+          <p class="sophior-cart-drawer__shipping-note">{{ 'sections.sophior-cart-drawer.shipping_note' | t }}</p>
+        </div>
+
+        {%- comment -%} Checkout CTA {%- endcomment -%}
+        <a
+          href="{{ routes.checkout }}"
+          class="sophior-cart-drawer__checkout-btn"
+          role="button"
+        >
+          {{ 'sections.sophior-cart-drawer.checkout' | t }}
+        </a>
+
+        {%- comment -%} Trust bar {%- endcomment -%}
+        <div class="sophior-cart-drawer__trust">
+          <div class="sophior-cart-drawer__trust-item">
+            <svg viewBox="0 0 24 24" aria-hidden="true" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="1" y="3" width="15" height="13" rx="2"/>
+              <path d="M16 8h4a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-4"/>
+              <line x1="12" y1="17" x2="22" y2="17"/>
+            </svg>
+            <span>{{ 'sections.sophior-cart-drawer.trust_delivery' | t }}</span>
+          </div>
+          <div class="sophior-cart-drawer__trust-item">
+            <svg viewBox="0 0 24 24" aria-hidden="true" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/>
+              <line x1="1" y1="10" x2="23" y2="10"/>
+            </svg>
+            <span>{{ 'sections.sophior-cart-drawer.trust_payment' | t }}</span>
+          </div>
+          <div class="sophior-cart-drawer__trust-item">
+            <svg viewBox="0 0 24 24" aria-hidden="true" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="1 4 1 10 7 10"/>
+              <path d="M3.51 15a9 9 0 1 0 .49-4"/>
+            </svg>
+            <span>{{ 'sections.sophior-cart-drawer.trust_return' | t }}</span>
+          </div>
+        </div>
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+<script src="{{ 'sophior-cart-drawer.js' | asset_url }}" defer></script>

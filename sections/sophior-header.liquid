@@ -116,7 +116,13 @@
       </a>
 
       {%- comment -%} Cart {%- endcomment -%}
-      <a href="{{ routes.cart_url }}" class="sophior-header__icon-btn" id="sophior-cart-icon" aria-label="{{ 'sections.cart.title' | t }}">
+      <button
+        type="button"
+        class="sophior-header__icon-btn"
+        id="sophior-cart-btn"
+        aria-label="{{ 'sections.sophior-cart-drawer.open' | t }}"
+        onclick="document.dispatchEvent(new CustomEvent('sophior:open-cart'))"
+      >
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
           <line x1="3" y1="6" x2="21" y2="6"/>
@@ -127,7 +133,7 @@
             {{- cart.item_count -}}
           </span>
         {%- endif -%}
-      </a>
+      </button>
 
     </div>
   </div>

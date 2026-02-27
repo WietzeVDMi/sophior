@@ -1,0 +1,453 @@
+/* ============================================================
+   SOPHIOR — Cart Drawer
+   Gebruikt door snippets/sophior-cart-drawer.liquid
+   ============================================================ */
+
+/* ---- Root ---- */
+.sophior-cart-drawer {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.sophior-cart-drawer.is-open {
+  pointer-events: auto;
+}
+
+/* ---- Overlay / backdrop ---- */
+.sophior-cart-drawer__overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(13, 43, 35, 0.5); /* sophior-dark-green @ 50% */
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  cursor: pointer;
+}
+
+.sophior-cart-drawer.is-open .sophior-cart-drawer__overlay {
+  opacity: 1;
+}
+
+/* ---- Panel ---- */
+.sophior-cart-drawer__panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(400px, 100vw);
+  background-color: var(--sophior-cream);
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.sophior-cart-drawer.is-open .sophior-cart-drawer__panel {
+  transform: translateX(0);
+}
+
+/* ---- Header ---- */
+.sophior-cart-drawer__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.2rem 1.6rem;
+  border-bottom: 1px solid var(--sophior-light-tan);
+  background-color: var(--sophior-dark-green);
+  flex-shrink: 0;
+}
+
+.sophior-cart-drawer__title {
+  font-family: var(--sophior-font-body);
+  font-size: var(--sophior-text-sm);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--sophior-cream);
+  margin: 0;
+}
+
+.sophior-cart-drawer__close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  background: none;
+  border: none;
+  color: var(--sophior-cream);
+  cursor: pointer;
+  border-radius: 2px;
+  transition: color var(--sophior-transition), background-color var(--sophior-transition);
+}
+
+.sophior-cart-drawer__close:hover {
+  background-color: rgba(241, 239, 234, 0.15);
+}
+
+.sophior-cart-drawer__close:focus-visible {
+  outline: 2px solid var(--sophior-gold);
+  outline-offset: 2px;
+}
+
+/* ---- Progress bar ---- */
+.sophior-cart-drawer__progress {
+  padding: 0.8rem 1.6rem;
+  background-color: var(--sophior-white);
+  border-bottom: 1px solid var(--sophior-light-tan);
+  flex-shrink: 0;
+}
+
+.sophior-cart-drawer__progress-text {
+  font-family: var(--sophior-font-body);
+  font-size: var(--sophior-text-xs);
+  font-weight: 500;
+  color: var(--sophior-dark-green);
+  margin: 0 0 0.5rem;
+  text-align: center;
+}
+
+.sophior-cart-drawer__progress-text--achieved {
+  color: var(--sophior-gold);
+  font-weight: 700;
+}
+
+.sophior-cart-drawer__progress-bar {
+  height: 4px;
+  background-color: var(--sophior-light-tan);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.sophior-cart-drawer__progress-fill {
+  height: 100%;
+  background-color: var(--sophior-gold);
+  border-radius: 2px;
+  transition: width 0.4s ease;
+}
+
+/* ---- Body / items ---- */
+.sophior-cart-drawer__body {
+  flex: 1;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Empty state */
+.sophior-cart-drawer__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 3rem 1.6rem;
+  color: var(--sophior-muted-green);
+  text-align: center;
+}
+
+.sophior-cart-drawer__empty p {
+  font-family: var(--sophior-font-body);
+  font-size: var(--sophior-text-sm);
+  margin: 0;
+}
+
+.sophior-cart-drawer__shop-link {
+  font-family: var(--sophior-font-body);
+  font-size: var(--sophior-text-sm);
+  font-weight: 700;
+  color: var(--sophior-dark-green);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color var(--sophior-transition);
+}
+
+.sophior-cart-drawer__shop-link:hover {
+  color: var(--sophior-gold);
+}
+
+/* Items list */
+.sophior-cart-drawer__items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sophior-cart-drawer__item {
+  display: grid;
+  grid-template-columns: 80px 1fr auto;
+  gap: 1rem;
+  align-items: start;
+  padding: 1.2rem 1.6rem;
+  border-bottom: 1px solid var(--sophior-light-tan);
+  position: relative;
+}
+
+/* Item image */
+.sophior-cart-drawer__item-img-link {
+  display: block;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.sophior-cart-drawer__item-img {
+  display: block;
+  width: 80px;
+  height: 100px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.sophior-cart-drawer__item-img--placeholder {
+  background: linear-gradient(135deg, var(--sophior-dark-green) 0%, var(--sophior-mid-green) 100%);
+}
+
+/* Item info */
+.sophior-cart-drawer__item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  min-width: 0;
+}
+
+.sophior-cart-drawer__item-title {
+  font-family: var(--sophior-font-body);
+  font-size: var(--sophior-text-sm);
+  font-weight: 500;
+  color: var(--sophior-dark-green);
+  text-decoration: none;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.sophior-cart-drawer__item-title:hover {
+  color: var(--sophior-gold);
+}
+
+.sophior-cart-drawer__item-variant {
+  font-family: var(--sophior-font-body);
+  font-size: var(--sophior-text-xs);
+  color: var(--sophior-muted-green);
+  margin: 0;
+}
+
+.sophior-cart-drawer__item-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-top: auto;
+}
+
+/* Qty selector */
+.sophior-cart-drawer__qty {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  border: 1px solid var(--sophior-light-tan);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.sophior-cart-drawer__qty-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  background: none;
+  border: none;
+  font-family: var(--sophior-font-body);
+  font-size: 1.2rem;
+  color: var(--sophior-dark-green);
+  cursor: pointer;
+  transition: background-color var(--sophior-transition), color var(--sophior-transition);
+}
+
+.sophior-cart-drawer__qty-btn:hover {
+  background-color: var(--sophior-gold);
+  color: var(--sophior-dark-green);
+}
+
+.sophior-cart-drawer__qty-btn:focus-visible {
+  outline: 2px solid var(--sophior-gold);
+  outline-offset: -2px;
+}
+
+.sophior-cart-drawer__qty-num {
+  font-family: var(--sophior-font-body);
+  font-size: var(--sophior-text-xs);
+  font-weight: 600;
+  color: var(--sophior-dark-green);
+  min-width: 20px;
+  text-align: center;
+}
+
+/* Item price */
+.sophior-cart-drawer__item-price {
+  font-family: var(--sophior-font-body);
+  font-size: var(--sophior-text-sm);
+  font-weight: 600;
+  color: var(--sophior-dark-green);
+  white-space: nowrap;
+  text-align: right;
+}
+
+.sophior-cart-drawer__item-price--compare {
+  display: block;
+  font-size: var(--sophior-text-xs);
+  font-weight: 400;
+  color: var(--sophior-muted-green);
+}
+
+/* Remove button */
+.sophior-cart-drawer__item-remove {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  background: none;
+  border: none;
+  color: var(--sophior-muted-green);
+  cursor: pointer;
+  border-radius: 2px;
+  align-self: start;
+  margin-top: 2px;
+  transition: color var(--sophior-transition);
+  flex-shrink: 0;
+}
+
+.sophior-cart-drawer__item-remove:hover {
+  color: var(--sophior-dark-green);
+}
+
+.sophior-cart-drawer__item-remove:focus-visible {
+  outline: 2px solid var(--sophior-gold);
+  outline-offset: 2px;
+}
+
+/* Loading state */
+.sophior-cart-drawer__item.is-loading {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* ---- Footer ---- */
+.sophior-cart-drawer__footer {
+  flex-shrink: 0;
+  border-top: 1px solid var(--sophior-light-tan);
+  background-color: var(--sophior-white);
+}
+
+/* Totals */
+.sophior-cart-drawer__totals {
+  padding: 1rem 1.6rem 0;
+}
+
+.sophior-cart-drawer__subtotal {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--sophior-font-body);
+  font-size: var(--sophior-text-sm);
+  font-weight: 700;
+  color: var(--sophior-dark-green);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.sophior-cart-drawer__subtotal-price {
+  font-size: 1rem;
+}
+
+.sophior-cart-drawer__shipping-note {
+  font-family: var(--sophior-font-body);
+  font-size: var(--sophior-text-xs);
+  color: var(--sophior-muted-green);
+  margin: 0.3rem 0 0;
+  text-align: right;
+}
+
+/* Checkout button */
+.sophior-cart-drawer__checkout-btn {
+  display: block;
+  width: calc(100% - 3.2rem);
+  margin: 1rem 1.6rem;
+  padding: 1rem 1.6rem;
+  background-color: var(--sophior-dark-green);
+  color: var(--sophior-cream);
+  font-family: var(--sophior-font-body);
+  font-size: var(--sophior-text-sm);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: background-color var(--sophior-transition);
+}
+
+.sophior-cart-drawer__checkout-btn:hover {
+  background-color: var(--sophior-gold);
+  color: var(--sophior-dark-green);
+}
+
+.sophior-cart-drawer__checkout-btn:focus-visible {
+  outline: 2px solid var(--sophior-gold);
+  outline-offset: 2px;
+}
+
+/* Trust bar */
+.sophior-cart-drawer__trust {
+  display: flex;
+  justify-content: space-around;
+  gap: 0.5rem;
+  padding: 0.8rem 1.6rem 1.2rem;
+  border-top: 1px solid var(--sophior-light-tan);
+}
+
+.sophior-cart-drawer__trust-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  flex: 1;
+}
+
+.sophior-cart-drawer__trust-item svg {
+  color: var(--sophior-gold);
+  flex-shrink: 0;
+}
+
+.sophior-cart-drawer__trust-item span {
+  font-family: var(--sophior-font-body);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--sophior-muted-green);
+  text-align: center;
+  line-height: 1.2;
+}
+
+/* ---- Scroll-lock body ---- */
+body.sophior-cart-open {
+  overflow: hidden;
+}
+
+/* ---- Motion preference ---- */
+@media (prefers-reduced-motion: reduce) {
+  .sophior-cart-drawer__panel,
+  .sophior-cart-drawer__overlay {
+    transition: none;
+  }
+}
