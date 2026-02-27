@@ -1,0 +1,200 @@
+{{ 'sophior-footer.css' | asset_url | stylesheet_tag }}
+
+<footer class="sophior-footer" role="contentinfo">
+
+  <div class="sophior-footer__main">
+
+    {%- comment -%} Kolom 1: Branding + newsletter + social {%- endcomment -%}
+    <div class="sophior-footer__brand">
+
+      <a href="{{ routes.root_url }}" class="sophior-footer__logo" aria-label="{{ shop.name }}">
+        {%- if section.settings.logo != blank -%}
+          {{ section.settings.logo | image_url: width: 330 | image_tag:
+            width: 165,
+            height: 36,
+            alt: shop.name,
+            loading: 'lazy'
+          }}
+        {%- else -%}
+          <img
+            src="{{ 'sophior-logo-dark.svg' | asset_url }}"
+            alt="{{ shop.name }}"
+            width="165"
+            height="36"
+            loading="lazy"
+          >
+        {%- endif -%}
+      </a>
+
+      {%- if section.settings.tagline != blank -%}
+        <p class="sophior-footer__tagline">{{ section.settings.tagline }}</p>
+      {%- endif -%}
+
+      {%- comment -%}
+        Klaviyo newsletter formulier — placeholder tot Klaviyo lijst-ID ontvangen is.
+        Vervang onderstaand formulier door Klaviyo embed snippet.
+      {%- endcomment -%}
+      <div class="sophior-footer__newsletter">
+        <label for="sophior-newsletter-email" class="sophior-footer__newsletter-label">
+          {{ 'sections.sophior-footer.newsletter_label' | t }}
+        </label>
+        <form class="sophior-footer__newsletter-form" action="/contact#newsletter" method="post" accept-charset="UTF-8">
+          <input type="hidden" name="form_type" value="customer">
+          <input type="hidden" name="utf8" value="✓">
+          <input type="hidden" name="contact[tags]" value="newsletter">
+          <input
+            type="email"
+            id="sophior-newsletter-email"
+            name="contact[email]"
+            class="sophior-footer__newsletter-input"
+            placeholder="{{ 'sections.sophior-footer.newsletter_placeholder' | t }}"
+            required
+            aria-required="true"
+          >
+          <button type="submit" class="sophior-footer__newsletter-btn">
+            {{ 'sections.sophior-footer.newsletter_btn' | t }}
+          </button>
+        </form>
+      </div>
+
+      <div class="sophior-footer__social">
+        {%- if section.settings.instagram_url != blank -%}
+          <a href="{{ section.settings.instagram_url }}" class="sophior-footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+            </svg>
+          </a>
+        {%- endif -%}
+
+        {%- if section.settings.facebook_url != blank -%}
+          <a href="{{ section.settings.facebook_url }}" class="sophior-footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+            </svg>
+          </a>
+        {%- endif -%}
+
+        {%- if section.settings.tiktok_url != blank -%}
+          <a href="{{ section.settings.tiktok_url }}" class="sophior-footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/>
+            </svg>
+          </a>
+        {%- endif -%}
+      </div>
+
+    </div>
+
+    {%- comment -%} Kolom 2: Shop {%- endcomment -%}
+    <div>
+      <details class="sophior-footer__accordion" open>
+        <summary>
+          <h3 class="sophior-footer__col-title">{{ 'sections.sophior-footer.shop_title' | t }}</h3>
+          <span class="sophior-footer__accordion-icon" aria-hidden="true">+</span>
+        </summary>
+        <ul class="sophior-footer__col-links sophior-footer__accordion-content" role="list">
+          <li><a href="/collections/snijplanken" class="sophior-footer__col-link">{{ 'sections.sophior-footer.link_cutting_boards' | t }}</a></li>
+          <li><a href="/collections/pannen" class="sophior-footer__col-link">{{ 'sections.sophior-footer.link_pans' | t }}</a></li>
+          <li><a href="/collections/messen" class="sophior-footer__col-link">{{ 'sections.sophior-footer.link_knives' | t }}</a></li>
+          <li><a href="/collections/accessoires" class="sophior-footer__col-link">{{ 'sections.sophior-footer.link_accessories' | t }}</a></li>
+        </ul>
+      </details>
+    </div>
+
+    {%- comment -%} Kolom 3: Klantenservice {%- endcomment -%}
+    <div>
+      <details class="sophior-footer__accordion" open>
+        <summary>
+          <h3 class="sophior-footer__col-title">{{ 'sections.sophior-footer.service_title' | t }}</h3>
+          <span class="sophior-footer__accordion-icon" aria-hidden="true">+</span>
+        </summary>
+        <ul class="sophior-footer__col-links sophior-footer__accordion-content" role="list">
+          <li><a href="/pages/contact" class="sophior-footer__col-link">{{ 'sections.sophior-footer.link_contact' | t }}</a></li>
+          <li><a href="/pages/retour" class="sophior-footer__col-link">{{ 'sections.sophior-footer.link_returns' | t }}</a></li>
+          <li><a href="/pages/algemene-voorwaarden" class="sophior-footer__col-link">{{ 'sections.sophior-footer.link_terms' | t }}</a></li>
+          <li><a href="/pages/privacybeleid" class="sophior-footer__col-link">{{ 'sections.sophior-footer.link_privacy' | t }}</a></li>
+        </ul>
+      </details>
+    </div>
+
+    {%- comment -%} Kolom 4: Over SOPHIOR {%- endcomment -%}
+    <div>
+      <details class="sophior-footer__accordion" open>
+        <summary>
+          <h3 class="sophior-footer__col-title">{{ 'sections.sophior-footer.about_title' | t }}</h3>
+          <span class="sophior-footer__accordion-icon" aria-hidden="true">+</span>
+        </summary>
+        <ul class="sophior-footer__col-links sophior-footer__accordion-content" role="list">
+          <li><a href="/pages/ons-verhaal" class="sophior-footer__col-link">{{ 'sections.sophior-footer.link_our_story' | t }}</a></li>
+          <li><a href="/blogs/inspiratie-recepten" class="sophior-footer__col-link">{{ 'sections.sophior-footer.link_guides' | t }}</a></li>
+          <li><a href="/pages/duurzaamheid" class="sophior-footer__col-link">{{ 'sections.sophior-footer.link_sustainability' | t }}</a></li>
+          <li><a href="/pages/zakelijk" class="sophior-footer__col-link">{{ 'sections.sophior-footer.link_business' | t }}</a></li>
+        </ul>
+      </details>
+    </div>
+
+  </div>
+
+  {%- comment -%} Bottom bar {%- endcomment -%}
+  <div class="sophior-footer__bottom">
+    <p class="sophior-footer__copyright">
+      &copy; {{ 'now' | date: '%Y' }} SOPHIOR. {{ 'sections.sophior-footer.rights_reserved' | t }}
+    </p>
+
+    <div class="sophior-footer__payments" aria-label="{{ 'sections.sophior-footer.payment_methods_label' | t }}">
+      {%- for type in shop.enabled_payment_types -%}
+        {{ type | payment_type_svg_tag: class: 'sophior-footer__payment-icon' }}
+      {%- endfor -%}
+    </div>
+  </div>
+
+</footer>
+
+{% schema %}
+{
+  "name": "t:sections.sophior-footer.name",
+  "class": "sophior-footer-section",
+  "enabled_on": {
+    "groups": ["footer"]
+  },
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "t:sections.sophior-footer.settings.logo.label"
+    },
+    {
+      "type": "text",
+      "id": "tagline",
+      "label": "t:sections.sophior-footer.settings.tagline.label",
+      "default": "Premium keukenproducten voor de echte keukenliefhebber."
+    },
+    {
+      "type": "header",
+      "content": "t:sections.sophior-footer.settings.social_header.content"
+    },
+    {
+      "type": "url",
+      "id": "instagram_url",
+      "label": "Instagram"
+    },
+    {
+      "type": "url",
+      "id": "facebook_url",
+      "label": "Facebook"
+    },
+    {
+      "type": "url",
+      "id": "tiktok_url",
+      "label": "TikTok"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.sophior-footer.name"
+    }
+  ]
+}
+{% endschema %}

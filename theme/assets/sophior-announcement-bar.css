@@ -1,0 +1,101 @@
+/* ============================================================
+   SOPHIOR — Announcement Bar
+   ============================================================ */
+
+.sophior-announce {
+  background-color: var(--sophior-dark-green);
+  color: var(--sophior-cream);
+  font-family: var(--sophior-font-body);
+  font-size: var(--sophior-text-xs);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  height: var(--sophior-announce-height);
+  overflow: hidden;
+}
+
+/* ---- Desktop: 3 kolommen naast elkaar ---- */
+.sophior-announce__desktop {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  height: 100%;
+  max-width: var(--sophior-max-width);
+  margin: 0 auto;
+  padding: 0 var(--sophior-space-lg);
+}
+
+.sophior-announce__item {
+  display: flex;
+  align-items: center;
+  gap: var(--sophior-space-sm);
+  padding: 0 var(--sophior-space-xl);
+  flex: 1;
+  justify-content: center;
+}
+
+.sophior-announce__item + .sophior-announce__item {
+  border-left: 1px solid var(--sophior-gold);
+}
+
+.sophior-announce__icon {
+  color: var(--sophior-gold);
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+
+/* ---- Mobile: CSS auto-carousel ---- */
+.sophior-announce__mobile {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.sophior-announce__track {
+  display: flex;
+  flex-direction: column;
+  animation: sophior-carousel 9s ease-in-out infinite;
+}
+
+.sophior-announce__slide {
+  height: var(--sophior-announce-height);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sophior-space-sm);
+  padding: 0 var(--sophior-space-md);
+  flex-shrink: 0;
+}
+
+@keyframes sophior-carousel {
+  0%,  28% { transform: translateY(0); }
+  33%,  61% { transform: translateY(calc(-1 * var(--sophior-announce-height))); }
+  66%,  94% { transform: translateY(calc(-2 * var(--sophior-announce-height))); }
+  99%, 100% { transform: translateY(0); }
+}
+
+/* ---- Responsive ---- */
+@media screen and (min-width: 750px) {
+  .sophior-announce__desktop {
+    display: flex;
+  }
+
+  .sophior-announce__mobile {
+    display: none;
+  }
+}
+
+/* Voorkeur voor minder beweging */
+@media (prefers-reduced-motion: reduce) {
+  .sophior-announce__track {
+    animation: none;
+  }
+
+  .sophior-announce__slide:not(:first-child) {
+    display: none;
+  }
+}

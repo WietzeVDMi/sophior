@@ -1,0 +1,62 @@
+/* ============================================================
+   SOPHIOR — Brand Design Tokens
+   Alle CSS custom properties voor kleuren, fonts en spacing.
+   Importeer dit bestand als eerste na base.css in theme.liquid.
+   ============================================================ */
+
+/* Nevolasty — zelf gehost als asset (nevolasty-light.otf) */
+@font-face {
+  font-family: 'Nevolasty';
+  src: url('nevolasty-light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* Kleuren */
+  --sophior-dark-green:  #0D2B23;
+  --sophior-gold:        #CEA15D;
+  --sophior-cream:       #F1EFEA;
+  --sophior-light-tan:   #E3D7C1;
+  --sophior-light-gold:  #EFCF96;
+  --sophior-white:       #FFFFFF;
+
+  /* Fonts */
+  --sophior-font-heading: 'Nevolasty', 'Playfair Display', serif;
+  --sophior-font-body:    'Montserrat', sans-serif;
+
+  /* Typografie schalen */
+  --sophior-text-xs:   1.2rem;
+  --sophior-text-sm:   1.4rem;
+  --sophior-text-base: 1.6rem;
+  --sophior-text-lg:   1.8rem;
+  --sophior-text-xl:   2.4rem;
+  --sophior-text-2xl:  3.2rem;
+  --sophior-text-3xl:  4.8rem;
+
+  /* Spacing */
+  --sophior-space-xs:  0.4rem;
+  --sophior-space-sm:  0.8rem;
+  --sophior-space-md:  1.6rem;
+  --sophior-space-lg:  2.4rem;
+  --sophior-space-xl:  4rem;
+  --sophior-space-2xl: 6.4rem;
+
+  /* Layout */
+  --sophior-max-width:        1200px;
+  --sophior-header-height:    72px;
+  --sophior-announce-height:  40px;
+
+  /* Transitions */
+  --sophior-transition: 0.2s ease;
+}
+
+/* Globale font-override — overschrijft Dawn defaults */
+body {
+  font-family: var(--sophior-font-body);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--sophior-font-heading);
+}

@@ -1,0 +1,265 @@
+/* ============================================================
+   SOPHIOR — Footer
+   ============================================================ */
+
+.sophior-footer {
+  background-color: var(--sophior-dark-green);
+  color: var(--sophior-cream);
+  font-family: var(--sophior-font-body);
+}
+
+.sophior-footer__main {
+  max-width: var(--sophior-max-width);
+  margin: 0 auto;
+  padding: var(--sophior-space-2xl) var(--sophior-space-lg);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sophior-space-xl);
+}
+
+/* ---- Kolom 1: Branding ---- */
+.sophior-footer__brand {}
+
+.sophior-footer__logo {
+  display: block;
+  margin-bottom: var(--sophior-space-lg);
+}
+
+.sophior-footer__logo img,
+.sophior-footer__logo svg {
+  height: 28px;
+  width: auto;
+}
+
+.sophior-footer__tagline {
+  font-size: var(--sophior-text-sm);
+  color: rgba(241, 239, 234, 0.7);
+  margin: 0 0 var(--sophior-space-lg);
+  line-height: 1.6;
+}
+
+/* Newsletter placeholder */
+.sophior-footer__newsletter {
+  margin-bottom: var(--sophior-space-lg);
+}
+
+.sophior-footer__newsletter-label {
+  font-size: var(--sophior-text-xs);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--sophior-gold);
+  display: block;
+  margin-bottom: var(--sophior-space-sm);
+}
+
+.sophior-footer__newsletter-form {
+  display: flex;
+  gap: 0;
+}
+
+.sophior-footer__newsletter-input {
+  flex: 1;
+  padding: var(--sophior-space-sm) var(--sophior-space-md);
+  background: rgba(241, 239, 234, 0.1);
+  border: 1px solid rgba(241, 239, 234, 0.2);
+  border-right: none;
+  color: var(--sophior-cream);
+  font-family: var(--sophior-font-body);
+  font-size: var(--sophior-text-sm);
+  outline: none;
+}
+
+.sophior-footer__newsletter-input::placeholder {
+  color: rgba(241, 239, 234, 0.4);
+}
+
+.sophior-footer__newsletter-btn {
+  padding: var(--sophior-space-sm) var(--sophior-space-md);
+  background: var(--sophior-gold);
+  border: 1px solid var(--sophior-gold);
+  color: var(--sophior-dark-green);
+  font-family: var(--sophior-font-body);
+  font-size: var(--sophior-text-sm);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color var(--sophior-transition);
+  white-space: nowrap;
+}
+
+.sophior-footer__newsletter-btn:hover {
+  background: var(--sophior-light-gold);
+  border-color: var(--sophior-light-gold);
+}
+
+/* Social icons */
+.sophior-footer__social {
+  display: flex;
+  gap: var(--sophior-space-md);
+}
+
+.sophior-footer__social-link {
+  color: var(--sophior-gold);
+  transition: color var(--sophior-transition), transform var(--sophior-transition);
+  display: flex;
+  align-items: center;
+}
+
+.sophior-footer__social-link:hover {
+  color: var(--sophior-light-gold);
+  transform: translateY(-2px);
+}
+
+.sophior-footer__social-link svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+/* ---- Kolommen 2/3/4: Links ---- */
+.sophior-footer__col-title {
+  font-size: var(--sophior-text-xs);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--sophior-gold);
+  margin: 0;
+}
+
+.sophior-footer__col-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sophior-space-sm);
+}
+
+.sophior-footer__col-link {
+  color: rgba(241, 239, 234, 0.75);
+  text-decoration: none;
+  font-size: var(--sophior-text-sm);
+  transition: color var(--sophior-transition);
+}
+
+.sophior-footer__col-link:hover {
+  color: var(--sophior-cream);
+}
+
+/* ---- Mobile: accordion kolommen 2/3/4 ---- */
+.sophior-footer__accordion {
+  border-top: 1px solid rgba(241, 239, 234, 0.15);
+}
+
+.sophior-footer__accordion summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--sophior-space-md) 0;
+  cursor: pointer;
+  list-style: none;
+  border-bottom: 1px solid rgba(241, 239, 234, 0.15);
+}
+
+.sophior-footer__accordion summary::-webkit-details-marker {
+  display: none;
+}
+
+.sophior-footer__accordion-icon {
+  color: var(--sophior-gold);
+  font-size: 1.8rem;
+  transition: transform var(--sophior-transition);
+  flex-shrink: 0;
+}
+
+.sophior-footer__accordion[open] .sophior-footer__accordion-icon {
+  transform: rotate(45deg);
+}
+
+.sophior-footer__accordion-content {
+  padding: var(--sophior-space-md) 0 var(--sophior-space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sophior-space-sm);
+}
+
+/* ---- Bottom bar ---- */
+.sophior-footer__bottom {
+  border-top: 1px solid rgba(241, 239, 234, 0.15);
+  padding: var(--sophior-space-lg);
+  max-width: var(--sophior-max-width);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sophior-space-md);
+  align-items: center;
+  text-align: center;
+}
+
+.sophior-footer__copyright {
+  font-size: var(--sophior-text-xs);
+  color: rgba(241, 239, 234, 0.5);
+  margin: 0;
+}
+
+.sophior-footer__payments {
+  display: flex;
+  align-items: center;
+  gap: var(--sophior-space-sm);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.sophior-footer__payment-icon {
+  height: 22px;
+  width: auto;
+  opacity: 0.6;
+  filter: brightness(10);
+}
+
+/* ---- Desktop grid ---- */
+@media screen and (min-width: 750px) {
+  .sophior-footer__main {
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: var(--sophior-space-2xl);
+  }
+
+  /* Desktop: geen accordion, gewoon statische links */
+  .sophior-footer__accordion {
+    border: none;
+  }
+
+  .sophior-footer__accordion summary {
+    padding: 0;
+    cursor: default;
+    pointer-events: none;
+    border: none;
+  }
+
+  .sophior-footer__accordion-icon {
+    display: none;
+  }
+
+  .sophior-footer__accordion-content {
+    padding: 0;
+  }
+
+  /* Details element altijd open op desktop */
+  .sophior-footer__accordion {
+    display: block;
+  }
+
+  .sophior-footer__accordion-content {
+    display: flex !important;
+  }
+
+  .sophior-footer__col-title {
+    margin-bottom: var(--sophior-space-lg);
+  }
+
+  .sophior-footer__bottom {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+}

@@ -1,0 +1,254 @@
+{{ 'sophior-header.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign main_menu = section.settings.main_menu | default: 'main-menu'
+  assign menu = linklists[main_menu]
+-%}
+
+<header class="sophior-header" role="banner">
+  <div class="sophior-header__inner">
+
+    {%- comment -%} Hamburger — alleen mobile {%- endcomment -%}
+    <button
+      class="sophior-header__hamburger"
+      aria-controls="sophior-mobile-nav"
+      aria-expanded="false"
+      aria-label="{{ 'sections.sophior-header.mobile_menu_open' | t }}"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    {%- comment -%} Logo {%- endcomment -%}
+    <a href="{{ routes.root_url }}" class="sophior-header__logo" aria-label="{{ shop.name }}">
+      {%- if section.settings.logo != blank -%}
+        {{ section.settings.logo | image_url: width: 440 | image_tag:
+          width: 220,
+          height: 48,
+          alt: shop.name,
+          loading: 'eager'
+        }}
+      {%- else -%}
+        <img
+          src="{{ 'sophior-logo-light.svg' | asset_url }}"
+          alt="{{ shop.name }}"
+          width="165"
+          height="36"
+          loading="eager"
+        >
+      {%- endif -%}
+    </a>
+
+    {%- comment -%} Desktop navigatie {%- endcomment -%}
+    <nav aria-label="{{ 'sections.sophior-header.nav_aria_label' | t }}">
+      <ul class="sophior-header__nav" role="list">
+        {%- for link in menu.links -%}
+          {%- if link.links.size > 0 and link.title == section.settings.mega_menu_trigger -%}
+            {%- comment -%} Mega menu voor 'Producten' {%- endcomment -%}
+            <li class="sophior-header__nav-item">
+              <a
+                href="{{ link.url }}"
+                class="sophior-header__nav-link"
+                aria-expanded="false"
+                aria-haspopup="true"
+              >
+                {{ link.title }}
+                <svg width="12" height="8" viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                  <path d="M1 1.5L6 6.5L11 1.5"/>
+                </svg>
+              </a>
+
+              <div class="sophior-mega-menu" role="region" aria-label="{{ link.title }}">
+                {%- for child_link in link.links -%}
+                  <div class="sophior-mega-menu__col">
+                    <p class="sophior-mega-menu__col-title">{{ child_link.title }}</p>
+                    {%- if child_link.links.size > 0 -%}
+                      <ul class="sophior-mega-menu__list" role="list">
+                        {%- for grandchild_link in child_link.links -%}
+                          <li>
+                            <a href="{{ grandchild_link.url }}" class="sophior-mega-menu__link">
+                              {{ grandchild_link.title }}
+                            </a>
+                          </li>
+                        {%- endfor -%}
+                      </ul>
+                    {%- else -%}
+                      <a href="{{ child_link.url }}" class="sophior-mega-menu__link">
+                        {{ 'sections.sophior-header.view_all' | t }}
+                      </a>
+                    {%- endif -%}
+                  </div>
+                {%- endfor -%}
+              </div>
+            </li>
+          {%- else -%}
+            <li class="sophior-header__nav-item">
+              <a
+                href="{{ link.url }}"
+                class="sophior-header__nav-link"
+                {% if link.active %}aria-current="page"{% endif %}
+              >{{ link.title }}</a>
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+    </nav>
+
+    {%- comment -%} Utility icons {%- endcomment -%}
+    <div class="sophior-header__utils">
+
+      {%- comment -%} Zoeken {%- endcomment -%}
+      <a href="{{ routes.search_url }}" class="sophior-header__icon-btn" aria-label="{{ 'general.search.search' | t }}">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="11" cy="11" r="7"/>
+          <path d="M16.5 16.5L21 21"/>
+        </svg>
+      </a>
+
+      {%- comment -%} Account {%- endcomment -%}
+      <a href="{{ routes.account_url }}" class="sophior-header__icon-btn" aria-label="{{ 'customer.account.title' | t }}">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
+      </a>
+
+      {%- comment -%} Cart {%- endcomment -%}
+      <a href="{{ routes.cart_url }}" class="sophior-header__icon-btn" id="sophior-cart-icon" aria-label="{{ 'sections.cart.title' | t }}">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <path d="M16 10a4 4 0 0 1-8 0"/>
+        </svg>
+        {%- if cart.item_count > 0 -%}
+          <span class="sophior-header__cart-count" aria-label="{{ cart.item_count }} {{ 'sections.cart.title' | t | downcase }}">
+            {{- cart.item_count -}}
+          </span>
+        {%- endif -%}
+      </a>
+
+    </div>
+  </div>
+</header>
+
+{%- comment -%} Mobile nav drawer {%- endcomment -%}
+<div
+  id="sophior-mobile-nav"
+  class="sophior-mobile-nav"
+  aria-hidden="true"
+  aria-label="{{ 'sections.sophior-header.mobile_menu_label' | t }}"
+>
+  <div class="sophior-mobile-nav__overlay" tabindex="-1" data-action="close-mobile-nav"></div>
+  <nav class="sophior-mobile-nav__panel" role="navigation">
+    <div class="sophior-mobile-nav__header">
+      <img
+        src="{{ 'sophior-logo-light.svg' | asset_url }}"
+        alt="{{ shop.name }}"
+        width="120"
+        height="28"
+        loading="lazy"
+      >
+      <button
+        class="sophior-mobile-nav__close"
+        data-action="close-mobile-nav"
+        aria-label="{{ 'sections.sophior-header.mobile_menu_close' | t }}"
+      >×</button>
+    </div>
+
+    <ul class="sophior-mobile-nav__list" role="list">
+      {%- for link in menu.links -%}
+        <li>
+          <a href="{{ link.url }}" class="sophior-mobile-nav__link"
+            {% if link.active %}aria-current="page"{% endif %}
+          >{{ link.title }}</a>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </nav>
+</div>
+
+<script>
+  (function () {
+    var hamburger = document.querySelector('.sophior-header__hamburger');
+    var mobileNav = document.getElementById('sophior-mobile-nav');
+    var closeButtons = document.querySelectorAll('[data-action="close-mobile-nav"]');
+
+    function openNav() {
+      hamburger.setAttribute('aria-expanded', 'true');
+      mobileNav.classList.add('sophior-mobile-nav--open');
+      mobileNav.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeNav() {
+      hamburger.setAttribute('aria-expanded', 'false');
+      mobileNav.classList.remove('sophior-mobile-nav--open');
+      mobileNav.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    if (hamburger) {
+      hamburger.addEventListener('click', function () {
+        if (hamburger.getAttribute('aria-expanded') === 'true') {
+          closeNav();
+        } else {
+          openNav();
+        }
+      });
+    }
+
+    closeButtons.forEach(function (btn) {
+      btn.addEventListener('click', closeNav);
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeNav();
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "t:sections.sophior-header.name",
+  "class": "sophior-header-section",
+  "enabled_on": {
+    "groups": ["header"]
+  },
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "t:sections.sophior-header.settings.logo.label"
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "min": 100,
+      "max": 300,
+      "step": 10,
+      "unit": "px",
+      "label": "t:sections.sophior-header.settings.logo_width.label",
+      "default": 165
+    },
+    {
+      "type": "link_list",
+      "id": "main_menu",
+      "label": "t:sections.sophior-header.settings.main_menu.label",
+      "default": "main-menu"
+    },
+    {
+      "type": "text",
+      "id": "mega_menu_trigger",
+      "label": "t:sections.sophior-header.settings.mega_menu_trigger.label",
+      "default": "Producten",
+      "info": "t:sections.sophior-header.settings.mega_menu_trigger.info"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.sophior-header.name"
+    }
+  ]
+}
+{% endschema %}

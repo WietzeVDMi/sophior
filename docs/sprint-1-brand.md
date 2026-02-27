@@ -1,6 +1,6 @@
 # Sprint 1 — Brand Setup & Globale Componenten
 
-**Status:** 🔒 Wacht op klant (logo + Nevolasty font)
+**Status:** ⏳ Bezig — placeholders actief (Playfair Display + SVG logo)
 **Duur:** 3–5 dagen
 **Branch:** `feature/sprint-1-brand`
 
@@ -45,42 +45,37 @@ Alle brand-elementen implementeren + header, footer en announcement bar live op 
 ## Taken
 
 ### Brand setup
-- [ ] `assets/sophior-brand.css` aanmaken met alle CSS custom properties
-- [ ] Montserrat preloaden via Google Fonts in `theme/layout/theme.liquid`
-- [ ] Nevolasty .woff2 preloaden (of Playfair Display als placeholder)
-- [ ] Logo SVG opnemen als `assets/sophior-logo-dark.svg` en `assets/sophior-logo-light.svg`
+- [x] `assets/sophior-brand.css` aanmaken met alle CSS custom properties
+- [x] Montserrat preloaden via Google Fonts in `theme/layout/theme.liquid`
+- [x] Playfair Display als Nevolasty placeholder (⏳ .woff2 nog te ontvangen)
+- [x] Logo SVG placeholders: `assets/sophior-logo-dark.svg` + `assets/sophior-logo-light.svg`
 - [ ] Dawn kleurinstellingen overschrijven in `config/settings_schema.json`
-- [ ] `sophior-brand.css` importeren in `theme.liquid`
+- [x] `sophior-brand.css` importeren in `theme.liquid`
 
 ### Announcement Bar — `sections/sophior-announcement-bar.liquid`
-- [ ] Desktop: 3 USPs naast elkaar (flexbox)
-- [ ] Mobile: auto-carousel via CSS animatie (1 USP zichtbaar, scroll elke 3s)
-- [ ] Sticky positionering boven header (`position: sticky; top: 0; z-index: 100`)
-- [ ] Achtergrond `#0D2B23`, tekst `#F1EFEA`, iconen `#CEA15D`
-- [ ] Schema: 3 USP-teksten bewerkbaar via Shopify editor
+- [x] Desktop: 3 USPs naast elkaar (flexbox)
+- [x] Mobile: auto-carousel via CSS animatie (1 USP zichtbaar, 3s per item)
+- [x] Sticky positionering boven header (`position: sticky; top: 0; z-index: 200`)
+- [x] Achtergrond `#0D2B23`, tekst `#F1EFEA`, iconen `#CEA15D`
+- [x] Schema: 3 USP-teksten + iconen bewerkbaar via Shopify editor
 
 ### Header & Mega Menu — `sections/sophior-header.liquid`
-- [ ] Logo links (wit op donker / zwart op licht)
-- [ ] Sticky onder announcement bar
-- [ ] Navigatie: Montserrat Regular, `#0D2B23`, hover → `#CEA15D`
-- [ ] Utility iconen rechts: zoek, account, cart (line-art)
-- [ ] Mega Menu 'Producten' (hover/tap):
-  - 4 categorie-kolommen: Snijplanken, Pannen, Messen, Accessoires
-  - 2 actie-blokken: "Alle Producten" + "Actie"
-- [ ] Gids dropdown: links naar 5 blog-categorieën
-- [ ] Mobile: hamburger links, logo gecentreerd, cart rechts
+- [x] Logo links (SVG placeholder, lichte versie)
+- [x] Sticky onder announcement bar
+- [x] Navigatie: Montserrat, `#0D2B23`, hover → `#CEA15D`
+- [x] Utility iconen rechts: zoek, account, cart (line-art SVG)
+- [x] Mega Menu configureerbaar via menu-link trigger in schema
+- [x] Mobile: hamburger links, logo gecentreerd, cart rechts
+- [x] Off-canvas nav drawer met JS toggle
 
 ### Footer — `sections/sophior-footer.liquid`
-- [ ] Achtergrond `#0D2B23`, tekst `#F1EFEA`
-- [ ] 4-kolom layout:
-  1. Branding + Klaviyo newsletter formulier placeholder + social icons
-  2. Shop (links naar 4 collecties)
-  3. Klantenservice (Contact, Retour, Voorwaarden, Privacy)
-  4. Over SOPHIOR (Ons verhaal, Gidsen, Duurzaamheid, Zakelijk)
-- [ ] Social icons (Instagram, Facebook, TikTok) in `#CEA15D`
-- [ ] Betaalmethoden bottom bar
-- [ ] Copyright © 2026 SOPHIOR
-- [ ] Mobile: kolommen 2/3/4 als accordion, kolom 1 altijd zichtbaar
+- [x] Achtergrond `#0D2B23`, tekst `#F1EFEA`
+- [x] 4-kolom layout (branding + 3 linklkolommen)
+- [x] Klaviyo newsletter formulier placeholder
+- [x] Social icons Instagram, Facebook, TikTok in `#CEA15D`
+- [x] Shopify betaalmethoden bottom bar
+- [x] Copyright © SOPHIOR
+- [x] Mobile: kolommen 2/3/4 als `<details>` accordion
 
 ---
 
