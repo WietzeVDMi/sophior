@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "name": "t:sections.header.name",
   "type": "header",
@@ -8,7 +17,7 @@
         "usp_1_icon": "✓",
         "usp_1_text": "Gratis verzending vanaf €59",
         "usp_2_icon": "★",
-        "usp_2_text": "Premium kwaliteit — 30 dagen retour",
+        "usp_2_text": "Voor 23:59 besteld, morgen in huis",
         "usp_3_icon": "♦",
         "usp_3_text": "Voor de echte keukenliefhebber"
       }
