@@ -3547,6 +3547,7 @@
       "name": "SOPHIOR USP Accordeon",
       "settings": {
         "title": { "label": "Sectietitel" },
+        "subtitle": { "label": "Subtitel" },
         "image": { "label": "Afbeelding (rechterkolom)" }
       },
       "blocks": {

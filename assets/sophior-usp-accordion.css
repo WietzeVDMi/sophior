@@ -25,6 +25,14 @@
   font-size: var(--sophior-text-2xl);
   font-weight: 300;
   color: var(--sophior-dark-green);
+  margin: 0 0 var(--sophior-space-sm);
+}
+
+.sophior-usp-accordion__subtitle {
+  font-family: var(--sophior-font-body);
+  font-size: var(--sophior-text-base);
+  font-weight: 300;
+  color: var(--sophior-muted-green);
   margin: 0 0 var(--sophior-space-xl);
 }
 

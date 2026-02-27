@@ -48,7 +48,7 @@
   font-family: var(--sophior-font-body);
   font-size: var(--sophior-text-sm);
   font-weight: 500;
-  color: var(--sophior-gold);
+  color: var(--sophior-dark-green);
   text-decoration: none;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -56,6 +56,7 @@
 }
 
 .sophior-bestsellers__view-all:hover {
+  color: var(--sophior-gold);
   text-decoration: underline;
 }
 

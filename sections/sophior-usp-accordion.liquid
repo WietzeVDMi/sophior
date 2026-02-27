@@ -7,6 +7,9 @@
     <div class="sophior-usp-accordion__content">
       {%- render 'sophior-ring', variant: 'divider' -%}
       <h2 class="sophior-usp-accordion__title">{{ section.settings.title }}</h2>
+      {%- if section.settings.subtitle != blank -%}
+        <p class="sophior-usp-accordion__subtitle">{{ section.settings.subtitle | escape }}</p>
+      {%- endif -%}
 
       <div class="sophior-usp-accordion__items">
         {%- for block in section.blocks -%}
@@ -72,6 +75,12 @@
       "id": "title",
       "label": "t:sections.sophior-usp-accordion.settings.title.label",
       "default": "Waarom SOPHIOR"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "t:sections.sophior-usp-accordion.settings.subtitle.label",
+      "default": "Koken begint bij het juiste materiaal"
     },
     {
       "type": "image_picker",

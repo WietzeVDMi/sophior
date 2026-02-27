@@ -3547,6 +3547,7 @@
       "name": "SOPHIOR USP Accordion",
       "settings": {
         "title": { "label": "Section title" },
+        "subtitle": { "label": "Subtitle" },
         "image": { "label": "Image (right column)" }
       },
       "blocks": {

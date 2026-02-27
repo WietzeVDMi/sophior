@@ -66,6 +66,11 @@
   box-shadow: 0 4px 24px rgba(13, 43, 35, 0.1);
 }
 
+.sophior-blog-preview__card:hover .sophior-blog-preview__card-title,
+.sophior-blog-preview__card:focus-visible .sophior-blog-preview__card-title {
+  color: var(--sophior-gold);
+}
+
 .sophior-blog-preview__card-media {
   position: relative;
   overflow: hidden;

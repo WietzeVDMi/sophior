@@ -11,7 +11,7 @@
   display: flex;
   align-items: center;
   overflow: hidden;
-  background-color: var(--sophior-cream);
+  background-color: var(--sophior-dark-green);
 }
 
 /* ---- Full-width achtergrondafbeelding ---- */
@@ -50,17 +50,16 @@
   fill: var(--sophior-gold);
 }
 
-/* ---- Gradient overlay: links cream → rechts transparant ---- */
+/* ---- Gradient overlay: links donker → rechts transparant ---- */
 .sophior-hero__overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(
     to right,
-    var(--sophior-cream) 0%,
-    var(--sophior-cream) 30%,
-    var(--sophior-cream-75) 50%,
-    var(--sophior-cream-20) 65%,
-    transparent 82%
+    rgba(13, 43, 35, 0.88) 0%,
+    rgba(13, 43, 35, 0.65) 40%,
+    rgba(13, 43, 35, 0.18) 70%,
+    rgba(13, 43, 35, 0) 100%
   );
   pointer-events: none;
 }
@@ -91,7 +90,7 @@
   max-width: 680px;
   padding: var(--sophior-space-2xl);
   padding-left: clamp(2.4rem, 6vw, 8rem);
-  color: var(--sophior-dark-green);
+  color: var(--sophior-cream);
 }
 
 /* ---- Social proof sterren ---- */
@@ -99,7 +98,7 @@
   font-family: var(--sophior-font-body);
   font-size: var(--sophior-text-sm);
   font-weight: 500;
-  color: var(--sophior-dark-green);
+  color: var(--sophior-cream);
   letter-spacing: 0.04em;
   margin: 0 0 var(--sophior-space-md);
 }
@@ -110,7 +109,7 @@
   font-size: var(--sophior-text-3xl);
   font-weight: 300;
   line-height: 1.1;
-  color: var(--sophior-dark-green);
+  color: var(--sophior-cream);
   margin: 0 0 var(--sophior-space-lg);
 }
 
@@ -120,7 +119,7 @@
   font-size: var(--sophior-text-lg);
   font-weight: 300;
   line-height: 1.6;
-  color: var(--sophior-muted-green);
+  color: var(--sophior-light-tan);
   margin: 0 0 var(--sophior-space-xl);
   max-width: 46ch;
 }
@@ -142,7 +141,7 @@
   font-family: var(--sophior-font-body);
   font-size: var(--sophior-text-base);
   font-weight: 400;
-  color: var(--sophior-dark-green);
+  color: var(--sophior-cream);
 }
 
 .sophior-hero__usp-icon {
