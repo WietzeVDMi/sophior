@@ -1,0 +1,74 @@
+{{ 'sophior-page-hero.css' | asset_url | stylesheet_tag }}
+
+<section
+  class="sophior-page-hero{% if section.settings.image == blank %} sophior-page-hero--no-image{% endif %}"
+  id="sophior-page-hero-{{ section.id }}"
+>
+  {%- if section.settings.image != blank -%}
+    <div class="sophior-page-hero__media">
+      {{
+        section.settings.image
+        | image_url: width: 1600
+        | image_tag:
+          class: 'sophior-page-hero__img',
+          loading: 'eager',
+          fetchpriority: 'high',
+          alt: section.settings.image.alt | default: section.settings.heading | escape,
+          widths: '750, 1100, 1600',
+          sizes: '100vw'
+      }}
+    </div>
+  {%- endif -%}
+
+  <div class="sophior-page-hero__overlay"></div>
+
+  <div class="sophior-page-hero__content page-width">
+    {%- if section.settings.heading != blank -%}
+      <h1 class="sophior-page-hero__heading">{{ section.settings.heading | escape }}</h1>
+    {%- endif -%}
+    {%- if section.settings.subheading != blank -%}
+      <p class="sophior-page-hero__subheading">{{ section.settings.subheading | escape }}</p>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.sophior-page-hero.name",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:sections.sophior-page-hero.settings.image.label"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:sections.sophior-page-hero.settings.heading.label",
+      "default": "t:sections.sophior-page-hero.settings.heading.default"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "t:sections.sophior-page-hero.settings.subheading.label"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "t:sections.sophior-page-hero.settings.overlay_opacity.label",
+      "min": 0,
+      "max": 80,
+      "step": 5,
+      "default": 50,
+      "unit": "%"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.sophior-page-hero.presets.default.name"
+    }
+  ]
+}
+{% endschema %}

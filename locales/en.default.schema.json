@@ -3724,6 +3724,133 @@
       "presets": {
         "name": "SOPHIOR Product FAQ"
       }
+    },
+    "sophior-cart-drawer": {
+      "title": "Shopping Cart",
+      "close": "Close cart",
+      "open": "Open cart",
+      "empty": "Your cart is empty.",
+      "shop_link": "Browse our collection",
+      "shipping_remaining_html": "Only %{amount} left for free shipping!",
+      "shipping_free": "You have free shipping!",
+      "subtotal": "Subtotal",
+      "shipping_note": "Shipping calculated at checkout",
+      "checkout": "Checkout",
+      "qty_label": "Quantity of %{title}",
+      "decrease": "Decrease quantity",
+      "increase": "Increase quantity",
+      "remove": "Remove %{title}",
+      "trust_delivery": "Fast delivery",
+      "trust_payment": "Secure payment",
+      "trust_return": "30-day returns"
+    },
+    "sophior-page-hero": {
+      "name": "SOPHIOR Page Hero",
+      "settings": {
+        "image": { "label": "Image" },
+        "heading": {
+          "label": "Heading",
+          "default": "Our Story"
+        },
+        "subheading": { "label": "Subheading" },
+        "overlay_opacity": { "label": "Overlay opacity (%)" }
+      },
+      "presets": {
+        "default": { "name": "SOPHIOR Page Hero" }
+      }
+    },
+    "sophior-zigzag": {
+      "name": "SOPHIOR Zigzag",
+      "settings": {
+        "padding_top": { "label": "Top padding" },
+        "padding_bottom": { "label": "Bottom padding" }
+      },
+      "blocks": {
+        "row": {
+          "name": "Row",
+          "settings": {
+            "image": { "label": "Image" },
+            "label": { "label": "Small label" },
+            "heading": { "label": "Heading" },
+            "content": { "label": "Content" }
+          }
+        }
+      },
+      "presets": {
+        "default": { "name": "SOPHIOR Zigzag" },
+        "block_1": {
+          "heading": "Craftsmanship you can feel",
+          "content": "<p>Enter your text here.</p>"
+        },
+        "block_2": {
+          "heading": "Cooking as a ritual",
+          "content": "<p>Enter your text here.</p>"
+        }
+      }
+    },
+    "sophior-values-bar": {
+      "name": "SOPHIOR Values Bar",
+      "settings": {
+        "heading": {
+          "label": "Heading",
+          "default": "What we stand for"
+        },
+        "padding_top": { "label": "Top padding" },
+        "padding_bottom": { "label": "Bottom padding" }
+      },
+      "blocks": {
+        "value": {
+          "name": "Value",
+          "settings": {
+            "icon": {
+              "label": "Icon",
+              "options": {
+                "leaf": "Leaf",
+                "star": "Star",
+                "heart": "Heart",
+                "shield": "Shield",
+                "award": "Award",
+                "check": "Check"
+              }
+            },
+            "label": { "label": "Label" },
+            "description": { "label": "Description" }
+          }
+        }
+      },
+      "presets": {
+        "default": { "name": "SOPHIOR Values Bar" },
+        "block_1": { "label": "Sustainable" },
+        "block_2": { "label": "Premium quality" },
+        "block_3": { "label": "Made with love" },
+        "block_4": { "label": "Guaranteed" }
+      }
+    },
+    "sophior-sustainability": {
+      "name": "SOPHIOR Sustainability",
+      "settings": {
+        "image": { "label": "Image" },
+        "image_position": {
+          "label": "Image position",
+          "options": {
+            "left": "Left",
+            "right": "Right"
+          }
+        },
+        "label": { "label": "Small label" },
+        "heading": {
+          "label": "Heading",
+          "default": "Good for you, good for the planet"
+        },
+        "content": { "label": "Content" },
+        "cta_label": { "label": "Button label" },
+        "cta_url": { "label": "Button URL" },
+        "padding_top": { "label": "Top padding" },
+        "padding_bottom": { "label": "Bottom padding" }
+      },
+      "presets": {
+        "default": { "name": "SOPHIOR Sustainability" }
+      }
     }
   }
 }

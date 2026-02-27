@@ -3724,6 +3724,133 @@
       "presets": {
         "name": "SOPHIOR Product FAQ"
       }
+    },
+    "sophior-cart-drawer": {
+      "title": "Winkelwagen",
+      "close": "Winkelwagen sluiten",
+      "open": "Winkelwagen openen",
+      "empty": "Je winkelwagen is leeg.",
+      "shop_link": "Bekijk ons assortiment",
+      "shipping_remaining_html": "Nog %{amount} tot gratis verzending!",
+      "shipping_free": "Je hebt gratis verzending!",
+      "subtotal": "Subtotaal",
+      "shipping_note": "Verzendkosten berekend bij afrekenen",
+      "checkout": "Afrekenen",
+      "qty_label": "Aantal %{title}",
+      "decrease": "Aantal verlagen",
+      "increase": "Aantal verhogen",
+      "remove": "Verwijder %{title}",
+      "trust_delivery": "Snelle levering",
+      "trust_payment": "Veilig betalen",
+      "trust_return": "30 dagen retour"
+    },
+    "sophior-page-hero": {
+      "name": "SOPHIOR Paginahero",
+      "settings": {
+        "image": { "label": "Afbeelding" },
+        "heading": {
+          "label": "Titel",
+          "default": "Ons Verhaal"
+        },
+        "subheading": { "label": "Ondertitel" },
+        "overlay_opacity": { "label": "Overlay transparantie (%)" }
+      },
+      "presets": {
+        "default": { "name": "SOPHIOR Paginahero" }
+      }
+    },
+    "sophior-zigzag": {
+      "name": "SOPHIOR Zigzag",
+      "settings": {
+        "padding_top": { "label": "Opvulling boven" },
+        "padding_bottom": { "label": "Opvulling onder" }
+      },
+      "blocks": {
+        "row": {
+          "name": "Rij",
+          "settings": {
+            "image": { "label": "Afbeelding" },
+            "label": { "label": "Label (klein)" },
+            "heading": { "label": "Titel" },
+            "content": { "label": "Tekst" }
+          }
+        }
+      },
+      "presets": {
+        "default": { "name": "SOPHIOR Zigzag" },
+        "block_1": {
+          "heading": "Vakmanschap dat je voelt",
+          "content": "<p>Voer hier je tekst in.</p>"
+        },
+        "block_2": {
+          "heading": "Koken als ritueel",
+          "content": "<p>Voer hier je tekst in.</p>"
+        }
+      }
+    },
+    "sophior-values-bar": {
+      "name": "SOPHIOR Kernwaarden",
+      "settings": {
+        "heading": {
+          "label": "Titel",
+          "default": "Waar wij voor staan"
+        },
+        "padding_top": { "label": "Opvulling boven" },
+        "padding_bottom": { "label": "Opvulling onder" }
+      },
+      "blocks": {
+        "value": {
+          "name": "Kernwaarde",
+          "settings": {
+            "icon": {
+              "label": "Icoon",
+              "options": {
+                "leaf": "Blad",
+                "star": "Ster",
+                "heart": "Hart",
+                "shield": "Schild",
+                "award": "Onderscheiding",
+                "check": "Vinkje"
+              }
+            },
+            "label": { "label": "Label" },
+            "description": { "label": "Beschrijving" }
+          }
+        }
+      },
+      "presets": {
+        "default": { "name": "SOPHIOR Kernwaarden" },
+        "block_1": { "label": "Duurzaam" },
+        "block_2": { "label": "Premium kwaliteit" },
+        "block_3": { "label": "Made with love" },
+        "block_4": { "label": "Garantie" }
+      }
+    },
+    "sophior-sustainability": {
+      "name": "SOPHIOR Duurzaamheid",
+      "settings": {
+        "image": { "label": "Afbeelding" },
+        "image_position": {
+          "label": "Afbeeldingspositie",
+          "options": {
+            "left": "Links",
+            "right": "Rechts"
+          }
+        },
+        "label": { "label": "Label (klein)" },
+        "heading": {
+          "label": "Titel",
+          "default": "Goed voor jou, goed voor de planeet"
+        },
+        "content": { "label": "Tekst" },
+        "cta_label": { "label": "Knoplabel" },
+        "cta_url": { "label": "Knop URL" },
+        "padding_top": { "label": "Opvulling boven" },
+        "padding_bottom": { "label": "Opvulling onder" }
+      },
+      "presets": {
+        "default": { "name": "SOPHIOR Duurzaamheid" }
+      }
     }
   }
 }

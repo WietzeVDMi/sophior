@@ -1,0 +1,76 @@
+/* ============================================================
+   SOPHIOR — Values Bar (kernwaarden)
+   Gebruikt door sections/sophior-values-bar.liquid
+   ============================================================ */
+
+.sophior-values-bar {
+  background-color: var(--sophior-dark-green);
+}
+
+.sophior-values-bar__heading {
+  font-family: var(--sophior-font-heading);
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 300;
+  color: var(--sophior-cream);
+  text-align: center;
+  margin: 0 0 2.4rem;
+}
+
+/* ---- Grid ---- */
+.sophior-values-bar__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+@media screen and (min-width: 750px) {
+  .sophior-values-bar__grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2.4rem;
+  }
+}
+
+/* ---- Item ---- */
+.sophior-values-bar__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.8rem;
+}
+
+/* ---- Icon ---- */
+.sophior-values-bar__icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--sophior-gold);
+}
+
+.sophior-values-bar__icon svg {
+  width: 36px;
+  height: 36px;
+}
+
+/* ---- Label ---- */
+.sophior-values-bar__label {
+  font-family: var(--sophior-font-body);
+  font-size: var(--sophior-text-sm);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--sophior-cream);
+  margin: 0;
+}
+
+/* ---- Description ---- */
+.sophior-values-bar__desc {
+  font-family: var(--sophior-font-body);
+  font-size: var(--sophior-text-xs);
+  font-weight: 400;
+  color: var(--sophior-light-tan);
+  margin: 0;
+  line-height: 1.5;
+}

@@ -1,0 +1,103 @@
+{
+  "sections": {
+    "page-hero": {
+      "type": "sophior-page-hero",
+      "settings": {
+        "heading": "Ons Verhaal",
+        "subheading": "Passie voor koken, respect voor ambacht.",
+        "overlay_opacity": 50
+      }
+    },
+    "zigzag": {
+      "type": "sophior-zigzag",
+      "blocks": {
+        "block-1": {
+          "type": "row",
+          "settings": {
+            "label": "Wie wij zijn",
+            "heading": "Vakmanschap dat je voelt",
+            "content": "<p>Bij SOPHIOR geloven we dat goed koken begint bij het juiste gereedschap. Onze producten zijn zorgvuldig geselecteerd op kwaliteit, duurzaamheid en gebruiksgemak — voor de thuiskok die écht het verschil wil voelen.</p>"
+          }
+        },
+        "block-2": {
+          "type": "row",
+          "settings": {
+            "label": "Onze missie",
+            "heading": "Koken als ritueel",
+            "content": "<p>Wij maken van elk kookmoment iets bijzonders. Van de snijplank waarop je groenten snijdt tot de pan waarin je saus langzaam pruttelt — elk SOPHIOR-product is ontworpen om mee te groeien.</p>"
+          }
+        }
+      },
+      "block_order": ["block-1", "block-2"],
+      "settings": {
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "values-bar": {
+      "type": "sophior-values-bar",
+      "blocks": {
+        "value-1": {
+          "type": "value",
+          "settings": {
+            "icon": "leaf",
+            "label": "Duurzaam",
+            "description": "Materialen met respect voor natuur en ambacht"
+          }
+        },
+        "value-2": {
+          "type": "value",
+          "settings": {
+            "icon": "award",
+            "label": "Premium kwaliteit",
+            "description": "Alleen de beste producten halen onze selectie"
+          }
+        },
+        "value-3": {
+          "type": "value",
+          "settings": {
+            "icon": "heart",
+            "label": "Made with love",
+            "description": "Elke aankoop ondersteunt vakmanschap"
+          }
+        },
+        "value-4": {
+          "type": "value",
+          "settings": {
+            "icon": "shield",
+            "label": "Garantie",
+            "description": "Wij staan achter elk product dat we verkopen"
+          }
+        }
+      },
+      "block_order": ["value-1", "value-2", "value-3", "value-4"],
+      "settings": {
+        "heading": "Waar wij voor staan",
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    },
+    "sustainability": {
+      "type": "sophior-sustainability",
+      "settings": {
+        "label": "Duurzaamheid",
+        "heading": "Goed voor jou, goed voor de planeet",
+        "content": "<p>Wij kiezen bewust voor materialen die duurzaam zijn geproduceerd. Onze snijplanken komen van FSC-gecertificeerd hout, onze pannen zijn PFAS-vrij en onze verpakkingen zijn 100% recyclebaar.</p><p>Duurzaamheid is geen marketingterm voor ons — het is een verantwoordelijkheid die we serieus nemen.</p>",
+        "image_position": "right",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "trustbar-footer": {
+      "type": "sophior-trustbar-footer",
+      "settings": {}
+    }
+  },
+  "order": [
+    "page-hero",
+    "zigzag",
+    "values-bar",
+    "sustainability",
+    "trustbar-footer"
+  ]
+}

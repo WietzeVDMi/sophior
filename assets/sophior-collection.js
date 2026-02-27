@@ -28,7 +28,8 @@
         .then(function (r) { return r.json(); })
         .then(function () {
           btn.textContent = btn.dataset.added || '✓';
-          document.dispatchEvent(new CustomEvent('cart:refresh'));
+          // Stel cart drawer in kennis van de update
+          document.dispatchEvent(new CustomEvent('sophior:cart-updated'));
           setTimeout(function () {
             btn.textContent = originalText;
             btn.disabled = false;

@@ -1,0 +1,118 @@
+/* ============================================================
+   SOPHIOR — Sustainability (50/50 tekst + afbeelding)
+   Gebruikt door sections/sophior-sustainability.liquid
+   ============================================================ */
+
+.sophior-sustainability {}
+
+/* ---- Layout ---- */
+.sophior-sustainability__layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.4rem;
+  align-items: center;
+}
+
+@media screen and (min-width: 750px) {
+  .sophior-sustainability__layout {
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+  }
+
+  /* Afbeelding rechts */
+  .sophior-sustainability__layout--img-right .sophior-sustainability__media {
+    order: 2;
+  }
+  .sophior-sustainability__layout--img-right .sophior-sustainability__text {
+    order: 1;
+  }
+}
+
+/* ---- Media ---- */
+.sophior-sustainability__media {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 2px;
+  background-color: var(--sophior-light-tan);
+}
+
+.sophior-sustainability__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.sophior-sustainability__img-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--sophior-dark-green) 0%, var(--sophior-mid-green) 100%);
+}
+
+/* ---- Text ---- */
+.sophior-sustainability__text {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.sophior-sustainability__label {
+  font-family: var(--sophior-font-body);
+  font-size: var(--sophior-text-xs);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--sophior-gold);
+}
+
+.sophior-sustainability__heading {
+  font-family: var(--sophior-font-heading);
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 300;
+  color: var(--sophior-dark-green);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.sophior-sustainability__content {
+  font-family: var(--sophior-font-body);
+  font-size: var(--sophior-text-sm);
+  font-weight: 400;
+  color: var(--sophior-dark-green);
+  line-height: 1.7;
+}
+
+.sophior-sustainability__content p {
+  margin: 0 0 1em;
+}
+
+.sophior-sustainability__content p:last-child {
+  margin-bottom: 0;
+}
+
+/* ---- CTA ---- */
+.sophior-sustainability__cta {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--sophior-font-body);
+  font-size: var(--sophior-text-xs);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--sophior-dark-green);
+  text-decoration: none;
+  border-bottom: 2px solid var(--sophior-gold);
+  padding-bottom: 2px;
+  transition: color var(--sophior-transition), border-color var(--sophior-transition);
+  width: fit-content;
+}
+
+.sophior-sustainability__cta:hover {
+  color: var(--sophior-gold);
+}
+
+.sophior-sustainability__cta:focus-visible {
+  outline: 2px solid var(--sophior-gold);
+  outline-offset: 4px;
+}
