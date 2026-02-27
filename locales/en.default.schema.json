@@ -3396,6 +3396,45 @@
       "presets": {
         "name": "Collapsible content"
       }
+    },
+    "sophior-announcement-bar": {
+      "name": "SOPHIOR Announcement bar",
+      "settings": {
+        "usp_1_header": { "content": "USP 1" },
+        "usp_2_header": { "content": "USP 2" },
+        "usp_3_header": { "content": "USP 3" },
+        "usp_icon": { "label": "Icon (emoji or symbol)" },
+        "usp_text": { "label": "Text" }
+      },
+      "presets": {
+        "name": "SOPHIOR Announcement bar"
+      }
+    },
+    "sophior-header": {
+      "name": "SOPHIOR Header",
+      "settings": {
+        "logo": { "label": "Logo image" },
+        "logo_width": { "label": "Logo width" },
+        "main_menu": { "label": "Main menu" },
+        "mega_menu_trigger": {
+          "label": "Mega menu trigger",
+          "info": "Name of the menu item that opens the mega menu"
+        }
+      },
+      "presets": {
+        "name": "SOPHIOR Header"
+      }
+    },
+    "sophior-footer": {
+      "name": "SOPHIOR Footer",
+      "settings": {
+        "logo": { "label": "Logo image" },
+        "tagline": { "label": "Tagline" },
+        "social_header": { "content": "Social media" }
+      },
+      "presets": {
+        "name": "SOPHIOR Footer"
+      }
     }
   }
 }

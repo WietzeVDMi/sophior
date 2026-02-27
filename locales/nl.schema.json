@@ -3396,6 +3396,45 @@
       "presets": {
         "name": "Snelle lijst met bestellingen"
       }
+    },
+    "sophior-announcement-bar": {
+      "name": "SOPHIOR Aankondigingsbalk",
+      "settings": {
+        "usp_1_header": { "content": "USP 1" },
+        "usp_2_header": { "content": "USP 2" },
+        "usp_3_header": { "content": "USP 3" },
+        "usp_icon": { "label": "Icoon (emoji of symbool)" },
+        "usp_text": { "label": "Tekst" }
+      },
+      "presets": {
+        "name": "SOPHIOR Aankondigingsbalk"
+      }
+    },
+    "sophior-header": {
+      "name": "SOPHIOR Header",
+      "settings": {
+        "logo": { "label": "Logo afbeelding" },
+        "logo_width": { "label": "Logo breedte" },
+        "main_menu": { "label": "Hoofdmenu" },
+        "mega_menu_trigger": {
+          "label": "Mega menu trigger",
+          "info": "Naam van het menu-item dat het mega menu opent"
+        }
+      },
+      "presets": {
+        "name": "SOPHIOR Header"
+      }
+    },
+    "sophior-footer": {
+      "name": "SOPHIOR Footer",
+      "settings": {
+        "logo": { "label": "Logo afbeelding" },
+        "tagline": { "label": "Tagline" },
+        "social_header": { "content": "Social media" }
+      },
+      "presets": {
+        "name": "SOPHIOR Footer"
+      }
     }
   }
 }
