@@ -1,0 +1,293 @@
+{
+  "sections": {
+    "pg-hero-1": {
+      "type": "sophior-hero",
+      "settings": {
+        "heading": "Hero — Standaard variant",
+        "subheading": "Handgeselecteerde snijplanken, pannen en messen voor thuiskoks die kwaliteit serieus nemen.",
+        "cta_label": "Bekijk de collectie",
+        "cta_link": "/collections/all"
+      }
+    },
+    "pg-hero-2": {
+      "type": "sophior-hero",
+      "settings": {
+        "heading": "Hero — Zonder CTA-button",
+        "subheading": "Deze variant toont heading en subheading zonder button.",
+        "cta_label": "",
+        "cta_link": ""
+      }
+    },
+    "pg-hero-3": {
+      "type": "sophior-hero",
+      "settings": {
+        "heading": "Hero — Zonder subheading",
+        "subheading": "",
+        "cta_label": "Bekijk de collectie",
+        "cta_link": "/collections/all"
+      }
+    },
+    "pg-hero-4": {
+      "type": "sophior-hero",
+      "settings": {
+        "heading": "Hero — Geen afbeelding (placeholder)",
+        "subheading": "De rechterkant toont de SVG-placeholder als er geen afbeelding is gekozen.",
+        "cta_label": "Bekijk de collectie",
+        "cta_link": "/collections/all"
+      }
+    },
+    "pg-hero-5": {
+      "type": "sophior-hero",
+      "settings": {
+        "heading": "Hero — Lange heading die over meerdere regels breekt en de layout test op overflow en leesbaarheid op mobile en desktop",
+        "subheading": "Korte subheading.",
+        "cta_label": "Bekijk",
+        "cta_link": "/collections/all"
+      }
+    },
+    "pg-trustbadge-1": {
+      "type": "sophior-trustbadge-bar",
+      "settings": {
+        "icon_1": "truck",
+        "text_1": "Gratis verzending vanaf €59",
+        "icon_2": "checkmark",
+        "text_2": "30 dagen retourrecht",
+        "icon_3": "leaf",
+        "text_3": "Duurzaam geproduceerd",
+        "icon_4": "shield",
+        "text_4": "Veilig betalen"
+      }
+    },
+    "pg-trustbadge-2": {
+      "type": "sophior-trustbadge-bar",
+      "settings": {
+        "icon_1": "truck",
+        "text_1": "Gratis verzending",
+        "icon_2": "checkmark",
+        "text_2": "Retourrecht",
+        "icon_3": "",
+        "text_3": "",
+        "icon_4": "",
+        "text_4": ""
+      }
+    },
+    "pg-trustbadge-3": {
+      "type": "sophior-trustbadge-bar",
+      "settings": {
+        "icon_1": "truck",
+        "text_1": "Truck-icoon",
+        "icon_2": "leaf",
+        "text_2": "Blad-icoon",
+        "icon_3": "star",
+        "text_3": "Ster-icoon",
+        "icon_4": "shield",
+        "text_4": "Schild-icoon"
+      }
+    },
+    "pg-trustbadge-4": {
+      "type": "sophior-trustbadge-bar",
+      "settings": {
+        "icon_1": "truck",
+        "text_1": "Edge: deze tekst is erg lang en test of de badges correct uitlijnen zonder dat de lay-out breekt op smalle schermen",
+        "icon_2": "checkmark",
+        "text_2": "Normale badge",
+        "icon_3": "",
+        "text_3": "",
+        "icon_4": "",
+        "text_4": ""
+      }
+    },
+    "pg-collections-1": {
+      "type": "sophior-collections-grid",
+      "blocks": {
+        "c1": { "type": "collection_card", "settings": { "label": "Snijplanken" } },
+        "c2": { "type": "collection_card", "settings": { "label": "Pannen" } },
+        "c3": { "type": "collection_card", "settings": { "label": "Messen" } },
+        "c4": { "type": "collection_card", "settings": { "label": "Accessoires" } }
+      },
+      "block_order": ["c1", "c2", "c3", "c4"],
+      "settings": {
+        "title": "Collections grid — 4 kaarten (standaard)"
+      }
+    },
+    "pg-collections-2": {
+      "type": "sophior-collections-grid",
+      "blocks": {
+        "c1": { "type": "collection_card", "settings": { "label": "Snijplanken" } },
+        "c2": { "type": "collection_card", "settings": { "label": "Pannen" } }
+      },
+      "block_order": ["c1", "c2"],
+      "settings": {
+        "title": "Collections grid — 2 kaarten"
+      }
+    },
+    "pg-collections-3": {
+      "type": "sophior-collections-grid",
+      "blocks": {
+        "c1": { "type": "collection_card", "settings": { "label": "Label override — eigen tekst" } },
+        "c2": { "type": "collection_card", "settings": { "label": "Label override 2" } },
+        "c3": { "type": "collection_card", "settings": { "label": "Label override 3" } },
+        "c4": { "type": "collection_card", "settings": { "label": "Label override 4" } }
+      },
+      "block_order": ["c1", "c2", "c3", "c4"],
+      "settings": {
+        "title": "Collections grid — label overrides"
+      }
+    },
+    "pg-usp-1": {
+      "type": "sophior-usp-accordion",
+      "blocks": {
+        "a1": { "type": "item", "settings": { "question": "Waarom SOPHIOR?", "answer": "SOPHIOR selecteert alleen producten die voldoen aan onze kwaliteitseisen. Elk product is getest door ons team en onze klanten." } },
+        "a2": { "type": "item", "settings": { "question": "Wat is jullie retourbeleid?", "answer": "Je kunt producten binnen 30 dagen retourneren, mits ze ongebruikt zijn en in de originele verpakking zitten." } },
+        "a3": { "type": "item", "settings": { "question": "Hoe lang duurt de levering?", "answer": "Bestellingen voor 22:00 worden de volgende werkdag bezorgd. We werken samen met DHL en PostNL." } },
+        "a4": { "type": "item", "settings": { "question": "Zijn de producten garantie?", "answer": "Ja, alle SOPHIOR producten hebben minimaal 2 jaar garantie op materiaalfouten." } },
+        "a5": { "type": "item", "settings": { "question": "Hoe onderhoud ik een snijplank?", "answer": "Smeer je snijplank maandelijks in met olie (bijv. snijplankolie of mineraalolie). Nooit in de vaatwasser — altijd handmatig wassen." } }
+      },
+      "block_order": ["a1", "a2", "a3", "a4", "a5"],
+      "settings": {
+        "title": "USP Accordeon — 5 items met afbeelding"
+      }
+    },
+    "pg-usp-2": {
+      "type": "sophior-usp-accordion",
+      "blocks": {
+        "a1": { "type": "item", "settings": { "question": "USP zonder afbeelding", "answer": "De linkerkolom toont de placeholder-gradient als er geen afbeelding is ingesteld." } }
+      },
+      "block_order": ["a1"],
+      "settings": {
+        "title": "USP Accordeon — zonder afbeelding"
+      }
+    },
+    "pg-usp-3": {
+      "type": "sophior-usp-accordion",
+      "blocks": {
+        "a1": { "type": "item", "settings": { "question": "Edge: lang antwoord", "answer": "Dit is een heel lang antwoord om te testen of de accordion correct uitbreidt en de tekst goed leesbaar blijft. SOPHIOR kiest producten op basis van duurzaamheid, ambacht en dagelijks gebruiksgemak. Elk product heeft zijn eigen verhaal en elk materiaal heeft specifieke onderhoudsinstructies die we graag met je delen via onze gidsen." } }
+      },
+      "block_order": ["a1"],
+      "settings": {
+        "title": "USP Accordeon — edge: lang antwoord"
+      }
+    },
+    "pg-reviews-1": {
+      "type": "sophior-review-slider",
+      "blocks": {
+        "r1": { "type": "review", "settings": { "author": "Marieke V.", "location": "Amsterdam", "rating": 5, "text": "Prachtige snijplank, al 3 jaar in gebruik en ziet er nog nieuw uit. Echt top kwaliteit!", "date": "december 2025" } },
+        "r2": { "type": "review", "settings": { "author": "Thomas K.", "location": "Rotterdam", "rating": 5, "text": "De pan verdeelt de warmte perfect. Mijn eieren bakken zonder aanbranden — eindelijk!", "date": "november 2025" } },
+        "r3": { "type": "review", "settings": { "author": "Sophie B.", "location": "Utrecht", "rating": 5, "text": "Snelle levering, mooi verpakt en de kwaliteit overtreft de verwachtingen. Absoluut een aanrader.", "date": "oktober 2025" } },
+        "r4": { "type": "review", "settings": { "author": "Pieter J.", "location": "Den Haag", "rating": 4, "text": "Goede prijs-kwaliteitverhouding. Het mes is scherp en goed in de hand.", "date": "september 2025" } },
+        "r5": { "type": "review", "settings": { "author": "Lisa M.", "location": "Eindhoven", "rating": 5, "text": "Klantenservice was super behulpzaam toen ik vragen had over het onderhoud.", "date": "augustus 2025" } }
+      },
+      "block_order": ["r1", "r2", "r3", "r4", "r5"],
+      "settings": {
+        "title": "Review slider — 5 reviews, autoplay",
+        "rating_aggregate": "4.9",
+        "review_count": "2.847",
+        "autoplay_interval": 5000
+      }
+    },
+    "pg-reviews-2": {
+      "type": "sophior-review-slider",
+      "blocks": {
+        "r1": { "type": "review", "settings": { "author": "Jan D.", "location": "Groningen", "rating": 5, "text": "Één review — pijlen en dots zouden disabled/verborgen moeten zijn.", "date": "januari 2026" } }
+      },
+      "block_order": ["r1"],
+      "settings": {
+        "title": "Review slider — 1 review (edge case)",
+        "rating_aggregate": "5.0",
+        "review_count": "1",
+        "autoplay_interval": 5000
+      }
+    },
+    "pg-reviews-3": {
+      "type": "sophior-review-slider",
+      "blocks": {
+        "r1": { "type": "review", "settings": { "author": "Auteur N.", "location": "Stad", "rating": 5, "text": "Edge: dit is een heel lange review-tekst die doorloopt om te testen of de kaart correct omgaat met veel tekst. De snijplank is van uitstekende kwaliteit en ik ben er erg blij mee. Het onderhoud is eenvoudig en de plank ziet er na maanden gebruik nog steeds prachtig uit. Ik zou dit product aan iedereen aanraden.", "date": "februari 2026" } }
+      },
+      "block_order": ["r1"],
+      "settings": {
+        "title": "Review slider — edge: lange review",
+        "rating_aggregate": "5.0",
+        "review_count": "1",
+        "autoplay_interval": 9000
+      }
+    },
+    "pg-blog-1": {
+      "type": "sophior-blog-preview",
+      "settings": {
+        "title": "Blog preview — standaard",
+        "cta_label": "Bekijk alle gidsen",
+        "placeholder_category": "Gidsen",
+        "placeholder_title": "Artikeltitel volgt binnenkort",
+        "placeholder_excerpt": "Hier komt binnenkort een gids over SOPHIOR producten.",
+        "placeholder_cta": "Lees meer"
+      }
+    },
+    "pg-blog-2": {
+      "type": "sophior-blog-preview",
+      "settings": {
+        "title": "Blog preview — geen blog gekozen",
+        "cta_label": "",
+        "placeholder_category": "Tips",
+        "placeholder_title": "Binnenkort beschikbaar",
+        "placeholder_excerpt": "Onze experts werken momenteel aan nieuwe content.",
+        "placeholder_cta": "Meer ontdekken"
+      }
+    },
+    "pg-trustbar-1": {
+      "type": "sophior-trustbar-footer",
+      "blocks": {
+        "t1": { "type": "item", "settings": { "icon": "truck", "title": "Gratis levering", "text": "Vanaf €59 gratis bezorgd in heel Nederland" } },
+        "t2": { "type": "item", "settings": { "icon": "return", "title": "Eenvoudig retourneren", "text": "30 dagen bedenktijd, geen gedoe" } },
+        "t3": { "type": "item", "settings": { "icon": "card", "title": "Veilig betalen", "text": "iDEAL, creditcard, Klarna en meer" } },
+        "t4": { "type": "item", "settings": { "icon": "headset", "title": "Klantenservice", "text": "Ma–vr 9:00–17:00, binnen 24u antwoord" } }
+      },
+      "block_order": ["t1", "t2", "t3", "t4"],
+      "settings": {}
+    },
+    "pg-trustbar-2": {
+      "type": "sophior-trustbar-footer",
+      "blocks": {
+        "t1": { "type": "item", "settings": { "icon": "shield", "title": "2 jaar garantie", "text": "Op alle producten standaard garantie" } },
+        "t2": { "type": "item", "settings": { "icon": "leaf", "title": "Duurzaam", "text": "Bewuste materiaalkeuzes, minder afval" } }
+      },
+      "block_order": ["t1", "t2"],
+      "settings": {}
+    },
+    "pg-trustbar-3": {
+      "type": "sophior-trustbar-footer",
+      "blocks": {
+        "t1": { "type": "item", "settings": { "icon": "truck", "title": "Edge: lange beschrijving", "text": "Dit is een heel lange beschrijvingstekst om te testen of de trustbalk-items goed omgaan met meer dan twee regels tekst en correct uitlijnen in het raster op alle schermformaten." } },
+        "t2": { "type": "item", "settings": { "icon": "return", "title": "Normaal item", "text": "Korte tekst." } },
+        "t3": { "type": "item", "settings": { "icon": "card", "title": "Normaal item", "text": "Korte tekst." } },
+        "t4": { "type": "item", "settings": { "icon": "headset", "title": "Normaal item", "text": "Korte tekst." } }
+      },
+      "block_order": ["t1", "t2", "t3", "t4"],
+      "settings": {}
+    }
+  },
+  "order": [
+    "pg-hero-1",
+    "pg-hero-2",
+    "pg-hero-3",
+    "pg-hero-4",
+    "pg-hero-5",
+    "pg-trustbadge-1",
+    "pg-trustbadge-2",
+    "pg-trustbadge-3",
+    "pg-trustbadge-4",
+    "pg-collections-1",
+    "pg-collections-2",
+    "pg-collections-3",
+    "pg-usp-1",
+    "pg-usp-2",
+    "pg-usp-3",
+    "pg-reviews-1",
+    "pg-reviews-2",
+    "pg-reviews-3",
+    "pg-blog-1",
+    "pg-blog-2",
+    "pg-trustbar-1",
+    "pg-trustbar-2",
+    "pg-trustbar-3"
+  ]
+}
