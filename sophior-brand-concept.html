@@ -1,0 +1,2570 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SOPHIOR — Luxe Keukengerei</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --dark-green: #0D2B23;
+      --gold:       #CEA15D;
+      --cream:      #F1EFEA;
+      --light-tan:  #E3D7C1;
+      --light-gold: #EFCF96;
+      --white:      #FFFFFF;
+
+      --font-heading: 'Playfair Display', Georgia, serif;
+      --font-body:    'Montserrat', sans-serif;
+
+      --container: 1200px;
+      --radius:    4px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--cream);
+      color: var(--dark-green);
+      font-size: 15px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Jaarring SVG motief ─────────────────────────────── */
+    .ring-motif {
+      pointer-events: none;
+      flex-shrink: 0;
+    }
+
+    /* ── Containers ──────────────────────────────────────── */
+    .container {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* ────────────────────────────────────────────────────── */
+    /* 1. ANNOUNCEMENT BAR                                    */
+    /* ────────────────────────────────────────────────────── */
+    .announcement-bar {
+      background: var(--dark-green);
+      padding: 10px 0;
+      position: sticky;
+      top: 0;
+      z-index: 200;
+    }
+
+    .announcement-bar__inner {
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+    }
+
+    .announcement-bar__item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: .06em;
+      color: var(--cream);
+      text-transform: uppercase;
+    }
+
+    .announcement-bar__item svg {
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+
+    /* ────────────────────────────────────────────────────── */
+    /* 2. HEADER                                              */
+    /* ────────────────────────────────────────────────────── */
+    .header {
+      background: var(--dark-green);
+      position: sticky;
+      top: 41px;
+      z-index: 190;
+      border-bottom: 1px solid rgba(206,161,93,.2);
+    }
+
+    .header__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+    }
+
+    /* Logo */
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .logo__ring {
+      width: 36px;
+      height: 36px;
+      color: var(--gold);
+    }
+
+    .logo__wordmark {
+      font-family: var(--font-heading);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--cream);
+      letter-spacing: .1em;
+      line-height: 1;
+    }
+
+    /* Nav */
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .nav__link {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--cream);
+      text-decoration: none;
+      opacity: .85;
+      transition: color .2s, opacity .2s;
+      position: relative;
+    }
+
+    .nav__link::after {
+      content: '';
+      position: absolute;
+      left: 0; bottom: -4px;
+      width: 0; height: 1px;
+      background: var(--gold);
+      transition: width .25s;
+    }
+
+    .nav__link:hover { color: var(--gold); opacity: 1; }
+    .nav__link:hover::after { width: 100%; }
+
+    /* Nav icons */
+    .header__icons {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .header__icon {
+      color: var(--cream);
+      cursor: pointer;
+      opacity: .85;
+      transition: color .2s, opacity .2s;
+      position: relative;
+    }
+
+    .header__icon:hover { color: var(--gold); opacity: 1; }
+
+    .header__cart-count {
+      position: absolute;
+      top: -6px; right: -6px;
+      background: var(--gold);
+      color: var(--dark-green);
+      font-size: 9px;
+      font-weight: 700;
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ────────────────────────────────────────────────────── */
+    /* 3. HERO                                                */
+    /* ────────────────────────────────────────────────────── */
+    .hero {
+      background: var(--dark-green);
+      min-height: 600px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Jaarringen achtergrond patroon in hero */
+    .hero__rings {
+      position: absolute;
+      right: -60px;
+      bottom: -80px;
+      width: 520px;
+      height: 520px;
+      opacity: .07;
+      color: var(--gold);
+    }
+
+    .hero__rings-2 {
+      position: absolute;
+      left: -120px;
+      top: -120px;
+      width: 380px;
+      height: 380px;
+      opacity: .04;
+      color: var(--gold);
+    }
+
+    .hero__content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 64px 80px 32px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero__eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+
+    .hero__title {
+      font-family: var(--font-heading);
+      font-size: clamp(36px, 4.5vw, 56px);
+      font-weight: 400;
+      color: var(--cream);
+      line-height: 1.15;
+      margin-bottom: 24px;
+    }
+
+    .hero__title em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero__subtitle {
+      font-size: 15px;
+      font-weight: 300;
+      color: rgba(241,239,234,.72);
+      max-width: 420px;
+      line-height: 1.75;
+      margin-bottom: 40px;
+    }
+
+    .hero__ctas {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 14px 28px;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: all .25s;
+      border: none;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      transition: border-color .3s, transform .3s;
+      transform: scale(0);
+    }
+
+    .btn:hover::after {
+      border-color: rgba(206,161,93,.4);
+      transform: scale(1.5);
+    }
+
+    .btn--primary {
+      background: var(--gold);
+      color: var(--dark-green);
+    }
+
+    .btn--primary:hover {
+      background: var(--light-gold);
+    }
+
+    .btn--outline {
+      background: transparent;
+      color: var(--cream);
+      border: 1.5px solid rgba(241,239,234,.35);
+    }
+
+    .btn--outline:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .btn--dark {
+      background: var(--dark-green);
+      color: var(--cream);
+    }
+
+    .btn--dark:hover {
+      background: #163d30;
+    }
+
+    /* Hero image panel */
+    .hero__image {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero__image-placeholder {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #1a3d2e 0%, #0a1f18 60%, #071610 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    /* Wood grain texture CSS */
+    .hero__wood-visual {
+      width: 320px;
+      height: 320px;
+      position: relative;
+    }
+
+    /* Snijplank silhouet */
+    .cutting-board {
+      width: 300px;
+      height: 220px;
+      background: linear-gradient(105deg, #c8975a 0%, #b07d3e 30%, #d4a76a 55%, #a36830 80%, #bf9050 100%);
+      border-radius: 12px 12px 12px 48px;
+      position: relative;
+      box-shadow: 0 32px 80px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.15);
+    }
+
+    /* Wood grain lines */
+    .cutting-board::before {
+      content: '';
+      position: absolute;
+      inset: 12px;
+      border-radius: 6px 6px 6px 42px;
+      background: repeating-linear-gradient(
+        8deg,
+        transparent 0px,
+        transparent 6px,
+        rgba(0,0,0,.06) 6px,
+        rgba(0,0,0,.06) 7px,
+        transparent 7px,
+        transparent 14px,
+        rgba(255,255,255,.04) 14px,
+        rgba(255,255,255,.04) 15px
+      );
+    }
+
+    .cutting-board__handle {
+      position: absolute;
+      right: -56px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 64px;
+      height: 36px;
+      background: linear-gradient(90deg, #b07d3e, #9a6a2a);
+      border-radius: 0 6px 6px 0;
+      box-shadow: 2px 4px 12px rgba(0,0,0,.4);
+    }
+
+    .cutting-board__ring-badge {
+      position: absolute;
+      bottom: -40px;
+      left: 20px;
+      width: 80px;
+      height: 80px;
+      color: rgba(206,161,93,.35);
+    }
+
+    /* ── Sectiedivider: halve jaarring boog ──────────────── */
+    .wave-divider {
+      width: 100%;
+      overflow: hidden;
+      line-height: 0;
+    }
+
+    .wave-divider svg {
+      display: block;
+      width: 100%;
+    }
+
+    /* ────────────────────────────────────────────────────── */
+    /* 4. TRUSTBADGE BAR                                      */
+    /* ────────────────────────────────────────────────────── */
+    .trustbadge-bar {
+      background: var(--light-tan);
+      padding: 20px 0;
+    }
+
+    .trustbadge-bar__inner {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .trustbadge {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 0;
+    }
+
+    .trustbadge__icon {
+      width: 40px;
+      height: 40px;
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .trustbadge__text {}
+
+    .trustbadge__title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--dark-green);
+      display: block;
+    }
+
+    .trustbadge__sub {
+      font-size: 11px;
+      font-weight: 400;
+      color: #5a6e62;
+      display: block;
+    }
+
+    /* ────────────────────────────────────────────────────── */
+    /* 5. COLLECTIES GRID                                     */
+    /* ────────────────────────────────────────────────────── */
+    .section {
+      padding: 80px 0;
+    }
+
+    .section--alt {
+      background: var(--white);
+    }
+
+    .section__eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    .section__title {
+      font-family: var(--font-heading);
+      font-size: clamp(28px, 3.5vw, 42px);
+      font-weight: 400;
+      text-align: center;
+      color: var(--dark-green);
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+
+    .section__subtitle {
+      font-size: 15px;
+      font-weight: 300;
+      color: #5a6e62;
+      text-align: center;
+      max-width: 520px;
+      margin: 0 auto 48px;
+    }
+
+    .collections-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .collection-card {
+      position: relative;
+      border-radius: 8px;
+      overflow: hidden;
+      cursor: pointer;
+      text-decoration: none;
+      display: block;
+    }
+
+    .collection-card__image {
+      height: 280px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .collection-card__image-inner {
+      width: 100%;
+      height: 100%;
+      transition: transform .5s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .collection-card:hover .collection-card__image-inner {
+      transform: scale(1.04);
+    }
+
+    /* Per categorie achtergrond */
+    .collection-card--snijplanken .collection-card__image-inner {
+      background: linear-gradient(145deg, #c8975a, #8c5c28);
+    }
+    .collection-card--pannen .collection-card__image-inner {
+      background: linear-gradient(145deg, #2a3a30, #0d2b23);
+    }
+    .collection-card--messen .collection-card__image-inner {
+      background: linear-gradient(145deg, #5a4a3a, #2a1a0a);
+    }
+    .collection-card--accessoires .collection-card__image-inner {
+      background: linear-gradient(145deg, #e3d7c1, #c8b89a);
+    }
+
+    .collection-card__icon {
+      width: 64px;
+      height: 64px;
+      opacity: .6;
+    }
+
+    .collection-card--snijplanken .collection-card__icon,
+    .collection-card--pannen .collection-card__icon,
+    .collection-card--messen .collection-card__icon { color: var(--light-gold); }
+    .collection-card--accessoires .collection-card__icon { color: var(--dark-green); }
+
+    /* Jaarring badge rechtsboven */
+    .collection-card__badge {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 56px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .collection-card__badge-ring {
+      position: absolute;
+      inset: 0;
+      color: rgba(206,161,93,.5);
+    }
+
+    .collection-card__badge-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      line-height: 1.2;
+    }
+
+    .collection-card__body {
+      background: var(--dark-green);
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .collection-card__name {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--cream);
+      letter-spacing: .04em;
+    }
+
+    .collection-card__arrow {
+      width: 20px;
+      height: 20px;
+      color: var(--gold);
+      transition: transform .25s;
+    }
+
+    .collection-card:hover .collection-card__arrow {
+      transform: translateX(4px);
+    }
+
+    /* ────────────────────────────────────────────────────── */
+    /* 6. BESTSELLER SLIDER                                   */
+    /* ────────────────────────────────────────────────────── */
+    .bestsellers {
+      background: var(--cream);
+      padding: 80px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Subtiele jaarring achtergrond in bestsellers sectie */
+    .bestsellers__bg-ring {
+      position: absolute;
+      right: -200px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 600px;
+      height: 600px;
+      color: var(--light-tan);
+      opacity: .6;
+      pointer-events: none;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .product-card {
+      background: var(--white);
+      border-radius: 8px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: box-shadow .3s;
+      position: relative;
+    }
+
+    .product-card:hover {
+      box-shadow: 0 12px 40px rgba(13,43,35,.12);
+    }
+
+    .product-card__image {
+      height: 240px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product-card__image-inner {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform .4s ease;
+    }
+
+    .product-card:hover .product-card__image-inner {
+      transform: scale(1.03);
+    }
+
+    .product-card:nth-child(1) .product-card__image-inner { background: linear-gradient(145deg, #d4a76a, #9a6530); }
+    .product-card:nth-child(2) .product-card__image-inner { background: linear-gradient(145deg, #1e4a35, #0d2b23); }
+    .product-card:nth-child(3) .product-card__image-inner { background: linear-gradient(145deg, #c8a070, #8a5a20); }
+    .product-card:nth-child(4) .product-card__image-inner { background: linear-gradient(145deg, #3a3028, #1a1008); }
+
+    .product-card__icon {
+      width: 56px;
+      height: 56px;
+      color: rgba(255,255,255,.4);
+    }
+
+    .product-card__quick-add {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: var(--dark-green);
+      padding: 12px;
+      transform: translateY(100%);
+      transition: transform .25s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--cream);
+    }
+
+    .product-card:hover .product-card__quick-add {
+      transform: translateY(0);
+    }
+
+    .product-card__quick-add svg {
+      width: 14px; height: 14px;
+      color: var(--gold);
+    }
+
+    .product-card__body {
+      padding: 16px 20px 20px;
+    }
+
+    .product-card__category {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 4px;
+    }
+
+    .product-card__name {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--dark-green);
+      margin-bottom: 8px;
+      line-height: 1.35;
+    }
+
+    .product-card__stars {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-bottom: 10px;
+    }
+
+    .star {
+      width: 13px; height: 13px;
+      fill: var(--gold);
+      color: var(--gold);
+    }
+
+    .product-card__rating-count {
+      font-size: 11px;
+      color: #7a8e82;
+      margin-left: 4px;
+    }
+
+    .product-card__price {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .product-card__price-current {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--dark-green);
+    }
+
+    .product-card__price-old {
+      font-size: 13px;
+      font-weight: 400;
+      color: #9aab9e;
+      text-decoration: line-through;
+    }
+
+    .product-card__badge {
+      position: absolute;
+      top: 12px; left: 12px;
+      background: var(--gold);
+      color: var(--dark-green);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 2px;
+    }
+
+    /* ────────────────────────────────────────────────────── */
+    /* 7. USP ACCORDEON                                       */
+    /* ────────────────────────────────────────────────────── */
+    .usp-section {
+      background: var(--dark-green);
+      padding: 80px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .usp-section__ring {
+      position: absolute;
+      right: -100px;
+      bottom: -150px;
+      width: 500px;
+      height: 500px;
+      color: rgba(206,161,93,.08);
+      pointer-events: none;
+    }
+
+    .usp-section__ring-2 {
+      position: absolute;
+      left: -80px;
+      top: -80px;
+      width: 320px;
+      height: 320px;
+      color: rgba(206,161,93,.05);
+      pointer-events: none;
+    }
+
+    .usp-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .usp-content__eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+
+    .usp-content__title {
+      font-family: var(--font-heading);
+      font-size: clamp(28px, 3vw, 40px);
+      font-weight: 400;
+      color: var(--cream);
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+
+    .usp-content__title em { font-style: italic; color: var(--gold); }
+
+    .usp-content__intro {
+      font-size: 15px;
+      font-weight: 300;
+      color: rgba(241,239,234,.65);
+      margin-bottom: 32px;
+      line-height: 1.75;
+    }
+
+    .accordion {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .accordion__item {
+      border-bottom: 1px solid rgba(206,161,93,.2);
+    }
+
+    .accordion__trigger {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 0;
+      cursor: pointer;
+      gap: 16px;
+    }
+
+    .accordion__trigger-text {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--cream);
+    }
+
+    .accordion__icon {
+      width: 20px; height: 20px;
+      color: var(--gold);
+      flex-shrink: 0;
+      transition: transform .25s;
+    }
+
+    .accordion__item--open .accordion__icon {
+      transform: rotate(45deg);
+    }
+
+    .accordion__body {
+      padding: 0 0 20px;
+      font-size: 14px;
+      font-weight: 300;
+      color: rgba(241,239,234,.65);
+      line-height: 1.75;
+      display: none;
+    }
+
+    .accordion__item--open .accordion__body {
+      display: block;
+    }
+
+    /* USP image placeholder */
+    .usp-image {
+      position: relative;
+      height: 460px;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .usp-image__inner {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(145deg, #c8975a 0%, #8c5c28 40%, #6b3d10 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .usp-image__overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(13,43,35,.6) 0%, transparent 60%);
+    }
+
+    .usp-image__caption {
+      position: absolute;
+      bottom: 28px;
+      left: 28px;
+      right: 28px;
+    }
+
+    .usp-image__caption-title {
+      font-family: var(--font-heading);
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--cream);
+      line-height: 1.3;
+    }
+
+    .usp-image__caption-sub {
+      font-size: 12px;
+      font-weight: 300;
+      color: rgba(241,239,234,.65);
+      margin-top: 4px;
+    }
+
+    /* Jaarringen in het USP-beeld */
+    .usp-image__rings {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 320px;
+      height: 320px;
+      color: rgba(255,255,255,.12);
+    }
+
+    /* ────────────────────────────────────────────────────── */
+    /* 8. REVIEW SLIDER                                       */
+    /* ────────────────────────────────────────────────────── */
+    .reviews {
+      background: var(--cream);
+      padding: 80px 0;
+    }
+
+    .reviews__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .review-card {
+      background: var(--white);
+      border-radius: 8px;
+      padding: 32px 28px;
+      position: relative;
+    }
+
+    .review-card__stars {
+      display: flex;
+      gap: 3px;
+      margin-bottom: 16px;
+    }
+
+    .review-card__text {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--dark-green);
+      line-height: 1.75;
+      margin-bottom: 24px;
+      font-style: italic;
+    }
+
+    .review-card__text::before {
+      content: '"';
+      font-family: var(--font-heading);
+      font-size: 48px;
+      color: var(--light-gold);
+      line-height: .5;
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    .review-card__author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .review-card__avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--light-tan);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--dark-green);
+      flex-shrink: 0;
+    }
+
+    /* Jaarring rondom avatar */
+    .review-card__avatar::after {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(206,161,93,.4);
+    }
+
+    .review-card__author-info {}
+
+    .review-card__author-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--dark-green);
+    }
+
+    .review-card__author-meta {
+      font-size: 11px;
+      color: #7a8e82;
+    }
+
+    .review-card__verified {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .review-card__verified svg { width: 12px; height: 12px; }
+
+    /* ────────────────────────────────────────────────────── */
+    /* 9. BLOG PREVIEW                                        */
+    /* ────────────────────────────────────────────────────── */
+    .blog-preview {
+      background: var(--light-tan);
+      padding: 80px 0;
+    }
+
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .blog-card {
+      background: var(--white);
+      border-radius: 8px;
+      overflow: hidden;
+      text-decoration: none;
+      display: block;
+      transition: box-shadow .3s;
+    }
+
+    .blog-card:hover {
+      box-shadow: 0 12px 40px rgba(13,43,35,.1);
+    }
+
+    .blog-card__image {
+      height: 200px;
+      overflow: hidden;
+    }
+
+    .blog-card__image-inner {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform .4s ease;
+    }
+
+    .blog-card:hover .blog-card__image-inner {
+      transform: scale(1.04);
+    }
+
+    .blog-card:nth-child(1) .blog-card__image-inner { background: linear-gradient(145deg, #c8975a, #8c5c28); }
+    .blog-card:nth-child(2) .blog-card__image-inner { background: linear-gradient(145deg, #0d2b23, #1a4535); }
+    .blog-card:nth-child(3) .blog-card__image-inner { background: linear-gradient(145deg, #5a4a3a, #2a1a0a); }
+
+    .blog-card__image-icon {
+      width: 48px; height: 48px;
+      color: rgba(255,255,255,.4);
+    }
+
+    .blog-card__body {
+      padding: 24px;
+    }
+
+    .blog-card__category {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+
+    .blog-card__title {
+      font-family: var(--font-heading);
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--dark-green);
+      line-height: 1.35;
+      margin-bottom: 10px;
+    }
+
+    .blog-card__excerpt {
+      font-size: 13px;
+      color: #5a6e62;
+      line-height: 1.65;
+      margin-bottom: 16px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .blog-card__link {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .blog-card__link svg { width: 14px; height: 14px; transition: transform .2s; }
+    .blog-card:hover .blog-card__link svg { transform: translateX(3px); }
+
+    /* ────────────────────────────────────────────────────── */
+    /* 10. PRE-FOOTER TRUSTBAR                                */
+    /* ────────────────────────────────────────────────────── */
+    .prefooter-trust {
+      background: var(--cream);
+      padding: 56px 0;
+      border-top: 1px solid var(--light-tan);
+      border-bottom: 1px solid var(--light-tan);
+    }
+
+    .prefooter-trust__grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+    }
+
+    .trust-col {
+      text-align: center;
+    }
+
+    .trust-col__icon-wrap {
+      width: 56px;
+      height: 56px;
+      margin: 0 auto 16px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Kleine jaarring rondom trust icoon */
+    .trust-col__icon-wrap::before {
+      content: '';
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      border: 1px solid rgba(206,161,93,.3);
+    }
+
+    .trust-col__icon-wrap::after {
+      content: '';
+      position: absolute;
+      inset: -12px;
+      border-radius: 50%;
+      border: 1px solid rgba(206,161,93,.15);
+    }
+
+    .trust-col__icon {
+      width: 28px; height: 28px;
+      color: var(--gold);
+    }
+
+    .trust-col__title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--dark-green);
+      margin-bottom: 4px;
+    }
+
+    .trust-col__text {
+      font-size: 12px;
+      font-weight: 300;
+      color: #7a8e82;
+      line-height: 1.6;
+    }
+
+    /* ────────────────────────────────────────────────────── */
+    /* 11. FOOTER                                             */
+    /* ────────────────────────────────────────────────────── */
+    .footer {
+      background: var(--dark-green);
+      padding: 64px 0 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Subtiel jaarring patroon footer achtergrond */
+    .footer__bg-ring {
+      position: absolute;
+      right: -120px;
+      bottom: -120px;
+      width: 500px;
+      height: 500px;
+      color: rgba(206,161,93,.05);
+      pointer-events: none;
+    }
+
+    .footer__bg-ring-2 {
+      position: absolute;
+      left: -80px;
+      top: -60px;
+      width: 300px;
+      height: 300px;
+      color: rgba(206,161,93,.04);
+      pointer-events: none;
+    }
+
+    .footer__grid {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr 1fr 1fr;
+      gap: 48px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer__brand {}
+
+    .footer__logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      margin-bottom: 16px;
+    }
+
+    .footer__logo-ring {
+      width: 28px; height: 28px;
+      color: var(--gold);
+    }
+
+    .footer__logo-wordmark {
+      font-family: var(--font-heading);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--cream);
+      letter-spacing: .1em;
+    }
+
+    .footer__tagline {
+      font-size: 13px;
+      font-weight: 300;
+      color: rgba(241,239,234,.55);
+      line-height: 1.7;
+      margin-bottom: 24px;
+      max-width: 240px;
+    }
+
+    /* Newsletter */
+    .newsletter {
+      margin-bottom: 28px;
+    }
+
+    .newsletter__label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .newsletter__form {
+      display: flex;
+      gap: 0;
+    }
+
+    .newsletter__input {
+      flex: 1;
+      background: rgba(241,239,234,.08);
+      border: 1px solid rgba(241,239,234,.15);
+      border-right: none;
+      border-radius: 3px 0 0 3px;
+      padding: 10px 14px;
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: var(--cream);
+      outline: none;
+    }
+
+    .newsletter__input::placeholder { color: rgba(241,239,234,.35); }
+    .newsletter__input:focus { border-color: rgba(206,161,93,.4); }
+
+    .newsletter__btn {
+      background: var(--gold);
+      border: none;
+      border-radius: 0 3px 3px 0;
+      padding: 10px 16px;
+      cursor: pointer;
+      color: var(--dark-green);
+      font-size: 12px;
+      font-weight: 700;
+      transition: background .2s;
+    }
+
+    .newsletter__btn:hover { background: var(--light-gold); }
+
+    /* Social icons */
+    .social-links {
+      display: flex;
+      gap: 12px;
+    }
+
+    .social-link {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      border: 1px solid rgba(241,239,234,.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(241,239,234,.6);
+      text-decoration: none;
+      transition: border-color .2s, color .2s;
+    }
+
+    .social-link:hover { border-color: var(--gold); color: var(--gold); }
+    .social-link svg { width: 16px; height: 16px; }
+
+    /* Footer columns */
+    .footer__col {}
+
+    .footer__col-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+
+    .footer__links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer__links a {
+      font-size: 13px;
+      font-weight: 300;
+      color: rgba(241,239,234,.65);
+      text-decoration: none;
+      transition: color .2s;
+    }
+
+    .footer__links a:hover { color: var(--cream); }
+
+    /* Footer bottom bar */
+    .footer__bottom {
+      margin-top: 48px;
+      padding: 20px 0;
+      border-top: 1px solid rgba(241,239,234,.1);
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer__bottom-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer__copyright {
+      font-size: 12px;
+      font-weight: 300;
+      color: rgba(241,239,234,.4);
+    }
+
+    .payment-methods {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .payment-pill {
+      background: rgba(241,239,234,.08);
+      border: 1px solid rgba(241,239,234,.12);
+      border-radius: 3px;
+      padding: 4px 10px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .04em;
+      color: rgba(241,239,234,.45);
+    }
+
+    /* ────────────────────────────────────────────────────── */
+    /* SECTION DIVIDER — jaarring halve boog                  */
+    /* ────────────────────────────────────────────────────── */
+    .arc-divider {
+      background: var(--dark-green);
+      position: relative;
+      height: 48px;
+      overflow: hidden;
+    }
+
+    .arc-divider::before {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 140%;
+      height: 96px;
+      background: var(--light-tan);
+      border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+    }
+
+    /* Kleine divider-lijn met ringen */
+    .ring-divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      justify-content: center;
+      margin: 0 0 48px;
+    }
+
+    .ring-divider__line {
+      flex: 1;
+      max-width: 120px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--light-tan));
+    }
+
+    .ring-divider__line--right {
+      background: linear-gradient(90deg, var(--light-tan), transparent);
+    }
+
+    .ring-divider__ring {
+      width: 32px; height: 32px;
+      color: var(--gold);
+    }
+
+    /* ────────────────────────────────────────────────────── */
+    /* ANIMATIES — Jaarringen ademen                          */
+    /* ────────────────────────────────────────────────────── */
+    @keyframes ring-breathe {
+      0%, 100% { opacity: 1;   transform: scale(1); }
+      50%       { opacity: .72; transform: scale(1.06); }
+    }
+
+    @keyframes ring-breathe-reverse {
+      0%, 100% { opacity: .85; transform: scale(1.04); }
+      50%       { opacity: 1;   transform: scale(1); }
+    }
+
+    /* Hero achtergrond ringen */
+    .hero__rings {
+      transform-origin: center;
+      animation: ring-breathe 9s ease-in-out infinite;
+    }
+    .hero__rings-2 {
+      transform-origin: center;
+      animation: ring-breathe-reverse 12s ease-in-out infinite;
+    }
+
+    /* Bestsellers achtergrond ring */
+    .bestsellers__bg-ring {
+      transform-origin: center;
+      animation: ring-breathe 15s ease-in-out infinite;
+    }
+
+    /* USP sectie ringen */
+    .usp-section__ring {
+      transform-origin: center;
+      animation: ring-breathe 11s ease-in-out infinite;
+    }
+    .usp-section__ring-2 {
+      transform-origin: center;
+      animation: ring-breathe-reverse 14s ease-in-out infinite;
+    }
+
+    /* ────────────────────────────────────────────────────── */
+    /* HERO — Spotlight ring + echte product image            */
+    /* ────────────────────────────────────────────────────── */
+    .hero__spotlight-ring {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 330px; height: 330px;
+      border-radius: 50%;
+      background: radial-gradient(circle,
+        rgba(206,161,93,.16) 0%,
+        rgba(206,161,93,.07) 42%,
+        transparent 70%);
+      box-shadow:
+        0 0 0 28px rgba(206,161,93,.06),
+        0 0 0 58px rgba(206,161,93,.038),
+        0 0 0 92px rgba(206,161,93,.022),
+        0 0 0 128px rgba(206,161,93,.011);
+      animation: ring-breathe 9s ease-in-out infinite;
+    }
+
+    .hero__product-img {
+      position: relative;
+      z-index: 1;
+      width: 68%;
+      max-height: 75%;
+      object-fit: contain;
+      filter: drop-shadow(0 16px 48px rgba(0,0,0,.5));
+      transition: transform .6s ease;
+    }
+
+    .hero__image:hover .hero__product-img {
+      transform: translateY(-8px) scale(1.02);
+    }
+
+    /* ────────────────────────────────────────────────────── */
+    /* PRODUCT CARD — Ring-bg cloudpillo techniek             */
+    /* ────────────────────────────────────────────────────── */
+    .product-card__img-wrap {
+      position: relative;
+      height: 240px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--white);
+      overflow: hidden;
+    }
+
+    /* Donkere achtergrond voor pan (WebP, niet transparant) */
+    .product-card__img-wrap--pan {
+      background: linear-gradient(145deg, #1a3d30, #0d2b23);
+    }
+
+    /* Concentrische ring-cirkel achter product */
+    .product-card__ring-bg {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 158px; height: 158px;
+      border-radius: 50%;
+      background: radial-gradient(circle,
+        rgba(206,161,93,.11) 0%,
+        rgba(206,161,93,.055) 45%,
+        transparent 72%);
+      box-shadow:
+        0 0 0 20px rgba(206,161,93,.05),
+        0 0 0 44px rgba(206,161,93,.032),
+        0 0 0 70px rgba(206,161,93,.018),
+        0 0 0 98px rgba(206,161,93,.009);
+      transition: transform .5s ease;
+    }
+
+    .product-card:hover .product-card__ring-bg {
+      transform: translate(-50%, -50%) scale(1.16);
+    }
+
+    /* Echte product afbeelding zweeft boven de ring */
+    .product-card__img {
+      position: relative;
+      z-index: 1;
+      width: 72%;
+      height: 72%;
+      object-fit: contain;
+      filter: drop-shadow(0 6px 18px rgba(0,0,0,.18));
+      transition: transform .4s ease;
+    }
+
+    .product-card__img-wrap--pan .product-card__img {
+      filter: drop-shadow(0 6px 18px rgba(0,0,0,.5));
+    }
+
+    .product-card:hover .product-card__img {
+      transform: translateY(-6px) scale(1.04);
+    }
+
+    /* USP afbeelding — echte foto */
+    .usp-image__product-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════════════════
+       1. ANNOUNCEMENT BAR
+  ═══════════════════════════════════════════════════════ -->
+  <div class="announcement-bar">
+    <div class="container">
+      <div class="announcement-bar__inner">
+        <span class="announcement-bar__item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          Gratis verzending boven €59
+        </span>
+        <span class="announcement-bar__item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          30 dagen retour
+        </span>
+        <span class="announcement-bar__item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          Handpicked vakmanschap
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════
+       2. HEADER
+  ═══════════════════════════════════════════════════════ -->
+  <header class="header">
+    <div class="container">
+      <div class="header__inner">
+
+        <!-- Logo met jaarring symbool -->
+        <a href="#" class="logo">
+          <svg class="logo__ring ring-motif" viewBox="0 0 80 80" fill="none">
+            <circle cx="40" cy="40" r="8"  stroke="currentColor" stroke-width="2"/>
+            <circle cx="40" cy="40" r="18" stroke="currentColor" stroke-width="1.5"/>
+            <circle cx="40" cy="40" r="28" stroke="currentColor" stroke-width="1.2"/>
+            <circle cx="40" cy="40" r="36" stroke="currentColor" stroke-width="1"/>
+          </svg>
+          <span class="logo__wordmark">SOPHIOR</span>
+        </a>
+
+        <!-- Navigatie -->
+        <nav class="nav">
+          <a href="#" class="nav__link">Producten</a>
+          <a href="#" class="nav__link">Snijplanken</a>
+          <a href="#" class="nav__link">Kookgerei</a>
+          <a href="#" class="nav__link">Gidsen</a>
+          <a href="#" class="nav__link">Over ons</a>
+        </nav>
+
+        <!-- Icons -->
+        <div class="header__icons">
+          <span class="header__icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          </span>
+          <span class="header__icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </span>
+          <span class="header__icon" style="position:relative">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            <span class="header__cart-count">2</span>
+          </span>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- ══════════════════════════════════════════════════════
+       3. HERO
+  ═══════════════════════════════════════════════════════ -->
+  <section class="hero">
+
+    <!-- Jaarringen achtergrond — meerdere lagen -->
+    <svg class="hero__rings ring-motif" viewBox="0 0 400 400" fill="none">
+      <circle cx="200" cy="200" r="30"  stroke="currentColor" stroke-width="1.5"/>
+      <circle cx="200" cy="200" r="60"  stroke="currentColor" stroke-width="1.5"/>
+      <circle cx="200" cy="200" r="95"  stroke="currentColor" stroke-width="1.2"/>
+      <circle cx="200" cy="200" r="133" stroke="currentColor" stroke-width="1.2"/>
+      <circle cx="200" cy="200" r="170" stroke="currentColor" stroke-width="1"/>
+      <circle cx="200" cy="200" r="195" stroke="currentColor" stroke-width="1"/>
+    </svg>
+
+    <svg class="hero__rings-2 ring-motif" viewBox="0 0 300 300" fill="none">
+      <circle cx="150" cy="150" r="25"  stroke="currentColor" stroke-width="1.5"/>
+      <circle cx="150" cy="150" r="55"  stroke="currentColor" stroke-width="1.2"/>
+      <circle cx="150" cy="150" r="88"  stroke="currentColor" stroke-width="1"/>
+      <circle cx="150" cy="150" r="120" stroke="currentColor" stroke-width="1"/>
+      <circle cx="150" cy="150" r="145" stroke="currentColor" stroke-width="1"/>
+    </svg>
+
+    <!-- Links: content -->
+    <div class="hero__content">
+      <p class="hero__eyebrow">Nieuw — Collectie 2026</p>
+      <h1 class="hero__title">
+        Vakmanschap<br>
+        dat <em>smaakt</em><br>
+        naar meer
+      </h1>
+      <p class="hero__subtitle">
+        Handgeselecteerde snijplanken van massief walnoot, eiken en olijfhout.
+        Gemaakt om generaties lang mee te gaan.
+      </p>
+      <div class="hero__ctas">
+        <a href="#collecties" class="btn btn--primary">
+          Ontdek de collectie
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#" class="btn btn--outline">Ons verhaal</a>
+      </div>
+    </div>
+
+    <!-- Rechts: product visual -->
+    <div class="hero__image">
+      <div class="hero__image-placeholder">
+        <!-- Spotlight jaarring achter product -->
+        <div class="hero__spotlight-ring"></div>
+        <!-- Echte acacia snijplank PNG (transparant) -->
+        <img class="hero__product-img"
+             src="https://cdn.shopify.com/s/files/1/0869/1449/8869/files/HakblokAcacia-43x33x3-MineraleOlie.png?v=1771496002"
+             alt="Acacia snijplank SOPHIOR"
+             loading="eager">
+      </div>
+    </div>
+
+  </section>
+
+  <!-- Boog-overgang hero → trustbadge -->
+  <div style="background: var(--dark-green); position: relative; height: 50px; overflow: hidden;">
+    <div style="position: absolute; bottom: -1px; left: 50%; transform: translateX(-50%); width: 130%; height: 100px; background: var(--light-tan); border-radius: 50% 50% 0 0 / 100% 100% 0 0;"></div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════
+       4. TRUSTBADGE BAR
+  ═══════════════════════════════════════════════════════ -->
+  <section class="trustbadge-bar">
+    <div class="container">
+      <div class="trustbadge-bar__inner">
+
+        <div class="trustbadge">
+          <svg class="trustbadge__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h3l4 4v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
+          </svg>
+          <div class="trustbadge__text">
+            <span class="trustbadge__title">Gratis verzending</span>
+            <span class="trustbadge__sub">bij bestelling boven €59</span>
+          </div>
+        </div>
+
+        <div class="trustbadge">
+          <svg class="trustbadge__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+          <div class="trustbadge__text">
+            <span class="trustbadge__title">30 dagen retour</span>
+            <span class="trustbadge__sub">niet goed, geld terug</span>
+          </div>
+        </div>
+
+        <div class="trustbadge">
+          <svg class="trustbadge__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+          <div class="trustbadge__text">
+            <span class="trustbadge__title">Veilig betalen</span>
+            <span class="trustbadge__sub">iDEAL, Klarna, creditcard</span>
+          </div>
+        </div>
+
+        <div class="trustbadge">
+          <svg class="trustbadge__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+          </svg>
+          <div class="trustbadge__text">
+            <span class="trustbadge__title">4.9 / 5 sterren</span>
+            <span class="trustbadge__sub">+1.200 beoordelingen</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════
+       5. COLLECTIES GRID
+  ═══════════════════════════════════════════════════════ -->
+  <section class="section" id="collecties">
+    <div class="container">
+
+      <p class="section__eyebrow">Ontdek onze wereld</p>
+      <h2 class="section__title">Vier categorieën,<br>één passie</h2>
+      <p class="section__subtitle">Van snijplank tot kookgerei — alles wat een fijnproever nodig heeft in de keuken.</p>
+
+      <div class="ring-divider">
+        <div class="ring-divider__line"></div>
+        <svg class="ring-divider__ring ring-motif" viewBox="0 0 32 32" fill="none">
+          <circle cx="16" cy="16" r="4"  stroke="currentColor" stroke-width="1.5"/>
+          <circle cx="16" cy="16" r="9"  stroke="currentColor" stroke-width="1.2"/>
+          <circle cx="16" cy="16" r="14" stroke="currentColor" stroke-width="1"/>
+        </svg>
+        <div class="ring-divider__line ring-divider__line--right"></div>
+      </div>
+
+      <div class="collections-grid">
+
+        <!-- Snijplanken -->
+        <a href="#" class="collection-card collection-card--snijplanken">
+          <div class="collection-card__image">
+            <div class="collection-card__image-inner">
+              <svg class="collection-card__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="6" y="12" width="36" height="26" rx="3"/>
+                <rect x="10" y="16" width="28" height="18" rx="2" stroke-dasharray="2 2" opacity=".5"/>
+                <line x1="6" y1="38" x2="42" y2="38"/>
+              </svg>
+            </div>
+            <div class="collection-card__badge">
+              <svg class="collection-card__badge-ring ring-motif" viewBox="0 0 56 56" fill="none">
+                <circle cx="28" cy="28" r="8"  stroke="currentColor" stroke-width="1.5"/>
+                <circle cx="28" cy="28" r="18" stroke="currentColor" stroke-width="1.2"/>
+                <circle cx="28" cy="28" r="26" stroke="currentColor" stroke-width="1"/>
+              </svg>
+              <span class="collection-card__badge-label">21+<br>soorten</span>
+            </div>
+          </div>
+          <div class="collection-card__body">
+            <span class="collection-card__name">Snijplanken</span>
+            <svg class="collection-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+        </a>
+
+        <!-- Pannen -->
+        <a href="#" class="collection-card collection-card--pannen">
+          <div class="collection-card__image">
+            <div class="collection-card__image-inner">
+              <svg class="collection-card__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+                <ellipse cx="22" cy="26" rx="16" ry="12"/>
+                <path d="M38 26h8" stroke-linecap="round"/>
+                <ellipse cx="22" cy="22" rx="16" ry="8" fill="none"/>
+              </svg>
+            </div>
+            <div class="collection-card__badge">
+              <svg class="collection-card__badge-ring ring-motif" viewBox="0 0 56 56" fill="none">
+                <circle cx="28" cy="28" r="8"  stroke="currentColor" stroke-width="1.5"/>
+                <circle cx="28" cy="28" r="18" stroke="currentColor" stroke-width="1.2"/>
+                <circle cx="28" cy="28" r="26" stroke="currentColor" stroke-width="1"/>
+              </svg>
+              <span class="collection-card__badge-label">Nieuw<br>2026</span>
+            </div>
+          </div>
+          <div class="collection-card__body">
+            <span class="collection-card__name">Pannen</span>
+            <svg class="collection-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+        </a>
+
+        <!-- Messen -->
+        <a href="#" class="collection-card collection-card--messen">
+          <div class="collection-card__image">
+            <div class="collection-card__image-inner">
+              <svg class="collection-card__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M8 40L38 10c2-2 4-2 4 0s-12 16-12 16L18 38l-10 2z"/>
+                <line x1="18" y1="38" x2="8" y2="40"/>
+              </svg>
+            </div>
+            <div class="collection-card__badge">
+              <svg class="collection-card__badge-ring ring-motif" viewBox="0 0 56 56" fill="none">
+                <circle cx="28" cy="28" r="8"  stroke="currentColor" stroke-width="1.5"/>
+                <circle cx="28" cy="28" r="18" stroke="currentColor" stroke-width="1.2"/>
+                <circle cx="28" cy="28" r="26" stroke="currentColor" stroke-width="1"/>
+              </svg>
+              <span class="collection-card__badge-label">Chef's<br>keuze</span>
+            </div>
+          </div>
+          <div class="collection-card__body">
+            <span class="collection-card__name">Messen</span>
+            <svg class="collection-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+        </a>
+
+        <!-- Accessoires -->
+        <a href="#" class="collection-card collection-card--accessoires">
+          <div class="collection-card__image">
+            <div class="collection-card__image-inner">
+              <svg class="collection-card__icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+                <circle cx="24" cy="24" r="14"/>
+                <circle cx="24" cy="24" r="6"/>
+                <line x1="24" y1="4"  x2="24" y2="10"/>
+                <line x1="24" y1="38" x2="24" y2="44"/>
+                <line x1="4"  y1="24" x2="10" y2="24"/>
+                <line x1="38" y1="24" x2="44" y2="24"/>
+              </svg>
+            </div>
+            <div class="collection-card__badge">
+              <svg class="collection-card__badge-ring ring-motif" viewBox="0 0 56 56" fill="none">
+                <circle cx="28" cy="28" r="8"  stroke="currentColor" stroke-width="1.5"/>
+                <circle cx="28" cy="28" r="18" stroke="currentColor" stroke-width="1.2"/>
+                <circle cx="28" cy="28" r="26" stroke="currentColor" stroke-width="1"/>
+              </svg>
+              <span class="collection-card__badge-label">Must<br>have</span>
+            </div>
+          </div>
+          <div class="collection-card__body">
+            <span class="collection-card__name">Accessoires</span>
+            <svg class="collection-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════
+       6. BESTSELLERS
+  ═══════════════════════════════════════════════════════ -->
+  <section class="bestsellers">
+
+    <!-- Jaarring achtergrond -->
+    <svg class="bestsellers__bg-ring ring-motif" viewBox="0 0 600 600" fill="none">
+      <circle cx="300" cy="300" r="50"  stroke="currentColor" stroke-width="1.5"/>
+      <circle cx="300" cy="300" r="100" stroke="currentColor" stroke-width="1.2"/>
+      <circle cx="300" cy="300" r="155" stroke="currentColor" stroke-width="1"/>
+      <circle cx="300" cy="300" r="215" stroke="currentColor" stroke-width="1"/>
+      <circle cx="300" cy="300" r="278" stroke="currentColor" stroke-width="1"/>
+    </svg>
+
+    <div class="container">
+      <p class="section__eyebrow">Onze favorieten</p>
+      <h2 class="section__title">Bestsellers</h2>
+      <p class="section__subtitle">De producten waar onze klanten keer op keer voor kiezen.</p>
+
+      <div class="ring-divider">
+        <div class="ring-divider__line"></div>
+        <svg class="ring-divider__ring ring-motif" viewBox="0 0 32 32" fill="none">
+          <circle cx="16" cy="16" r="4"  stroke="currentColor" stroke-width="1.5"/>
+          <circle cx="16" cy="16" r="9"  stroke="currentColor" stroke-width="1.2"/>
+          <circle cx="16" cy="16" r="14" stroke="currentColor" stroke-width="1"/>
+        </svg>
+        <div class="ring-divider__line ring-divider__line--right"></div>
+      </div>
+
+      <div class="product-grid">
+
+        <!-- Product 1 -->
+        <div class="product-card">
+          <div class="product-card__badge">Bestseller</div>
+          <div class="product-card__image">
+            <div class="product-card__img-wrap">
+              <div class="product-card__ring-bg"></div>
+              <img class="product-card__img"
+                   src="https://cdn.shopify.com/s/files/1/0869/1449/8869/files/HakblokAcacia-43x33x3-MineraleOlie.png?v=1771496002"
+                   alt="Acacia Snijplank 43×33"
+                   loading="lazy">
+            </div>
+            <div class="product-card__quick-add">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+              Voeg toe
+            </div>
+          </div>
+          <div class="product-card__body">
+            <span class="product-card__category">Snijplanken</span>
+            <div class="product-card__name">Walnoot Snijplank XL</div>
+            <div class="product-card__stars">
+              <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <span class="product-card__rating-count">(312)</span>
+            </div>
+            <div class="product-card__price">
+              <span class="product-card__price-current">€ 89,95</span>
+              <span class="product-card__price-old">€ 109,95</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="product-card">
+          <div class="product-card__image">
+            <div class="product-card__img-wrap product-card__img-wrap--pan">
+              <div class="product-card__ring-bg"></div>
+              <img class="product-card__img"
+                   src="https://cdn.shopify.com/s/files/1/0869/1449/8869/files/RVSKoekenpan-Antiaanbaklaag-28cm-Product.webp?v=1755938490"
+                   alt="Hybride Koekenpan 28cm"
+                   loading="lazy">
+            </div>
+            <div class="product-card__quick-add">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+              Voeg toe
+            </div>
+          </div>
+          <div class="product-card__body">
+            <span class="product-card__category">Pannen</span>
+            <div class="product-card__name">Gietijzeren Koekenpan 28cm</div>
+            <div class="product-card__stars">
+              <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <span class="product-card__rating-count">(187)</span>
+            </div>
+            <div class="product-card__price">
+              <span class="product-card__price-current">€ 129,95</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="product-card">
+          <div class="product-card__badge">Nieuw</div>
+          <div class="product-card__image">
+            <div class="product-card__img-wrap">
+              <div class="product-card__ring-bg"></div>
+              <img class="product-card__img"
+                   src="https://cdn.shopify.com/s/files/1/0869/1449/8869/files/HakblokTeak-43x33x3-MineraleOlie.png?v=1771496053"
+                   alt="Teak Snijplank 43×33"
+                   loading="lazy">
+            </div>
+            <div class="product-card__quick-add">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+              Voeg toe
+            </div>
+          </div>
+          <div class="product-card__body">
+            <span class="product-card__category">Snijplanken</span>
+            <div class="product-card__name">Olijfhout Snijplank Classic</div>
+            <div class="product-card__stars">
+              <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <span class="product-card__rating-count">(94)</span>
+            </div>
+            <div class="product-card__price">
+              <span class="product-card__price-current">€ 64,95</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="product-card">
+          <div class="product-card__image">
+            <div class="product-card__img-wrap">
+              <div class="product-card__ring-bg"></div>
+              <img class="product-card__img"
+                   src="https://cdn.shopify.com/s/files/1/0869/1449/8869/files/SOPHIORKoksmes21cm-Voorkant.png?v=1761049104"
+                   alt="SOPHIOR Koksmes 21cm"
+                   loading="lazy">
+            </div>
+            <div class="product-card__quick-add">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+              Voeg toe
+            </div>
+          </div>
+          <div class="product-card__body">
+            <span class="product-card__category">Messen</span>
+            <div class="product-card__name">Japans Koksmes 20cm</div>
+            <div class="product-card__stars">
+              <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <span class="product-card__rating-count">(241)</span>
+            </div>
+            <div class="product-card__price">
+              <span class="product-card__price-current">€ 149,95</span>
+              <span class="product-card__price-old">€ 179,95</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div style="text-align:center; margin-top:40px;">
+        <a href="#" class="btn btn--dark">Bekijk alle producten</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════
+       7. USP ACCORDEON — Waarom SOPHIOR
+  ═══════════════════════════════════════════════════════ -->
+  <section class="usp-section">
+
+    <svg class="usp-section__ring ring-motif" viewBox="0 0 500 500" fill="none">
+      <circle cx="250" cy="250" r="40"  stroke="currentColor" stroke-width="1.5"/>
+      <circle cx="250" cy="250" r="90"  stroke="currentColor" stroke-width="1.2"/>
+      <circle cx="250" cy="250" r="145" stroke="currentColor" stroke-width="1"/>
+      <circle cx="250" cy="250" r="200" stroke="currentColor" stroke-width="1"/>
+      <circle cx="250" cy="250" r="245" stroke="currentColor" stroke-width="1"/>
+    </svg>
+    <svg class="usp-section__ring-2 ring-motif" viewBox="0 0 320 320" fill="none">
+      <circle cx="160" cy="160" r="30" stroke="currentColor" stroke-width="1.5"/>
+      <circle cx="160" cy="160" r="70" stroke="currentColor" stroke-width="1.2"/>
+      <circle cx="160" cy="160" r="110" stroke="currentColor" stroke-width="1"/>
+      <circle cx="160" cy="160" r="150" stroke="currentColor" stroke-width="1"/>
+    </svg>
+
+    <div class="container">
+      <div class="usp-grid">
+
+        <!-- Accordeon links -->
+        <div>
+          <p class="usp-content__eyebrow">De SOPHIOR filosofie</p>
+          <h2 class="usp-content__title">Waarom kiezen voor<br><em>SOPHIOR?</em></h2>
+          <p class="usp-content__intro">Elk product is zorgvuldig geselecteerd op materiaal, duurzaamheid en gebruiksgemak. Geen compromissen.</p>
+
+          <div class="accordion">
+
+            <div class="accordion__item accordion__item--open">
+              <div class="accordion__trigger" onclick="this.parentElement.classList.toggle('accordion__item--open')">
+                <span class="accordion__trigger-text">Massief hout, geen spaanplaat</span>
+                <svg class="accordion__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </div>
+              <div class="accordion__body">
+                Al onze snijplanken zijn gemaakt van massief hout — walnoot, eiken of olijfhout. Duurzamer, hygiënischer en mooier dan elke kunststof alternatieven. Een goede snijplank gaat een leven lang mee.
+              </div>
+            </div>
+
+            <div class="accordion__item">
+              <div class="accordion__trigger" onclick="this.parentElement.classList.toggle('accordion__item--open')">
+                <span class="accordion__trigger-text">Messenvriendelijk oppervlak</span>
+                <svg class="accordion__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </div>
+              <div class="accordion__body">
+                Hout herstelt zichzelf na elke snede, waardoor uw messen langer scherp blijven. Glass en keramiek vernietigen mesjes. Kies slim, kies hout.
+              </div>
+            </div>
+
+            <div class="accordion__item">
+              <div class="accordion__trigger" onclick="this.parentElement.classList.toggle('accordion__item--open')">
+                <span class="accordion__trigger-text">Persoonlijk onderhoud advies</span>
+                <svg class="accordion__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </div>
+              <div class="accordion__body">
+                Elke aankoop wordt geleverd met een gids voor optimaal onderhoud. En in onze blogs vind je alles over inwrijven, reinigen en opbergen.
+              </div>
+            </div>
+
+            <div class="accordion__item">
+              <div class="accordion__trigger" onclick="this.parentElement.classList.toggle('accordion__item--open')">
+                <span class="accordion__trigger-text">2 jaar garantie, altijd</span>
+                <svg class="accordion__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </div>
+              <div class="accordion__body">
+                We staan achter elk product. Bij productiefouten vervangen we het artikel kosteloos. Geen gedoe, gewoon recht.
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Afbeelding rechts -->
+        <div class="usp-image">
+          <img class="usp-image__product-img"
+               src="https://cdn.shopify.com/s/files/1/0869/1449/8869/files/HakblokTeak-43x33x3-Product.webp?v=1771496053"
+               alt="Teak snijplank SOPHIOR — in gebruik"
+               loading="lazy">
+          <div class="usp-image__overlay"></div>
+          <div class="usp-image__caption">
+            <div class="usp-image__caption-title">Elk stuk hout vertelt<br>een eigen verhaal</div>
+            <div class="usp-image__caption-sub">Teak — massief, warm, tijdloos</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════
+       8. REVIEW SLIDER
+  ═══════════════════════════════════════════════════════ -->
+  <section class="reviews">
+    <div class="container">
+
+      <p class="section__eyebrow">Wat onze klanten zeggen</p>
+      <h2 class="section__title">4.9 van de 5 sterren</h2>
+      <p class="section__subtitle">Gebaseerd op meer dan 1.200 beoordelingen — geverifieerd via Judge.me</p>
+
+      <div class="ring-divider">
+        <div class="ring-divider__line"></div>
+        <svg class="ring-divider__ring ring-motif" viewBox="0 0 32 32" fill="none">
+          <circle cx="16" cy="16" r="4"  stroke="currentColor" stroke-width="1.5"/>
+          <circle cx="16" cy="16" r="9"  stroke="currentColor" stroke-width="1.2"/>
+          <circle cx="16" cy="16" r="14" stroke="currentColor" stroke-width="1"/>
+        </svg>
+        <div class="ring-divider__line ring-divider__line--right"></div>
+      </div>
+
+      <div class="reviews__grid">
+
+        <div class="review-card">
+          <span class="review-card__verified">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            Geverifieerd
+          </span>
+          <div class="review-card__stars">
+            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="review-card__text">Absoluut prachtige snijplank. Het walnouthout heeft een geweldige kleur en het voelt meteen premium aan. Al mijn messen zijn er dankbaar voor.</p>
+          <div class="review-card__author">
+            <div class="review-card__avatar">L</div>
+            <div class="review-card__author-info">
+              <div class="review-card__author-name">Laura van den Berg</div>
+              <div class="review-card__author-meta">Walnoot Snijplank XL · 3 weken geleden</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <span class="review-card__verified">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            Geverifieerd
+          </span>
+          <div class="review-card__stars">
+            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="review-card__text">De gietijzeren koekenpan is een openbaring. Ik gebruik hem nu al 6 maanden dagelijks — krimp, barst of rotzooi. Simpelweg onverwoestbaar.</p>
+          <div class="review-card__author">
+            <div class="review-card__avatar">T</div>
+            <div class="review-card__author-info">
+              <div class="review-card__author-name">Thomas Janssen</div>
+              <div class="review-card__author-meta">Gietijzeren Koekenpan · 1 maand geleden</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <span class="review-card__verified">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            Geverifieerd
+          </span>
+          <div class="review-card__stars">
+            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="review-card__text">Cadeau gegeven aan mijn man — hij is er verliefd op. De verpakking was ook prachtig. Perfect als cadeau voor iemand die van koken houdt.</p>
+          <div class="review-card__author">
+            <div class="review-card__avatar">S</div>
+            <div class="review-card__author-info">
+              <div class="review-card__author-name">Sophie de Vries</div>
+              <div class="review-card__author-meta">Olijfhout Snijplank · 2 weken geleden</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════
+       9. BLOG PREVIEW — Gidsen
+  ═══════════════════════════════════════════════════════ -->
+  <section class="blog-preview">
+    <div class="container">
+
+      <p class="section__eyebrow">Kennis & inspiratie</p>
+      <h2 class="section__title">Onze keuken gidsen</h2>
+      <p class="section__subtitle">Alles wat je wilt weten over snijplanken, messen en kookgerei — geschreven door echte keukenliefhebbers.</p>
+
+      <div class="ring-divider">
+        <div class="ring-divider__line"></div>
+        <svg class="ring-divider__ring ring-motif" viewBox="0 0 32 32" fill="none">
+          <circle cx="16" cy="16" r="4"  stroke="currentColor" stroke-width="1.5"/>
+          <circle cx="16" cy="16" r="9"  stroke="currentColor" stroke-width="1.2"/>
+          <circle cx="16" cy="16" r="14" stroke="currentColor" stroke-width="1"/>
+        </svg>
+        <div class="ring-divider__line ring-divider__line--right"></div>
+      </div>
+
+      <div class="blog-grid">
+
+        <a href="#" class="blog-card">
+          <div class="blog-card__image">
+            <div class="blog-card__image-inner">
+              <svg class="blog-card__image-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="6" y="12" width="36" height="26" rx="3"/>
+                <line x1="16" y1="12" x2="16" y2="38" opacity=".5"/>
+                <line x1="24" y1="12" x2="24" y2="38" opacity=".5"/>
+                <line x1="32" y1="12" x2="32" y2="38" opacity=".5"/>
+              </svg>
+            </div>
+          </div>
+          <div class="blog-card__body">
+            <div class="blog-card__category">Snijplanken</div>
+            <h3 class="blog-card__title">Hoe onderhoud je een houten snijplank?</h3>
+            <p class="blog-card__excerpt">Een houten snijplank gaat tientallen jaren mee — maar alleen als je hem goed verzorgt. Lees hoe je hem invet, reinigt en droogt.</p>
+            <span class="blog-card__link">
+              Lees meer
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </span>
+          </div>
+        </a>
+
+        <a href="#" class="blog-card">
+          <div class="blog-card__image">
+            <div class="blog-card__image-inner">
+              <svg class="blog-card__image-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+                <ellipse cx="24" cy="30" rx="16" ry="12"/>
+                <path d="M40 30h6" stroke-linecap="round"/>
+              </svg>
+            </div>
+          </div>
+          <div class="blog-card__body">
+            <div class="blog-card__category">Kookgerei</div>
+            <h3 class="blog-card__title">Gietijzer vs. RVS: wat past bij jou?</h3>
+            <p class="blog-card__excerpt">Beide materialen hebben hun voordelen. Wij leggen het uit zodat jij de juiste keuze maakt voor jouw kookstijl en keuken.</p>
+            <span class="blog-card__link">
+              Lees meer
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </span>
+          </div>
+        </a>
+
+        <a href="#" class="blog-card">
+          <div class="blog-card__image">
+            <div class="blog-card__image-inner">
+              <svg class="blog-card__image-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M10 42L42 10c2-3 6-2 6 1S34 32 34 32L22 44l-12 2z"/>
+              </svg>
+            </div>
+          </div>
+          <div class="blog-card__body">
+            <div class="blog-card__category">Messen</div>
+            <h3 class="blog-card__title">Je mes slijpen in 5 stappen</h3>
+            <p class="blog-card__excerpt">Een bot mes is gevaarlijker dan een scherp mes. Leer hoe je veilig en effectief slijpt met een wetstaaf of slijpsteen.</p>
+            <span class="blog-card__link">
+              Lees meer
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </span>
+          </div>
+        </a>
+
+      </div>
+
+      <div style="text-align:center; margin-top:40px;">
+        <a href="#" class="btn btn--dark">Alle gidsen bekijken</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════
+       10. PRE-FOOTER TRUSTBAR
+  ═══════════════════════════════════════════════════════ -->
+  <section class="prefooter-trust">
+    <div class="container">
+      <div class="prefooter-trust__grid">
+
+        <div class="trust-col">
+          <div class="trust-col__icon-wrap">
+            <svg class="trust-col__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h3l4 4v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
+            </svg>
+          </div>
+          <div class="trust-col__title">Snelle levering</div>
+          <div class="trust-col__text">Besteld voor 23:00,<br>morgen in huis</div>
+        </div>
+
+        <div class="trust-col">
+          <div class="trust-col__icon-wrap">
+            <svg class="trust-col__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4.12"/>
+            </svg>
+          </div>
+          <div class="trust-col__title">Makkelijk retour</div>
+          <div class="trust-col__text">30 dagen bedenktijd,<br>gratis retourlabel</div>
+        </div>
+
+        <div class="trust-col">
+          <div class="trust-col__icon-wrap">
+            <svg class="trust-col__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/>
+            </svg>
+          </div>
+          <div class="trust-col__title">Veilig betalen</div>
+          <div class="trust-col__text">iDEAL, Klarna, PayPal<br>& creditcard</div>
+        </div>
+
+        <div class="trust-col">
+          <div class="trust-col__icon-wrap">
+            <svg class="trust-col__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>
+          </div>
+          <div class="trust-col__title">Persoonlijk advies</div>
+          <div class="trust-col__text">Ma–vr bereikbaar<br>via chat & mail</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════
+       11. FOOTER
+  ═══════════════════════════════════════════════════════ -->
+  <footer class="footer">
+
+    <!-- Achtergrond jaarringen -->
+    <svg class="footer__bg-ring ring-motif" viewBox="0 0 500 500" fill="none">
+      <circle cx="250" cy="250" r="40"  stroke="currentColor" stroke-width="1.5"/>
+      <circle cx="250" cy="250" r="90"  stroke="currentColor" stroke-width="1.2"/>
+      <circle cx="250" cy="250" r="145" stroke="currentColor" stroke-width="1"/>
+      <circle cx="250" cy="250" r="200" stroke="currentColor" stroke-width="1"/>
+      <circle cx="250" cy="250" r="245" stroke="currentColor" stroke-width="1"/>
+    </svg>
+    <svg class="footer__bg-ring-2 ring-motif" viewBox="0 0 300 300" fill="none">
+      <circle cx="150" cy="150" r="30"  stroke="currentColor" stroke-width="1.5"/>
+      <circle cx="150" cy="150" r="70"  stroke="currentColor" stroke-width="1.2"/>
+      <circle cx="150" cy="150" r="115" stroke="currentColor" stroke-width="1"/>
+      <circle cx="150" cy="150" r="148" stroke="currentColor" stroke-width="1"/>
+    </svg>
+
+    <div class="container">
+      <div class="footer__grid">
+
+        <!-- Kolom 1: Branding + newsletter -->
+        <div class="footer__brand">
+          <a href="#" class="footer__logo">
+            <svg class="footer__logo-ring ring-motif" viewBox="0 0 80 80" fill="none">
+              <circle cx="40" cy="40" r="8"  stroke="currentColor" stroke-width="2"/>
+              <circle cx="40" cy="40" r="18" stroke="currentColor" stroke-width="1.5"/>
+              <circle cx="40" cy="40" r="28" stroke="currentColor" stroke-width="1.2"/>
+              <circle cx="40" cy="40" r="36" stroke="currentColor" stroke-width="1"/>
+            </svg>
+            <span class="footer__logo-wordmark">SOPHIOR</span>
+          </a>
+          <p class="footer__tagline">Luxe keuken­gerei voor iedereen die van koken houdt — en van materialen die meegroeien.</p>
+
+          <div class="newsletter">
+            <span class="newsletter__label">Blijf op de hoogte</span>
+            <div class="newsletter__form">
+              <input type="email" class="newsletter__input" placeholder="jouw@email.nl">
+              <button class="newsletter__btn">→</button>
+            </div>
+          </div>
+
+          <div class="social-links">
+            <a href="#" class="social-link" title="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="#" class="social-link" title="Facebook">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="#" class="social-link" title="TikTok">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Kolom 2: Shop -->
+        <div class="footer__col">
+          <div class="footer__col-title">Shop</div>
+          <ul class="footer__links">
+            <li><a href="#">Snijplanken</a></li>
+            <li><a href="#">Pannen</a></li>
+            <li><a href="#">Messen</a></li>
+            <li><a href="#">Accessoires</a></li>
+            <li><a href="#">Cadeaupakketten</a></li>
+            <li><a href="#">Sale</a></li>
+          </ul>
+        </div>
+
+        <!-- Kolom 3: Klantenservice -->
+        <div class="footer__col">
+          <div class="footer__col-title">Klantenservice</div>
+          <ul class="footer__links">
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">Retour & ruil</a></li>
+            <li><a href="#">Veelgestelde vragen</a></li>
+            <li><a href="#">Bezorging</a></li>
+            <li><a href="#">Algemene voorwaarden</a></li>
+            <li><a href="#">Privacy</a></li>
+          </ul>
+        </div>
+
+        <!-- Kolom 4: Over SOPHIOR -->
+        <div class="footer__col">
+          <div class="footer__col-title">Over SOPHIOR</div>
+          <ul class="footer__links">
+            <li><a href="#">Ons verhaal</a></li>
+            <li><a href="#">Keuken gidsen</a></li>
+            <li><a href="#">Duurzaamheid</a></li>
+            <li><a href="#">Zakelijk</a></li>
+            <li><a href="#">Pers</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Footer bottom -->
+      <div class="footer__bottom">
+        <div class="footer__bottom-inner">
+          <span class="footer__copyright">© 2026 SOPHIOR — Alle rechten voorbehouden</span>
+          <div class="payment-methods">
+            <span class="payment-pill">iDEAL</span>
+            <span class="payment-pill">Klarna</span>
+            <span class="payment-pill">Visa</span>
+            <span class="payment-pill">Mastercard</span>
+            <span class="payment-pill">PayPal</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <script>
+    // Accordion gedrag
+    document.querySelectorAll('.accordion__trigger').forEach(trigger => {
+      trigger.addEventListener('click', () => {
+        const item = trigger.parentElement;
+        const isOpen = item.classList.contains('accordion__item--open');
+        document.querySelectorAll('.accordion__item').forEach(i => i.classList.remove('accordion__item--open'));
+        if (!isOpen) item.classList.add('accordion__item--open');
+      });
+    });
+  </script>
+
+</body>
+</html>

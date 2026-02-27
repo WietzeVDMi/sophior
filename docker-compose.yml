@@ -1,0 +1,15 @@
+services:
+  shopify:
+    build: .
+    volumes:
+      - ./theme:/app
+      - shopify_auth:/root/.local/share/shopify
+    ports:
+      - "9292:9292"
+      - "9393:9393"
+    env_file: .env
+    working_dir: /app
+    command: shopify theme dev --store sophior.myshopify.com --host 0.0.0.0
+
+volumes:
+  shopify_auth:

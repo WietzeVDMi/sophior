@@ -1,0 +1,1370 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SOPHIOR Developer Briefing 2026 — V4</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --dark-green: #0D2B23;
+      --gold: #CEA15D;
+      --cream: #F1EFEA;
+      --light-tan: #E3D7C1;
+      --light-gold: #EFCF96;
+      --white: #FFFFFF;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #d0ccc6;
+      color: var(--dark-green);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    /* ── Cover page ───────────────────────────────────── */
+    .cover {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 32px auto;
+      background: var(--dark-green);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 64px 72px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cover::before {
+      content: '';
+      position: absolute;
+      bottom: -80px;
+      right: -80px;
+      width: 360px;
+      height: 360px;
+      border: 3px solid rgba(206,161,93,.25);
+      border-radius: 50%;
+    }
+    .cover::after {
+      content: '';
+      position: absolute;
+      bottom: 40px;
+      right: 40px;
+      width: 220px;
+      height: 220px;
+      border: 3px solid rgba(206,161,93,.15);
+      border-radius: 50%;
+    }
+
+    .cover-eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 24px;
+    }
+
+    .cover-logo {
+      font-size: 52px;
+      font-weight: 700;
+      color: var(--cream);
+      letter-spacing: .06em;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .cover-logo span { color: var(--gold); }
+
+    .cover-domain {
+      font-size: 16px;
+      font-weight: 300;
+      color: rgba(241,239,234,.5);
+      margin-bottom: 56px;
+      letter-spacing: .05em;
+    }
+
+    .cover-title {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--cream);
+      line-height: 1.3;
+      margin-bottom: 16px;
+      max-width: 480px;
+    }
+
+    .cover-subtitle {
+      font-size: 14px;
+      font-weight: 300;
+      color: rgba(241,239,234,.7);
+      max-width: 440px;
+      line-height: 1.8;
+      margin-bottom: 64px;
+    }
+
+    .cover-meta {
+      display: flex;
+      gap: 32px;
+    }
+
+    .cover-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .cover-meta-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .cover-meta-value {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--cream);
+    }
+
+    .cover-divider {
+      width: 64px;
+      height: 3px;
+      background: var(--gold);
+      margin: 40px 0;
+    }
+
+    /* ── TOC page ─────────────────────────────────────── */
+    .toc-page {
+      width: 210mm;
+      margin: 0 auto 0;
+      background: var(--cream);
+      padding: 56px 72px;
+    }
+
+    .toc-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 32px;
+    }
+
+    .toc-list {
+      list-style: none;
+    }
+
+    .toc-list li {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      padding: 6px 0;
+      border-bottom: 1px dotted var(--light-tan);
+      font-size: 13px;
+    }
+
+    .toc-list li:last-child { border-bottom: none; }
+
+    .toc-num {
+      font-weight: 700;
+      color: var(--gold);
+      min-width: 28px;
+    }
+
+    .toc-label { flex: 1; color: var(--dark-green); }
+
+    .toc-section-header {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-top: 24px;
+      margin-bottom: 8px;
+    }
+
+    /* ── Document pages ───────────────────────────────── */
+    .page {
+      width: 210mm;
+      margin: 0 auto;
+      background: var(--white);
+      padding: 56px 72px;
+      border-top: 1px solid var(--light-tan);
+    }
+
+    .page:last-of-type { margin-bottom: 32px; }
+
+    /* ── Section headers ──────────────────────────────── */
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 32px;
+      padding-bottom: 16px;
+      border-bottom: 2px solid var(--dark-green);
+    }
+
+    .section-num {
+      background: var(--dark-green);
+      color: var(--cream);
+      font-size: 13px;
+      font-weight: 700;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .section-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--dark-green);
+    }
+
+    /* ── Headings ─────────────────────────────────────── */
+    h2 {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--dark-green);
+      margin: 36px 0 12px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--light-tan);
+    }
+
+    h3 {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--dark-green);
+      margin: 24px 0 8px;
+    }
+
+    h4 {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin: 20px 0 6px;
+    }
+
+    p { margin-bottom: 10px; }
+
+    /* ── Tables ───────────────────────────────────────── */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0 24px;
+      font-size: 13px;
+    }
+
+    thead tr {
+      background: var(--dark-green);
+      color: var(--cream);
+    }
+
+    thead th {
+      padding: 10px 14px;
+      text-align: left;
+      font-weight: 600;
+      font-size: 11px;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+    }
+
+    tbody tr:nth-child(even) { background: var(--cream); }
+    tbody tr:hover { background: var(--light-tan); }
+
+    tbody td {
+      padding: 9px 14px;
+      border-bottom: 1px solid var(--light-tan);
+      vertical-align: top;
+    }
+
+    /* ── Callout boxes ────────────────────────────────── */
+    .callout {
+      background: #fff8ee;
+      border-left: 4px solid var(--gold);
+      padding: 12px 16px;
+      margin: 16px 0;
+      font-size: 13px;
+      border-radius: 0 4px 4px 0;
+    }
+
+    .callout strong { color: var(--dark-green); }
+
+    .callout-danger {
+      background: #fff3f3;
+      border-left-color: #c0392b;
+    }
+
+    .callout-info {
+      background: #f0f7f4;
+      border-left-color: var(--dark-green);
+    }
+
+    /* ── Todo list ────────────────────────────────────── */
+    .todo-list {
+      list-style: none;
+      margin: 12px 0;
+    }
+
+    .todo-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 7px 0;
+      border-bottom: 1px solid var(--light-tan);
+      font-size: 13px;
+    }
+
+    .todo-list li::before {
+      content: '☐';
+      color: var(--gold);
+      font-size: 16px;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    /* ── Color swatches ───────────────────────────────── */
+    .color-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin: 16px 0;
+    }
+
+    .color-swatch {
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid rgba(0,0,0,.08);
+    }
+
+    .swatch-block {
+      height: 56px;
+    }
+
+    .swatch-info {
+      padding: 8px 10px;
+      background: var(--cream);
+    }
+
+    .swatch-name {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--dark-green);
+      display: block;
+    }
+
+    .swatch-hex {
+      font-size: 11px;
+      font-weight: 400;
+      color: #666;
+    }
+
+    /* ── Build steps ──────────────────────────────────── */
+    .steps {
+      list-style: none;
+      margin: 12px 0;
+    }
+
+    .steps li {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--light-tan);
+      font-size: 13px;
+    }
+
+    .step-num {
+      background: var(--gold);
+      color: var(--dark-green);
+      font-size: 11px;
+      font-weight: 700;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ── Code block ───────────────────────────────────── */
+    .code-block {
+      background: #1e2d28;
+      color: #a8d5b5;
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+      padding: 16px 20px;
+      border-radius: 6px;
+      margin: 12px 0;
+      overflow-x: auto;
+      line-height: 1.6;
+    }
+
+    .code-block .comment { color: #5a8a6a; }
+    .code-block .key { color: #7ec8a0; }
+    .code-block .val { color: var(--light-gold); }
+
+    /* ── Section layout items ─────────────────────────── */
+    .page-structure {
+      background: var(--cream);
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin: 12px 0;
+      font-size: 13px;
+    }
+
+    .page-structure-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 5px 0;
+      border-bottom: 1px solid var(--light-tan);
+    }
+
+    .page-structure-item:last-child { border-bottom: none; }
+
+    .psi-num {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--gold);
+      min-width: 20px;
+    }
+
+    .psi-label { color: var(--dark-green); }
+    .psi-sub { font-size: 11px; color: #888; margin-left: 4px; }
+
+    /* ── Inline tag ───────────────────────────────────── */
+    .tag {
+      display: inline-block;
+      background: var(--dark-green);
+      color: var(--cream);
+      font-size: 10px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 3px;
+      letter-spacing: .04em;
+    }
+
+    .tag-gold {
+      background: var(--gold);
+      color: var(--dark-green);
+    }
+
+    /* ── Page footer ──────────────────────────────────── */
+    .page-footer {
+      margin-top: 40px;
+      padding-top: 12px;
+      border-top: 1px solid var(--light-tan);
+      display: flex;
+      justify-content: space-between;
+      font-size: 10px;
+      color: #aaa;
+    }
+
+    /* ── Divider ──────────────────────────────────────── */
+    .gold-divider {
+      width: 48px;
+      height: 3px;
+      background: var(--gold);
+      margin: 20px 0;
+    }
+
+    /* ── Print ────────────────────────────────────────── */
+    @media print {
+      body { background: white; }
+      .cover, .toc-page, .page { margin: 0; box-shadow: none; page-break-after: always; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════ COVER ══ -->
+<div class="cover">
+  <div class="cover-eyebrow">Developer Briefing</div>
+  <div class="cover-logo">SOPHIOR<span>.</span>NL</div>
+  <div class="cover-domain">sophior.nl</div>
+  <div class="cover-divider"></div>
+  <div class="cover-title">Shopify Thema 2026<br>Technische & Inhoudelijke Specificatie</div>
+  <div class="cover-subtitle">Dit document is de volledige technische en inhoudelijke specificatie voor de bouw van de nieuwe sophior.nl website op Shopify. Opgesteld voor gebruik met Claude Code + GitHub + Shopify CLI.</div>
+  <div class="cover-meta">
+    <div class="cover-meta-item">
+      <span class="cover-meta-label">Versie</span>
+      <span class="cover-meta-value">V4 — 2026</span>
+    </div>
+    <div class="cover-meta-item">
+      <span class="cover-meta-label">Platform</span>
+      <span class="cover-meta-value">Shopify (Dawn)</span>
+    </div>
+    <div class="cover-meta-item">
+      <span class="cover-meta-label">Taal</span>
+      <span class="cover-meta-value">Nederlands (NL)</span>
+    </div>
+    <div class="cover-meta-item">
+      <span class="cover-meta-label">Markt</span>
+      <span class="cover-meta-value">Nederland D2C</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════ TOC ══ -->
+<div class="toc-page">
+  <div class="toc-title">Inhoudsopgave</div>
+  <div class="toc-section-header">Setup & Basis</div>
+  <ul class="toc-list">
+    <li><span class="toc-num">1</span><span class="toc-label">Project Overzicht & Doelstellingen</span></li>
+    <li><span class="toc-num">2</span><span class="toc-label">Tech Stack & Setup — Shopify, Apps, Fonts, Kleuren, GitHub</span></li>
+  </ul>
+  <div class="toc-section-header">Globale Componenten</div>
+  <ul class="toc-list">
+    <li><span class="toc-num">3</span><span class="toc-label">Globale Componenten — Announcement Bar, Header/Mega Menu, Footer</span></li>
+  </ul>
+  <div class="toc-section-header">Pagina's</div>
+  <ul class="toc-list">
+    <li><span class="toc-num">4</span><span class="toc-label">Homepage — Volledige Structuur</span></li>
+    <li><span class="toc-num">5</span><span class="toc-label">Categoriepagina — Volledige Structuur</span></li>
+    <li><span class="toc-num">6</span><span class="toc-label">Productpagina (PDP) — Volledige Structuur</span></li>
+    <li><span class="toc-num">7</span><span class="toc-label">Cart Drawer</span></li>
+    <li><span class="toc-num">8</span><span class="toc-label">'Ons Verhaal' Pagina</span></li>
+    <li><span class="toc-num">9</span><span class="toc-label">Blog / Gidsen Structuur</span></li>
+  </ul>
+  <div class="toc-section-header">Technisch & Implementatie</div>
+  <ul class="toc-list">
+    <li><span class="toc-num">10</span><span class="toc-label">SEO, GEO & Technische Vereisten</span></li>
+    <li><span class="toc-num">11</span><span class="toc-label">Werkinstructies voor Claude Code</span></li>
+  </ul>
+</div>
+
+<!-- ══════════════════════════════════════════════ SECTION 1 ══ -->
+<div class="page">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <div class="section-title">Project Overzicht & Doelstellingen</div>
+  </div>
+
+  <table>
+    <thead><tr><th>Veld</th><th>Waarde</th></tr></thead>
+    <tbody>
+      <tr><td>Merk</td><td><strong>SOPHIOR</strong></td></tr>
+      <tr><td>Domein</td><td>sophior.nl</td></tr>
+      <tr><td>Platform</td><td>Shopify</td></tr>
+      <tr><td>Taal</td><td>Nederlands (NL) — alleen NL voor nu</td></tr>
+      <tr><td>Markt</td><td>Nederland (D2C)</td></tr>
+      <tr><td>Productcategorieën</td><td>Snijplanken, Pannen, Messen, Accessoires</td></tr>
+    </tbody>
+  </table>
+
+  <h2>1.2 Primaire Doelstellingen</h2>
+  <table>
+    <thead><tr><th>Doel</th><th>Toelichting</th></tr></thead>
+    <tbody>
+      <tr><td>D2C conversie verhogen</td><td>De site verkoopt — design ondersteunt conversie, niet andersom</td></tr>
+      <tr><td>AOV verhogen</td><td>Slimme upsells en cross-sells via Rebuy</td></tr>
+      <tr><td>E-mail capture</td><td>Klaviyo-integratie voor nieuwsbrieflijst</td></tr>
+      <tr><td>SEO & GEO autoriteit</td><td>Opbouwen binnen niche (snijplanken, pannen, messen)</td></tr>
+      <tr><td>Merkpositionering</td><td>'Premium maar toegankelijk' — Premium Excellence</td></tr>
+      <tr><td>Retouren verlagen</td><td>Betere productinformatie op de PDP</td></tr>
+      <tr><td>Mobile-first</td><td>Meeste verkeer is mobiel — alle secties worden mobiel-eerst gebouwd</td></tr>
+    </tbody>
+  </table>
+
+  <div class="page-footer">
+    <span>SOPHIOR Developer Briefing 2026 — V4</span>
+    <span>Sectie 1 — Project Overzicht</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ SECTION 2 ══ -->
+<div class="page">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <div class="section-title">Tech Stack & Setup</div>
+  </div>
+
+  <h2>2.1 Shopify Thema — Dawn</h2>
+  <p>Gekozen basis: <strong>Dawn</strong> (Shopify gratis open-source thema). Bewuste keuze:</p>
+  <table>
+    <thead><tr><th>Argument</th></tr></thead>
+    <tbody>
+      <tr><td>Volledig open-source — Claude Code kent de codebase en kan er clean bovenop bouwen</td></tr>
+      <tr><td>Minimale, schone basis zonder overbodige third-party code</td></tr>
+      <tr><td>Gratis — geen licentiekosten voor een betaald thema</td></tr>
+      <tr><td>Shopify onderhoudt Dawn actief — altijd compatible met nieuwste features</td></tr>
+      <tr><td>Maximale controle — alles wordt precies gebouwd zoals de briefing voorschrijft</td></tr>
+    </tbody>
+  </table>
+
+  <h4>Custom bouwen bovenop Dawn:</h4>
+  <p>Mega menu met afbeeldingen, category filters (pill-knoppen), product sliders, alle homepage secties, cart drawer met Rebuy integratie.</p>
+
+  <div class="callout">
+    <strong>⚠ App:</strong> Installeer ook de gratis <strong>Shopify Search & Discovery</strong> app voor de category filters — werkt naadloos samen met Dawn.
+  </div>
+
+  <h2>2.2 Vereiste Shopify Apps</h2>
+  <table>
+    <thead><tr><th>Functie</th><th>App</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>Reviews</td><td>Judge.me</td><td>Al geconfigureerd — widget-integratie nog nodig</td></tr>
+      <tr><td>Email Marketing</td><td>Klaviyo</td><td>Al geconfigureerd — formulieren koppelen</td></tr>
+      <tr><td>Cart Upsell</td><td>Rebuy Smart Cart</td><td>Installeer vóór cart-bouw</td></tr>
+      <tr><td>Betaling</td><td>Shopify Payments</td><td>Al actief</td></tr>
+      <tr><td>Zoeken & Filters</td><td>Shopify Search & Discovery</td><td>Gratis — installeren</td></tr>
+      <tr><td>Analytics</td><td>GA4 + Meta Pixel</td><td>Via Shopify Customer Events</td></tr>
+    </tbody>
+  </table>
+
+  <h2>2.3 Fonts</h2>
+  <table>
+    <thead><tr><th>Font</th><th>Gebruik</th><th>Gewichten</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>Nevolasty</strong></td>
+        <td>Alle headlines (H1, H2, sectietitels)</td>
+        <td>Light — 24–36px desktop</td>
+        <td><span class="tag" style="background:#c0392b">.woff2 nog te leveren</span></td>
+      </tr>
+      <tr>
+        <td><strong>Montserrat</strong></td>
+        <td>Body, navigatie, buttons, prijzen</td>
+        <td>300 / 400 / 500 / 700</td>
+        <td><span class="tag">Google Fonts ✓</span></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="callout callout-danger">
+    <strong>⚠ TODO:</strong> Lever het Nevolasty .woff2 bestand aan + bevestig licentie voor commercieel webgebruik. Zonder dit font kan de visuele identiteit niet correct worden geïmplementeerd.
+  </div>
+
+  <h2>2.4 Kleurenpalet</h2>
+  <p>Gebruik <strong>uitsluitend</strong> deze kleuren. Nooit afwijken.</p>
+  <div class="color-grid">
+    <div class="color-swatch">
+      <div class="swatch-block" style="background:#0D2B23"></div>
+      <div class="swatch-info">
+        <span class="swatch-name">Dark Green (Primary)</span>
+        <span class="swatch-hex">#0D2B23</span>
+      </div>
+    </div>
+    <div class="color-swatch">
+      <div class="swatch-block" style="background:#CEA15D"></div>
+      <div class="swatch-info">
+        <span class="swatch-name">Gold / Tan (Accent)</span>
+        <span class="swatch-hex">#CEA15D</span>
+      </div>
+    </div>
+    <div class="color-swatch">
+      <div class="swatch-block" style="background:#F1EFEA; border:1px solid #e0dbd4"></div>
+      <div class="swatch-info">
+        <span class="swatch-name">Cream (Background)</span>
+        <span class="swatch-hex">#F1EFEA</span>
+      </div>
+    </div>
+    <div class="color-swatch">
+      <div class="swatch-block" style="background:#E3D7C1"></div>
+      <div class="swatch-info">
+        <span class="swatch-name">Light Tan</span>
+        <span class="swatch-hex">#E3D7C1</span>
+      </div>
+    </div>
+    <div class="color-swatch">
+      <div class="swatch-block" style="background:#EFCF96"></div>
+      <div class="swatch-info">
+        <span class="swatch-name">Light Gold</span>
+        <span class="swatch-hex">#EFCF96</span>
+      </div>
+    </div>
+    <div class="color-swatch">
+      <div class="swatch-block" style="background:#FFFFFF; border:1px solid #e0dbd4"></div>
+      <div class="swatch-info">
+        <span class="swatch-name">White</span>
+        <span class="swatch-hex">#FFFFFF</span>
+      </div>
+    </div>
+    <div class="color-swatch">
+      <div class="swatch-block" style="background:#000000"></div>
+      <div class="swatch-info">
+        <span class="swatch-name">Black</span>
+        <span class="swatch-hex">#000000</span>
+      </div>
+    </div>
+  </div>
+
+  <h2>2.5 Logo Gebruik</h2>
+  <table>
+    <thead><tr><th>Situatie</th><th>Logo versie</th></tr></thead>
+    <tbody>
+      <tr><td>Header (lichte achtergrond #F1EFEA)</td><td>Primary logo — zwart (#000000)</td></tr>
+      <tr><td>Footer (donkere achtergrond #0D2B23)</td><td>Primary logo — wit (#FFFFFF)</td></tr>
+      <tr><td>Favicon & social media</td><td>Symbol only (beeldmerk)</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:12px;color:#888">Clear space: minimaal ~56px rondom het logo. Nooit stretchen, roteren, kleuren aanpassen of vervormen.</p>
+
+  <h2>2.6 GitHub Workflow</h2>
+  <table>
+    <thead><tr><th>Branch</th><th>Doel</th></tr></thead>
+    <tbody>
+      <tr><td><code>main</code></td><td>Live store — shopify theme publish</td></tr>
+      <tr><td><code>develop</code></td><td>Staging / review</td></tr>
+      <tr><td><code>feature/*</code></td><td>Feature branches per sectie</td></tr>
+    </tbody>
+  </table>
+  <p><strong>Naming:</strong> <code>feature/homepage</code>, <code>feature/category-page</code>, <code>feature/pdp</code></p>
+  <p><strong>Commits:</strong> Nederlands, beschrijvend — bijv. <em>"Voeg bestseller slider toe aan homepage"</em></p>
+  <p><strong>Pull requests:</strong> per afgeronde sectie, review vóór merge naar main</p>
+  <div class="callout callout-info">
+    <strong>Regel:</strong> Alle custom CSS aanleveren als aparte .css bestanden in /assets, niet inline. Alle custom Liquid sections krijgen schema-instellingen voor aanpassing via de Shopify editor.
+  </div>
+
+  <div class="page-footer">
+    <span>SOPHIOR Developer Briefing 2026 — V4</span>
+    <span>Sectie 2 — Tech Stack & Setup</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ SECTION 3 ══ -->
+<div class="page">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <div class="section-title">Globale Componenten</div>
+  </div>
+  <p>Deze componenten verschijnen op elke pagina en worden één keer gebouwd als herbruikbare Shopify sections/snippets.</p>
+
+  <h2>3.1 Announcement Bar (USP-bar)</h2>
+  <table>
+    <thead><tr><th>Eigenschap</th><th>Waarde</th></tr></thead>
+    <tbody>
+      <tr><td>Positie</td><td>Sticky bovenaan viewport — altijd zichtbaar bij scrollen</td></tr>
+      <tr><td>Achtergrond</td><td>#0D2B23 (Dark Green)</td></tr>
+      <tr><td>Tekstkleur</td><td>#F1EFEA (Cream)</td></tr>
+      <tr><td>Icoonkleur</td><td>#CEA15D (Gold)</td></tr>
+      <tr><td>Z-index</td><td>Hoger dan header</td></tr>
+    </tbody>
+  </table>
+  <h4>Inhoud — 3 USP's:</h4>
+  <p>✔ Voor 23:59 besteld, morgen in huis &nbsp;|&nbsp; ✔ Vanaf €59,- gratis verzending &nbsp;|&nbsp; ✔ 4,8/5 uit 500+ reviews</p>
+  <table>
+    <thead><tr><th>Scherm</th><th>Gedrag</th></tr></thead>
+    <tbody>
+      <tr><td>Desktop</td><td>Alle 3 USP's naast elkaar in één balk, gelijkmatig verdeeld</td></tr>
+      <tr><td>Mobiel</td><td>Automatische horizontale carrousel — 1 USP tegelijk, elke 3 seconden doorschuiven</td></tr>
+    </tbody>
+  </table>
+  <div class="callout"><strong>⚠</strong> USP-teksten aanpasbaar maken via Shopify section schema.</div>
+
+  <h2>3.2 Header & Mega Menu</h2>
+  <table>
+    <thead><tr><th>Eigenschap</th><th>Waarde</th></tr></thead>
+    <tbody>
+      <tr><td>Achtergrond</td><td>#F1EFEA (Cream)</td></tr>
+      <tr><td>Sticky</td><td>Ja — onder de announcement bar</td></tr>
+      <tr><td>Logo positie</td><td>Links — primary logo (zwart op crème)</td></tr>
+      <tr><td>Nav font</td><td>Montserrat Regular, kleur #0D2B23</td></tr>
+      <tr><td>Nav hover</td><td>Tekstkleur → #CEA15D (Gold)</td></tr>
+      <tr><td>Utility iconen</td><td>Zoeken, Account, Winkelwagen — rechts, line-art, #0D2B23</td></tr>
+      <tr><td>Mobiel</td><td>Hamburger links, logo gecentreerd, cart-icoon rechts</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Mega Menu — 'Producten'</h3>
+  <p>Bij hover (desktop) / tap (mobiel) op 'Producten':</p>
+  <table>
+    <thead><tr><th>Sectie</th><th>Inhoud</th></tr></thead>
+    <tbody>
+      <tr><td>Links — Categorie-kolommen (4×)</td><td>Snijplanken / Pannen / Messen / Accessoires — elk met kleine sfeerfoto + tekstlink</td></tr>
+      <tr><td>Rechts — Actie-blokken (2×)</td><td>Blok 1 'Alle Producten' → /collections/all &nbsp;|&nbsp; Blok 2 'Actie' met Gold badge → actie-collectie</td></tr>
+    </tbody>
+  </table>
+  <p><strong>Overige menu-items:</strong> Gids (dropdown → 5 blog-categorieën) | Over ons → /pages/ons-verhaal</p>
+
+  <h2>3.3 Footer</h2>
+  <table>
+    <thead><tr><th>Eigenschap</th><th>Waarde</th></tr></thead>
+    <tbody>
+      <tr><td>Achtergrond</td><td>#0D2B23 (Dark Green)</td></tr>
+      <tr><td>Tekstkleur</td><td>#F1EFEA (Cream)</td></tr>
+      <tr><td>Heading font</td><td>Nevolasty</td></tr>
+      <tr><td>Social media iconen</td><td>#CEA15D (Gold)</td></tr>
+    </tbody>
+  </table>
+  <h4>Layout — 4 kolommen:</h4>
+  <table>
+    <thead><tr><th>Kolom</th><th>Inhoud</th></tr></thead>
+    <tbody>
+      <tr><td>1 — Branding & Community</td><td>Primary logo (wit), Klaviyo nieuwsbrief, social media (Instagram, Facebook, TikTok)</td></tr>
+      <tr><td>2 — Shop</td><td>Snijplanken / Pannen / Messen / Accessoires</td></tr>
+      <tr><td>3 — Klantenservice</td><td>Contact / Retouren / Algemene voorwaarden / Privacy / Wettelijk / Klachten</td></tr>
+      <tr><td>4 — Over SOPHIOR</td><td>Ons verhaal / Gidsen / Duurzaamheid / Zakelijk</td></tr>
+    </tbody>
+  </table>
+  <p><strong>Bottom bar:</strong> Betaalmethoden via <code>shop.enabled_payment_types</code> + copyright © 2026 SOPHIOR</p>
+  <p><strong>Mobiel:</strong> Kolommen 2/3/4 worden inklapbare accordeons. Kolom 1 blijft altijd zichtbaar.</p>
+
+  <div class="page-footer">
+    <span>SOPHIOR Developer Briefing 2026 — V4</span>
+    <span>Sectie 3 — Globale Componenten</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ SECTION 4 ══ -->
+<div class="page">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <div class="section-title">Homepage — Volledige Structuur</div>
+  </div>
+  <p><strong>URL:</strong> / &nbsp;|&nbsp; <strong>Doel:</strong> Verkopen + categorienavigatie + vertrouwen opbouwen</p>
+
+  <h4>Paginastructuur (top → bottom):</h4>
+  <div class="page-structure">
+    <div class="page-structure-item"><span class="psi-num">1</span><span class="psi-label">Announcement Bar <span class="psi-sub">globaal component</span></span></div>
+    <div class="page-structure-item"><span class="psi-num">2</span><span class="psi-label">Header & Mega Menu <span class="psi-sub">globaal component</span></span></div>
+    <div class="page-structure-item"><span class="psi-num">3</span><span class="psi-label">Hero Sectie <span class="psi-sub">50/50 split-screen</span></span></div>
+    <div class="page-structure-item"><span class="psi-num">4</span><span class="psi-label">Trustbadge Bar <span class="psi-sub">4 USP's horizontaal</span></span></div>
+    <div class="page-structure-item"><span class="psi-num">5</span><span class="psi-label">Ontdek de Collecties <span class="psi-sub">4 categorie kaarten</span></span></div>
+    <div class="page-structure-item"><span class="psi-num">6</span><span class="psi-label">Onze Bestsellers <span class="psi-sub">product slider — collectie 'Bestsellers'</span></span></div>
+    <div class="page-structure-item"><span class="psi-num">7</span><span class="psi-label">Waarom SOPHIOR <span class="psi-sub">USP Accordeon, 50/50 split</span></span></div>
+    <div class="page-structure-item"><span class="psi-num">8</span><span class="psi-label">Social Proof / Review Slider <span class="psi-sub">Judge.me</span></span></div>
+    <div class="page-structure-item"><span class="psi-num">9</span><span class="psi-label">Gidsen Blog Preview <span class="psi-sub">3 meest recente artikelen</span></span></div>
+    <div class="page-structure-item"><span class="psi-num">10</span><span class="psi-label">Pre-Footer Trustbar <span class="psi-sub">4 kolommen met iconen</span></span></div>
+    <div class="page-structure-item"><span class="psi-num">11</span><span class="psi-label">Footer <span class="psi-sub">globaal component</span></span></div>
+  </div>
+
+  <h2>4.1 Hero Sectie</h2>
+  <table>
+    <thead><tr><th>Eigenschap</th><th>Waarde</th></tr></thead>
+    <tbody>
+      <tr><td>Layout</td><td>50/50 split-screen — tekst links, sfeerfoto rechts</td></tr>
+      <tr><td>Desktop hoogte</td><td>Minimaal 80vh</td></tr>
+      <tr><td>Achtergrond links</td><td>#F1EFEA (Cream)</td></tr>
+      <tr><td>CTA Button</td><td>'Shop nu' — bg #0D2B23, tekst #F1EFEA, hover: bg → #CEA15D</td></tr>
+      <tr><td>Mobiel</td><td>Gestapeld: afbeelding boven, tekst onder, CTA full-width</td></tr>
+    </tbody>
+  </table>
+  <h4>Linker tekstzijde (van boven naar beneden):</h4>
+  <ol style="margin:8px 0 0 20px;font-size:13px;line-height:2">
+    <li>Social proof: ★★★★★ 4,8/5 uit 500+ reviews — sterren in #CEA15D</li>
+    <li>Hoofdtitel: <em>"Koken begint bij het juiste materiaal"</em> — Nevolasty Light, groot</li>
+    <li>Ondertitel: <em>"Houten snijplanken, PFAS-vrije pannen en premium messen voor dagelijks gebruik."</em></li>
+    <li>USP-lijst (3 regels met Gold vinkje): Massief houten snijplanken / PFAS-vrije RVS pannen / Perfect gebalanceerde messen</li>
+    <li>CTA Button: 'Shop nu'</li>
+  </ol>
+
+  <h2>4.2 Trustbadge Bar</h2>
+  <p>4 USP's gelijkmatig verdeeld — mobiel: horizontale slider/carrousel.</p>
+  <table>
+    <thead><tr><th>#</th><th>Tekst</th></tr></thead>
+    <tbody>
+      <tr><td>✔</td><td>4.8/5 uit 500+ reviews</td></tr>
+      <tr><td>✔</td><td>30 dagen retour</td></tr>
+      <tr><td>✔</td><td>Voor 23:59 besteld, morgen in huis</td></tr>
+      <tr><td>✔</td><td>Gratis verzending vanaf €59</td></tr>
+    </tbody>
+  </table>
+
+  <h2>4.3 Ontdek de Collecties</h2>
+  <p>4 verticale kaarten naast elkaar (desktop) / horizontale swipe of 2×2 grid (mobiel). Beeldvullende foto per categorie + categorienaam linksonder. Hover: afbeelding scale(1.05), naam → #CEA15D.</p>
+
+  <h2>4.4 Onze Bestsellers (Product Slider)</h2>
+  <table>
+    <thead><tr><th>Eigenschap</th><th>Waarde</th></tr></thead>
+    <tbody>
+      <tr><td>Desktop</td><td>5 producten gelijktijdig zichtbaar, pijlen #0D2B23</td></tr>
+      <tr><td>Mobiel</td><td>1,5 tot 2 producten zichtbaar — uitnodiging tot swipen</td></tr>
+      <tr><td>Hover</td><td>Tweede afbeelding (lifestyle) tonen indien beschikbaar</td></tr>
+    </tbody>
+  </table>
+  <div class="callout"><strong>⚠</strong> Koppel aan Shopify collectie genaamd <strong>'Bestsellers'</strong> — beheersbaar via admin.</div>
+
+  <h2>4.5 Waarom SOPHIOR (USP Accordeon)</h2>
+  <p>50/50 split — tekst + accordeon links, sfeerfoto rechts. 3 accordeon items, eerste standaard open op mobiel.</p>
+  <table>
+    <thead><tr><th>Item</th><th>Kernboodschap</th></tr></thead>
+    <tbody>
+      <tr><td>Specialist in houten snijplanken</td><td>Massief hout, stabiliteit, hygiëne, jarenlang gebruik</td></tr>
+      <tr><td>Gezond koken zonder schadelijke stoffen</td><td>PFAS-vrij, geen microplastics — massief hout & RVS</td></tr>
+      <tr><td>Gemaakt voor dagelijks gebruik</td><td>Duurzaamheid door materiaal — massief hout & sterk RVS</td></tr>
+    </tbody>
+  </table>
+
+  <h2>4.6 Social Proof / Review Slider</h2>
+  <p>Judge.me widget of handmatige kaarten. Kaart: witte achtergrond, soft shadow, 5 sterren #CEA15D, 'Geverifieerde koper' badge. Mobiel: 1 volledige kaart zichtbaar, swipeable.</p>
+  <div class="callout"><strong>⚠</strong> Judge.me public key opvragen bij klant voor API-koppeling.</div>
+
+  <h2>4.7 Gidsen (Blog Preview)</h2>
+  <p>3 kaarten naast elkaar. Blog-bron: Shopify blogs — 3 meest recente. Kaart: foto + categorie-label (CAPS, #CEA15D) + titel + 2-regel excerpt. Hover: titel → #CEA15D.</p>
+
+  <h2>4.8 Pre-Footer Trustbar</h2>
+  <p>4 kolommen — groot line-art SVG icoon in #CEA15D boven tekst. Desktop: 4 kolommen. Mobiel: 2×2 grid.</p>
+
+  <div class="page-footer">
+    <span>SOPHIOR Developer Briefing 2026 — V4</span>
+    <span>Sectie 4 — Homepage</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ SECTION 5 ══ -->
+<div class="page">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <div class="section-title">Categoriepagina — Volledige Structuur</div>
+  </div>
+  <p><strong>URLs:</strong> /collections/snijplanken | /collections/pannen | /collections/messen | /collections/accessoires</p>
+  <p>Één gedeeld Liquid template voor alle 4 categorieën.</p>
+
+  <h4>Paginastructuur:</h4>
+  <div class="page-structure">
+    <div class="page-structure-item"><span class="psi-num">1</span><span class="psi-label">Announcement Bar + Header <span class="psi-sub">globaal</span></span></div>
+    <div class="page-structure-item"><span class="psi-num">2</span><span class="psi-label">Category Page Header <span class="psi-sub">split-screen, compact</span></span></div>
+    <div class="page-structure-item"><span class="psi-num">3</span><span class="psi-label">Filter- en Sorteringsbalk <span class="psi-sub">pills + dropdown</span></span></div>
+    <div class="page-structure-item"><span class="psi-num">4</span><span class="psi-label">Productgrid & Inline Social Proof</span></div>
+    <div class="page-structure-item"><span class="psi-num">5</span><span class="psi-label">SEO & Autoriteitsblok <span class="psi-sub">2/3 tekst + 1/3 Gidsen sidebar</span></span></div>
+    <div class="page-structure-item"><span class="psi-num">6</span><span class="psi-label">Waarom SOPHIOR <span class="psi-sub">hergebruik homepage sectie 4.5</span></span></div>
+    <div class="page-structure-item"><span class="psi-num">7</span><span class="psi-label">Pre-Footer Trustbar + Footer <span class="psi-sub">globaal</span></span></div>
+  </div>
+
+  <h2>5.1 Category Page Header</h2>
+  <table>
+    <thead><tr><th>Categorie</th><th>Titel</th><th>Beschrijving</th></tr></thead>
+    <tbody>
+      <tr><td>Snijplanken</td><td>Snijplanken</td><td>Ontdek onze collectie massief houten snijplanken, ontworpen voor stabiliteit, hygiëne en jarenlang dagelijks gebruik.</td></tr>
+      <tr><td>Pannen</td><td>Pannen</td><td>Ontdek onze PFAS-vrije pannen voor gezond koken, met roestvrij staal dat presteert en lang meegaat.</td></tr>
+      <tr><td>Messen</td><td>Messen</td><td>Ontdek onze premium messen, ontworpen voor controle, comfort en blijvende scherpte bij dagelijks gebruik.</td></tr>
+      <tr><td>Accessoires</td><td>Accessoires</td><td>Ontdek onze keukenaccessoires die je kookroutine slimmer, sneller en consistenter maken.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>5.2 Filter- en Sorteringsbalk</h2>
+  <p>Horizontale pills — hover/actief: rand + tekst → #CEA15D. Sorteer dropdown rechts.</p>
+  <table>
+    <thead><tr><th>Categorie</th><th>Filteropties</th></tr></thead>
+    <tbody>
+      <tr><td>Snijplanken</td><td>Houtsoort: Walnoothout | Esdoornhout | Kersenhout | Acaciahout</td></tr>
+      <tr><td>Pannen</td><td>Materiaal: RVS | Keramisch</td></tr>
+      <tr><td>Messen</td><td>Geen filters</td></tr>
+      <tr><td>Accessoires</td><td>Geen filters</td></tr>
+    </tbody>
+  </table>
+
+  <h2>5.3 Productgrid</h2>
+  <table>
+    <thead><tr><th>Eigenschap</th><th>Waarde</th></tr></thead>
+    <tbody>
+      <tr><td>Desktop</td><td>4 producten per rij</td></tr>
+      <tr><td>Mobiel</td><td>2 producten per rij</td></tr>
+      <tr><td>Badges</td><td>'Bestseller' (#0D2B23 bg, witte tekst) | '-25%' (#CEA15D bg, donkergroene tekst)</td></tr>
+      <tr><td>Hover</td><td>Tweede afbeelding (lifestyle/detail) tonen</td></tr>
+    </tbody>
+  </table>
+  <h4>Productkaart elementen (volgorde):</h4>
+  <ol style="margin:8px 0 0 20px;font-size:13px;line-height:2">
+    <li>Badges top-left op afbeelding</li>
+    <li>Productfoto op neutrale achtergrond</li>
+    <li>'SOPHIOR' merknaam — kleine kapitalen, Montserrat Regular</li>
+    <li>Productnaam — Montserrat Bold, #0D2B23</li>
+    <li>Reviewscore — 5 sterren #CEA15D</li>
+    <li>Prijs — Montserrat Bold — kortingsprijs: doorgestreept + nieuw naast elkaar</li>
+  </ol>
+
+  <h4>Inline Social Proof Bar</h4>
+  <p>Verschijnt na de eerste of tweede rij producten. 3 items in #CEA15D iconen.</p>
+
+  <h2>5.4 SEO & Autoriteitsblok</h2>
+  <p>2/3 SEO tekst links + 1/3 Gidsen sidebar rechts. Hoofdkoppen in Nevolasty, body in Montserrat Light/Regular.</p>
+  <div class="callout"><strong>⚠</strong> Schrijf SEO-teksten voor Pannen, Messen en Accessoires pagina's. Sla op als Shopify page content of als metafield per collectie.</div>
+
+  <div class="page-footer">
+    <span>SOPHIOR Developer Briefing 2026 — V4</span>
+    <span>Sectie 5 — Categoriepagina</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ SECTION 6 ══ -->
+<div class="page">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <div class="section-title">Productpagina (PDP)</div>
+  </div>
+  <p><strong>URL:</strong> /products/[product-handle]</p>
+
+  <h4>Paginastructuur:</h4>
+  <div class="page-structure">
+    <div class="page-structure-item"><span class="psi-num">1</span><span class="psi-label">Announcement Bar + Header <span class="psi-sub">globaal</span></span></div>
+    <div class="page-structure-item"><span class="psi-num">2</span><span class="psi-label">Foto's + Info + Add to Cart <span class="psi-sub">sticky rechts op desktop</span></span></div>
+    <div class="page-structure-item"><span class="psi-num">3</span><span class="psi-label">Product Zekerheden <span class="psi-sub">iconen bar, 4 badges</span></span></div>
+    <div class="page-structure-item"><span class="psi-num">4</span><span class="psi-label">Uitgebreide Productuitleg <span class="psi-sub">SEO — uit metafield</span></span></div>
+    <div class="page-structure-item"><span class="psi-num">5</span><span class="psi-label">Product Review Sectie <span class="psi-sub">Judge.me, anchor #reviews</span></span></div>
+    <div class="page-structure-item"><span class="psi-num">6</span><span class="psi-label">Expertise & Gidsen <span class="psi-sub">blog-integratie, gefilterd per categorie</span></span></div>
+    <div class="page-structure-item"><span class="psi-num">7</span><span class="psi-label">Categorie-specifieke FAQ <span class="psi-sub">JSON-LD FAQPage schema</span></span></div>
+    <div class="page-structure-item"><span class="psi-num">8</span><span class="psi-label">Footer <span class="psi-sub">globaal</span></span></div>
+  </div>
+
+  <h2>6.1 Foto's + Info + Add to Cart</h2>
+  <h4>Rechter kant (sticky bij scrollen op desktop) — elementen in volgorde:</h4>
+  <ol style="margin:8px 0 16px 20px;font-size:13px;line-height:2.2">
+    <li>Producttitel — Nevolasty</li>
+    <li>Reviewscore ★★★★★ — anchor-link naar #reviews</li>
+    <li>Kernbelofte — 1 krachtige zin — Montserrat</li>
+    <li>Prijs — Montserrat Bold, #0D2B23</li>
+    <li>3 USP bullets (uit metafields usp_1/2/3) — Gold vinkje</li>
+    <li>Add-on cross-sell blok (uit metafield addon_product)</li>
+    <li>Levertijd: 'Voor 23:59 besteld, morgen in huis'</li>
+    <li>Add to Cart button — bg #0D2B23, tekst #F1EFEA, full-width</li>
+    <li>Betaalmethoden iconen (Shopify Payments)</li>
+    <li>3 Trust-USP's: 30 dagen retour | 2 jaar garantie | 4,8/5 uit 500+ reviews</li>
+    <li>Accordeons: Productomschrijving | Productspecificaties | Uitleg & Onderhoud</li>
+  </ol>
+
+  <h4>Add-on cross-sell logica:</h4>
+  <table>
+    <thead><tr><th>Product type in cart</th><th>Toon add-on</th></tr></thead>
+    <tbody>
+      <tr><td>Snijplank</td><td>Onderhoudsolie</td></tr>
+      <tr><td>Pan</td><td>Panbeschermers</td></tr>
+      <tr><td>Mes</td><td>Mesbeschermer</td></tr>
+    </tbody>
+  </table>
+  <div class="callout"><strong>⚠</strong> Koppel via metafield: <code>products.metafields.custom.addon_product</code></div>
+
+  <h2>6.2 Product Zekerheden (Iconen Bar)</h2>
+  <p>4 horizontale iconen. Stijl: dunne line-art in cirkel — cirkelkleur #CEA15D, icoonkleur #F1EFEA. Mobiel: 2×2 grid.</p>
+  <table>
+    <thead><tr><th>Categorie</th><th>Badges (4 stuks)</th></tr></thead>
+    <tbody>
+      <tr><td>Snijplanken</td><td>Beste houtsoorten | Strak productieproces | Dubbelzijdig | Duurzaam</td></tr>
+      <tr><td>Pannen</td><td>3-laags RVS | Handvat koel | Premium afwerking | Duurzaam</td></tr>
+      <tr><td>Messen</td><td>Vlijmscherp Duits staal | Walnoot handvat | Ergonomisch | Duurzaam</td></tr>
+      <tr><td>Accessoires</td><td>Verlengt levensduur | Meer plezier | Veiligheid & gemak</td></tr>
+    </tbody>
+  </table>
+  <div class="callout callout-info"><strong>Liquid:</strong> Gebruik <code>{% if product.type == 'snijplank' %}</code> conditionals voor de juiste badges.</div>
+
+  <h2>6.3 Uitgebreide Productuitleg (SEO)</h2>
+  <p>Bron: metafield <code>product.metafields.custom.long_description</code> (Rich Text). Structuur: Introductie → Materiaal & Vakmanschap → Gebruik in de keuken.</p>
+  <div class="callout"><strong>⚠</strong> Metafield aanmaken in Shopify Admin → Settings → Custom data → Products als <strong>Rich Text</strong> veld.</div>
+
+  <h2>6.4 Product Review Sectie</h2>
+  <p>Anchor id: <code>reviews</code>. Judge.me Product Review widget. Review samenvatting: groot cijfer + sterren + bar chart verdeling + 'Schrijf een beoordeling' button.</p>
+
+  <h2>6.5 Gidsen (Blog Integratie)</h2>
+  <table>
+    <thead><tr><th>Product categorie</th><th>Blog handle</th><th>CTA</th></tr></thead>
+    <tbody>
+      <tr><td>Snijplanken</td><td>snijplanken</td><td>Bekijk alle snijplank gidsen</td></tr>
+      <tr><td>Pannen</td><td>pannen</td><td>Bekijk alle pannen gidsen</td></tr>
+      <tr><td>Messen</td><td>messen</td><td>Bekijk alle messengidsen</td></tr>
+      <tr><td>Accessoires</td><td>accessoires</td><td>Bekijk alle accessoire gidsen</td></tr>
+    </tbody>
+  </table>
+
+  <h2>6.6 FAQ Sectie</h2>
+  <div class="callout callout-danger"><strong>⚠</strong> Implementeer <strong>JSON-LD FAQPage</strong> structured data voor rich snippets in Google.</div>
+  <h4>Snijplanken FAQ:</h4>
+  <ul style="margin:8px 0 0 20px;font-size:13px;line-height:2">
+    <li>Waarom is een houten snijplank hygiënischer dan plastic?</li>
+    <li>Hoe vaak moet ik mijn massief houten snijplank oliën?</li>
+    <li>Wat is het verschil tussen 'edge grain' en 'end grain'?</li>
+  </ul>
+  <h4>Pannen FAQ:</h4>
+  <ul style="margin:8px 0 0 20px;font-size:13px;line-height:2">
+    <li>Wat betekent PFAS-vrij en waarom is dit gezonder?</li>
+    <li>Zijn de SOPHIOR RVS pannen geschikt voor inductie?</li>
+    <li>Hoe voorkom ik dat eten aanbakt in een RVS pan?</li>
+  </ul>
+  <h4>Messen FAQ:</h4>
+  <ul style="margin:8px 0 0 20px;font-size:13px;line-height:2">
+    <li>Waarom Duits staal in SOPHIOR messen?</li>
+    <li>Mogen de messen in de vaatwasser?</li>
+    <li>Hoe behoud ik de scherpte van mijn koksmes?</li>
+  </ul>
+
+  <div class="page-footer">
+    <span>SOPHIOR Developer Briefing 2026 — V4</span>
+    <span>Sectie 6 — Productpagina (PDP)</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ SECTION 7 ══ -->
+<div class="page">
+  <div class="section-header">
+    <div class="section-num">7</div>
+    <div class="section-title">Cart Drawer</div>
+  </div>
+  <p>Slide-out drawer van rechts. App aanbeveling: <strong>Rebuy Smart Cart</strong> OF <strong>In Cart Upsell</strong>.</p>
+
+  <h4>Opbouw (top → bottom):</h4>
+  <div class="page-structure">
+    <div class="page-structure-item"><span class="psi-num">A</span><span class="psi-label">Gratis Verzending Progress Bar <span class="psi-sub">drempel €59 — vult zich met bestelbedrag</span></span></div>
+    <div class="page-structure-item"><span class="psi-num">B</span><span class="psi-label">Productoverzicht <span class="psi-sub">foto + titel + variant + prijs + qty selector</span></span></div>
+    <div class="page-structure-item"><span class="psi-num">C</span><span class="psi-label">Dynamische Add-On Upsell <span class="psi-sub">alleen tonen als add-on nog NIET in cart</span></span></div>
+    <div class="page-structure-item"><span class="psi-num">D</span><span class="psi-label">Totaaloverzicht & Checkout <span class="psi-sub">'Doorgaan naar afrekenen' — bg #0D2B23</span></span></div>
+    <div class="page-structure-item"><span class="psi-num">E</span><span class="psi-label">Trust & Betaalmethoden <span class="psi-sub">Shopify Payments icons + social proof</span></span></div>
+  </div>
+
+  <h2>7.1 Progress Bar</h2>
+  <p>Tekst: "Je bent nog maar €[X] verwijderd van Gratis Verzending" → na €59: "Gefeliciteerd! Je verzending is gratis. ✔"</p>
+
+  <h2>7.2 Add-on Upsell</h2>
+  <p>Toon originele prijs (doorgestreept) + actieprijs in #CEA15D. CTA: '+ Toevoegen'. Alleen tonen als de specifieke add-on nog niet in de cart zit.</p>
+
+  <div class="page-footer">
+    <span>SOPHIOR Developer Briefing 2026 — V4</span>
+    <span>Sectie 7 — Cart Drawer</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ SECTION 8 ══ -->
+<div class="page">
+  <div class="section-header">
+    <div class="section-num">8</div>
+    <div class="section-title">'Ons Verhaal' Pagina</div>
+  </div>
+  <p><strong>URL:</strong> /pages/ons-verhaal</p>
+
+  <h2>8.1 Hero Header</h2>
+  <p>Full-width sfeerfoto + subtiele donkere overlay. Titel: "Het verhaal van SOPHIOR" — Nevolasty Light, #F1EFEA.</p>
+
+  <h2>8.2 De Historie — Zigzag Layout</h2>
+  <table>
+    <thead><tr><th>Blok</th><th>Onderwerp</th></tr></thead>
+    <tbody>
+      <tr><td>Blok 1 — tekst links, beeld rechts</td><td>'Hoe is het begonnen?' — passie voor materialen, frustratie over wegwerpcultuur</td></tr>
+      <tr><td>Blok 2 — beeld links, tekst rechts</td><td>'Waar staan we nu?' — specialist in massief hout, PFAS-vrije pannen, premium messen</td></tr>
+    </tbody>
+  </table>
+
+  <h2>8.3 Kernwaarden Badge Bar</h2>
+  <p>Achtergrond #0D2B23, iconen/tekst #F1EFEA. 4 badges horizontaal, full-width.</p>
+  <table>
+    <thead><tr><th>Badge</th><th>Ondertitel</th></tr></thead>
+    <tbody>
+      <tr><td>Het juiste materiaal</td><td>Selectie op basis van duurzaamheid en prestatie</td></tr>
+      <tr><td>Strenge kwaliteitscontrole</td><td>Geen product verlaat ons magazijn zonder check</td></tr>
+      <tr><td>Duurzaam voor dagelijks gebruik</td><td>Gemaakt om generaties lang mee te gaan</td></tr>
+      <tr><td>Mooi design om trots op te zijn</td><td>Esthetiek die je keuken verrijkt</td></tr>
+    </tbody>
+  </table>
+
+  <h2>8.4 Duurzaamheid Blok</h2>
+  <ul style="margin:8px 0 0 20px;font-size:13px;line-height:2">
+    <li>FSC-gecertificeerd: al ons hout uit verantwoord beheerde bossen</li>
+    <li>Trees for All samenwerking: bomen terugplanten</li>
+    <li>Geen wegwerpcultuur: investeer in één goed product</li>
+  </ul>
+  <div class="callout"><strong>⚠</strong> Trees for All logo toevoegen in Gold #CEA15D indien beschikbaar en toegestaan.</div>
+
+  <h2>8.5 Productexpertise Grid</h2>
+  <p>4 afbeeldingen naast elkaar (Snijplanken, Pannen, Messen, Accessoires). Overlay per afbeelding met knop 'Bekijk gids' → linkt naar collectie/blog.</p>
+
+  <div class="page-footer">
+    <span>SOPHIOR Developer Briefing 2026 — V4</span>
+    <span>Sectie 8 — Ons Verhaal</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ SECTION 9 ══ -->
+<div class="page">
+  <div class="section-header">
+    <div class="section-num">9</div>
+    <div class="section-title">Blog / Gidsen Structuur</div>
+  </div>
+
+  <h2>9.1 Blog Categorieën (Shopify Blogs)</h2>
+  <p>Aanmaken onder <em>Online Store → Blog posts</em>:</p>
+  <table>
+    <thead><tr><th>Blog handle</th><th>Inhoud</th></tr></thead>
+    <tbody>
+      <tr><td>snijplanken</td><td>Onderhoud, tips, uitleg, vergelijkingen</td></tr>
+      <tr><td>pannen</td><td>Gebruik, onderhoud, PFAS info, inductie tips</td></tr>
+      <tr><td>messen</td><td>Scherpte, onderhoud, staalsoorten</td></tr>
+      <tr><td>accessoires</td><td>Alle content over keukenaccessoires</td></tr>
+      <tr><td>inspiratie-recepten</td><td>Recepten, lifestyle, verhalen</td></tr>
+    </tbody>
+  </table>
+
+  <h2>9.2 Blog Overzichtspagina</h2>
+  <p><strong>URL:</strong> /blogs — filter tabs per blog-categorie bovenaan, 3-kolomgrid van kaarten.</p>
+
+  <h2>9.3 Artikel Pagina</h2>
+  <p><strong>URL:</strong> /blogs/[blog-handle]/[article-handle]</p>
+  <ul style="margin:8px 0 0 20px;font-size:13px;line-height:2">
+    <li>Breadcrumb: Home → Gidsen → [Categorie] → [Artikel]</li>
+    <li>Featured image als hero bovenaan</li>
+    <li>Artikeltitel in Nevolasty, body in Montserrat</li>
+    <li>Gerelateerde artikelen onderaan (zelfde blog-categorie)</li>
+    <li>Gerelateerde producten widget</li>
+  </ul>
+
+  <div class="page-footer">
+    <span>SOPHIOR Developer Briefing 2026 — V4</span>
+    <span>Sectie 9 — Blog / Gidsen</span>
+  </div>
+</div>
+
+<!-- ═════════════════════════════════════════════ SECTION 10 ══ -->
+<div class="page">
+  <div class="section-header">
+    <div class="section-num">10</div>
+    <div class="section-title">SEO, GEO & Technische Vereisten</div>
+  </div>
+
+  <h2>10.1 SEO Basis</h2>
+  <table>
+    <thead><tr><th>Onderdeel</th><th>Aanpak</th></tr></thead>
+    <tbody>
+      <tr><td>Meta titles & descriptions</td><td>Aanpasbaar via Shopify SEO velden per pagina/product</td></tr>
+      <tr><td>Canonical tags</td><td>Shopify genereert standaard — controleer bij gefilterde collecties</td></tr>
+      <tr><td>Structured data JSON-LD</td><td>Implementeer voor: Product, FAQPage, BreadcrumbList, Organization</td></tr>
+      <tr><td>Sitemap</td><td>/sitemap.xml — Shopify genereert automatisch — submit aan Google Search Console</td></tr>
+    </tbody>
+  </table>
+
+  <h2>10.2 GEO (Generative Engine Optimization)</h2>
+  <p>SOPHIOR wil autoriteit opbouwen bij AI-systemen (ChatGPT, Gemini, Perplexity):</p>
+  <ul style="margin:8px 0 0 20px;font-size:13px;line-height:2">
+    <li>FAQ secties met directe, feitelijke antwoorden in NLP-vriendelijk formaat</li>
+    <li>Gestructureerde productteksten met duidelijke claims (PFAS-vrij, FSC-gecertificeerd, Duits staal)</li>
+    <li>Intern linken: blog → productpagina's en vice versa</li>
+    <li>Consistente terminologie door de hele site</li>
+  </ul>
+
+  <h2>10.3 Performance</h2>
+  <table>
+    <thead><tr><th>Vereiste</th><th>Target</th></tr></thead>
+    <tbody>
+      <tr><td>Afbeeldingen</td><td>WebP formaat, lazy loading, Shopify native CDN</td></tr>
+      <tr><td>Fonts</td><td>Preload Nevolasty .woff2 in &lt;head&gt;</td></tr>
+      <tr><td>Third-party scripts</td><td>Async/defer — nooit blokkerende scripts</td></tr>
+      <tr><td>LCP</td><td>&lt; 2.5s</td></tr>
+      <tr><td>CLS</td><td>&lt; 0.1</td></tr>
+      <tr><td>FID / INP</td><td>&lt; 200ms</td></tr>
+    </tbody>
+  </table>
+
+  <h2>10.4 Analytics & Tracking</h2>
+  <table>
+    <thead><tr><th>Tool</th><th>Installatie</th></tr></thead>
+    <tbody>
+      <tr><td>Google Analytics 4</td><td>Via Shopify Customer Events — NIET via script injection in theme.liquid</td></tr>
+      <tr><td>Meta Pixel</td><td>Via Shopify Customer Events → Add custom pixel</td></tr>
+      <tr><td>Klaviyo tracking</td><td>Via Klaviyo Shopify app — volgt automatisch events</td></tr>
+      <tr><td>Hotjar / Clarity</td><td>Optioneel — via Customer Events voor heatmaps</td></tr>
+    </tbody>
+  </table>
+
+  <h2>10.5 Shopify Metafields Overzicht</h2>
+  <p>Aanmaken in Shopify Admin → Settings → Custom data → Products:</p>
+  <table>
+    <thead><tr><th>Metafield key</th><th>Type</th><th>Gebruik</th></tr></thead>
+    <tbody>
+      <tr><td><code>custom.long_description</code></td><td>Rich Text</td><td>Uitgebreide productuitleg voor SEO sectie op PDP</td></tr>
+      <tr><td><code>custom.addon_product</code></td><td>Product reference</td><td>Cross-sell add-on (olie / beschermer)</td></tr>
+      <tr><td><code>custom.usp_1</code> / <code>usp_2</code> / <code>usp_3</code></td><td>Single line text</td><td>3 product-specifieke USP bullets bij ATC sectie</td></tr>
+      <tr><td><code>custom.core_promise</code></td><td>Single line text</td><td>Kernbelofte onder de producttitel op PDP</td></tr>
+    </tbody>
+  </table>
+
+  <div class="page-footer">
+    <span>SOPHIOR Developer Briefing 2026 — V4</span>
+    <span>Sectie 10 — SEO, GEO & Technisch</span>
+  </div>
+</div>
+
+<!-- ═════════════════════════════════════════════ SECTION 11 ══ -->
+<div class="page">
+  <div class="section-header">
+    <div class="section-num">11</div>
+    <div class="section-title">Werkinstructies voor Claude Code</div>
+  </div>
+
+  <h2>11.1 Aanbevolen Bouw-volgorde</h2>
+  <ul class="steps">
+    <li><span class="step-num">1</span>Shopify Dawn thema installeren + GitHub koppelen (<code>shopify theme init</code>)</li>
+    <li><span class="step-num">2</span>Brand setup — kleuren, Nevolasty font, Montserrat, logo in alle varianten</li>
+    <li><span class="step-num">3</span>Globale componenten — Announcement Bar, Header/Mega Menu, Footer</li>
+    <li><span class="step-num">4</span>Homepage — van boven naar beneden, sectie per sectie</li>
+    <li><span class="step-num">5</span>Categoriepagina template — één template voor alle 4 categorieën</li>
+    <li><span class="step-num">6</span>Productpagina (PDP) template</li>
+    <li><span class="step-num">7</span>Cart Drawer + upsell app configuratie</li>
+    <li><span class="step-num">8</span>Over Ons pagina (/pages/ons-verhaal)</li>
+    <li><span class="step-num">9</span>Blog/Gidsen structuur</li>
+    <li><span class="step-num">10</span>Metafields aanmaken + content invullen</li>
+    <li><span class="step-num">11</span>Judge.me review widgets integreren</li>
+    <li><span class="step-num">12</span>Klaviyo e-mail formulieren koppelen</li>
+    <li><span class="step-num">13</span>SEO structured data implementeren (JSON-LD)</li>
+    <li><span class="step-num">14</span>Analytics & tracking (GA4 + Meta Pixel)</li>
+    <li><span class="step-num">15</span>Performance audit + Core Web Vitals check</li>
+  </ul>
+
+  <h2>11.2 Prompt Template voor Claude Code</h2>
+  <div class="code-block">
+<span class="comment">// Gebruik dit als beginprompt in een Claude Code sessie:</span>
+
+Je bouwt de Shopify website voor SOPHIOR.nl.
+De volledige briefing staat in het document
+'SOPHIOR Developer Briefing 2026'.
+
+Lees het document eerst volledig door. Alle kleuren, fonts,
+secties, Liquid-logica, metafields en app-koppelingen
+staan daarin gedefinieerd.
+
+<span class="key">Regels:</span>
+- Bouw altijd mobile-first
+- Gebruik uitsluitend de kleuren uit het brandbook
+- Primair font: Nevolasty (headlines)
+- Secundair font: Montserrat
+- Vraag altijd om bevestiging vóór destructieve wijzigingen
+  aan bestaande theme-bestanden
+  </div>
+
+  <h2>11.3 GitHub Conventies</h2>
+  <table>
+    <thead><tr><th>Onderdeel</th><th>Conventie</th></tr></thead>
+    <tbody>
+      <tr><td>Branch naming</td><td><code>feature/[pagina-naam]</code> — bijv. <code>feature/homepage-hero</code></td></tr>
+      <tr><td>Commit messages</td><td>Nederlands, beschrijvend — bijv. "Voeg bestseller slider toe aan homepage"</td></tr>
+      <tr><td>Pull requests</td><td>Per afgeronde sectie — review vóór merge naar main</td></tr>
+      <tr><td>main branch</td><td>= live store (shopify theme publish)</td></tr>
+      <tr><td>develop branch</td><td>= staging / review</td></tr>
+    </tbody>
+  </table>
+
+  <h2>11.4 Open Punten / TODO's</h2>
+  <ul class="todo-list">
+    <li>Lever Nevolasty .woff2 fontbestand aan + bevestig commerciële weblicentie</li>
+    <li>Dawn thema initialiseren via Shopify CLI: <code>shopify theme init</code></li>
+    <li>Kies cart upsell app: Rebuy Smart Cart OF In Cart Upsell — installeer vóór cart-bouw</li>
+    <li>Stel Judge.me in en koppel bestaande reviews — public key opvragen</li>
+    <li>Bevestig Klaviyo lijst-ID voor nieuwsbrief formulieren</li>
+    <li>Lever logo bestanden aan in SVG + PNG (primary logo + symbol) in zwart, wit en kleur</li>
+    <li>Stel productafbeeldingen beschikbaar in WebP formaat per product</li>
+    <li>Schrijf SEO-teksten voor categoriepagina's Pannen, Messen en Accessoires</li>
+    <li>Vul product metafields in voor alle producten (long_description, usp's, addon_product, core_promise)</li>
+    <li>Stel Google Analytics 4 property + Meta Pixel ID beschikbaar</li>
+    <li>Maak Trees for All logo aan voor duurzaamheid sectie op Over Ons pagina</li>
+  </ul>
+
+  <div class="gold-divider"></div>
+  <p style="font-size:12px;color:#999;text-align:center">SOPHIOR Developer Briefing 2026 — Versie 1.0 &nbsp;·&nbsp; Opgesteld voor Claude Code + GitHub + Shopify implementatie</p>
+
+  <div class="page-footer">
+    <span>SOPHIOR Developer Briefing 2026 — V4</span>
+    <span>Sectie 11 — Werkinstructies Claude Code</span>
+  </div>
+</div>
+
+</body>
+</html>

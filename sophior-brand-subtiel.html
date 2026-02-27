@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SOPHIOR — Versie C: Subtiel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --dark-green: #0D2B23;
+      --mid-green:  #1a4535;
+      --gold:       #CEA15D;
+      --light-gold: #EFCF96;
+      --cream:      #F1EFEA;
+      --tan:        #E3D7C1;
+      --off-white:  #FAFAF8;
+      --white:      #FFFFFF;
+      --text-muted: #8a9e92;
+      --font-h:     'Playfair Display', Georgia, serif;
+      --font-b:     'Montserrat', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-b);
+      background: var(--off-white);
+      color: var(--dark-green);
+      font-size: 15px;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 48px; }
+    .ring { pointer-events: none; flex-shrink: 0; }
+
+    /* ═══════════════════════════════════════
+       1. ANNOUNCEMENT BAR — licht, minimaal
+    ════════════════════════════════════════ */
+    .ann {
+      background: var(--cream);
+      border-bottom: 1px solid var(--tan);
+      padding: 9px 0;
+      position: sticky; top: 0; z-index: 200;
+    }
+    .ann__inner { display: flex; justify-content: center; gap: 48px; }
+    .ann__item {
+      display: flex; align-items: center; gap: 7px;
+      font-size: 11px; font-weight: 500; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--dark-green); opacity: .65;
+    }
+    .ann__item svg { color: var(--gold); opacity: .8; }
+
+    /* ═══════════════════════════════════════
+       2. HEADER — wit, licht
+    ════════════════════════════════════════ */
+    .header {
+      background: var(--white);
+      border-bottom: 1px solid var(--tan);
+      position: sticky; top: 39px; z-index: 190;
+    }
+    .header__inner {
+      display: flex; align-items: center;
+      justify-content: space-between; height: 68px;
+    }
+    .logo { display: flex; align-items: center; gap: 11px; text-decoration: none; }
+    .logo__ring { width: 32px; height: 32px; color: var(--dark-green); opacity: .7; }
+    .logo__word {
+      font-family: var(--font-h); font-size: 20px; font-weight: 500;
+      color: var(--dark-green); letter-spacing: .1em;
+    }
+    .nav { display: flex; gap: 36px; }
+    .nav a {
+      font-size: 12px; font-weight: 500; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--dark-green); opacity: .55;
+      text-decoration: none; transition: opacity .2s;
+      position: relative;
+    }
+    .nav a::after {
+      content: ''; position: absolute; left: 0; bottom: -4px;
+      width: 0; height: 1px; background: var(--gold);
+      transition: width .25s;
+    }
+    .nav a:hover { opacity: 1; }
+    .nav a:hover::after { width: 100%; }
+    .icons { display: flex; gap: 20px; }
+    .icon-btn {
+      color: var(--dark-green); opacity: .45; cursor: pointer;
+      transition: opacity .2s; position: relative;
+    }
+    .icon-btn:hover { opacity: .9; }
+    .cart-dot {
+      position: absolute; top: -5px; right: -5px;
+      width: 14px; height: 14px; border-radius: 50%;
+      background: var(--gold); color: var(--white);
+      font-size: 8px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* ═══════════════════════════════════════
+       3. HERO — licht, luchtig
+    ════════════════════════════════════════ */
+    .hero {
+      min-height: 580px;
+      background: var(--off-white);
+      display: grid; grid-template-columns: 1fr 1fr;
+      position: relative; overflow: hidden;
+      border-bottom: 1px solid var(--tan);
+    }
+    /* Heel subtiel jaarring patroon hero achtergrond */
+    .hero__ring-bg {
+      position: absolute; right: -40px; bottom: -60px;
+      width: 500px; height: 500px;
+      color: rgba(13,43,35,.04);
+      pointer-events: none;
+    }
+
+    .hero__content {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 72px 56px 72px 48px;
+      position: relative; z-index: 1;
+    }
+    .hero__label {
+      font-size: 10px; font-weight: 600; letter-spacing: .2em;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 20px; opacity: .9;
+    }
+    .hero__h1 {
+      font-family: var(--font-h);
+      font-size: clamp(36px, 4vw, 56px);
+      font-weight: 400; line-height: 1.1;
+      color: var(--dark-green); margin-bottom: 20px;
+    }
+    .hero__h1 em { font-style: italic; color: var(--gold); }
+    .hero__sub {
+      font-size: 15px; font-weight: 300;
+      color: var(--text-muted);
+      max-width: 380px; line-height: 1.8; margin-bottom: 40px;
+    }
+    .hero__ctas { display: flex; gap: 14px; align-items: center; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--font-b); font-size: 11px; font-weight: 600;
+      letter-spacing: .1em; text-transform: uppercase;
+      text-decoration: none; padding: 13px 28px;
+      border: none; cursor: pointer; transition: all .22s;
+    }
+    .btn--primary { background: var(--dark-green); color: var(--cream); }
+    .btn--primary:hover { background: var(--mid-green); }
+    .btn--ghost {
+      background: transparent;
+      border: 1px solid rgba(13,43,35,.18);
+      color: var(--dark-green);
+    }
+    .btn--ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+    .hero__stats {
+      display: flex; gap: 32px; margin-top: 32px;
+      padding-top: 32px; border-top: 1px solid var(--tan);
+    }
+    .hero__stat {}
+    .hero__stat-num {
+      font-family: var(--font-h); font-size: 24px; font-weight: 400;
+      color: var(--dark-green); line-height: 1;
+    }
+    .hero__stat-label {
+      font-size: 11px; font-weight: 300; color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* Hero rechts: product op lichte jaarring cirkel */
+    .hero__visual {
+      position: relative; display: flex;
+      align-items: center; justify-content: center;
+      background: var(--cream); overflow: hidden;
+    }
+    /* Lichte jaarring cirkel achter product (cloudpillo-stijl, subtiel) */
+    .hero__ring-circle {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 320px; height: 320px; border-radius: 50%;
+      background: radial-gradient(circle,
+        rgba(227,215,193,.8) 0%,
+        rgba(227,215,193,.4) 45%,
+        rgba(241,239,234,.1) 75%,
+        transparent 100%);
+      box-shadow:
+        0 0 0 28px rgba(206,161,93,.06),
+        0 0 0 56px rgba(206,161,93,.035),
+        0 0 0 90px rgba(206,161,93,.018),
+        0 0 0 128px rgba(206,161,93,.008);
+    }
+    .hero__img {
+      position: relative; z-index: 2;
+      width: 340px; height: 340px; object-fit: contain;
+      filter: drop-shadow(0 12px 32px rgba(13,43,35,.15));
+    }
+
+    /* ═══════════════════════════════════════
+       SECTIE-BASIS
+    ════════════════════════════════════════ */
+    .section { padding: 80px 0; }
+    .s-label {
+      font-size: 10px; font-weight: 600; letter-spacing: .2em;
+      text-transform: uppercase; color: var(--gold);
+      text-align: center; margin-bottom: 10px; opacity: .85;
+    }
+    .s-title {
+      font-family: var(--font-h); font-size: clamp(26px,3vw,40px);
+      font-weight: 400; text-align: center; color: var(--dark-green);
+      line-height: 1.2; margin-bottom: 10px;
+    }
+    .s-title em { font-style: italic; }
+    .s-sub {
+      font-size: 14px; font-weight: 300; text-align: center;
+      color: var(--text-muted); max-width: 460px;
+      margin: 0 auto 48px; line-height: 1.8;
+    }
+    /* Fijne lijndivider met jaarring-icoon */
+    .ring-line {
+      display: flex; align-items: center; gap: 14px;
+      justify-content: center; margin-bottom: 48px;
+    }
+    .ring-line__l {
+      flex: 1; max-width: 80px; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--tan));
+    }
+    .ring-line__r {
+      background: linear-gradient(90deg, var(--tan), transparent);
+    }
+    .ring-line svg { width: 28px; height: 28px; color: rgba(206,161,93,.4); }
+
+    /* ═══════════════════════════════════════
+       4. TRUSTBADGE — wit, minimal
+    ════════════════════════════════════════ */
+    .trust-bar { background: var(--white); border-bottom: 1px solid var(--tan); padding: 20px 0; }
+    .trust-bar__inner { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; }
+    .tbadge { display: flex; align-items: center; gap: 12px; }
+    .tbadge__icon {
+      width: 38px; height: 38px; position: relative;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .tbadge__icon::before {
+      content: ''; position: absolute; inset: -4px; border-radius: 50%;
+      border: 1px solid rgba(206,161,93,.2);
+    }
+    .tbadge__icon::after {
+      content: ''; position: absolute; inset: -9px; border-radius: 50%;
+      border: 1px solid rgba(206,161,93,.08);
+    }
+    .tbadge__icon svg { width: 18px; height: 18px; color: var(--gold); opacity: .8; }
+    .tbadge__title { font-size: 12px; font-weight: 600; color: var(--dark-green); display: block; }
+    .tbadge__sub { font-size: 11px; font-weight: 300; color: var(--text-muted); display: block; }
+
+    /* ═══════════════════════════════════════
+       5. COLLECTIES GRID — kaarten met foto
+    ════════════════════════════════════════ */
+    .collections-grid {
+      display: grid; grid-template-columns: repeat(4,1fr); gap: 16px;
+    }
+    .coll {
+      text-decoration: none; display: block;
+      border-radius: 4px; overflow: hidden;
+      border: 1px solid var(--tan);
+      transition: box-shadow .3s, transform .3s;
+    }
+    .coll:hover { box-shadow: 0 8px 32px rgba(13,43,35,.08); transform: translateY(-2px); }
+
+    .coll__img-wrap {
+      height: 240px; background: var(--cream);
+      position: relative; overflow: hidden;
+      display: flex; align-items: flex-end; justify-content: center;
+    }
+    /* Lichte jaarring achter product (cloudpillo-stijl, cream) */
+    .coll__ring-bg {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 160px; height: 160px; border-radius: 50%;
+      background: radial-gradient(circle,
+        rgba(227,215,193,.7) 0%,
+        rgba(227,215,193,.3) 50%,
+        transparent 75%);
+      box-shadow:
+        0 0 0 20px rgba(206,161,93,.05),
+        0 0 0 42px rgba(206,161,93,.028),
+        0 0 0 68px rgba(206,161,93,.013);
+    }
+    .coll__img {
+      position: relative; z-index: 2;
+      width: 80%; height: 80%; object-fit: contain;
+      filter: drop-shadow(0 6px 18px rgba(13,43,35,.12));
+      transition: transform .4s ease;
+    }
+    .coll:hover .coll__img { transform: translateY(-4px) scale(1.02); }
+
+    .coll__body {
+      padding: 16px 18px 18px;
+      background: var(--white);
+      display: flex; align-items: center; justify-content: space-between;
+      border-top: 1px solid var(--tan);
+    }
+    .coll__name { font-size: 14px; font-weight: 600; color: var(--dark-green); }
+    .coll__arrow { width: 16px; height: 16px; color: var(--gold); transition: transform .2s; }
+    .coll:hover .coll__arrow { transform: translateX(3px); }
+
+    /* ═══════════════════════════════════════
+       6. BESTSELLERS — lichte kaarten
+    ════════════════════════════════════════ */
+    .bestsellers { background: var(--cream); }
+    .prod-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; }
+
+    .pc {
+      background: var(--white); border-radius: 4px;
+      border: 1px solid var(--tan);
+      cursor: pointer; position: relative;
+      transition: box-shadow .3s, transform .3s;
+      overflow: hidden;
+    }
+    .pc:hover { box-shadow: 0 12px 36px rgba(13,43,35,.09); transform: translateY(-3px); }
+
+    /* ── CLOUDPILLO-STIJL: lichte jaarring achter product ── */
+    .pc__img-wrap {
+      position: relative; height: 260px;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--cream); overflow: hidden;
+    }
+    /* Lichte tan/cream cirkel als jaarring-achtergrond */
+    .pc__ring-bg {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 170px; height: 170px; border-radius: 50%;
+      background: radial-gradient(circle,
+        rgba(227,215,193,.75) 0%,
+        rgba(227,215,193,.35) 50%,
+        transparent 75%);
+      box-shadow:
+        0 0 0 20px rgba(206,161,93,.05),
+        0 0 0 42px rgba(206,161,93,.03),
+        0 0 0 68px rgba(206,161,93,.015),
+        0 0 0 96px rgba(206,161,93,.007);
+      transition: transform .4s ease;
+    }
+    .pc:hover .pc__ring-bg { transform: translate(-50%, -50%) scale(1.08); }
+
+    .pc__img {
+      position: relative; z-index: 1;
+      width: 75%; height: 75%; object-fit: contain;
+      filter: drop-shadow(0 6px 20px rgba(13,43,35,.14));
+      transition: transform .4s ease;
+    }
+    .pc:hover .pc__img { transform: translateY(-5px); }
+
+    .pc__badge {
+      position: absolute; top: 12px; left: 12px;
+      background: var(--gold); color: var(--white);
+      font-size: 9px; font-weight: 700; letter-spacing: .06em;
+      text-transform: uppercase; padding: 4px 10px;
+      border-radius: 2px; z-index: 3;
+    }
+    .pc__quick {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: rgba(13,43,35,.92); color: var(--cream);
+      padding: 11px; z-index: 3;
+      display: flex; align-items: center; justify-content: center; gap: 7px;
+      font-size: 10px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+      transform: translateY(100%); transition: transform .22s;
+    }
+    .pc:hover .pc__quick { transform: translateY(0); }
+    .pc__quick svg { width: 12px; height: 12px; color: var(--gold); }
+
+    .pc__body { padding: 16px 18px 20px; }
+    .pc__cat {
+      font-size: 9px; font-weight: 700; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 4px;
+    }
+    .pc__name { font-size: 14px; font-weight: 600; color: var(--dark-green); line-height: 1.35; margin-bottom: 8px; }
+    .pc__stars { display: flex; align-items: center; gap: 2px; margin-bottom: 8px; }
+    .star { width: 12px; height: 12px; fill: var(--gold); color: var(--gold); }
+    .pc__rcount { font-size: 11px; color: var(--text-muted); margin-left: 4px; }
+    .pc__price { display: flex; align-items: baseline; gap: 7px; }
+    .pc__cur { font-size: 17px; font-weight: 700; color: var(--dark-green); }
+    .pc__old { font-size: 12px; color: rgba(13,43,35,.3); text-decoration: line-through; }
+
+    /* ═══════════════════════════════════════
+       7. USP ACCORDEON — licht
+    ════════════════════════════════════════ */
+    .usp { background: var(--white); border-top: 1px solid var(--tan); }
+    .usp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .usp-label { font-size: 10px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; opacity: .85; }
+    .usp-h2 { font-family: var(--font-h); font-size: clamp(26px,3vw,38px); font-weight: 400; color: var(--dark-green); line-height: 1.2; margin-bottom: 10px; }
+    .usp-h2 em { font-style: italic; }
+    .usp-intro { font-size: 14px; font-weight: 300; color: var(--text-muted); line-height: 1.8; margin-bottom: 32px; }
+
+    .acc-item { border-bottom: 1px solid var(--tan); }
+    .acc-trigger { display: flex; justify-content: space-between; align-items: center; padding: 18px 0; cursor: pointer; gap: 16px; }
+    .acc-trigger-txt { font-size: 14px; font-weight: 600; color: var(--dark-green); }
+    .acc-icon { width: 16px; height: 16px; color: var(--gold); flex-shrink: 0; transition: transform .22s; }
+    .acc-item--open .acc-icon { transform: rotate(45deg); }
+    .acc-body { padding: 0 0 18px; font-size: 13px; font-weight: 300; color: var(--text-muted); line-height: 1.8; display: none; }
+    .acc-item--open .acc-body { display: block; }
+
+    /* USP visual: product op lichte jaarring */
+    .usp-visual {
+      position: relative; height: 460px; overflow: hidden;
+      border-radius: 6px; background: var(--cream);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .usp-visual__ring {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 340px; height: 340px; border-radius: 50%;
+      background: radial-gradient(circle,
+        rgba(227,215,193,.8) 0%,
+        rgba(227,215,193,.4) 40%,
+        rgba(241,239,234,.1) 70%,
+        transparent 100%);
+      box-shadow:
+        0 0 0 30px rgba(206,161,93,.05),
+        0 0 0 62px rgba(206,161,93,.03),
+        0 0 0 100px rgba(206,161,93,.015),
+        0 0 0 144px rgba(206,161,93,.007);
+    }
+    .usp-visual__img {
+      position: relative; z-index: 2;
+      max-width: 320px; max-height: 320px; object-fit: contain;
+      filter: drop-shadow(0 12px 32px rgba(13,43,35,.12));
+    }
+    .usp-visual__tag {
+      position: absolute; bottom: 24px; left: 24px;
+      background: rgba(255,255,255,.85); padding: 10px 16px;
+      backdrop-filter: blur(8px);
+    }
+    .usp-visual__tag-title { font-size: 13px; font-weight: 600; color: var(--dark-green); }
+    .usp-visual__tag-sub { font-size: 11px; color: var(--text-muted); font-weight: 300; }
+
+    /* ═══════════════════════════════════════
+       8. REVIEWS — lichte kaarten
+    ════════════════════════════════════════ */
+    .reviews { background: var(--off-white); }
+    .rev-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+    .rev-card {
+      background: var(--white); border: 1px solid var(--tan);
+      border-radius: 4px; padding: 28px 24px; position: relative;
+      transition: box-shadow .25s;
+    }
+    .rev-card:hover { box-shadow: 0 6px 24px rgba(13,43,35,.06); }
+    .rev-stars { display: flex; gap: 2px; margin-bottom: 16px; }
+    .rev-text {
+      font-size: 13px; font-weight: 300; color: var(--dark-green);
+      line-height: 1.75; margin-bottom: 20px; font-style: italic;
+    }
+    .rev-text::before {
+      content: '"'; font-family: var(--font-h); font-size: 44px;
+      color: rgba(206,161,93,.25); line-height: .4;
+      display: block; margin-bottom: 12px;
+    }
+    .rev-author { display: flex; align-items: center; gap: 12px; }
+    .rev-avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--cream); color: var(--dark-green);
+      font-size: 14px; font-weight: 600; display: flex;
+      align-items: center; justify-content: center; flex-shrink: 0; position: relative;
+    }
+    .rev-avatar::before {
+      content: ''; position: absolute; inset: -4px; border-radius: 50%;
+      border: 1px solid rgba(206,161,93,.25);
+    }
+    .rev-avatar::after {
+      content: ''; position: absolute; inset: -9px; border-radius: 50%;
+      border: 1px solid rgba(206,161,93,.1);
+    }
+    .rev-name { font-size: 12px; font-weight: 600; color: var(--dark-green); }
+    .rev-meta { font-size: 10px; color: var(--text-muted); }
+    .rev-verified {
+      position: absolute; top: 18px; right: 18px;
+      font-size: 9px; font-weight: 600; letter-spacing: .06em;
+      text-transform: uppercase; color: var(--gold); opacity: .75;
+      display: flex; align-items: center; gap: 3px;
+    }
+    .rev-verified svg { width: 10px; height: 10px; }
+
+    /* ═══════════════════════════════════════
+       9. BLOG PREVIEW — lichte kaarten
+    ════════════════════════════════════════ */
+    .blog { background: var(--cream); }
+    .blog-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+    .blog-card {
+      text-decoration: none; display: block; background: var(--white);
+      border: 1px solid var(--tan); border-radius: 4px; overflow: hidden;
+      transition: box-shadow .25s, transform .25s;
+    }
+    .blog-card:hover { box-shadow: 0 8px 28px rgba(13,43,35,.07); transform: translateY(-2px); }
+
+    .blog-card__img { height: 180px; overflow: hidden; }
+    .blog-card__img-inner {
+      width: 100%; height: 100%; transition: transform .4s ease;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .blog-card:hover .blog-card__img-inner { transform: scale(1.03); }
+    .blog-card:nth-child(1) .blog-card__img-inner { background: linear-gradient(145deg, #d4ab76, #b07d40); }
+    .blog-card:nth-child(2) .blog-card__img-inner { background: linear-gradient(145deg, #c8d4cc, #8fa89a); }
+    .blog-card:nth-child(3) .blog-card__img-inner { background: linear-gradient(145deg, #d4c4b4, #9a8060); }
+    .blog-card__img-inner svg { width: 40px; height: 40px; color: rgba(255,255,255,.5); }
+
+    .blog-card__body { padding: 20px 20px 22px; }
+    .blog-card__cat { font-size: 9px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); margin-bottom: 7px; opacity: .85; }
+    .blog-card__title { font-family: var(--font-h); font-size: 16px; font-weight: 400; color: var(--dark-green); line-height: 1.35; margin-bottom: 8px; }
+    .blog-card__excerpt { font-size: 12px; color: var(--text-muted); line-height: 1.65; margin-bottom: 14px; }
+    .blog-card__link { font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--gold); display: flex; align-items: center; gap: 5px; opacity: .85; }
+    .blog-card__link svg { width: 11px; height: 11px; transition: transform .2s; }
+    .blog-card:hover .blog-card__link svg { transform: translateX(3px); }
+
+    /* ═══════════════════════════════════════
+       10. PRE-FOOTER TRUST — licht
+    ════════════════════════════════════════ */
+    .pre-trust {
+      background: var(--white);
+      border-top: 1px solid var(--tan); border-bottom: 1px solid var(--tan);
+      padding: 52px 0;
+    }
+    .pre-trust__grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 32px; }
+    .ptrust { text-align: center; }
+    .ptrust__wrap {
+      width: 52px; height: 52px; margin: 0 auto 14px;
+      position: relative; display: flex; align-items: center; justify-content: center;
+    }
+    .ptrust__wrap::before {
+      content: ''; position: absolute; inset: -6px; border-radius: 50%;
+      border: 1px solid rgba(206,161,93,.2);
+    }
+    .ptrust__wrap::after {
+      content: ''; position: absolute; inset: -13px; border-radius: 50%;
+      border: 1px solid rgba(206,161,93,.09);
+    }
+    .ptrust__wrap svg { width: 22px; height: 22px; color: var(--gold); opacity: .75; }
+    .ptrust__title { font-size: 13px; font-weight: 600; color: var(--dark-green); margin-bottom: 3px; }
+    .ptrust__text { font-size: 12px; font-weight: 300; color: var(--text-muted); line-height: 1.6; }
+
+    /* ═══════════════════════════════════════
+       11. FOOTER — donkergroen (enig donker element)
+    ════════════════════════════════════════ */
+    .footer {
+      background: var(--dark-green); padding: 64px 0 0;
+      position: relative; overflow: hidden;
+    }
+    /* Zeer subtiele jaarringen in footer */
+    .footer__ring {
+      position: absolute; right: -80px; bottom: -80px;
+      width: 400px; height: 400px; color: rgba(241,239,234,.04);
+      pointer-events: none;
+    }
+    .footer__grid {
+      display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 48px;
+      position: relative; z-index: 1;
+    }
+    .footer__logo { display: flex; align-items: center; gap: 10px; text-decoration: none; margin-bottom: 14px; }
+    .footer__logo-ring { width: 26px; height: 26px; color: rgba(206,161,93,.6); }
+    .footer__logo-word { font-family: var(--font-h); font-size: 17px; font-weight: 500; color: var(--cream); letter-spacing: .1em; }
+    .footer__tagline { font-size: 13px; font-weight: 300; color: rgba(241,239,234,.45); line-height: 1.75; margin-bottom: 22px; max-width: 220px; }
+    .nl-label { font-size: 10px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: rgba(206,161,93,.65); margin-bottom: 9px; display: block; }
+    .nl-form { display: flex; }
+    .nl-input { flex: 1; background: rgba(241,239,234,.05); border: 1px solid rgba(241,239,234,.12); border-right: none; padding: 9px 14px; font-family: var(--font-b); font-size: 12px; color: var(--cream); outline: none; }
+    .nl-input::placeholder { color: rgba(241,239,234,.25); }
+    .nl-input:focus { border-color: rgba(206,161,93,.35); }
+    .nl-btn { background: var(--gold); border: none; padding: 9px 15px; cursor: pointer; color: var(--dark-green); font-size: 12px; font-weight: 700; transition: background .2s; }
+    .nl-btn:hover { background: var(--light-gold); }
+    .socials { display: flex; gap: 8px; margin-top: 20px; }
+    .social { width: 32px; height: 32px; border-radius: 50%; border: 1px solid rgba(241,239,234,.15); display: flex; align-items: center; justify-content: center; color: rgba(241,239,234,.35); text-decoration: none; transition: all .2s; }
+    .social:hover { border-color: var(--gold); color: rgba(206,161,93,.8); }
+    .social svg { width: 14px; height: 14px; }
+    .footer__col-title { font-size: 10px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: rgba(206,161,93,.6); margin-bottom: 18px; }
+    .footer__links { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+    .footer__links a { font-size: 13px; font-weight: 300; color: rgba(241,239,234,.45); text-decoration: none; transition: color .2s; }
+    .footer__links a:hover { color: rgba(241,239,234,.8); }
+    .footer__bottom { margin-top: 48px; padding: 18px 0; border-top: 1px solid rgba(241,239,234,.08); display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 1; }
+    .footer__copy { font-size: 11px; font-weight: 300; color: rgba(241,239,234,.3); }
+    .payments { display: flex; gap: 6px; }
+    .pay { background: rgba(241,239,234,.05); border: 1px solid rgba(241,239,234,.08); padding: 3px 8px; font-size: 10px; font-weight: 500; color: rgba(241,239,234,.3); }
+  </style>
+</head>
+<body>
+
+  <!-- ══ 1. ANNOUNCEMENT BAR ══ -->
+  <div class="ann">
+    <div class="container">
+      <div class="ann__inner">
+        <span class="ann__item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h3l4 4v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>Gratis verzending boven €59</span>
+        <span class="ann__item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4.12"/></svg>30 dagen retour</span>
+        <span class="ann__item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>4.9 sterren · +1.200 reviews</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ 2. HEADER ══ -->
+  <header class="header">
+    <div class="container">
+      <div class="header__inner">
+        <a href="#" class="logo">
+          <svg class="logo__ring ring" viewBox="0 0 80 80" fill="none">
+            <circle cx="40" cy="40" r="7"  stroke="currentColor" stroke-width="1.8"/>
+            <circle cx="40" cy="40" r="17" stroke="currentColor" stroke-width="1.4"/>
+            <circle cx="40" cy="40" r="27" stroke="currentColor" stroke-width="1.1"/>
+            <circle cx="40" cy="40" r="36" stroke="currentColor" stroke-width="1"/>
+          </svg>
+          <span class="logo__word">SOPHIOR</span>
+        </a>
+        <nav class="nav">
+          <a href="#">Producten</a>
+          <a href="#">Snijplanken</a>
+          <a href="#">Kookgerei</a>
+          <a href="#">Gidsen</a>
+          <a href="#">Over ons</a>
+        </nav>
+        <div class="icons">
+          <span class="icon-btn"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></span>
+          <span class="icon-btn"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+          <span class="icon-btn" style="position:relative">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            <span class="cart-dot">2</span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ══ 3. HERO ══ -->
+  <section class="hero">
+    <svg class="hero__ring-bg ring" viewBox="0 0 500 500" fill="none">
+      <circle cx="250" cy="250" r="40"  stroke="currentColor" stroke-width="1"/>
+      <circle cx="250" cy="250" r="85"  stroke="currentColor" stroke-width="1"/>
+      <circle cx="250" cy="250" r="135" stroke="currentColor" stroke-width="1"/>
+      <circle cx="250" cy="250" r="190" stroke="currentColor" stroke-width="1"/>
+      <circle cx="250" cy="250" r="245" stroke="currentColor" stroke-width="1"/>
+    </svg>
+
+    <div class="hero__content">
+      <p class="hero__label">Collectie 2026</p>
+      <h1 class="hero__h1">Voor de<br><em>echte</em><br>keukenliefhebber</h1>
+      <p class="hero__sub">Premium houten snijplanken van massief acacia en teak. Zorgvuldig geselecteerd, eerlijk geprijsd, gemaakt om mee te geven.</p>
+      <div class="hero__ctas">
+        <a href="#" class="btn btn--primary">Ontdek collectie <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a href="#" class="btn btn--ghost">Ons verhaal</a>
+      </div>
+      <div class="hero__stats">
+        <div class="hero__stat"><div class="hero__stat-num">4.9★</div><div class="hero__stat-label">Gemiddeld cijfer</div></div>
+        <div class="hero__stat"><div class="hero__stat-num">1.200+</div><div class="hero__stat-label">Klantbeoordelingen</div></div>
+        <div class="hero__stat"><div class="hero__stat-num">30 d</div><div class="hero__stat-label">Bedenktijd</div></div>
+      </div>
+    </div>
+
+    <!-- Rechts: product op lichte jaarring cirkel -->
+    <div class="hero__visual">
+      <div class="hero__ring-circle"></div>
+      <img class="hero__img"
+           src="https://cdn.shopify.com/s/files/1/0869/1449/8869/files/HakblokAcacia-43x33x3-MineraleOlie.png?v=1771496002"
+           alt="Acacia snijplank SOPHIOR">
+    </div>
+  </section>
+
+  <!-- ══ 4. TRUSTBADGE ══ -->
+  <div class="trust-bar">
+    <div class="container">
+      <div class="trust-bar__inner">
+        <div class="tbadge"><div class="tbadge__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h3l4 4v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div><div><span class="tbadge__title">Gratis verzending</span><span class="tbadge__sub">bij bestelling boven €59</span></div></div>
+        <div class="tbadge"><div class="tbadge__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4.12"/></svg></div><div><span class="tbadge__title">30 dagen retour</span><span class="tbadge__sub">niet goed, geld terug</span></div></div>
+        <div class="tbadge"><div class="tbadge__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div><span class="tbadge__title">Veilig betalen</span><span class="tbadge__sub">iDEAL, Klarna, PayPal</span></div></div>
+        <div class="tbadge"><div class="tbadge__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div><div><span class="tbadge__title">4.9 / 5 sterren</span><span class="tbadge__sub">+1.200 beoordelingen</span></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ 5. COLLECTIES ══ -->
+  <section class="section">
+    <div class="container">
+      <p class="s-label">Ontdek</p>
+      <h2 class="s-title">Onze collecties</h2>
+      <p class="s-sub">Van snijplank tot kookgerei — alles wat je nodig hebt in de keuken.</p>
+      <div class="ring-line">
+        <div class="ring-line__l"></div>
+        <svg viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="3.5" stroke="currentColor" stroke-width="1.2"/><circle cx="14" cy="14" r="8" stroke="currentColor" stroke-width="1"/><circle cx="14" cy="14" r="13" stroke="currentColor" stroke-width="1"/></svg>
+        <div class="ring-line__l ring-line__r"></div>
+      </div>
+      <div class="collections-grid">
+
+        <a href="#" class="coll">
+          <div class="coll__img-wrap">
+            <div class="coll__ring-bg"></div>
+            <img class="coll__img" src="https://cdn.shopify.com/s/files/1/0869/1449/8869/files/HakblokAcacia-43x33x3-MineraleOlie.png?v=1771496002" alt="Snijplanken" loading="lazy">
+          </div>
+          <div class="coll__body"><span class="coll__name">Snijplanken</span><svg class="coll__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+        </a>
+
+        <a href="#" class="coll">
+          <div class="coll__img-wrap">
+            <div class="coll__ring-bg"></div>
+            <img class="coll__img" src="https://sophior.nl/cdn/shop/files/RVSKoekenpan-28cm-Product.webp?v=1755938791" alt="Pannen" loading="lazy">
+          </div>
+          <div class="coll__body"><span class="coll__name">Pannen</span><svg class="coll__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+        </a>
+
+        <a href="#" class="coll">
+          <div class="coll__img-wrap">
+            <div class="coll__ring-bg"></div>
+            <img class="coll__img" src="https://cdn.shopify.com/s/files/1/0869/1449/8869/files/SOPHIORKoksmes21cm-Voorkant.png?v=1761049104" alt="Messen" loading="lazy">
+          </div>
+          <div class="coll__body"><span class="coll__name">Messen</span><svg class="coll__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+        </a>
+
+        <a href="#" class="coll">
+          <div class="coll__img-wrap">
+            <div class="coll__ring-bg"></div>
+            <img class="coll__img" src="https://cdn.shopify.com/s/files/1/0869/1449/8869/files/SOPHIORMineraleOlie250ml-Foto1.webp?v=1755938434" alt="Accessoires" loading="lazy">
+          </div>
+          <div class="coll__body"><span class="coll__name">Accessoires</span><svg class="coll__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 6. BESTSELLERS ══ -->
+  <section class="section bestsellers">
+    <div class="container">
+      <p class="s-label">Meest geliefd</p>
+      <h2 class="s-title">Bestsellers</h2>
+      <p class="s-sub">De producten die klanten keer op keer laten terugkomen.</p>
+      <div class="ring-line">
+        <div class="ring-line__l"></div>
+        <svg viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="3.5" stroke="currentColor" stroke-width="1.2"/><circle cx="14" cy="14" r="8" stroke="currentColor" stroke-width="1"/><circle cx="14" cy="14" r="13" stroke="currentColor" stroke-width="1"/></svg>
+        <div class="ring-line__l ring-line__r"></div>
+      </div>
+      <div class="prod-grid">
+
+        <div class="pc">
+          <span class="pc__badge">Bestseller</span>
+          <div class="pc__img-wrap">
+            <div class="pc__ring-bg"></div>
+            <img class="pc__img" src="https://cdn.shopify.com/s/files/1/0869/1449/8869/files/HakblokAcacia-43x33x3-MineraleOlie.png?v=1771496002" alt="Acacia snijplank" loading="lazy">
+            <div class="pc__quick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>Voeg toe</div>
+          </div>
+          <div class="pc__body">
+            <div class="pc__cat">Snijplanken</div>
+            <div class="pc__name">Acacia Snijplank Extra Dik 43×33cm</div>
+            <div class="pc__stars"><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span class="pc__rcount">(286)</span></div>
+            <div class="pc__price"><span class="pc__cur">€ 89,95</span><span class="pc__old">€ 109,95</span></div>
+          </div>
+        </div>
+
+        <div class="pc">
+          <div class="pc__img-wrap">
+            <div class="pc__ring-bg"></div>
+            <img class="pc__img" src="https://cdn.shopify.com/s/files/1/0869/1449/8869/files/SOPHIORKoksmes21cm-Voorkant.png?v=1761049104" alt="Koksmes" loading="lazy">
+            <div class="pc__quick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>Voeg toe</div>
+          </div>
+          <div class="pc__body">
+            <div class="pc__cat">Messen</div>
+            <div class="pc__name">Koksmes 21cm — Duits staal</div>
+            <div class="pc__stars"><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span class="pc__rcount">(194)</span></div>
+            <div class="pc__price"><span class="pc__cur">€ 129,95</span></div>
+          </div>
+        </div>
+
+        <div class="pc">
+          <span class="pc__badge">Nieuw</span>
+          <div class="pc__img-wrap">
+            <div class="pc__ring-bg"></div>
+            <img class="pc__img" src="https://cdn.shopify.com/s/files/1/0869/1449/8869/files/HakblokTeak-43x33x3-MineraleOlie.png?v=1771496053" alt="Teak snijplank" loading="lazy">
+            <div class="pc__quick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>Voeg toe</div>
+          </div>
+          <div class="pc__body">
+            <div class="pc__cat">Snijplanken</div>
+            <div class="pc__name">Teak Snijplank Extra Dik 43×33cm</div>
+            <div class="pc__stars"><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span class="pc__rcount">(97)</span></div>
+            <div class="pc__price"><span class="pc__cur">€ 89,95</span></div>
+          </div>
+        </div>
+
+        <div class="pc">
+          <div class="pc__img-wrap">
+            <div class="pc__ring-bg"></div>
+            <img class="pc__img" src="https://cdn.shopify.com/s/files/1/0869/1449/8869/files/RVSKoekenpan-Antiaanbaklaag-28cm-Product.webp?v=1755938490" alt="Hybride koekenpan" loading="lazy">
+            <div class="pc__quick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>Voeg toe</div>
+          </div>
+          <div class="pc__body">
+            <div class="pc__cat">Pannen</div>
+            <div class="pc__name">Hybride Koekenpan 28cm — PFAS-vrij</div>
+            <div class="pc__stars"><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span class="pc__rcount">(221)</span></div>
+            <div class="pc__price"><span class="pc__cur">€ 149,95</span><span class="pc__old">€ 179,95</span></div>
+          </div>
+        </div>
+
+      </div>
+      <div style="text-align:center; margin-top:40px;">
+        <a href="#" class="btn btn--ghost">Alle producten bekijken</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 7. USP ACCORDEON ══ -->
+  <section class="section usp">
+    <div class="container">
+      <div class="usp-grid">
+        <div>
+          <p class="usp-label">De SOPHIOR filosofie</p>
+          <h2 class="usp-h2">Waarom kiezen voor <em>SOPHIOR?</em></h2>
+          <p class="usp-intro">Elk product is zorgvuldig geselecteerd op materiaal, duurzaamheid en gebruik. Geen compromissen.</p>
+          <div>
+            <div class="acc-item acc-item--open">
+              <div class="acc-trigger" onclick="this.parentElement.classList.toggle('acc-item--open')"><span class="acc-trigger-txt">Massief hout, geen spaanplaat</span><svg class="acc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+              <div class="acc-body">Al onze snijplanken zijn van massief hout — acacia, teak of walnoot. Duurzamer, hygiënischer en mooier dan elk alternatief.</div>
+            </div>
+            <div class="acc-item">
+              <div class="acc-trigger" onclick="this.parentElement.classList.toggle('acc-item--open')"><span class="acc-trigger-txt">Messenvriendelijk oppervlak</span><svg class="acc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+              <div class="acc-body">Hout herstelt zichzelf na elke snede. Uw messen blijven langer scherp, uw snijplank langer mooi.</div>
+            </div>
+            <div class="acc-item">
+              <div class="acc-trigger" onclick="this.parentElement.classList.toggle('acc-item--open')"><span class="acc-trigger-txt">Geleverd met onderhoudsolie</span><svg class="acc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+              <div class="acc-body">Elke snijplank wordt geleverd met SOPHIOR minerale olie. Zo begint uw plank meteen goed beschermd.</div>
+            </div>
+            <div class="acc-item">
+              <div class="acc-trigger" onclick="this.parentElement.classList.toggle('acc-item--open')"><span class="acc-trigger-txt">2 jaar garantie, altijd</span><svg class="acc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+              <div class="acc-body">Bij productiefout vervangen we kosteloos. Eerlijk, simpel, zonder gedoe.</div>
+            </div>
+          </div>
+        </div>
+        <div class="usp-visual">
+          <div class="usp-visual__ring"></div>
+          <img class="usp-visual__img"
+               src="https://cdn.shopify.com/s/files/1/0869/1449/8869/files/HakblokTeak-43x33x3-MineraleOlie.png?v=1771496053"
+               alt="Teak snijplank" loading="lazy">
+          <div class="usp-visual__tag">
+            <div class="usp-visual__tag-title">Teak · Extra dik · 43×33cm</div>
+            <div class="usp-visual__tag-sub">Inclusief onderhoudsolie</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 8. REVIEWS ══ -->
+  <section class="section reviews">
+    <div class="container">
+      <p class="s-label">Klanten aan het woord</p>
+      <h2 class="s-title">4.9 van de 5 sterren</h2>
+      <p class="s-sub">Geverifieerde beoordelingen via Judge.me</p>
+      <div class="ring-line">
+        <div class="ring-line__l"></div>
+        <svg viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="3.5" stroke="currentColor" stroke-width="1.2"/><circle cx="14" cy="14" r="8" stroke="currentColor" stroke-width="1"/><circle cx="14" cy="14" r="13" stroke="currentColor" stroke-width="1"/></svg>
+        <div class="ring-line__l ring-line__r"></div>
+      </div>
+      <div class="rev-grid">
+        <div class="rev-card"><span class="rev-verified"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Geverifieerd</span><div class="rev-stars"><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div><p class="rev-text">Prachtige snijplank. Het acaciahout heeft een mooie warme kleur. Messen blijven scherper — echt merkbaar verschil.</p><div class="rev-author"><div class="rev-avatar">L</div><div><div class="rev-name">Laura van den Berg</div><div class="rev-meta">Acacia Snijplank · 3 weken geleden</div></div></div></div>
+        <div class="rev-card"><span class="rev-verified"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Geverifieerd</span><div class="rev-stars"><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div><p class="rev-text">De koekenpan is een openbaring. Dagelijks gebruik, al 6 maanden — geen enkel probleem. En de klantenservice was vliegensvlug.</p><div class="rev-author"><div class="rev-avatar">T</div><div><div class="rev-name">Thomas Janssen</div><div class="rev-meta">Hybride Koekenpan · 1 maand geleden</div></div></div></div>
+        <div class="rev-card"><span class="rev-verified"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Geverifieerd</span><div class="rev-stars"><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div><p class="rev-text">Als cadeau gegeven aan mijn man — hij is er verliefd op. Mooie verpakking ook, het voelt meteen als iets speciaals.</p><div class="rev-author"><div class="rev-avatar">S</div><div><div class="rev-name">Sophie de Vries</div><div class="rev-meta">Teak Snijplank · 2 weken geleden</div></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 9. BLOG ══ -->
+  <section class="section blog">
+    <div class="container">
+      <p class="s-label">Kennis & inspiratie</p>
+      <h2 class="s-title">Keuken gidsen</h2>
+      <p class="s-sub">Alles over snijplanken, messen en kookgerei — geschreven door keukenliefhebbers.</p>
+      <div class="ring-line">
+        <div class="ring-line__l"></div>
+        <svg viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="3.5" stroke="currentColor" stroke-width="1.2"/><circle cx="14" cy="14" r="8" stroke="currentColor" stroke-width="1"/><circle cx="14" cy="14" r="13" stroke="currentColor" stroke-width="1"/></svg>
+        <div class="ring-line__l ring-line__r"></div>
+      </div>
+      <div class="blog-grid">
+        <a href="#" class="blog-card"><div class="blog-card__img"><div class="blog-card__img-inner"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="6" y="12" width="36" height="26" rx="3"/></svg></div></div><div class="blog-card__body"><div class="blog-card__cat">Snijplanken</div><h3 class="blog-card__title">Hoe onderhoud je een houten snijplank?</h3><p class="blog-card__excerpt">Een houten snijplank gaat tientallen jaren mee — maar alleen als je hem goed verzorgt.</p><span class="blog-card__link">Lees meer <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div></a>
+        <a href="#" class="blog-card"><div class="blog-card__img"><div class="blog-card__img-inner"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><ellipse cx="24" cy="30" rx="16" ry="12"/></svg></div></div><div class="blog-card__body"><div class="blog-card__cat">Kookgerei</div><h3 class="blog-card__title">Gietijzer vs. RVS: wat past bij jou?</h3><p class="blog-card__excerpt">Beide materialen hebben voordelen. Wij leggen het uit zodat jij de juiste keuze maakt.</p><span class="blog-card__link">Lees meer <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div></a>
+        <a href="#" class="blog-card"><div class="blog-card__img"><div class="blog-card__img-inner"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 42L42 10c2-3 6-2 6 1S34 32 34 32L22 44l-12 2z"/></svg></div></div><div class="blog-card__body"><div class="blog-card__cat">Messen</div><h3 class="blog-card__title">Je mes slijpen in 5 stappen</h3><p class="blog-card__excerpt">Een bot mes is gevaarlijker dan een scherp mes. Leer hoe je veilig slijpt met een wetstaaf.</p><span class="blog-card__link">Lees meer <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div></a>
+      </div>
+      <div style="text-align:center; margin-top:36px;">
+        <a href="#" class="btn btn--ghost">Alle gidsen bekijken</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 10. PRE-FOOTER TRUST ══ -->
+  <div class="pre-trust">
+    <div class="container">
+      <div class="pre-trust__grid">
+        <div class="ptrust"><div class="ptrust__wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h3l4 4v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div><div class="ptrust__title">Snelle levering</div><div class="ptrust__text">Besteld voor 23:00,<br>morgen in huis</div></div>
+        <div class="ptrust"><div class="ptrust__wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4.12"/></svg></div><div class="ptrust__title">Makkelijk retour</div><div class="ptrust__text">30 dagen bedenktijd,<br>gratis retourlabel</div></div>
+        <div class="ptrust"><div class="ptrust__wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div><div class="ptrust__title">Veilig betalen</div><div class="ptrust__text">iDEAL, Klarna, PayPal<br>& creditcard</div></div>
+        <div class="ptrust"><div class="ptrust__wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><div class="ptrust__title">Persoonlijk advies</div><div class="ptrust__text">Ma–vr bereikbaar<br>via chat & mail</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ 11. FOOTER ══ -->
+  <footer class="footer">
+    <svg class="footer__ring ring" viewBox="0 0 400 400" fill="none">
+      <circle cx="200" cy="200" r="35"  stroke="currentColor" stroke-width="1"/>
+      <circle cx="200" cy="200" r="80"  stroke="currentColor" stroke-width="1"/>
+      <circle cx="200" cy="200" r="130" stroke="currentColor" stroke-width="1"/>
+      <circle cx="200" cy="200" r="185" stroke="currentColor" stroke-width="1"/>
+      <circle cx="200" cy="200" r="198" stroke="currentColor" stroke-width="1"/>
+    </svg>
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <a href="#" class="footer__logo">
+            <svg class="footer__logo-ring ring" viewBox="0 0 80 80" fill="none"><circle cx="40" cy="40" r="8" stroke="currentColor" stroke-width="1.5"/><circle cx="40" cy="40" r="18" stroke="currentColor" stroke-width="1.2"/><circle cx="40" cy="40" r="28" stroke="currentColor" stroke-width="1"/><circle cx="40" cy="40" r="36" stroke="currentColor" stroke-width="1"/></svg>
+            <span class="footer__logo-word">SOPHIOR</span>
+          </a>
+          <p class="footer__tagline">Luxe keukengerei voor iedereen die van koken houdt — en van materialen die meegroeien.</p>
+          <span class="nl-label">Blijf op de hoogte</span>
+          <div class="nl-form"><input type="email" class="nl-input" placeholder="jouw@email.nl"><button class="nl-btn">→</button></div>
+          <div class="socials">
+            <a href="#" class="social"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+            <a href="#" class="social"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+            <a href="#" class="social"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg></a>
+          </div>
+        </div>
+        <div><div class="footer__col-title">Shop</div><ul class="footer__links"><li><a href="#">Snijplanken</a></li><li><a href="#">Pannen</a></li><li><a href="#">Messen</a></li><li><a href="#">Accessoires</a></li><li><a href="#">Sale</a></li></ul></div>
+        <div><div class="footer__col-title">Klantenservice</div><ul class="footer__links"><li><a href="#">Contact</a></li><li><a href="#">Retour & ruil</a></li><li><a href="#">Veelgestelde vragen</a></li><li><a href="#">Bezorging</a></li><li><a href="#">Voorwaarden</a></li></ul></div>
+        <div><div class="footer__col-title">Over SOPHIOR</div><ul class="footer__links"><li><a href="#">Ons verhaal</a></li><li><a href="#">Keuken gidsen</a></li><li><a href="#">Duurzaamheid</a></li><li><a href="#">Zakelijk</a></li></ul></div>
+      </div>
+      <div class="footer__bottom">
+        <span class="footer__copy">© 2026 SOPHIOR — Alle rechten voorbehouden</span>
+        <div class="payments"><span class="pay">iDEAL</span><span class="pay">Klarna</span><span class="pay">Visa</span><span class="pay">Mastercard</span><span class="pay">PayPal</span></div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelectorAll('.acc-trigger').forEach(t => {
+      t.addEventListener('click', () => {
+        const item = t.parentElement;
+        const open = item.classList.contains('acc-item--open');
+        document.querySelectorAll('.acc-item').forEach(i => i.classList.remove('acc-item--open'));
+        if (!open) item.classList.add('acc-item--open');
+      });
+    });
+  </script>
+</body>
+</html>
