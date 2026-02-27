@@ -27,7 +27,7 @@ docker compose run --rm shopify shopify theme publish --theme-id [id]
 |---|---|---|---|
 | 0 | [Setup & Fundament](docs/sprint-0-setup.md) | ✅ Klaar | Docker + GitHub + Dawn draaien |
 | 1 | [Brand & Globale Componenten](docs/sprint-1-brand.md) | ✅ Klaar | Header, footer, announcement bar |
-| 2 | [Homepage](docs/sprint-2-homepage.md) | ⏸ Gepland | Alle 8 homepage secties |
+| 2 | [Homepage](docs/sprint-2-homepage.md) | ✅ Klaar | Alle 8 homepage secties |
 | 3 | [Categoriepagina](docs/sprint-3-categorie.md) | ⏸ Gepland | 1 template voor 4 collecties |
 | 4 | [Product Detail Page](docs/sprint-4-pdp.md) | ⏸ Gepland | Volledige PDP + metafields |
 | 5 | [Cart Drawer + Over Ons](docs/sprint-5-cart-overons.md) | ⏸ Gepland | Cart drawer + Over Ons pagina |

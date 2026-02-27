@@ -1,0 +1,190 @@
+/* ============================================================
+   SOPHIOR — Blog Preview
+   3 recente gidsen uit de blog.
+   Desktop: 3-kolommen grid | Mobile: verticale stapel.
+   ============================================================ */
+
+.sophior-blog-preview {
+  background-color: var(--sophior-cream);
+  padding: var(--sophior-space-2xl) var(--sophior-space-xl);
+}
+
+.sophior-blog-preview__inner {
+  max-width: var(--sophior-max-width);
+  margin: 0 auto;
+}
+
+.sophior-blog-preview__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: var(--sophior-space-xl);
+}
+
+.sophior-blog-preview__title {
+  font-family: var(--sophior-font-heading);
+  font-size: var(--sophior-text-2xl);
+  font-weight: 300;
+  color: var(--sophior-dark-green);
+  margin: 0;
+}
+
+.sophior-blog-preview__view-all {
+  font-family: var(--sophior-font-body);
+  font-size: var(--sophior-text-sm);
+  font-weight: 500;
+  color: var(--sophior-gold);
+  text-decoration: none;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.sophior-blog-preview__view-all:hover {
+  text-decoration: underline;
+}
+
+/* ---- Grid ---- */
+.sophior-blog-preview__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sophior-space-lg);
+}
+
+/* ---- Artikel kaart ---- */
+.sophior-blog-preview__card {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  background-color: var(--sophior-white);
+  overflow: hidden;
+  transition: box-shadow var(--sophior-transition);
+}
+
+.sophior-blog-preview__card:hover,
+.sophior-blog-preview__card:focus-visible {
+  box-shadow: 0 4px 24px rgba(13, 43, 35, 0.1);
+}
+
+.sophior-blog-preview__card-media {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  background-color: var(--sophior-light-tan);
+}
+
+.sophior-blog-preview__card-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.sophior-blog-preview__card:hover .sophior-blog-preview__card-image {
+  transform: scale(1.04);
+}
+
+.sophior-blog-preview__card-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--sophior-light-tan) 0%, var(--sophior-light-gold) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sophior-blog-preview__card-placeholder svg {
+  width: 40px;
+  height: 40px;
+  opacity: 0.3;
+  fill: var(--sophior-dark-green);
+}
+
+.sophior-blog-preview__card-category {
+  position: absolute;
+  top: var(--sophior-space-md);
+  left: var(--sophior-space-md);
+  background-color: var(--sophior-gold);
+  color: var(--sophior-dark-green);
+  font-family: var(--sophior-font-body);
+  font-size: var(--sophior-text-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.4rem 1rem;
+}
+
+/* ---- Kaart inhoud ---- */
+.sophior-blog-preview__card-body {
+  padding: var(--sophior-space-lg);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.sophior-blog-preview__card-title {
+  font-family: var(--sophior-font-heading);
+  font-size: var(--sophior-text-lg);
+  font-weight: 300;
+  color: var(--sophior-dark-green);
+  margin: 0 0 var(--sophior-space-sm);
+  line-height: 1.3;
+}
+
+.sophior-blog-preview__card-excerpt {
+  font-family: var(--sophior-font-body);
+  font-size: var(--sophior-text-sm);
+  font-weight: 300;
+  color: #4a6b60;
+  line-height: 1.55;
+  margin: 0 0 var(--sophior-space-lg);
+  flex: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.sophior-blog-preview__card-link {
+  font-family: var(--sophior-font-body);
+  font-size: var(--sophior-text-sm);
+  font-weight: 500;
+  color: var(--sophior-gold);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: gap var(--sophior-transition);
+  align-self: flex-start;
+}
+
+.sophior-blog-preview__card:hover .sophior-blog-preview__card-link,
+.sophior-blog-preview__card:focus-visible .sophior-blog-preview__card-link {
+  gap: 0.8rem;
+}
+
+/* ---- Mobile: verticale stapel ---- */
+@media screen and (max-width: 749px) {
+  .sophior-blog-preview {
+    padding: var(--sophior-space-xl) var(--sophior-space-md);
+  }
+
+  .sophior-blog-preview__grid {
+    grid-template-columns: 1fr;
+    gap: var(--sophior-space-md);
+  }
+
+  .sophior-blog-preview__header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--sophior-space-sm);
+  }
+}
+
+/* ---- Tablet ---- */
+@media screen and (min-width: 750px) and (max-width: 989px) {
+  .sophior-blog-preview__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

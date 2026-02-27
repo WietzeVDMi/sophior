@@ -1,0 +1,247 @@
+/* ============================================================
+   SOPHIOR — Bestseller Slider
+   Horizontale product-slider met CSS scroll-snap.
+   Pijlnavigatie desktop | swipe mobile.
+   ============================================================ */
+
+.sophior-bestsellers {
+  padding: var(--sophior-space-2xl) 0;
+  background-color: var(--sophior-white);
+  overflow: hidden;
+}
+
+.sophior-bestsellers__inner {
+  max-width: var(--sophior-max-width);
+  margin: 0 auto;
+  padding: 0 var(--sophior-space-xl);
+}
+
+.sophior-bestsellers__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: var(--sophior-space-xl);
+}
+
+.sophior-bestsellers__title {
+  font-family: var(--sophior-font-heading);
+  font-size: var(--sophior-text-2xl);
+  font-weight: 300;
+  color: var(--sophior-dark-green);
+  margin: 0;
+}
+
+.sophior-bestsellers__view-all {
+  font-family: var(--sophior-font-body);
+  font-size: var(--sophior-text-sm);
+  font-weight: 500;
+  color: var(--sophior-gold);
+  text-decoration: none;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.sophior-bestsellers__view-all:hover {
+  text-decoration: underline;
+}
+
+/* ---- Slider wrapper ---- */
+.sophior-bestsellers__slider-wrapper {
+  position: relative;
+}
+
+.sophior-bestsellers__track {
+  display: flex;
+  gap: var(--sophior-space-md);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding-bottom: var(--sophior-space-sm);
+}
+
+.sophior-bestsellers__track::-webkit-scrollbar {
+  display: none;
+}
+
+/* ---- Product card ---- */
+.sophior-bestsellers__card {
+  flex: 0 0 calc(25% - 1.2rem);
+  scroll-snap-align: start;
+  background-color: var(--sophior-cream);
+  text-decoration: none;
+  display: block;
+  position: relative;
+}
+
+.sophior-bestsellers__card-media {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+  background-color: var(--sophior-white);
+}
+
+.sophior-bestsellers__card-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.sophior-bestsellers__card:hover .sophior-bestsellers__card-image {
+  transform: scale(1.03);
+}
+
+.sophior-bestsellers__card-placeholder {
+  width: 100%;
+  height: 100%;
+  background: var(--sophior-light-tan);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sophior-bestsellers__card-placeholder svg {
+  width: 48px;
+  height: 48px;
+  opacity: 0.3;
+  fill: var(--sophior-dark-green);
+}
+
+/* Quick-add knop (verschijnt bij hover) */
+.sophior-bestsellers__card-quick-add {
+  position: absolute;
+  bottom: var(--sophior-space-sm);
+  left: var(--sophior-space-sm);
+  right: var(--sophior-space-sm);
+  background-color: var(--sophior-dark-green);
+  color: var(--sophior-cream);
+  font-family: var(--sophior-font-body);
+  font-size: var(--sophior-text-sm);
+  font-weight: 500;
+  text-align: center;
+  padding: 1rem;
+  border: none;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity var(--sophior-transition), transform var(--sophior-transition);
+  z-index: 1;
+}
+
+.sophior-bestsellers__card:hover .sophior-bestsellers__card-quick-add,
+.sophior-bestsellers__card:focus-within .sophior-bestsellers__card-quick-add {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.sophior-bestsellers__card-quick-add:hover {
+  background-color: var(--sophior-gold);
+  color: var(--sophior-dark-green);
+}
+
+.sophior-bestsellers__card-info {
+  padding: var(--sophior-space-md);
+}
+
+.sophior-bestsellers__card-stars {
+  color: var(--sophior-gold);
+  font-size: var(--sophior-text-sm);
+  line-height: 1;
+  margin-bottom: var(--sophior-space-xs);
+}
+
+.sophior-bestsellers__card-title {
+  font-family: var(--sophior-font-body);
+  font-size: var(--sophior-text-sm);
+  font-weight: 500;
+  color: var(--sophior-dark-green);
+  margin: 0 0 var(--sophior-space-xs);
+  line-height: 1.3;
+}
+
+.sophior-bestsellers__card-price {
+  font-family: var(--sophior-font-body);
+  font-size: var(--sophior-text-base);
+  font-weight: 700;
+  color: var(--sophior-dark-green);
+}
+
+.sophior-bestsellers__card-price--compare {
+  font-weight: 400;
+  text-decoration: line-through;
+  color: #888;
+  margin-left: var(--sophior-space-sm);
+  font-size: var(--sophior-text-sm);
+}
+
+/* ---- Pijl navigatie (desktop) ---- */
+.sophior-bestsellers__arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: var(--sophior-white);
+  border: 1px solid var(--sophior-light-tan);
+  color: var(--sophior-dark-green);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+  transition: background-color var(--sophior-transition), border-color var(--sophior-transition);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.sophior-bestsellers__arrow:hover {
+  background-color: var(--sophior-dark-green);
+  color: var(--sophior-cream);
+  border-color: var(--sophior-dark-green);
+}
+
+.sophior-bestsellers__arrow svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.sophior-bestsellers__arrow--prev {
+  left: -22px;
+}
+
+.sophior-bestsellers__arrow--next {
+  right: -22px;
+}
+
+.sophior-bestsellers__arrow[disabled] {
+  opacity: 0.35;
+  cursor: default;
+  pointer-events: none;
+}
+
+/* ---- Mobile ---- */
+@media screen and (max-width: 749px) {
+  .sophior-bestsellers__inner {
+    padding: 0 var(--sophior-space-md);
+  }
+
+  .sophior-bestsellers__card {
+    flex: 0 0 calc(50% - 0.8rem);
+  }
+
+  .sophior-bestsellers__arrow {
+    display: none;
+  }
+}
+
+/* ---- Tablet ---- */
+@media screen and (min-width: 750px) and (max-width: 989px) {
+  .sophior-bestsellers__card {
+    flex: 0 0 calc(33.333% - 1.1rem);
+  }
+}

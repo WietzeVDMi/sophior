@@ -1,0 +1,225 @@
+{{ 'sophior-bestsellers.css' | asset_url | stylesheet_tag }}
+
+{%- assign col_handle = section.settings.collection | default: 'bestsellers' -%}
+{%- assign col = collections[col_handle] -%}
+{%- assign products_to_show = section.settings.products_to_show | default: 8 -%}
+
+<div class="sophior-bestsellers">
+  <div class="sophior-bestsellers__inner">
+
+    <div class="sophior-bestsellers__header">
+      <h2 class="sophior-bestsellers__title">{{ section.settings.title }}</h2>
+      {%- if col != blank and col.url != blank -%}
+        <a href="{{ col.url }}" class="sophior-bestsellers__view-all">
+          {{ section.settings.view_all_label | default: 'Alle bestsellers' }}
+        </a>
+      {%- endif -%}
+    </div>
+
+    <div
+      class="sophior-bestsellers__slider-wrapper"
+      id="sophior-bestsellers-{{ section.id }}"
+    >
+      {%- comment -%} Pijlen {%- endcomment -%}
+      <button
+        class="sophior-bestsellers__arrow sophior-bestsellers__arrow--prev"
+        aria-label="{{ 'sections.sophior-bestsellers.prev' | t }}"
+        type="button"
+        disabled
+      >
+        <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+      </button>
+
+      <div class="sophior-bestsellers__track" role="list" aria-label="{{ section.settings.title }}">
+        {%- if col != blank and col.products.size > 0 -%}
+          {%- for product in col.products limit: products_to_show -%}
+            <a
+              href="{{ product.url }}"
+              class="sophior-bestsellers__card"
+              role="listitem"
+              aria-label="{{ product.title | escape }}"
+            >
+              <div class="sophior-bestsellers__card-media">
+                {%- if product.featured_image != blank -%}
+                  {{
+                    product.featured_image
+                    | image_url: width: 600
+                    | image_tag:
+                      class: 'sophior-bestsellers__card-image',
+                      loading: 'lazy',
+                      alt: product.featured_image.alt | default: product.title | escape,
+                      widths: '300, 400, 600',
+                      sizes: '(max-width: 749px) 50vw, 25vw'
+                  }}
+                {%- else -%}
+                  <div class="sophior-bestsellers__card-placeholder" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+                  </div>
+                {%- endif -%}
+
+                <button
+                  class="sophior-bestsellers__card-quick-add"
+                  type="button"
+                  aria-label="{{ 'sections.sophior-bestsellers.quick_add' | t: title: product.title | escape }}"
+                  data-product-id="{{ product.variants.first.id }}"
+                >
+                  {{ 'sections.sophior-bestsellers.add_to_cart' | t }}
+                </button>
+              </div>
+
+              <div class="sophior-bestsellers__card-info">
+                <div class="sophior-bestsellers__card-stars" aria-label="5 sterren">★★★★★</div>
+                <h3 class="sophior-bestsellers__card-title">{{ product.title }}</h3>
+                <div class="sophior-bestsellers__card-price">
+                  {{ product.price | money }}
+                  {%- if product.compare_at_price > product.price -%}
+                    <span class="sophior-bestsellers__card-price--compare">
+                      {{ product.compare_at_price | money }}
+                    </span>
+                  {%- endif -%}
+                </div>
+              </div>
+            </a>
+          {%- endfor -%}
+        {%- else -%}
+          {%- comment -%} Placeholder kaarten als collectie leeg of niet bestaat {%- endcomment -%}
+          {%- for i in (1..4) -%}
+            <div class="sophior-bestsellers__card" role="listitem" aria-hidden="true">
+              <div class="sophior-bestsellers__card-media">
+                <div class="sophior-bestsellers__card-placeholder">
+                  <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+                </div>
+              </div>
+              <div class="sophior-bestsellers__card-info">
+                <div class="sophior-bestsellers__card-stars">★★★★★</div>
+                <h3 class="sophior-bestsellers__card-title">Product {{ i }}</h3>
+                <div class="sophior-bestsellers__card-price">€ —</div>
+              </div>
+            </div>
+          {%- endfor -%}
+        {%- endif -%}
+      </div>
+
+      <button
+        class="sophior-bestsellers__arrow sophior-bestsellers__arrow--next"
+        aria-label="{{ 'sections.sophior-bestsellers.next' | t }}"
+        type="button"
+      >
+        <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<script>
+(function () {
+  var wrapper = document.getElementById('sophior-bestsellers-{{ section.id }}');
+  if (!wrapper) return;
+
+  var track = wrapper.querySelector('.sophior-bestsellers__track');
+  var prevBtn = wrapper.querySelector('.sophior-bestsellers__arrow--prev');
+  var nextBtn = wrapper.querySelector('.sophior-bestsellers__arrow--next');
+
+  function getScrollAmount() {
+    var card = track.querySelector('.sophior-bestsellers__card');
+    return card ? card.offsetWidth + 16 : 280;
+  }
+
+  function updateArrows() {
+    if (!prevBtn || !nextBtn) return;
+    prevBtn.disabled = track.scrollLeft <= 4;
+    nextBtn.disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 4;
+  }
+
+  if (prevBtn) {
+    prevBtn.addEventListener('click', function () {
+      track.scrollBy({ left: -getScrollAmount() * 2, behavior: 'smooth' });
+    });
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener('click', function () {
+      track.scrollBy({ left: getScrollAmount() * 2, behavior: 'smooth' });
+    });
+  }
+
+  track.addEventListener('scroll', updateArrows, { passive: true });
+  updateArrows();
+
+  {%- comment -%} Quick-add: voeg product toe aan cart via AJAX {%- endcomment -%}
+  track.addEventListener('click', function (e) {
+    var btn = e.target.closest('.sophior-bestsellers__card-quick-add');
+    if (!btn) return;
+    e.preventDefault();
+    e.stopPropagation();
+
+    var variantId = btn.dataset.productId;
+    if (!variantId) return;
+
+    btn.textContent = '...';
+    btn.disabled = true;
+
+    fetch('/cart/add.js', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-Requested-With': 'XMLHttpRequest' },
+      body: JSON.stringify({ id: variantId, quantity: 1 })
+    })
+    .then(function (r) { return r.json(); })
+    .then(function () {
+      btn.textContent = '✓';
+      document.dispatchEvent(new CustomEvent('cart:refresh'));
+      setTimeout(function () {
+        btn.textContent = '{{ 'sections.sophior-bestsellers.add_to_cart' | t | escape }}';
+        btn.disabled = false;
+      }, 1500);
+    })
+    .catch(function () {
+      btn.textContent = '{{ 'sections.sophior-bestsellers.add_to_cart' | t | escape }}';
+      btn.disabled = false;
+    });
+  });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Bestseller Slider",
+  "tag": "div",
+  "class": "sophior-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "t:sections.sophior-bestsellers.settings.title.label",
+      "default": "Onze bestsellers"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "t:sections.sophior-bestsellers.settings.collection.label",
+      "info": "t:sections.sophior-bestsellers.settings.collection.info"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "label": "t:sections.sophior-bestsellers.settings.products_to_show.label",
+      "min": 4,
+      "max": 12,
+      "step": 2,
+      "default": 8
+    },
+    {
+      "type": "text",
+      "id": "view_all_label",
+      "label": "t:sections.sophior-bestsellers.settings.view_all_label.label",
+      "default": "Alle bestsellers"
+    }
+  ],
+  "presets": [
+    {
+      "name": "SOPHIOR Bestseller Slider"
+    }
+  ]
+}
+{% endschema %}

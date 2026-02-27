@@ -1,0 +1,81 @@
+/* ============================================================
+   SOPHIOR — Trustbadge Bar
+   4 USP-items horizontaal. Achtergrond: light-tan.
+   Mobile: 2×2 grid.
+   ============================================================ */
+
+.sophior-trustbadge {
+  background-color: var(--sophior-light-tan);
+  padding: var(--sophior-space-lg) var(--sophior-space-xl);
+  border-top: 1px solid rgba(13, 43, 35, 0.1);
+  border-bottom: 1px solid rgba(13, 43, 35, 0.1);
+}
+
+.sophior-trustbadge__list {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: var(--sophior-space-lg);
+  max-width: var(--sophior-max-width);
+  margin: 0 auto;
+  list-style: none;
+  padding: 0;
+}
+
+.sophior-trustbadge__item {
+  display: flex;
+  align-items: center;
+  gap: var(--sophior-space-md);
+  flex: 1;
+  justify-content: center;
+}
+
+.sophior-trustbadge__icon {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  color: var(--sophior-gold);
+}
+
+.sophior-trustbadge__icon svg {
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
+}
+
+.sophior-trustbadge__text {
+  font-family: var(--sophior-font-body);
+  font-size: var(--sophior-text-sm);
+  font-weight: 500;
+  color: var(--sophior-dark-green);
+  line-height: 1.3;
+}
+
+/* Scheidingslijn tussen items */
+.sophior-trustbadge__item + .sophior-trustbadge__item {
+  border-left: 1px solid rgba(13, 43, 35, 0.15);
+  padding-left: var(--sophior-space-lg);
+}
+
+/* ---- Mobile: 2×2 grid ---- */
+@media screen and (max-width: 749px) {
+  .sophior-trustbadge {
+    padding: var(--sophior-space-lg);
+  }
+
+  .sophior-trustbadge__list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--sophior-space-md);
+    justify-items: start;
+  }
+
+  .sophior-trustbadge__item + .sophior-trustbadge__item {
+    border-left: none;
+    padding-left: 0;
+  }
+
+  .sophior-trustbadge__item {
+    justify-content: flex-start;
+  }
+}

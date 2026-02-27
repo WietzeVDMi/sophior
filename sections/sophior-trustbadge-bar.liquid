@@ -1,0 +1,144 @@
+{{ 'sophior-trustbadge-bar.css' | asset_url | stylesheet_tag }}
+
+{%- comment -%} SVG iconen per type {%- endcomment -%}
+{%- liquid
+  assign icon_checkmark = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>'
+  assign icon_truck = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zM6 18.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm13.5-9l1.96 2.5H17V9.5h2.5zm-1.5 9c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>'
+  assign icon_leaf = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3A4.49 4.49 0 008 20C19 20 22 3 22 3c-1 2-8 5.5-8 5.5-.76-1.38-2.05-2.32-3.5-2.5H17v2zM7.93 19.02A16.46 16.46 0 0112 10c-1.22 1.46-2.09 3.21-2.5 5.11L7.93 19.02z"/></svg>'
+  assign icon_star = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>'
+  assign icon_shield = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>'
+-%}
+
+<div class="sophior-trustbadge">
+  <ul class="sophior-trustbadge__list">
+    {%- for i in (1..4) -%}
+      {%- assign block_prefix = 'item_' | append: i -%}
+      {%- assign text_key = 'text_' | append: i -%}
+      {%- assign icon_key = 'icon_' | append: i -%}
+      {%- assign item_text = section.settings[text_key] -%}
+      {%- assign item_icon = section.settings[icon_key] -%}
+
+      {%- unless item_text == blank -%}
+        <li class="sophior-trustbadge__item">
+          <span class="sophior-trustbadge__icon" aria-hidden="true">
+            {%- case item_icon -%}
+              {%- when 'truck' -%}{{ icon_truck }}
+              {%- when 'leaf' -%}{{ icon_leaf }}
+              {%- when 'star' -%}{{ icon_star }}
+              {%- when 'shield' -%}{{ icon_shield }}
+              {%- else -%}{{ icon_checkmark }}
+            {%- endcase -%}
+          </span>
+          <span class="sophior-trustbadge__text">{{ item_text }}</span>
+        </li>
+      {%- endunless -%}
+    {%- endfor -%}
+  </ul>
+</div>
+
+{% schema %}
+{
+  "name": "Trustbadge Bar",
+  "tag": "div",
+  "class": "sophior-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.sophior-trustbadge-bar.settings.header_item1"
+    },
+    {
+      "type": "select",
+      "id": "icon_1",
+      "label": "t:sections.sophior-trustbadge-bar.settings.icon.label",
+      "options": [
+        { "value": "checkmark", "label": "Vinkje" },
+        { "value": "truck", "label": "Vrachtwagen" },
+        { "value": "leaf", "label": "Blad" },
+        { "value": "star", "label": "Ster" },
+        { "value": "shield", "label": "Schild" }
+      ],
+      "default": "truck"
+    },
+    {
+      "type": "text",
+      "id": "text_1",
+      "label": "t:sections.sophior-trustbadge-bar.settings.text.label",
+      "default": "Gratis verzending vanaf €59"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.sophior-trustbadge-bar.settings.header_item2"
+    },
+    {
+      "type": "select",
+      "id": "icon_2",
+      "label": "t:sections.sophior-trustbadge-bar.settings.icon.label",
+      "options": [
+        { "value": "checkmark", "label": "Vinkje" },
+        { "value": "truck", "label": "Vrachtwagen" },
+        { "value": "leaf", "label": "Blad" },
+        { "value": "star", "label": "Ster" },
+        { "value": "shield", "label": "Schild" }
+      ],
+      "default": "checkmark"
+    },
+    {
+      "type": "text",
+      "id": "text_2",
+      "label": "t:sections.sophior-trustbadge-bar.settings.text.label",
+      "default": "30 dagen retourrecht"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.sophior-trustbadge-bar.settings.header_item3"
+    },
+    {
+      "type": "select",
+      "id": "icon_3",
+      "label": "t:sections.sophior-trustbadge-bar.settings.icon.label",
+      "options": [
+        { "value": "checkmark", "label": "Vinkje" },
+        { "value": "truck", "label": "Vrachtwagen" },
+        { "value": "leaf", "label": "Blad" },
+        { "value": "star", "label": "Ster" },
+        { "value": "shield", "label": "Schild" }
+      ],
+      "default": "leaf"
+    },
+    {
+      "type": "text",
+      "id": "text_3",
+      "label": "t:sections.sophior-trustbadge-bar.settings.text.label",
+      "default": "Duurzaam geproduceerd"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.sophior-trustbadge-bar.settings.header_item4"
+    },
+    {
+      "type": "select",
+      "id": "icon_4",
+      "label": "t:sections.sophior-trustbadge-bar.settings.icon.label",
+      "options": [
+        { "value": "checkmark", "label": "Vinkje" },
+        { "value": "truck", "label": "Vrachtwagen" },
+        { "value": "leaf", "label": "Blad" },
+        { "value": "star", "label": "Ster" },
+        { "value": "shield", "label": "Schild" }
+      ],
+      "default": "shield"
+    },
+    {
+      "type": "text",
+      "id": "text_4",
+      "label": "t:sections.sophior-trustbadge-bar.settings.text.label",
+      "default": "Veilig & versleuteld betalen"
+    }
+  ],
+  "presets": [
+    {
+      "name": "SOPHIOR Trustbadge Bar"
+    }
+  ]
+}
+{% endschema %}
