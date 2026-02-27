@@ -56,12 +56,26 @@
                     product.featured_image
                     | image_url: width: 600
                     | image_tag:
-                      class: 'sophior-bestsellers__card-image',
+                      class: 'sophior-bestsellers__card-image sophior-bestsellers__card-image--primary',
                       loading: 'lazy',
                       alt: bestseller_alt,
                       widths: '300, 400, 600',
                       sizes: '(max-width: 749px) 50vw, 25vw'
                   }}
+                  {%- assign second_bs_img = product.images[1] -%}
+                  {%- if second_bs_img != blank -%}
+                    {%- assign second_bs_alt = second_bs_img.alt | default: product.title | escape -%}
+                    {{
+                      second_bs_img
+                      | image_url: width: 600
+                      | image_tag:
+                        class: 'sophior-bestsellers__card-image sophior-bestsellers__card-image--hover',
+                        loading: 'lazy',
+                        alt: second_bs_alt,
+                        widths: '300, 400, 600',
+                        sizes: '(max-width: 749px) 50vw, 25vw'
+                    }}
+                  {%- endif -%}
                 {%- else -%}
                   <div class="sophior-bestsellers__card-placeholder" aria-hidden="true">
                     <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>

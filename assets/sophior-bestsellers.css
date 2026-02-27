@@ -102,10 +102,27 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.3s ease;
+  transition: opacity 0.35s ease, transform 0.35s ease;
 }
 
-.sophior-bestsellers__card:hover .sophior-bestsellers__card-image {
+.sophior-bestsellers__card-image--primary {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.sophior-bestsellers__card-image--hover {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  opacity: 0;
+}
+
+.sophior-bestsellers__card:hover .sophior-bestsellers__card-image--hover {
+  opacity: 1;
+}
+
+.sophior-bestsellers__card:hover .sophior-bestsellers__card-image--primary {
   transform: scale(1.03);
 }
 
