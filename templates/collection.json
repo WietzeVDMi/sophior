@@ -61,7 +61,11 @@
           }
         }
       },
-      "block_order": ["proof-1", "proof-2", "proof-3"],
+      "block_order": [
+        "proof-1",
+        "proof-2",
+        "proof-3"
+      ],
       "settings": {
         "padding_top": 20,
         "padding_bottom": 20
@@ -70,11 +74,9 @@
     "seo-text": {
       "type": "sophior-collection-seo-text",
       "settings": {
-        "heading": "",
-        "content": "",
+        "heading": "Meer over Snijplanken",
+        "content": "<p>Uitgebreide uitleg over de categorie</p>",
         "show_toggle": true,
-        "show_sidebar": true,
-        "sidebar_heading": "Gidsen",
         "padding_top": 36,
         "padding_bottom": 48
       }
@@ -104,12 +106,14 @@
           }
         }
       },
-      "block_order": ["usp-1", "usp-2", "usp-3"],
+      "block_order": [
+        "usp-1",
+        "usp-2",
+        "usp-3"
+      ],
       "settings": {
         "title": "Waarom kiezen voor SOPHIOR",
-        "subtitle": "Koken begint bij het juiste materiaal",
-        "padding_top": 60,
-        "padding_bottom": 60
+        "subtitle": "Koken begint bij het juiste materiaal"
       }
     },
     "trustbar": {
