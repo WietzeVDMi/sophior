@@ -26,7 +26,7 @@
       "type": "sophior-header",
       "settings": {
         "logo_width": 160,
-        "main_menu": "main-menu",
+        "main_menu": "main-menu-v1",
         "mega_menu_trigger": "Producten"
       }
     }
