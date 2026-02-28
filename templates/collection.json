@@ -118,6 +118,46 @@
     },
     "trustbar": {
       "type": "sophior-trustbar-footer",
+      "blocks": {
+        "trust_item_iaWV6N": {
+          "type": "trust_item",
+          "settings": {
+            "icon": "truck",
+            "title": "Gratis verzending",
+            "text": "Vanaf €59 gratis verzending in Nederland"
+          }
+        },
+        "trust_item_N7gPKk": {
+          "type": "trust_item",
+          "settings": {
+            "icon": "truck",
+            "title": "Gratis verzending",
+            "text": "Vanaf €59 gratis verzending in Nederland"
+          }
+        },
+        "trust_item_7LcqKc": {
+          "type": "trust_item",
+          "settings": {
+            "icon": "truck",
+            "title": "Gratis verzending",
+            "text": "Vanaf €59 gratis verzending in Nederland"
+          }
+        },
+        "trust_item_9rpCtV": {
+          "type": "trust_item",
+          "settings": {
+            "icon": "truck",
+            "title": "Gratis verzending",
+            "text": "Vanaf €59 gratis verzending in Nederland"
+          }
+        }
+      },
+      "block_order": [
+        "trust_item_iaWV6N",
+        "trust_item_N7gPKk",
+        "trust_item_7LcqKc",
+        "trust_item_9rpCtV"
+      ],
       "settings": {}
     }
   },
